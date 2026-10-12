@@ -449,6 +449,24 @@ advances headless. Where a full-completion save *does* pay off is in a GUI
 emulator: one human session to boot, tap to world 8 and save a state, and every
 tool in this repo can then run on it.
 
+That save no longer has to be hunted for: `tools/make_save.py` builds it from
+the user's own `.sav`. The unlock field was found by validating the ARDS
+download `new-super-mario-bros.16742.dst` (500-byte header wrapping this exact
+8 KB save format, 10/10 checksums from the ported routine) and diffing it
+against the local save: **+0x6A per file slot, 8 x u16, one per world** --
+`43 00` in every early-progress slot (all three local ones *and* the
+download's own untouched slot 3) versus `ff 03 ff 03 ff 03 ff 03 ff 03 ff 07
+ff 03 df 07` in both of its beaten slots. The C# editor's recipe had the
+offset but the wrong value and one byte too many: its 17th write lands on the
+slot sentinel (`d7`/`d0`) and clobbers it. The tool copies the 16 measured
+bytes instead, mirrors them into both 4 KB blocks, and rewrites the
+checksums; the emitted `data/save_unlocked.sav` verifies 10/10 with zero
+bytes changed outside the field and its checksums. An earlier claim in the
+tool's own docstring -- that this field "does not gate the world row" because
+it is byte-identical across the three local slots -- was the wrong inference:
+identical because all three slots were played to the same early point, which
+is exactly what the untouched-vs-beaten contrast in the download disproves.
+
 The route that stays inside the inputs that work is the game's own world
 advance: clearing a world's last node hands you the next world's map, exactly the
 mechanism 4i uses to reach world 1's map. It needs the earlier worlds marked
@@ -582,8 +600,10 @@ tools/
   parity_planner.py              Rust sidecar vs Python, 37,281 queries
   record_dashboard.py            The README clip and its measured caption
   check_readme_numbers.py        Gate: every number quoted in README.md
-  make_save.py                   Build/verify an NSMB DS .sav (checksum port is
-                                 validated 10/10 against the real save)
+  make_save.py                   Build an NSMB DS .sav with the world row
+                                 unlocked: the 16 bytes a verified 100% ARDS
+                                 download carries at +0x6A, mirrored, checksums
+                                 rewritten 10/10
   tileset_probe.py               Per-course ground coverage (4e table)
   mucd_probe.py / mucd_bind.py / mucd_groups.py   4f investigation
   tileset_groups.py / tileset_posneg.py / tileset_sweep.py   4h investigation
