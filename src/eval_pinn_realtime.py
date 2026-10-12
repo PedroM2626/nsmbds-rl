@@ -373,7 +373,10 @@ class ReflexivePPOAgent(BaseReflexController):
 
 def grab_top_screen(emu):
     buf = np.array(emu.display_buffer_as_rgbx(), dtype=np.uint8).reshape(384, 256, 4)
-    return buf[:192, :, :3][:, :, ::-1].copy()  # top screen, BGR
+    # The buffer is already BGR-native (sky reads [244,160,54] by channel index and
+    # the 4th byte is always 0), so reversing it swaps red and blue -- that is what
+    # rendered Mario blue and the sky orange in the recorded clips.
+    return buf[:192, :, :3].copy()  # top screen, BGR
 
 
 def render_frame(emu, label, speed, writer=None):

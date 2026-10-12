@@ -226,8 +226,12 @@ def draw_buttons(img, held):
 
 
 def grab_frame(emu):
+    """py-desmume's display_buffer_as_rgbx() is BGR-native despite its name: the
+    sky reads [244,160,54] per channel index, so index 0 is blue and the alpha
+    byte is all zero. Return it as-is -- reversing here is what made Mario blue.
+    """
     buf = np.array(emu.display_buffer_as_rgbx(), dtype=np.uint8).reshape((384, 256, 4))
-    return cv2.cvtColor(buf[:192, :, :3], cv2.COLOR_RGB2BGR)
+    return np.ascontiguousarray(buf[:192, :, :3])
 
 
 def compose(game, st):
