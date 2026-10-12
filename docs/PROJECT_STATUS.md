@@ -169,19 +169,51 @@ arms:
 
 | arm | steps | final px | reward | outcome |
 | --- | --- | --- | --- | --- |
-| `--reflex legacy` | 210 | 4,022.4 | 1530.3251953125057 | **cleared**, byte-identical to the published eval |
-| `--reflex profile` | 1200 | 1,889.0 | 613.2 | truncated, **stalls at col 118** |
+| `--reflex legacy` | 209 | 4,022 | 1530.375 | **cleared** |
+| `--reflex profile` | 109 | 1,819 | 623.6911 | died (peak 1,730 px), **short of the flagpole** |
 
-So the bands are load-bearing: with pure geometry the controller gets 47% of the
-way. The stall is not a reflex bug but a **geometry-fidelity** bug -- in the
-117..123 column range `Course` reports the walkable surface alternating 24/29/24
-because `surface_ahead` absorbs stacked ?-blocks into the ground profile, so the
-planner sees walls and pits that the rendered screen does not have. Fixing the
-tile profile (separate "ground Mario stands on" from "solids above it") is the
-prerequisite for any second level, and it is also why the dashboard's tile panel
-marks isolated rises as parser-only.
+So the bands are load-bearing: with pure geometry the controller gets ~43% of the
+way. The stall is not a reflex bug but a **geometry-fidelity** bug -- see 4c.
 
-## 4c. Porting to another course: what actually blocks it
+## 4c. Walkable-surface fidelity fix (2026-10-11)
+
+`Course.floor_row()` returned `min(rows)`, the *highest* ground-class tile in a
+column. Ground-class objects also cover floating brick rows and platforms, so a
+column's floor was reported up on the platform and the real ground underneath
+disappeared. At cols 117..121 of A01_1 the profile claimed floor row 24 while the
+rendered frame shows the walkable floor at row 30 with a brick row floating at 24
+(`D:/tmp_verify/reality_1889.png` was captured to check this, not assumed).
+
+Fixes:
+
+- `Course.floor_row()` now returns the top of the **bottom contiguous** ground run
+  -- the surface Mario walks on -- and `Course.platform_rows()` exposes the
+  ground-class surfaces stacked above it separately.
+- `TilemapAStar.surface` and `LevelProfile.surface` build from
+  `course.ground_cover` (ground classes only). They used to walk
+  `course.rects`, which absorbed bricks, ?-blocks and decor into the walkable
+  profile -- that is what the hardcoded `2430..2630` reflex band was patching
+  over, and why the dashboard's tile panel showed blocks that are not there.
+
+Effect, measured: the pit census is unchanged (9 pits, widths 2-3, `feasible=True`),
+obstacle columns went 49 -> 60 (heights recomputed against the real floor), the
+Rust/Python query parity still passes on all 37,281 sampled queries, and the
+`reactive` arm still clears 5/5 at 4,022.4 px -- one step shorter than before
+(209 vs 210), which is why `evals/pinn_realtime_eval.json` was regenerated. The
+pure-geometry arm is still short (1,730 px), so parser fidelity was necessary but
+not sufficient: the remaining gap is in the reflex rules themselves.
+
+## 4d. Two formulas for Mario's absolute position
+
+`src/ram_env.py` reports `mario_px = st["mario_B"] / 4096`, while
+`eval_pinn_realtime.py` and the controller use `SPAWN_ABS_PX + obs[0] * 512`.
+They disagree by enough that the eval's stop test (`abs_px >= goal - 16`) fires
+10 steps before the env's `level_cleared`. Consequence: the same trajectory is
+published as "209 steps" by the eval and "219 steps" by the recorder. Unifying
+them changes the eval's step count, so it needs its own parity run rather than a
+silent edit.
+
+## 4e. Porting to another course: what actually blocks it
 
 `out/nsmb_levels.json` already parses 191 courses including `A08_1` (World 8-1),
 and `LevelProfile` derives its spawn from that course's own entrance record

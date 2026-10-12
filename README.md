@@ -28,7 +28,10 @@ from the same step loop that drives the emulator, so the frame is the evidence:
 | reward prediction (green) vs actual (grey) | `models/pinn_nsmb.pt` `step_batch()` reward head |
 | SciML panel (reach, units, pits) | `src/tilemap_planner.py` + `out/nsmb_physics.json` |
 
-Measured on this run: **220 steps, 4021 px of 4032 px, stage-clear flag raised**.
+Measured on this run: **219 steps, 4021 px of 4032 px, stage-clear flag raised**
+(the harness in `src/eval_pinn_realtime.py` reports 209 steps for the same
+trajectory because it stops on a different absolute-position formula; see
+[`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) 4d).
 The grey spike at the end is the `+100` terminal bonus the PINN does not predict.
 
 ```bash
