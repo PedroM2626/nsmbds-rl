@@ -64,6 +64,12 @@ def main():
     print(f"  cleared: {p_ep['termination'] == 'goal'}   legacy cleared: "
           f"{l_ep['termination'] == 'goal'}")
 
+    # so docs/PROJECT_STATUS.md 4b can be gated instead of retyped
+    with open(os.path.join(ROOT, "out", "reflex_parity.json"), "w", encoding="utf-8") as f:
+        json.dump({"legacy": {k: l_ep[k] for k in keys},
+                   "profile": {k: p_ep[k] for k in keys},
+                   "planner": args.planner, "episodes": args.episodes}, f, indent=2)
+
     if not legacy_ok:
         print("\nFAIL: legacy arm does not reproduce the published numbers", file=sys.stderr)
         return 1
