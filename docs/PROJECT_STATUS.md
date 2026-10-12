@@ -155,6 +155,50 @@ Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a p
 
 ---
 
+## 4b. How much of the 1-1 clear is geometry, and how much is tuning
+
+`BaseReflexController` carried seven hand-placed World 1-1 pixel bands: the
+3870/3920/4020 endgame push, the 1450..1485 corridor step-up, the 2430..2630
+floating-block skip, the `abs_px >= 3700` staircase hop, the 3480..3520 pit-9
+leap suppression, `TilemapAStar.is_narrow_corridor` (cols 91..97) and
+`SPAWN_ABS_PX = 88`. `--reflex profile` replaces all of them with values derived
+from the ROM by `src/level_profile.py` (spawn from the entrance record, flagpole
+from the sprite list, the end ramp from the surface profile, ledges and
+isolated ?-blocks from column persistence). `tools/parity_reflex.py` runs both
+arms:
+
+| arm | steps | final px | reward | outcome |
+| --- | --- | --- | --- | --- |
+| `--reflex legacy` | 210 | 4,022.4 | 1530.3251953125057 | **cleared**, byte-identical to the published eval |
+| `--reflex profile` | 1200 | 1,889.0 | 613.2 | truncated, **stalls at col 118** |
+
+So the bands are load-bearing: with pure geometry the controller gets 47% of the
+way. The stall is not a reflex bug but a **geometry-fidelity** bug -- in the
+117..123 column range `Course` reports the walkable surface alternating 24/29/24
+because `surface_ahead` absorbs stacked ?-blocks into the ground profile, so the
+planner sees walls and pits that the rendered screen does not have. Fixing the
+tile profile (separate "ground Mario stands on" from "solids above it") is the
+prerequisite for any second level, and it is also why the dashboard's tile panel
+marks isolated rises as parser-only.
+
+## 4c. Porting to another course: what actually blocks it
+
+`out/nsmb_levels.json` already parses 191 courses including `A08_1` (World 8-1),
+and `LevelProfile` derives its spawn from that course's own entrance record
+(40 px, vs 88 px for 1-1), so no code change is needed to point at it. Two real
+blockers, neither of them a savestate:
+
+1. **`GROUND_OBJS` is calibrated to 1-1's tileset.** In `A08_1`, only 8 of 140
+   tile rects fall in the ground list; the dominant classes are `0x16..0x1B`,
+   which the list never included. Result: 10 ground columns and a 496 px span,
+   while the course's own entrance records run from x=32 to x=4272. The
+   tile-object classes must be mapped per tileset before geometry means anything
+   there.
+2. **No savestate is required** -- `py-desmume` exposes
+   `emu.savestate.save_file()`, so a state at 8-1 can be created by driving the
+   game there once and saving. What is required is the fix above, plus the 4b
+   geometry work, or the agent is planning against a fiction.
+
 ## 5. File Index
 
 ```
