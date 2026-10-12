@@ -39,6 +39,12 @@ bash rust/build.sh && python tools/parity_planner.py # Rust == tilemap_planner.p
 python tools/record_dashboard.py --planner rust      # -> mp4 + the inline .gif above
 ```
 
+**Not only 1-1.** Clearing a level hands the game back to its World 1 map, and
+`tools/reach_map.py` turns any unlocked node into a savestate, so the same
+pipeline runs on a second course without any hand-made state.
+[`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) §4i and §4j report that route,
+the corrected course-file-name mapping, and the first transfer numbers.
+
 ## Contents
 - [Prerequisites and Installation](#-prerequisites-and-installation)
 - [Visual Reward Methodology](#-visual-reward-methodology)

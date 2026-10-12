@@ -121,6 +121,25 @@ def doc_checks(readme_text):
         ok = bool(row) and got[0] == want and (says_none == (not c.exit_found))
         out.append((f"PROJECT_STATUS 4e {short} coverage/exit", (want, "none" if not c.exit_found else "an exit object"),
                     got, ok))
+    # docs/PROJECT_STATUS.md 4j: the first transfer table, cell by cell against the
+    # two eval JSONs it was copied from.
+    row_re = (r"\|\s*`--reflex (\w+)`[^|]*\|\s*\**([\d,]+\.\d) px\**\s*\|"
+              r"\s*\**(\d+)%\**\s*\|\s*(\d+)\s*\|\s*([\d.]+)\s*\|\s*(\w+)\s*\|")
+    found = {m.group(1): m.groups()[1:] for m in re.finditer(row_re, ps)}
+    for arm in ("profile", "legacy"):
+        p = os.path.join(ROOT, "evals", f"transfer_1_2_{arm}.json")
+        if not os.path.exists(p):
+            out.append((f"PROJECT_STATUS 4j {arm} row", "evals/transfer_1_2_%s.json" % arm,
+                        "missing", False))
+            continue
+        a = json.load(open(p, encoding="utf-8"))["aggregate"]
+        e = json.load(open(p, encoding="utf-8"))["episodes"][0]
+        goal = a["goal_abs_px"]
+        exp = (f"{a['mean_progress_px']:,.1f}",
+               f"{100.0 * a['mean_progress_px'] / goal:.0f}",
+               str(e["steps"]), f"{e['total_reward']:.1f}", e["termination"])
+        got = found.get(arm)
+        out.append((f"PROJECT_STATUS 4j {arm} row", exp, got, got == exp))
     # docs/PROJECT_STATUS.md 4f: the MUCD claims are recomputed from the ROM, not
     # remembered from a notebook.
     try:

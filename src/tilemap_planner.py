@@ -47,9 +47,10 @@ def dynamic_jump_reach_tiles(vx_px_per_frame=None, airborne_frames=52.0):
 
 
 class TilemapAStar:
-    def __init__(self, rom_path=ROM, name="course/A01_1.bin", jump_reach_tiles=JUMP_REACH_TILES):
+    def __init__(self, rom_path=ROM, name="course/A01_1.bin", jump_reach_tiles=JUMP_REACH_TILES,
+                 exit_known=True):
         course = Course(name=name, rom_path=rom_path)
-        require_plannable(course)   # refuse to plan on a fiction
+        require_plannable(course, exit_known=exit_known)   # refuse to plan on a fiction
         cols = sorted(course.ground_cover.keys())
         self.min_col, self.max_col = cols[0], cols[-1]
         self.solid = set(cols)
