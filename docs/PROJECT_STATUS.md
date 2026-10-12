@@ -466,6 +466,9 @@ tool's own docstring -- that this field "does not gate the world row" because
 it is byte-identical across the three local slots -- was the wrong inference:
 identical because all three slots were played to the same early point, which
 is exactly what the untouched-vs-beaten contrast in the download disproves.
+The GUI session this save was built for has since happened: one human run
+produced savestates on the World 5-1 and World 8-1 plates (`.ds2`/`.ds3` under
+`data/`), identified and put to work in 4j.
 
 The route that stays inside the inputs that work is the game's own world
 advance: clearing a world's last node hands you the next world's map, exactly the
@@ -499,10 +502,11 @@ emulator itself, and that reading does not survive:
 
 `A02_1` is 1-2, not 2-1, so the digit is the level and the letter is the world --
 which means every "8-1" statement in 4e was actually about **1-8**. Extrapolating
-that rule past letter A is untested: it predicts the real World 8-1 is `H01_1`
-(184 rects, 78.8% coverage, exit candidate at 3,920 px), a file this repo has
-never examined. The 3.7%-coverage finding stands; what was wrong is which level
-it describes.
+that rule past letter A was untested when this was written: it predicted the real
+World 8-1 is `H01_1` (184 rects, 78.8% coverage, exit candidate at 3,920 px), a
+file this repo had never examined. Confirmed below: the 8-1 savestate measures
+as `H01_1` and the 5-1 one as `E01_1`, exactly where the rule puts them. The
+3.7%-coverage finding stands; what was wrong is which level it describes.
 
 Three independent measurements tie the running level to `A02_1`, because the HUD
 plate alone is a pixel reading and I did not want to build on that:
@@ -548,6 +552,44 @@ keeps reasoning in 1-1 pixels, which is what makes it the legacy arm. For
 `A01_1` the value is 88 px and the published numbers are unchanged -- re-verified
 byte for byte by `tools/parity_reflex.py` after the edit.
 
+**The GUI session the unlocked save was built for has happened, and it carried
+the naming rule past letter A.** Two savestates came back from one human DeSmuME
+session booted with `data/save_unlocked.sav` (4i): `.ds2`, saved from the plate
+the HUD calls World 5-1, and `.ds3`, from World 8-1. The plates were not taken
+on trust -- each state was identified from the emulator itself, with the
+entrance formulas above and, where the entrance tied, the floor rows a
+RIGHT-only walk actually stood on (`tools/identify_state.py`; boot frames
+committed as `media/nsmb_w5_1_spawn.png` / `media/nsmb_w8_1_spawn.png`):
+
+| savestate | entrance match over all 191 courses | walk-right floor rows | verdict |
+| --- | --- | --- | --- |
+| `.ds2` | spawn (56, -480) -> `E01_1` entrance[0] (48, 464), unique on the pair | 2/2 grounded samples, row 30 | **`E01_1` = 5-1** |
+| `.ds3` | spawn (56, -736) -> `H01_1` entrance[0] and `F07_2` entrance[2], tied at (48, 720) | `H01_1` 4/4 at row 46; `F07_2` 1/4 | **`H01_1` = 8-1** |
+
+Both courses parse with exits: `E01_1` flagpole at 4,576 px over 96.0% ground
+coverage, `H01_1` at 3,920 px over 78.8%.
+
+**Second and third transfers, same protocol as the first: n=1 per arm, goal
+from the course's own flagpole sprite.**
+
+| course | arm | distance | of goal | steps | reward | outcome |
+| --- | --- | --- | --- | --- | --- | --- |
+| 5-1 `E01_1` | profile | 1,717.8 px | 38% | 119 | 752.4 | death |
+| 5-1 `E01_1` | legacy | 1,701.5 px | 37% | 127 | 745.0 | death |
+| 8-1 `H01_1` | profile | 337.0 px | 9% | 30 | 68.0 | death |
+| 8-1 `H01_1` | legacy | 337.0 px | 9% | 30 | 68.0 | death |
+
+The 1-2 transfer's ordering -- the 1-1 bands ahead of the ROM-derived
+thresholds -- does not reproduce on 5-1: the arms die 16 px apart, with the same
+`ground=1 pit=[1,1,1,1,1,1]` disagreement the 1-2 deaths showed, so on this
+course the two reflexes are equally insufficient. On 8-1 neither arm survives
+the opening 30 steps: both fall into the pit around x=258 px that the jump-less
+identification trace falls into too, with byte-identical death diagnostics --
+and unlike 1-2 and 5-1, this one is internally consistent (`ground=0`,
+mid-fall). No arm has yet cleared a course outside world 1; the reactive
+controller's measured world row is now 1-1 (100%), 1-2 (71%, legacy), 5-1
+(38%), 8-1 (9%).
+
 ## 5. File Index
 
 ```
@@ -588,6 +630,10 @@ evals/
   pinn_realtime_eval.json        n=4 reactive (PINN obs)
   transfer_1_2_profile.json      1-2, ROM-derived reflex thresholds (4j)
   transfer_1_2_legacy.json       1-2, the 1-1 pixel bands (4j control arm)
+  transfer_5_1_profile.json      5-1 (E01_1), ROM-derived thresholds (4j)
+  transfer_5_1_legacy.json       5-1, the 1-1 pixel bands (4j)
+  transfer_8_1_profile.json      8-1 (H01_1), ROM-derived thresholds (4j)
+  transfer_8_1_legacy.json       8-1, the 1-1 pixel bands (4j)
   benchmark_n30_merged.json      n=30 stochastic + n=10 det, 14 models
 
 tools/
@@ -596,6 +642,9 @@ tools/
   extract_profiles.py            Scrapes 342 actor profiles from CC0 decomp
   reach_map.py                   Clear 1-1 -> World 1 map -> savestate of any
                                  unlocked node (4i)
+  identify_state.py              Which course a savestate is in: entrance match
+                                 over all 191, then floor rows on a walk-right
+                                 trace (4j)
   parity_reflex.py               Legacy arm must equal the published 1-1 eval
   parity_planner.py              Rust sidecar vs Python, 37,281 queries
   record_dashboard.py            The README clip and its measured caption

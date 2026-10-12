@@ -140,6 +140,26 @@ def doc_checks(readme_text):
                str(e["steps"]), f"{e['total_reward']:.1f}", e["termination"])
         got = found.get(arm)
         out.append((f"PROJECT_STATUS 4j {arm} row", exp, got, got == exp))
+    # docs/PROJECT_STATUS.md 4j: the world 5/8 transfer table, cell by cell against
+    # the four eval JSONs it was copied from.
+    for tag, cid in (("5-1", "E01_1"), ("8-1", "H01_1")):
+        for arm in ("profile", "legacy"):
+            p = os.path.join(ROOT, "evals",
+                             f"transfer_{tag.replace('-', '_')}_{arm}.json")
+            if not os.path.exists(p):
+                out.append((f"PROJECT_STATUS 4j {tag} {arm} row", p, "missing", False))
+                continue
+            d = json.load(open(p, encoding="utf-8"))
+            a, e = d["aggregate"], d["episodes"][0]
+            goal = a["goal_abs_px"]
+            exp = (f"{a['mean_progress_px']:,.1f}",
+                   f"{100.0 * a['mean_progress_px'] / goal:.0f}",
+                   str(e["steps"]), f"{e['total_reward']:.1f}", e["termination"])
+            row = re.search(r"\|\s*" + tag + r" `" + cid + r"`\s*\|\s*" + arm +
+                           r"\s*\|\s*\**([\d,]+\.\d) px\**\s*\|\s*\**(\d+)%\**"
+                           r"\s*\|\s*(\d+)\s*\|\s*([\d.]+)\s*\|\s*(\w+)", ps)
+            got = row.groups() if row else None
+            out.append((f"PROJECT_STATUS 4j {tag} {arm} row", exp, got, got == exp))
     # docs/PROJECT_STATUS.md 4f: the MUCD claims are recomputed from the ROM, not
     # remembered from a notebook.
     try:
