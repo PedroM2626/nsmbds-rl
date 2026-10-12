@@ -272,6 +272,48 @@ courses) has only three**: `A01_1` (1-1), `A04_1` (4-1, 95% coverage, exit at
 same tileset family, and it needs no parser work -- only a savestate, which
 `emu.savestate.save_file()` can create by reaching the level in-game.
 
+## 4f. `BG_chk/*MainUnitChangeData.bin` decoded (and the binding that is still missing)
+
+Attempted 2026-10-11. What the file actually is:
+
+- 48 real MUCD files, each **3072 bytes = 1536 u16**, laid out as **6 u16 per
+  object number** (256 objects), i.e. three `(unit, model)` pairs per object --
+  which is what "MainUnitChange" describes: for object N, replace unit X with
+  model Y. `0x14` (question blocks in A01_1) is `(0,0),(0,0),(0,0)`; the ground
+  classes carry real pairs, e.g. `0x0d -> (7,2048),(8,2048),(9,2048)`.
+- **Retraction of an earlier reading in this same investigation:** I first wrote
+  that the values are "only 0 or 1, so it is a boolean table". That was true of
+  the one file I sampled (`GaKe`, 1518 zeros and 18 ones) and false in general --
+  across the 48 files the domain is far larger (1024, 2048, 4096, 16384, 32768,
+  45066, ...). The number gate caught it, not a re-read.
+- What *does* correlate with terrain is coarser: **"this object number has at
+  least one non-zero pair"**. On A01_1 that reproduces the hand-validated ground
+  set exactly -- 246 of 267 columns, 92.1% coverage, 9 pits, widths [2 x8, 3 x1]
+  -- and it separates A01_1's ground classes at 94.9% against a 64.1% baseline
+  (`tools/mucd_probe.py`). The meaning of the individual flag bits is still
+  unknown.
+
+What is **not** solved, stated as a negative result so nobody re-pays for it: the
+course -> tileset binding. It is not the ROM file ID (MUCD IDs are 262..302; the
+course header carries 400/500 and 8/1/33/0 instead), and it cannot be recovered by
+fitting geometry to tables: scoring all 48 tables against each course's own floor
+signature gives a unique winner (margin > 0.05) for only **10 of 128** courses, and
+courses sharing a header index disagree on the winner (2/5, 5/9, 1/4 ...). The
+tables are similar enough that "best fit" is noise -- an earlier read of this
+experiment that treated A08_1's `F1 = 0.989` under `SaBaKu` as a binding was
+wrong; that table still leaves an 86-column hole in 8-1, so it is not 8-1's.
+
+Consequences: 8-1 stays blocked, now with a precise reason -- the solidity source
+is decoded, but picking *which* of the 48 tables a course uses needs the game's
+internal tileset table, i.e. ARM9 work (the strings are not in the ARM9 because
+files are referenced by ID, and the ARM9 is uncompressed -- `e7ffdeff` fill, not a
+container). The practical alternative is per-course identification against
+rendered frames, which needs a savestate at that course.
+
+Note: `BG_chk/` also holds six 512-byte `ScrollControl_*.bin` files (UI scroll
+flags, 256 u16 each). They are not MUCD tables and must be excluded from any
+count of 48.
+
 ## 5. File Index
 
 ```
