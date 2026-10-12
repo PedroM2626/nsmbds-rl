@@ -66,10 +66,10 @@ def _silence_c_stdout(enabled=True):
         yield
 
 
-def goal_px():
-    """Absolute pixel X of the level exit (flagpole contact in World 1-1)."""
+def goal_px(name="course/A01_1.bin"):
+    """Absolute pixel X of the course's exit (a flagpole contact in World 1-1)."""
     try:
-        c = Course(rom_path=ROM)
+        c = Course(name=name, rom_path=ROM)
         flag = next((s['x_px'] for s in c.sprites if s['type'] == 32), None)
         if flag is not None:
             return flag
@@ -465,7 +465,8 @@ def render_frame(emu, label, speed, writer=None):
         print("render disabled:", e)
 
 
-def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None):
+def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None,
+                 spawn_px=SPAWN_ABS_PX):
     obs, _ = env.reset()
     agent.reset()
     total_r, steps = 0.0, 0
@@ -491,7 +492,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
             max_rel_px = max(max_rel_px, obs[0] * 512.0)
             last_mario_px = float(info.get("mario_px", last_mario_px))
             max_mario_px = max(max_mario_px, last_mario_px)
-            abs_px = SPAWN_ABS_PX + obs[0] * 512.0
+            abs_px = spawn_px + obs[0] * 512.0
             if render or writer is not None:
                 render_frame(env.emu, f"step {steps} | x={abs_px:.0f}px | goal {goal}px",
                              speed, writer)
@@ -503,7 +504,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
                 if cause == "death":
                     ex = [round(float(obs[8 + 3 * k]) * 256) for k in range(3)]
                     et = [round(float(obs[10 + 3 * k]) * 256) for k in range(3)]
-                    death_diag = (f"abs {SPAWN_ABS_PX + obs[0]*512:.0f}px vy={obs[3]:.2f} "
+                    death_diag = (f"abs {spawn_px + obs[0]*512:.0f}px vy={obs[3]:.2f} "
                                   f"ground={obs[4]:.0f} pit={[int(x) for x in obs[17:23]]} "
                                   f"enemy_dx_px={ex} enemy_type={et}")
                 break
@@ -513,7 +514,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
     wall = time.time() - t_wall
     return {
         "steps": steps, "total_reward": float(total_r),
-        "max_progress_px": float(max_rel_px), "final_abs_px": float(SPAWN_ABS_PX + max_rel_px),
+        "max_progress_px": float(max_rel_px), "final_abs_px": float(spawn_px + max_rel_px),
         "final_mario_px": last_mario_px, "max_mario_px": max_mario_px,
         "reached_goal": bool(finished), "termination": cause,
         "mean_control_latency_ms": float(np.mean(latencies)),
@@ -559,23 +560,34 @@ def main():
                     help="legacy = the World 1-1 pixel bands that produced the published "
                          "clear; profile = thresholds derived from the ROM course data")
     ap.add_argument("--course", default="course/A01_1.bin",
-                    help="course parsed by src/course.py, only used by --reflex profile")
+                    help="course parsed by src/course.py: the planner, the geometry "
+                         "features, the goal and --reflex profile all read it")
     ap.add_argument("--out", default="evals/pinn_realtime_eval.json",
                     help="metrics json; point elsewhere to keep published evals intact")
     args = ap.parse_args()
 
     render = args.render and not args.headless
     device = args.device
-    goal = args.goal_px or goal_px()
+    goal = args.goal_px or goal_px(args.course)
+    # An explicit --goal-px also becomes the profile's goal: a course with no
+    # flagpole sprite would otherwise get thresholds derived around the 4032 px
+    # fallback, which is not its exit.
+    override = int(args.goal_px) if args.goal_px else None
+    # The reporting anchor is the course's own entrance, not 1-1's, so both
+    # reflex arms are scored on the same ruler even though the legacy one still
+    # reasons in 1-1 pixels. For course/A01_1 this is 88 px, i.e. unchanged.
+    spawn_anchor = Course(name=args.course, rom_path=args.rom).entrances[0]["x_px"] + TILE / 2.0
     if args.planner == "rust":
         from rust_planner import RustPlanner
         planner = RustPlanner()          # rust/nsmb_planner.exe over a line protocol
     else:
-        planner = TilemapAStar(rom_path=args.rom)   # ROM geometry -> wall/pipe perception
+        # ROM geometry -> wall/pipe perception, on the same course the agent runs in
+        planner = TilemapAStar(rom_path=args.rom, name=args.course,
+                               exit_known=override is None)
     if args.reflex == "profile":
         from level_profile import LevelProfile
         BaseReflexController.reflex_mode = "profile"
-        BaseReflexController.profile = LevelProfile(args.rom, args.course)
+        BaseReflexController.profile = LevelProfile(args.rom, args.course, exit_px=override)
         print("[pinn-eval] reflex profile: " + BaseReflexController.profile.summary())
     print(f"[pinn-eval] controller={args.controller} device={device} goal_abs_px={goal} "
           f"planner={args.planner} reflex={args.reflex}")
@@ -605,7 +617,7 @@ def main():
         make_agent = lambda: PPOAgent(args.policy, device)
 
     env = MarioRamEnv(rom_path=args.rom, state_path=args.state, geo=True,
-                      max_steps=args.max_steps)
+                      course_name=args.course, max_steps=args.max_steps)
     writer = None
     if args.record:
         import cv2
@@ -615,7 +627,8 @@ def main():
     for ep in range(args.episodes):
         agent = make_agent()
         w = writer if (writer is not None and ep + 1 == args.record_episode) else None
-        res = run_episode(env, agent, goal, render, args.speed, args.max_steps, verbose=True, writer=w)
+        res = run_episode(env, agent, goal, render, args.speed, args.max_steps,
+                          verbose=True, writer=w, spawn_px=spawn_anchor)
         res["episode"] = ep + 1
         results.append(res)
         flag = "LEVEL CLEARED" if res["reached_goal"] else "did not finish"
@@ -634,6 +647,10 @@ def main():
 
     agg = {
         "controller": args.controller, "episodes": args.episodes, "goal_abs_px": goal,
+        "goal_source": "operator --goal-px" if override else "course flag sprite",
+        "course": args.course, "state": args.state, "reflex": args.reflex,
+        "spawn_anchor_px": spawn_anchor,
+        "planner": args.planner,
         "clear_rate": float(np.mean([r["reached_goal"] for r in results])),
         "mean_progress_px": float(np.mean([r["final_abs_px"] for r in results])),
         "max_progress_px": float(np.max([r["final_abs_px"] for r in results])),

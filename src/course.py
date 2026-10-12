@@ -177,11 +177,16 @@ class UnsupportedCourse(RuntimeError):
     """The current parser cannot produce trustworthy geometry for this course."""
 
 
-def require_plannable(course, min_coverage=0.6):
+def require_plannable(course, min_coverage=0.6, exit_known=True):
     """Refuse to plan on a course whose profile is fiction.
 
     Called by TilemapAStar and LevelProfile so the failure is loud here rather
     than a plausible-looking path over 4% of the level further down the stack.
+
+    exit_known=False is for a caller that supplies its own goal (the harness's
+    --goal-px): only the flagpole reading is then waived, and what the run
+    measures changes from "cleared the level" to "reached the stated x", which
+    has to be reported that way.
     """
     problems = []
     if course.ground_coverage < min_coverage:
@@ -189,7 +194,7 @@ def require_plannable(course, min_coverage=0.6):
             f"only {course.ground_coverage * 100:.0f}% of the course's own x extent has "
             f"ground-class tiles -- GROUND_OBJS is a flat list of tile-object numbers and "
             f"those are local to each course's tileset")
-    if not getattr(course, "exit_found", True):
+    if exit_known and not getattr(course, "exit_found", True):
         problems.append("no flagpole/goal sprite found; flag_x_px is the 4032 fallback, "
                         "not this level's exit")
     if problems:

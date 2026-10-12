@@ -20,21 +20,25 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from course import Course, TILE, require_plannable  # noqa: E402
 
 # Half a 16 px sprite: the entrance record is the sprite origin, Mario's RAM
-# base sits half a tile higher (validated for A01_1: entrance x 80 -> 88).
+# base sits half a tile higher. Validated on two courses against the emulator's
+# own RAM: A01_1 entrance x 80 -> 88 px, A02_1 entrance x 32 -> 40 px.
 HALF_SPRITE_PX = TILE / 2.0
 
 
 class LevelProfile:
     """Geometry-derived stand-ins for the 1-1 pixel constants."""
 
-    def __init__(self, rom_path, name="course/A01_1.bin"):
+    def __init__(self, rom_path, name="course/A01_1.bin", exit_px=None):
         self.course = Course(name=name, rom_path=rom_path)
         self.name = name
-        require_plannable(self.course)   # the derived bands are meaningless otherwise
+        # An operator-supplied goal waives only the flagpole reading; coverage
+        # still has to be real or the derived bands are meaningless.
+        require_plannable(self.course, exit_known=exit_px is None)
 
         ent = self.course.entrances[0] if self.course.entrances else {"x_px": 0}
         self.spawn_px = float(ent["x_px"]) + HALF_SPRITE_PX
-        self.flag_px = float(self.course.flag_x_px)
+        self.exit_px_is_override = exit_px is not None
+        self.flag_px = float(exit_px) if exit_px is not None else float(self.course.flag_x_px)
 
         cols = sorted(self.course.ground_cover.keys())
         self.min_col, self.max_col = cols[0], cols[-1]
@@ -154,7 +158,8 @@ class LevelProfile:
         return self.ramp_start_px <= abs_px < self.flag_px
 
     def summary(self):
-        return (f"{self.name}: spawn={self.spawn_px:.0f}px flag={self.flag_px:.0f}px "
+        goal = "flag" if not self.exit_px_is_override else "goal(override)"
+        return (f"{self.name}: spawn={self.spawn_px:.0f}px {goal}={self.flag_px:.0f}px "
                 f"cols[{self.min_col},{self.max_col}] pits={len(self.pits)} "
                 f"ramp={self.ramp_start_px}..{self.ramp_end_px} "
                 f"ledges={self.ledge_cols[:6]}")

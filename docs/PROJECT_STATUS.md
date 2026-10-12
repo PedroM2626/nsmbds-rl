@@ -230,16 +230,20 @@ tiles) and `exit_found`, and `tools/tileset_probe.py` reproduces these numbers:
 | course | rects | ground coverage | exit object found | plannable |
 | --- | --- | --- | --- | --- |
 | `A01_1` (1-1) | 197 | **92.1%** | flagpole @ 4,032 px | yes |
-| `A02_1` (2-1) | 382 | 85.7% | **none** | refused |
-| `A05_1` (5-1) | 170 | **11.0%** | flagpole @ 6,160 px | refused |
-| `A08_1` (8-1) | 140 | **3.7%** | **none** | refused |
+| `A02_1` (1-2) | 382 | 85.7% | **none** | refused |
+| `A05_1` (1-5) | 170 | **11.0%** | flagpole @ 6,160 px | refused |
+| `A08_1` (1-8) | 140 | **3.7%** | **none** | refused |
+
+The level numbers in that table are the ones measured in 4j. When this section
+was first written they were guessed as 2-1, 5-1 and 8-1, and the guess is what
+the rest of the section then argued about; see 4j for the correction.
 
 Why: `GROUND_OBJS` is a flat set of tile-object numbers, but those numbers are
 **local to each course's tileset**. 1-1's floor is classes `0x0A/0x07/0x09/0x06/
-0x08/0x00` in its tileset 16; 8-1's terrain is `0x16/0x17/0x18` in *its* tileset
-16, and `0x16` never appears in 1-1 at all. The course header confirms the theme
-difference: the 32-byte block at offset 112 carries `0x0190` for A01_1/A02_1/
-A05_1 and `0x01f4` for A08_1.
+0x08/0x00` in its tileset 16; `A08_1`'s terrain is `0x16/0x17/0x18` in *its*
+tileset 16, and `0x16` never appears in 1-1 at all. The course header confirms the
+theme difference: the 32-byte block at offset 112 carries `0x0190` for A01_1/
+A02_1/A05_1 and `0x01f4` for A08_1.
 
 A geometric shortcut was tried and **rejected by measurement**: classifying a
 rect as floor-bearing when its bottom edge reaches row 28+ agrees with the class
@@ -250,9 +254,9 @@ The authoritative solidity data is `BG_chk/*MainUnitChangeData.bin`, present in
 the ROM but listed as undecoded in
 [`REVERSE_ENGINEERING_REPORT.md`](REVERSE_ENGINEERING_REPORT.md). So the real
 work is: decode the per-tileset behaviour table, key the ground classes by
-tileset instead of by a global list, and add per-course exit-object types (2-1
-and 8-1 end on something that is not a flagpole sprite, so `flag_x_px` currently
-falls back to 4032 for them).
+tileset instead of by a global list, and add per-course exit-object types (`A02_1`
+and `A08_1` end on something that is not a flagpole sprite, so `flag_x_px`
+currently falls back to 4032 for them).
 
 What is **not** a blocker: a savestate. `py-desmume` exposes
 `emu.savestate.save_file()`, so a state at any reachable course can be created by
@@ -270,17 +274,19 @@ level running to 1,680 px; G05_1 and B04_1 were off by ~3,700 px). Now `max()`,
 which matches the comment and leaves A01_1 unchanged at 4,032 px (one candidate).
 
 After the fix, **29 of 191** courses pass the guard, but the **main path (the `A`
-courses) has only three**: `A01_1` (1-1), `A04_1` (4-1, 95% coverage, exit at
-3,600 px) and `A07_3`. 4-1 is the natural transfer target: comparable length,
+courses) has only three**: `A01_1` (1-1), `A04_1` (1-4, 95% coverage, exit at
+3,600 px) and `A07_3`. 1-4 is the natural transfer target: comparable length,
 same tileset family, and it needs no parser work -- only a savestate, which
-`emu.savestate.save_file()` can create by reaching the level in-game.
+`emu.savestate.save_file()` can create by reaching the level in-game. (Reached
+later the same way as 1-2; see 4i. The level numbers here are the corrected ones
+from 4j.)
 
 The exit is also constrained to ground the course actually has: a flagpole beyond
 the parsed span is a parser gap, not a level end. That demotes `J10_1` (flagpole
 at 4,144 px over 1,376 px of ground) from "plannable" to refused, which is where
 the count of 30 became 29.
 
-## 4g. Reaching another course headless: both routes are closed for now
+## 4g. Reaching another course headless: the two routes tried on 2026-10-11 both failed (4i supersedes this)
 
 Tried 2026-10-11 on a **copy** of the ROM and the game save (the user's
 `data/…sav` was verified unchanged by MD5 afterwards).
@@ -298,9 +304,13 @@ Tried 2026-10-11 on a **copy** of the ROM and the game save (the user's
    created from a direct level start -- there is no map to return to. The menu
    cursor therefore steps Continue -> Options, skipping the disabled item.
 
-Consequence: a savestate at 4-1 needs either the game booted to its map in the
-GUI (where the intro plays out normally) or the ARM9 route to start a course
-directly. Both are outside what this repo's tooling can do headless today.
+Consequence at the time: a savestate at another course needed either the game
+booted to its map in the GUI (where the intro plays out normally) or the ARM9
+route to start a course directly. **The first half of that sentence is now
+obsolete** -- 4i finds a headless route to the map that uses neither the title
+screen nor the menu. Item 2 was also only half true: "Return to map" is greyed
+out from a state dropped straight into a level, but after a *clear* the same menu
+offers it normally.
 Verified side effect worth keeping: the pause menu rendered with the corrected
 palette -- blue sky, red-shirted Mario -- which is the palette fix confirmed on
 live game graphics rather than on my own compositor.
@@ -389,9 +399,110 @@ Consequences, stated plainly:
 - **4-1 does not need any of this.** `A04_1` already passes the geometry guard at
   95% coverage with a detected exit; its only blocker is a savestate (4g). So the
   transfer experiment is gated on the emulator path, not on reverse engineering.
+- **The plannable `A0N_1` courses do not need any of this.** `A04_1` already
+  passes the geometry guard at 95% coverage with a detected exit (4j re-reads
+  which level that is); its only blocker was a savestate, and 4i removes that. So
+  the transfer experiment was gated on the emulator path, not on reverse engineering.
 - `tools/tileset_sweep.py`, `tileset_groups.py`, `tileset_posneg.py` and
   `mucd_bind.py` are kept with their success criteria in the docstrings, so this
   ground is not re-covered.
+
+## 4i. The map is reachable headless: clearing a level returns you to it (2026-10-12)
+
+The route is the game's own: **touch the flagpole, and the level ends by putting
+Mario back on the World 1 map.** No title screen, no menu, no stylus, no save
+editing. `tools/reach_map.py` automates it end to end:
+
+1. drive the published reactive agent to the clear (219 env steps, same trajectory
+   as `evals/pinn_realtime_eval.json`);
+2. keep cycling. The clear animation, the castle walk and the fade take **540
+   cycles (9 s of game time)**; the fade-to-black frame is the marker;
+3. the map appears with 1-1 flagged and the next node unlocked, but it **slides in
+   and drops d-pad input for ~30 s**: a RIGHT pressed too early is lost, and A then
+   replays the level just cleared. The tool waits 1800 cycles before touching it,
+   and compares the spawn it lands on against the one it started from, so a cursor
+   that never moved is a warning rather than a silently wrong savestate;
+4. `keypad_add_key(KEY_RIGHT)` moves the cursor one node east, `KEY_A` enters.
+
+Re-running the finished tool reproduces the state the transfer experiment used:
+`--node 1` enters with `mario_B = 40.0 px, mario_A = -416.0 px`, the same two
+numbers measured from the manual run that produced `data/state_1-2.ds1`.
+
+Two things that looked like blockers were artefacts of my own inputs. Holding
+START during the clear sequence opens the pause menu, which *pauses the sequence*:
+an earlier attempt sampled every 5 s for 60 s and saw a frozen castle scene, and
+a longer one with a button press every second reported the level "resuming" for
+240 s before the fade. Both were the menu toggling, not the emulator stalling.
+The sequence needs no input at all.
+
+Everything ran on a copy of the ROM, save and savestate under `D:/tmp_verify/
+playdir`; `data/…sav` was verified byte-identical afterwards
+(`b7458c3445fd2c9949aee7e312dd4de5`, unchanged from the pre-experiment reading).
+The emulator writes `.dsv`-style saves next to the ROM it opens, so the original
+`data/` save was never a candidate for it.
+
+## 4j. What the course file names mean, measured, and the first transfer experiment
+
+**The naming guess that ran through 4e was wrong.** 4e labelled `A02_1` as 2-1,
+`A05_1` as 5-1 and `A08_1` as 8-1 by pattern-matching the file names against how
+NSMB's worlds are numbered on screen. Two courses were then identified from the
+emulator itself, and that reading does not survive:
+
+| course | how it was identified | level the HUD calls it |
+| --- | --- | --- |
+| `A01_1` | the shipped savestate; spawn 88 px = entrance 80 px + half a tile | 1-1 |
+| `A02_1` | entered from the map node east of 1-1; HUD plate reads "W 1-2" | **1-2** |
+
+`A02_1` is 1-2, not 2-1, so the digit is the level and the letter is the world --
+which means every "8-1" statement in 4e was actually about **1-8**. Extrapolating
+that rule past letter A is untested: it predicts the real World 8-1 is `H01_1`
+(184 rects, 78.8% coverage, exit candidate at 3,920 px), a file this repo has
+never examined. The 3.7%-coverage finding stands; what was wrong is which level
+it describes.
+
+Three independent measurements tie the running level to `A02_1`, because the HUD
+plate alone is a pixel reading and I did not want to build on that:
+
+1. **spawn**: RAM reports `mario_B / 4096 = 40.0` px; `entrances[0].x_px + 8 = 40`
+   for `A02_1`. This also re-validates the half-tile offset constant on a second
+   course, which is the first time it has been tested outside 1-1.
+2. **surface rows**: holding RIGHT and logging Mario's `y` gives the top of the
+   ground at ten columns (26, 26, 30, 29, 28, 27, 27, 27, 29, 29). Scoring all 191
+   courses by how many of those rows appear as a rect top at that column ranks
+   `A02_1` first at **9/10**, next best 7/10.
+3. **one enemy**: RAM shows an object at x=746 px, y=-464 px. `A02_1` has a Goomba
+   sprite at (752, 448) -- the 6 px is the walk, and the y matches the calibrated
+   `object_y = -(sprite_y + 16)` exactly.
+
+**First transfer result.** With a savestate for a course the pipeline had never
+run on, both reflex arms were measured against it. Goal = 4,688 px, the last
+parsed ground column, passed explicitly with `--goal-px` because `A02_1` has no
+flagpole sprite (4e); the JSON records `goal_source: "operator --goal-px"` so the
+metric cannot be misread as a level clear.
+
+| arm | distance | of goal | steps | reward | outcome |
+| --- | --- | --- | --- | --- | --- |
+| `--reflex profile` (ROM-derived thresholds) | 1,929.6 px | 41% | 151 | 1770.1 | death |
+| `--reflex legacy` (the 1-1 pixel bands) | **3,314.4 px** | **71%** | 311 | 3146.6 | death |
+
+n=1 per arm, so this is a measurement of one trajectory each, not an estimate of
+a rate. What it says: **the 1-1 bands transfer better than the geometry-derived
+thresholds do.** On 1-1 the ordering is the same way round (legacy clears, profile
+peaks at 1,818 px), so the reflex arms are consistent in *which* one is stronger;
+what changed is that the gap narrowed from "clears vs 45%" to "71% vs 41%" on a
+level neither was tuned for. Both died with `pit=[1,1,1,1,1,1] ground=1` in the
+death diagnostic -- the pit features say ground is missing ahead while the RAM
+says Mario is standing, which is the coverage gap of 4e showing up as a bad
+decision rather than as a refusal.
+
+Reporting fix that came out of this: `run_episode` used to add the 1-1 spawn
+constant (88 px) to every arm's distance. On a course whose spawn is at 40 px that
+inflated the legacy arm by 48 px while the profile arm anchored on its own course,
+so the two arms were not on the same ruler. The anchor is now derived from the
+course for reporting (`spawn_anchor_px` in the JSON) while the legacy controller
+keeps reasoning in 1-1 pixels, which is what makes it the legacy arm. For
+`A01_1` the value is 88 px and the published numbers are unchanged -- re-verified
+byte for byte by `tools/parity_reflex.py` after the edit.
 
 ## 5. File Index
 
@@ -431,12 +542,23 @@ evals/
   pinn_realtime_ppo.json         n=8 PPO real-time eval
   pinn_realtime_reactive.json    n=8 reactive real-time eval
   pinn_realtime_eval.json        n=4 reactive (PINN obs)
+  transfer_1_2_profile.json      1-2, ROM-derived reflex thresholds (4j)
+  transfer_1_2_legacy.json       1-2, the 1-1 pixel bands (4j control arm)
   benchmark_n30_merged.json      n=30 stochastic + n=10 det, 14 models
 
 tools/
   export_levels.py               Batch parser for all 191 levels
   build_dataset.py               Emits entities.csv and levels.jsonl
   extract_profiles.py            Scrapes 342 actor profiles from CC0 decomp
+  reach_map.py                   Clear 1-1 -> World 1 map -> savestate of any
+                                 unlocked node (4i)
+  parity_reflex.py               Legacy arm must equal the published 1-1 eval
+  parity_planner.py              Rust sidecar vs Python, 37,281 queries
+  record_dashboard.py            The README clip and its measured caption
+  check_readme_numbers.py        Gate: every number quoted in README.md
+  tileset_probe.py               Per-course ground coverage (4e table)
+  mucd_probe.py / mucd_bind.py / mucd_groups.py   4f investigation
+  tileset_groups.py / tileset_posneg.py / tileset_sweep.py   4h investigation
 
 out/dataset/
   levels.jsonl                   191 levels with full entity tables (0.70 MB)

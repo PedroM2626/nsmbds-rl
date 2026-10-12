@@ -43,7 +43,8 @@ MAX_STEPS = 1000
 class MarioRamEnv(gym.Env):
     metadata = {"render_modes": []}
 
-    def __init__(self, rom_path=ROM, state_path=STATE, max_steps=MAX_STEPS, geo=False):
+    def __init__(self, rom_path=ROM, state_path=STATE, max_steps=MAX_STEPS, geo=False,
+                 course_name="course/A01_1.bin"):
         super().__init__()
         self.rom_path = rom_path
         self.state_path = state_path
@@ -57,7 +58,7 @@ class MarioRamEnv(gym.Env):
         if geo:
             try:
                 from course import Course
-                self.course = Course(rom_path=rom_path)
+                self.course = Course(name=course_name, rom_path=rom_path)
             except Exception as e:
                 print(f"Geometry disabled (failed to load course: {e})")
                 self.geo = False

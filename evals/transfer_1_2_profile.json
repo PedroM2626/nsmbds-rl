@@ -1,0 +1,35 @@
+{
+  "aggregate": {
+    "controller": "reactive",
+    "episodes": 1,
+    "goal_abs_px": 4688,
+    "goal_source": "operator --goal-px",
+    "course": "course/A02_1.bin",
+    "state": "data/state_1-2.ds1",
+    "reflex": "profile",
+    "spawn_anchor_px": 40.0,
+    "planner": "python",
+    "clear_rate": 0.0,
+    "mean_progress_px": 1929.577880859375,
+    "max_progress_px": 1929.577880859375,
+    "mean_reward": 1770.1218750000041,
+    "mean_fps": 15.134273361091692,
+    "mean_latency_ms": 0.013244073122542426
+  },
+  "episodes": [
+    {
+      "steps": 151,
+      "total_reward": 1770.1218750000041,
+      "max_progress_px": 1889.577880859375,
+      "final_abs_px": 1929.577880859375,
+      "final_mario_px": 1889.577880859375,
+      "max_mario_px": 1889.577880859375,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.013244073122542426,
+      "achieved_env_fps": 15.134273361091692,
+      "death_diag": "abs 1930px vy=0.00 ground=1 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[72, 158, -177] enemy_type=[163, 159, 160]",
+      "episode": 1
+    }
+  ]
+}
