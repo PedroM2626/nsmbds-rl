@@ -428,6 +428,32 @@ Re-running the finished tool reproduces the state the transfer experiment used:
 `--node 1` enters with `mario_B = 40.0 px, mario_A = -416.0 px`, the same two
 numbers measured from the manual run that produced `data/state_1-2.ds1`.
 
+**What the map does not give: another world.** The world row (`w1..w8`) along the
+bottom of the map screen is stylus-operated, and the stylus is inert in
+`py-desmume` 0.0.9 -- seven attempts across two screens (four on the title card
+earlier, three here on the world row and on two map nodes) all changed the frame
+by 0.6-0.9, which is the ambient drift, while every button arm in the same
+process produced a real response. The d-pad moves the cursor (+23.0), and **L and
+R pan the camera** (+19-20, with the yellow edge arrows appearing) without
+changing worlds: after eight R presses and four L presses the plate still reads
+"World 1" and the marker is still on 1-1. So the map is walkable east inside
+world 1 only.
+
+That is also why a downloaded "everything unlocked" `.sav` would not have helped
+here, and the reason is measured rather than assumed: the 1-2 unlock appeared on
+the map **while `data/…sav` stayed byte-identical** (`b7458c3445fd2c9949aee7e312dd4de5`,
+checked before and after). A savestate restores RAM, and RAM is what the map
+reads, so an on-disk save is not in the loop at all -- and the only path that
+would consume one is the title-screen boot, which is the route that never
+advances headless. Where a full-completion save *does* pay off is in a GUI
+emulator: one human session to boot, tap to world 8 and save a state, and every
+tool in this repo can then run on it.
+
+The route that stays inside the inputs that work is the game's own world
+advance: clearing a world's last node hands you the next world's map, exactly the
+mechanism 4i uses to reach world 1's map. It needs the earlier worlds marked
+cleared in RAM first, which is a search this repo has not done.
+
 Two things that looked like blockers were artefacts of my own inputs. Holding
 START during the clear sequence opens the pause menu, which *pauses the sequence*:
 an earlier attempt sampled every 5 s for 60 s and saw a frozen castle scene, and
