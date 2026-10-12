@@ -4,6 +4,34 @@ This repository implements an academic and experimental Reinforcement Learning (
 
 The codebase is engineered with MLOps best practices and supports diverse learning paradigms: model-free policy gradients (PPO, RecurrentPPO, ImpalaCNN), self-supervised auxiliary visual representations (Autoencoders, CURL, SPR, DrQ-v2), intrinsic curiosity (ICM), causal sequence modeling (Causal Transformers), evolutionary and model-based World Models (DreamerV3, NE-Dreamer, GA, sep-CMA-ES), and relational Graph Neural Networks (MeanMPNN).
 
+### World 1-1, start to flagpole — the whole run in one clip
+
+[![World 1-1 clear dashboard — click to play](media/nsmb_dashboard_poster.png)](https://github.com/PedroM2626/mario-ds-rl/blob/main/media/nsmb_dashboard_clear.mp4)
+
+`media/nsmb_dashboard_clear.mp4` (29 s, 1280×720) records one episode of the
+`reactive` controller with the **Rust geometry planner** in the loop
+(`--planner rust`, see [rust/](rust)). Every panel is read from the same step
+loop that drives the emulator, so the frame is the evidence:
+
+| on screen | where it comes from |
+| --- | --- |
+| gameplay, HUD, flagpole | DeSmuME top screen, `display_buffer_as_rgbx()` |
+| which stage, px travelled, % of the level | `info["mario_px"]` over the 4032 px flagpole (`eval_pinn_realtime.goal_px()`) |
+| the tile grid + pit flags + enemies | the 23-float observation of `src/ram_env.py` + `out/nsmb_geometry.bin` |
+| action share (%) over the last 60 decisions | the controller's own action history |
+| buttons held this step | `MarioRamEnv._action_keys` |
+| reward prediction (green) vs actual (grey) | `models/pinn_nsmb.pt` `step_batch()` reward head |
+| SciML panel (reach, units, pits) | `src/tilemap_planner.py` + `out/nsmb_physics.json` |
+
+Measured on this run: **220 steps, 4021 px of 4032 px, stage-clear flag raised**.
+The grey spike at the end is the `+100` terminal bonus the PINN does not predict.
+
+```bash
+python tools/export_geometry.py                      # ROM -> out/nsmb_geometry.bin
+bash rust/build.sh && python tools/parity_planner.py # Rust == tilemap_planner.py
+python tools/record_dashboard.py --planner rust      # -> media/nsmb_dashboard_clear.mp4
+```
+
 ## Contents
 - [Prerequisites and Installation](#-prerequisites-and-installation)
 - [Visual Reward Methodology](#-visual-reward-methodology)
@@ -305,7 +333,7 @@ python src/eval_pinn_realtime.py --controller reactive --render                 
 python src/tilemap_planner.py                                                             # A* feasibility proof (stage is completable)
 ```
 
-**Real-time console results** (World 1-1, goal ≈ 4256 px): the dash unlock **doubles** reach; with ROM **wall/pipe perception** the reflex + A\* now **clears the first ~4-tile green pipe** and reaches **~44% (1889 px)** — the furthest any controller here gets on 1-1. CEM-MPC over the PINN and the imagination PPO (2.5 ms/frame, >400 FPS) also run live. The **tilemap A\*** proves the stage is **geometrically feasible** (14 pits, max 5 tiles, all within a running jump). The agent clears the pits, Goombas and the first pipe but does **not yet fully finish**: direct in-game evidence (rendered frame + velocity trace) localises the barrier to the **pipe + dense block-staircase** just after it — a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires. This is a genuine **multi-hop 2D-platforming / runway-timing** problem (not a perception gap, not the world model); clearing the rest needs a full solid-tile 2D platformer planner or large-scale direct RL. Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, barrier frame `media/nsmb_pipe_top_timesup.png`.
+**Real-time console results** (World 1-1; the flagpole is at 4,032 px and the last solid tile column ends at 4,256 px — the first is what `level_cleared` fires on): the dash unlock **doubles** reach, and with ROM **wall/pipe perception** the reflex + A\* planner now **clears the stage end to end**: `reactive` reaches **4,022 px of 4,032 px in 5/5 episodes** ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json), and the clip at the top of this file). The learned arms still stop short — CEM-MPC peaks at 1,510 px, PPO+Reflex at 1,139 px, pixel PPO at 120.8 px — and the imagination PPO (2.5 ms/frame, >400 FPS) also runs live. The **tilemap A\*** proves the stage is **geometrically feasible** (9 pits, max 3 tiles, all within a running jump). The barrier that had to be broken sat at the **pipe + dense block-staircase** just after it: a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires — direct in-game evidence (rendered frame + velocity trace) is in [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png). The reflex layer clears it by taking off from the exact edge column with dash speed still on; a *learned* controller clearing it still needs a full solid-tile 2D platformer planner or large-scale direct RL. Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, `media/nsmb_dashboard_clear.mp4`.
 
 ---
 

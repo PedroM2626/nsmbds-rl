@@ -105,8 +105,11 @@ different console.
 
 ### Tilemap A\* feasibility + walkable-surface model (`src/tilemap_planner.py`)
 
-Parsing the ROM geometry, World 1-1 has **14 pits, the widest 5 tiles (80 px)** — all
-within the ~112 px (7-tile) running-jump reach. The planner reports
+Parsing the ROM geometry, World 1-1 has **9 pits, the widest 3 tiles (48 px)** — all
+well inside the ~112 px (7-tile) running-jump reach. (An earlier revision of this page
+said 14 pits / 5 tiles; that census predates the false-pit cleanup in
+`Course.ground_cover` and no longer matches `TilemapAStar.pit_widths`. Recompute it
+with `python tools/export_geometry.py`, which prints the census it exports.) The planner reports
 **`feasible=True`**, i.e. the stage is *geometrically* completable with the dash
 action. It derives a per-column **obstacle height** (`wall_ahead`) and, more generally,
 a **walkable-surface profile** (`surface_ahead`): the top of the solid run contiguous

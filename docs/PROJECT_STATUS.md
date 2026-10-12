@@ -1,12 +1,12 @@
 # Project Status & Gap Analysis
 
-*Last updated: 2026-09-24. ROM: NSMB DS EUR (NTR-A2DP-EUR). All code lives under `src/`.*
+*Last updated: 2026-10-11. ROM: NSMB DS EUR (NTR-A2DP-EUR). All code lives under `src/`.*
 
 ---
 
 ## Executive Summary
 
-The pipeline goes from raw DS emulator → RAM telemetry → physics-informed world model → real-time agent. All three PINN pipeline stages are executable and produce metrics. **No controller has cleared 1-1 yet** (max progress ≈ 1730 px out of 4256 px goal). The dominant failure modes are pit deaths (the level-geometry planner infers pits from tile data but the agent still misjudges enemy-blocked approaches) and a systematic early-death cluster at ~336 px in the PPO and reactive baselines caused by the first Goomba on flat ground.
+The pipeline goes from raw DS emulator → RAM telemetry → physics-informed world model → real-time agent. All three PINN pipeline stages are executable and produce metrics. **The rule-based `reactive` controller clears World 1-1 end to end**: 5/5 episodes, 4,022 px of the 4,032 px flagpole, `clear_rate = 1.0` ([`evals/pinn_realtime_eval.json`](../evals/pinn_realtime_eval.json), reproduced 2026-10-11 on a second machine with an identical `total_reward`). The learned controllers are still far from that: CEM-MPC peaks at 1,510 px and PPO+Reflex at 1,139 px, both dying at pit/enemy approaches, and the pixel PPO baselines still show the early-death cluster at ~336 px caused by the first Goomba on flat ground. An earlier revision of this page reported "no controller has cleared 1-1 (max ≈ 1730 px)"; that predates commit `f70b262`.
 
 ---
 
@@ -148,9 +148,9 @@ Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a p
 |---|:---:|:---:|:---:|---|
 | **CEM-MPC (PINN, n=3)** | **1,268.2** | **1,510.0** | **0.0%** | Overcomes 1498 px barrier via extended $H=24$ horizon & patrol deceleration |
 | **PPO+Reflex (PINN, n=5)** | **1,000.8** | **1,139.5** | **0.0%** | 100% clearance of 384 px pipe via TilemapAStar takeoff before 358 px |
-| **Reactive (Rule-based, n=4)** | 1,136.7 | 1,202.7 | 0.0% | Rule-based hazard leaps; dies at 1115-1203 px |
+| **Reactive (Rule-based, n=5)** | **4,022.4** | **4,022.4** | **100%** | Clears to the flagpole; `evals/pinn_realtime_eval.json`. Supersedes the n=4 run (1,136.7 mean, 0%) that died at 1115-1203 px |
 | **PPO Pure (Pixels, n=10 det)** | 120.8 | 120.8 | 0.0% | Deterministic Goomba death loop at entrance |
-| **Goal (Flagpole)** | **4,032.0** | **4,256.0** | **100%** | Flagpole contact & castle entrance (World 1-1) |
+| **Goal (two numbers, not one)** | **4,032.0** | **4,256.0** | — | 4,032 px = flagpole sprite x, what `level_cleared` fires on (`eval_pinn_realtime.goal_px()`); 4,256 px = last solid tile column x16 (`TilemapAStar.goal_px()`). Quote the first for clears, the second for geometry |
 
 
 ---
