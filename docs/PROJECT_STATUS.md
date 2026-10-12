@@ -323,8 +323,8 @@ Attempted 2026-10-11. What the file actually is:
   least one non-zero pair"**. On A01_1 that reproduces the hand-validated ground
   set exactly -- 246 of 267 columns, 92.1% coverage, 9 pits, widths [2 x8, 3 x1]
   -- and it separates A01_1's ground classes at 94.9% against a 64.1% baseline
-  (`tools/mucd_probe.py`). The meaning of the individual flag bits is still
-  unknown.
+  (`tools/mucd_probe.py`). **Read 4h before using this as a solidity source: it
+  holds for the grass tileset and fails as a general rule.**
 
 What is **not** solved, stated as a negative result so nobody re-pays for it: the
 course -> tileset binding. It is not the ROM file ID (MUCD IDs are 262..302; the
@@ -346,6 +346,52 @@ rendered frames, which needs a savestate at that course.
 Note: `BG_chk/` also holds six 512-byte `ScrollControl_*.bin` files (UI scroll
 flags, 256 u16 each). They are not MUCD tables and must be excluded from any
 count of 48.
+
+## 4h. The ARM9 route, attempted and closed with numbers
+
+Authorized attempt to recover the course -> tileset binding from the executable.
+Five approaches, all measured, all failing:
+
+1. **Strings in the ARM9:** none. But note the method check -- control strings
+   ("main", "NSMB", "Tile", "http") also return zero hits, so the earlier claim
+   that "the ARM9 holds no tileset names" was made with a broken instrument. The
+   names live only in the ROM's filename table (0x2548b6..0x254da4); the game
+   opens files by ID.
+2. **A static table of MUCD file IDs (259..313) in the ARM9:** scanned as u16 with
+   stride 2, u32 low-16 with stride 4, u16 at +2 with stride 4, and runs of length
+   >= 6 -- **zero runs found**.
+3. **Header field as an index into the BG_chk file-ID order:** swept all 16 u16
+   slots of the 32-byte level header. Best is 43.5% of courses reaching >= 70%
+   ground coverage; nothing crossed 50%.
+4. **Per-course geometric fit:** degenerate by construction -- six tables score
+   J=1.000 against A01_1, and group fitting (positive *and* negative evidence over
+   the 191 courses) gives median winner margins of 0.000.
+5. **Local floor estimation** (median deepest row in a +-12 column window): lifts
+   A01_1 to 95.9% but erases five of its nine real pits and collapses A05_1 to
+   1.2%. Rejected.
+
+The bound that settles it: choosing the **best possible table per course** (an
+oracle) still leaves only **122 of 191** courses reaching 70% ground coverage. So
+the flag reading from 4f -- "this object number has a non-zero (unit, model) pair,
+therefore it is terrain" -- is **wrong as a general rule**. It reproduces A01_1's
+validated ground exactly because the grass tileset's ground classes happen to be
+the classes with unit-change entries there; it does not mean the table encodes
+solidity.
+
+Consequences, stated plainly:
+- The binding is not the thing that unlocks other courses, because the tables do
+  not carry the semantics I assumed. What is actually needed is the tile
+  collision data (`BG_chk/*MainUnitChangeData.bin` is not it; the map16/tile
+  behaviour lives in the tileset graphics and collision archives, `BG_ncg`,
+  `BG_ncl`, `BG_pnl` and the `ARCHIVE/Dat_*.narc` files), plus a disassembler and
+  the community's tileset-ID knowledge. Neither is available on this machine
+  inside a reasonable budget.
+- **4-1 does not need any of this.** `A04_1` already passes the geometry guard at
+  95% coverage with a detected exit; its only blocker is a savestate (4g). So the
+  transfer experiment is gated on the emulator path, not on reverse engineering.
+- `tools/tileset_sweep.py`, `tileset_groups.py`, `tileset_posneg.py` and
+  `mucd_bind.py` are kept with their success criteria in the docstrings, so this
+  ground is not re-covered.
 
 ## 5. File Index
 
