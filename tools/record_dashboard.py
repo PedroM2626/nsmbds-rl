@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import json
 import os
 import shutil
 import struct
@@ -298,7 +299,9 @@ def main():
     ap.add_argument("--gif", default=os.path.join(ROOT, "media", "nsmb_dashboard_preview.gif"),
                     help="inline preview for the README (GitHub does not stream repo mp4)")
     ap.add_argument("--gif-start", type=float, default=20.0)
-    ap.add_argument("--gif-len", type=float, default=9.0)
+    # 10 s, not 9: the clip is 29.33 s long, and -t 9 stopped at step 216 (99.4%),
+    # cutting the frame that carries the stage-clear caption.
+    ap.add_argument("--gif-len", type=float, default=10.0)
     ap.add_argument("--gif-fps", type=int, default=15)
     ap.add_argument("--gif-width", type=int, default=960)
     ap.add_argument("--png-frame", default=os.path.join(ROOT, "out", "dashboard_frame.png"))
@@ -391,7 +394,6 @@ def main():
         print(f"[dash] ep {ep}: {step} steps, {st['abs_px']:.0f}/{goal}px, "
               f"cleared={st['cleared']}")
         # the numbers the README quotes are the numbers this run displayed
-        import json
         with open(os.path.join(ROOT, "out", "dashboard_run.json"), "w") as f:
             json.dump({"steps": step, "abs_px": round(st["abs_px"]), "goal_px": goal,
                        "cleared": st["cleared"], "planner": args.planner,
@@ -428,6 +430,16 @@ def main():
                         args.gif], check=True)
         print(f"[dash] wrote {args.gif} ({os.path.getsize(args.gif) / 1e6:.1f} MB, "
               f"{args.gif_len} s from t={args.gif_start})")
+        # record whether the preview actually reaches the final frame, so the
+        # README's "it ends on ..." claim is checkable rather than eyeballed
+        meta_path = os.path.join(ROOT, "out", "dashboard_run.json")
+        if os.path.exists(meta_path):
+            meta = json.load(open(meta_path, encoding="utf-8"))
+            meta["clip_seconds"] = round(made / args.fps, 2)
+            meta["gif_seconds"] = args.gif_len
+            meta["gif_start"] = args.gif_start
+            meta["gif_reaches_end"] = args.gif_start + args.gif_len >= made / args.fps - 1e-6
+            json.dump(meta, open(meta_path, "w", encoding="utf-8"), indent=2)
     return 0
 
 

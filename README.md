@@ -8,9 +8,10 @@ The codebase is engineered with MLOps best practices and supports diverse learni
 
 ![World 1-1 clear dashboard, final 9 seconds](media/nsmb_dashboard_preview.gif)
 
-The animation above is the last 9 s of the run (it ends on the flagpole). The
-full clip (29 s, 1280×720) is `media/nsmb_dashboard_clear.mp4` — GitHub does not
-stream video out of a repository tree, so open or download it from
+The animation above is the closing 10 s of the run — its last frame is the
+stage-clear one. The full clip (29 s, 1280×720) is
+`media/nsmb_dashboard_clear.mp4` — GitHub does not stream video out of a
+repository tree, so open or download it from
 [`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/mario-ds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
 
 It records one episode of the `reactive` controller with the **Rust geometry
