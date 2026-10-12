@@ -1,6 +1,12 @@
-# 0.0.3 has no wheel for Python >= 3.10 (pip only offers 0.0.4.post2+), so this
-# pin could not be installed on the 2026-10-11 reproduction machine. 0.0.9 runs
-# the same clearing episode with an identical total_reward.
+# Verified on 2026-10-11 with CPython 3.11.9 / win_amd64 / RTX 4070 Laptop.
+#
+# The +cu124 builds below do NOT exist on PyPI, so without this extra index the
+# install dies on the torch line:
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+# DeSmuME core bindings. 0.0.3 (the previous pin) has no wheel for Python >= 3.10
+# -- pip only offers 0.0.4.post2 and up -- so the file could not install at all.
+# 0.0.9 reproduces the World 1-1 clearing episode unchanged.
 py-desmume==0.0.9
 gymnasium==0.29.1
 stable-baselines3[extra]==2.2.1
