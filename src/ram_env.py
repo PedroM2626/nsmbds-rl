@@ -142,6 +142,13 @@ class MarioRamEnv(gym.Env):
         }
         return table.get(int(action), [])
 
+    def _emit_cycle(self):
+        """Called after every emulated frame so a recorder can capture true 60 Hz
+        footage instead of one image per action. Set self.on_cycle = callable."""
+        cb = getattr(self, "on_cycle", None)
+        if cb is not None:
+            cb()
+
     def step(self, action):
         keys = self._action_keys(action)
         prev_keys = getattr(self, "_prev_keys", set())
@@ -155,6 +162,7 @@ class MarioRamEnv(gym.Env):
             for k in [k for k in keys if k != Keys.KEY_A]:
                 self.emu.input.keypad_add_key(keymask(k))
             self.emu.cycle()
+            self._emit_cycle()
             for k in [k for k in keys if k != Keys.KEY_A]:
                 self.emu.input.keypad_rm_key(keymask(k))
             skip = max(1, self.frameskip - 1)
@@ -165,6 +173,7 @@ class MarioRamEnv(gym.Env):
             self.emu.input.keypad_add_key(keymask(key))
         for _ in range(skip):
             self.emu.cycle()
+            self._emit_cycle()
         for key in keys:
             self.emu.input.keypad_rm_key(keymask(key))
 

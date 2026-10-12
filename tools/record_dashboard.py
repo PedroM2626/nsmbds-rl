@@ -132,18 +132,38 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs):
         px = x + (6 + k) * cw
         cv2.rectangle(img, (px, y + rows * ch + 4), (px + cw - 1, y + rows * ch + 9),
                       BAD if flag < 0.5 else GOOD, -1)
-    # enemies from RAM: dx,dy in px relative to Mario (positive dy is UP)
+    # enemies from RAM: dx,dy in px relative to Mario (positive dy is UP).
+    # A slot with no enemy type is padding, not a phantom: draw only real entries.
     mario_top = geo["surface"].get(mario_col)
     mario_r = rows - 1 if mario_top is None else (mario_top - r0) - 1
+    drawn_enemies = 0
     for k in range(3):
         dx, dy, et = obs[8 + 3 * k] * 256.0, obs[9 + 3 * k] * 256.0, obs[10 + 3 * k] * 256.0
-        if abs(dx) < 1e-6 and abs(et) < 1e-6:
+        if et < 0.5:
             continue
         i = 6 + int(round(dx / TILE))
         j = mario_r - int(round(dy / TILE))
         if 0 <= i < cols and 0 <= j < rows:
             cv2.rectangle(img, (x + i * cw, y + j * ch), (x + (i + 1) * cw - 1, y + (j + 1) * ch - 1),
                           BAD, -1)
+            drawn_enemies += 1
+    # Isolated single-column rises in the profile are stacked ?-blocks the parser
+    # absorbed into the walkable surface; outline them instead of filling them so
+    # the panel cannot claim ground the game does not have.
+    for i in range(cols):
+        c = c0 + i
+        top = geo["surface"].get(c)
+        if top is None:
+            continue
+        prev_top = geo["surface"].get(c - 1)
+        next_top = geo["surface"].get(c + 1)
+        if top is None or prev_top is None or next_top is None:
+            continue
+        if top < prev_top and top < next_top:
+            j = (r0 + rows) - top - 1
+            if 0 <= j < rows:
+                cv2.rectangle(img, (x + i * cw, y + j * ch), (x + (i + 1) * cw - 1,
+                              y + (j + 1) * ch - 1), (120, 160, 235), 1, cv2.LINE_AA)
     # Mario stands on the surface column he occupies
     j = max(0, min(rows - 1, mario_r))
     cv2.rectangle(img, (x + 6 * cw - 2, y + j * ch - ch // 2), (x + 7 * cw + 1, y + (j + 1) * ch - 1),
@@ -255,13 +275,15 @@ def compose(game, st):
               f"rule fired: {st['rule']}", gx, 534, 0.44, ACCENT)
 
     x0 = 572
-    panel(img, x0, 66, 440, 226, "what the agent sees (RAM + tile geometry)")
+    panel(img, x0, 66, 440, 226, "what the agent sees: 23 RAM floats (tiles = ROM profile)")
     draw_agent_view(img, x0 + 12, 104, 416, 130, st["geo"], st["abs_px"], st["obs"])
     lx = x0 + 12
     for i, (lab, col) in enumerate([("floor/step", TILE_FLOOR), ("block", TILE_BLOCK),
                                     ("pit (no ground)", (30, 27, 22)), ("enemy", BAD)]):
-        cv2.rectangle(img, (lx + i * 106, 268), (lx + i * 106 + 10, 278), col, -1)
+        cv2.rectangle(img, (lx + i * 106, 268), (lx + i * 106 + 10, 268 + 10), col, -1)
         text(img, lab, lx + i * 106 + 15, 277, 0.32, DIM)
+    cv2.rectangle(img, (lx, 282), (lx + 10, 292), (120, 160, 235), 1)
+    text(img, "isolated rise: parser-only, Mario runs under it", lx + 15, 291, 0.30, DIM)
 
     panel(img, x0, 302, 440, 174, "what it thinks (share of last 60 decisions)")
     draw_thinks(img, x0 + 12, 314, 416, 152, st["recent"], st["action_idx"])
@@ -297,8 +319,9 @@ def main():
     ap.add_argument("--episodes", type=int, default=1)
     ap.add_argument("--record-episode", type=int, default=1)
     ap.add_argument("--max-steps", type=int, default=1200)
-    ap.add_argument("--hold", type=int, default=4, help="video frames per agent step")
-    ap.add_argument("--fps", type=int, default=30)
+    ap.add_argument("--hold", type=int, default=1, help="extra copies of each frame")
+    ap.add_argument("--fps", type=int, default=60,
+                    help="one frame per emulated cycle, so 60 matches the DS refresh")
     ap.add_argument("--out", default=os.path.join(ROOT, "media", "nsmb_dashboard_clear.mp4"))
     ap.add_argument("--gif", default=os.path.join(ROOT, "media", "nsmb_dashboard_preview.gif"),
                     help="inline preview for the README (GitHub does not stream repo mp4)")
@@ -356,6 +379,10 @@ def main():
         done = trunc = False
         step = 0
         info = {}
+        # true 60 Hz: the env calls this after every emulated cycle, including the
+        # extra key-release cycle the jump rising-edge logic inserts
+        cycle_frames = []
+        env.on_cycle = lambda: cycle_frames.append(grab_frame(env.emu))
         game = grab_frame(env.emu)
         st = {"level": "World 1-1 (course A01_1)", "ep": ep, "planner": args.planner,
               "controller": args.controller, "geo": geo, "goal_px": goal,
@@ -365,6 +392,7 @@ def main():
               "held": [], "rule": "-", "recent": [], "hist": []}
         while not (done or trunc) and step < args.max_steps:
             RULES["surface_threat"] = None
+            cycle_frames.clear()
             a = int(agent.act(obs))
             pred_r = float("nan")
             if model is not None:
@@ -378,7 +406,7 @@ def main():
                 recent.pop(0)
             hist.append((pred_r, float(r)))
             step += 1
-            game = grab_frame(env.emu)
+            game = cycle_frames[-1] if cycle_frames else grab_frame(env.emu)
             st.update({"step": step, "abs_px": float(info.get("mario_px", 0.0)),
                        "lives": float(obs[5]) * 10.0, "timer": float(obs[6]) * 400.0,
                        "vx": float(obs[2]) * 4.0, "vy": float(obs[3]) * 4.0,
@@ -388,12 +416,16 @@ def main():
                        "rule": RULES["surface_threat"] or "drive right",
                        "recent": list(recent), "hist": list(hist),
                        "cleared": bool(info.get("level_cleared"))})
-            frame = compose(game, st)
-            for _ in range(args.hold):
-                writer.write(frame)
-                made += 1
+            # the panel is per decision, the gameplay per cycle
+            seq = cycle_frames or [game]
+            for cf in seq:
+                frame = compose(cf, st)
+                for _ in range(args.hold):
+                    writer.write(frame)
+                    made += 1
             if step % 60 == 0 or done or trunc:
-                cv2.imwrite(os.path.join(snapdir, f"ep{ep}_step{step:04d}.png"), frame)
+                cv2.imwrite(os.path.join(snapdir, f"ep{ep}_step{step:04d}.png"),
+                            compose(game, st))
         cv2.imwrite(args.png_frame, compose(game, st))
         print(f"[dash] ep {ep}: {step} steps, {st['abs_px']:.0f}/{goal}px, "
               f"cleared={st['cleared']}")
