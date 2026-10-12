@@ -89,6 +89,23 @@ def doc_checks(readme_text):
         got = row.groups() if row else None
         out.append(("PROJECT_STATUS reactive row (n, mean, max, clear%)",
                     want, got, got == want))
+
+    # docs/PROJECT_STATUS.md 4b: the reflex arms table must equal the last
+    # tools/parity_reflex.py run, not a number someone typed in.
+    rp_arms = os.path.join(ROOT, "out", "reflex_parity.json")
+    ps = open(os.path.join(ROOT, "docs", "PROJECT_STATUS.md"), encoding="utf-8").read()
+    if os.path.exists(rp_arms):
+        arms = json.load(open(rp_arms, encoding="utf-8"))
+        for arm in ("legacy", "profile"):
+            a = arms[arm]
+            row = re.search(r"`--reflex " + arm + r"` \| (\d+) \| ([\d,]+) \| ([\d.]+)", ps)
+            want = (str(a["steps"]), f"{a['final_abs_px']:,.0f}", f"{a['total_reward']:.7g}")
+            got = row.groups() if row else None
+            ok = bool(row) and got[0] == want[0] and got[1] == want[1] and got[2] == want[2]
+            out.append((f"PROJECT_STATUS 4b {arm} row", want, got, ok))
+    else:
+        out.append(("PROJECT_STATUS 4b reflex rows", "out/reflex_parity.json",
+                    "missing (run tools/parity_reflex.py)", False))
     return out
 
 
