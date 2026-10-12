@@ -470,6 +470,13 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
     agent.reset()
     total_r, steps = 0.0, 0
     max_rel_px = 0.0
+    # Two coordinate systems coexist in this repo: the controller's
+    # SPAWN_ABS_PX + obs[0]*512 (what the agent reasons with) and the env's
+    # RAM-derived info["mario_px"] (what the stage actually reports). They
+    # disagree by ~10 steps' worth of distance, so both are recorded instead of
+    # one being quietly relabelled as the other.
+    last_mario_px = 0.0
+    max_mario_px = 0.0
     latencies = []
     cause, finished = "step_limit", False
     death_diag = ""
@@ -482,6 +489,8 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
             obs, r, term, trunc, info = env.step(action)
             total_r += r
             max_rel_px = max(max_rel_px, obs[0] * 512.0)
+            last_mario_px = float(info.get("mario_px", last_mario_px))
+            max_mario_px = max(max_mario_px, last_mario_px)
             abs_px = SPAWN_ABS_PX + obs[0] * 512.0
             if render or writer is not None:
                 render_frame(env.emu, f"step {steps} | x={abs_px:.0f}px | goal {goal}px",
@@ -505,6 +514,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
     return {
         "steps": steps, "total_reward": float(total_r),
         "max_progress_px": float(max_rel_px), "final_abs_px": float(SPAWN_ABS_PX + max_rel_px),
+        "final_mario_px": last_mario_px, "max_mario_px": max_mario_px,
         "reached_goal": bool(finished), "termination": cause,
         "mean_control_latency_ms": float(np.mean(latencies)),
         "achieved_env_fps": float(steps / max(wall, 1e-9)),
