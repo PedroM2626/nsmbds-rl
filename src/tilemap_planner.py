@@ -20,7 +20,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from course import Course, TILE  # noqa: E402
+from course import Course, TILE, require_plannable  # noqa: E402
 
 ROM = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
 # Empirical kinematics grounded via 60 Hz DeSmuME telemetry (Route B decomposition):
@@ -49,6 +49,7 @@ def dynamic_jump_reach_tiles(vx_px_per_frame=None, airborne_frames=52.0):
 class TilemapAStar:
     def __init__(self, rom_path=ROM, name="course/A01_1.bin", jump_reach_tiles=JUMP_REACH_TILES):
         course = Course(name=name, rom_path=rom_path)
+        require_plannable(course)   # refuse to plan on a fiction
         cols = sorted(course.ground_cover.keys())
         self.min_col, self.max_col = cols[0], cols[-1]
         self.solid = set(cols)

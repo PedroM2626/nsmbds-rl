@@ -17,7 +17,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from course import Course, TILE  # noqa: E402
+from course import Course, TILE, require_plannable  # noqa: E402
 
 # Half a 16 px sprite: the entrance record is the sprite origin, Mario's RAM
 # base sits half a tile higher (validated for A01_1: entrance x 80 -> 88).
@@ -30,6 +30,7 @@ class LevelProfile:
     def __init__(self, rom_path, name="course/A01_1.bin"):
         self.course = Course(name=name, rom_path=rom_path)
         self.name = name
+        require_plannable(self.course)   # the derived bands are meaningless otherwise
 
         ent = self.course.entrances[0] if self.course.entrances else {"x_px": 0}
         self.spawn_px = float(ent["x_px"]) + HALF_SPRITE_PX

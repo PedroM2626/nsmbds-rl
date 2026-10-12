@@ -47,6 +47,7 @@ SPRITE_NAMES = _load_extended_sprite_names()
 class Course:
     def __init__(self, name="course/A01_1.bin", rom_path=None):
         import ndspy.rom
+        self.name = name
         if rom_path is None:
             rom_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "..", "data",
@@ -99,10 +100,22 @@ class Course:
 
         # flag / level finish detection: sprite 32 or highest X goal object
         flag_candidates = [s for s in self.sprites if s["type"] == 32 or "Flag" in s["name"]]
+        self.exit_found = bool(flag_candidates)
         if flag_candidates:
             self.flag_x_px = float(min(s["x_px"] for s in flag_candidates))
         else:
+            # NOT the level exit. Only A01_1 ends on a flagpole sprite; several
+            # courses end on a pipe/door object, and silently reporting 4032 px
+            # made those levels look plannable when they are not.
             self.flag_x_px = 4032.0
+
+        # How much of the course's own x extent has ground-class tiles. GROUND_OBJS
+        # is a flat list of tile-object numbers, but those numbers are local to each
+        # course's tileset, so coverage collapses on courses that use another one
+        # (A01_1 92%, A02_1 86%, A05_1 11%, A08_1 4% -- see tools/tileset_probe.py).
+        xs = [r["tx"] + r["w"] for r in self.rects] + [r["tx"] for r in self.rects]
+        span = (max(xs) - min(xs)) if xs else 0
+        self.ground_coverage = (len(self.ground_cover) / span) if span else 0.0
 
     def floor_row(self, tile_x):
         """Top row of the BOTTOM contiguous ground run at this column: the surface
@@ -147,6 +160,29 @@ class Course:
 
     def goomba_spawns_px(self):
         return [s["x_px"] for s in self.sprites if s["type"] == 148]
+
+
+class UnsupportedCourse(RuntimeError):
+    """The current parser cannot produce trustworthy geometry for this course."""
+
+
+def require_plannable(course, min_coverage=0.6):
+    """Refuse to plan on a course whose profile is fiction.
+
+    Called by TilemapAStar and LevelProfile so the failure is loud here rather
+    than a plausible-looking path over 4% of the level further down the stack.
+    """
+    problems = []
+    if course.ground_coverage < min_coverage:
+        problems.append(
+            f"only {course.ground_coverage * 100:.0f}% of the course's own x extent has "
+            f"ground-class tiles -- GROUND_OBJS is a flat list of tile-object numbers and "
+            f"those are local to each course's tileset")
+    if not getattr(course, "exit_found", True):
+        problems.append("no flagpole/goal sprite found; flag_x_px is the 4032 fallback, "
+                        "not this level's exit")
+    if problems:
+        raise UnsupportedCourse(f"{course.name}: " + "; ".join(problems))
 
 
 if __name__ == "__main__":
