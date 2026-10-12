@@ -139,6 +139,10 @@ def main():
 
     checks += doc_checks(text)
 
+    if "gif_seconds" in run:
+        checks.append(("inline preview reaches the final frame", True,
+                       run.get("gif_reaches_end"), bool(run.get("gif_reaches_end"))))
+
     bad = [c for c in checks if not c[3]]
     for label, exp, got, ok in checks:
         print(f"{'ok  ' if ok else 'FAIL'} {label}: README={got!r} expected={exp!r}")
