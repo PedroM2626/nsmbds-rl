@@ -6,12 +6,16 @@ The codebase is engineered with MLOps best practices and supports diverse learni
 
 ### World 1-1, start to flagpole — the whole run in one clip
 
-[![World 1-1 clear dashboard — click to play](media/nsmb_dashboard_poster.png)](https://github.com/PedroM2626/mario-ds-rl/blob/main/media/nsmb_dashboard_clear.mp4)
+![World 1-1 clear dashboard, final 9 seconds](media/nsmb_dashboard_preview.gif)
 
-`media/nsmb_dashboard_clear.mp4` (29 s, 1280×720) records one episode of the
-`reactive` controller with the **Rust geometry planner** in the loop
-(`--planner rust`, see [rust/](rust)). Every panel is read from the same step
-loop that drives the emulator, so the frame is the evidence:
+The animation above is the last 9 s of the run (it ends on the flagpole). The
+full clip (29 s, 1280×720) is `media/nsmb_dashboard_clear.mp4` — GitHub does not
+stream video out of a repository tree, so open or download it from
+[`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/mario-ds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
+
+It records one episode of the `reactive` controller with the **Rust geometry
+planner** in the loop (`--planner rust`, see [rust/](rust)). Every panel is read
+from the same step loop that drives the emulator, so the frame is the evidence:
 
 | on screen | where it comes from |
 | --- | --- |
@@ -29,7 +33,7 @@ The grey spike at the end is the `+100` terminal bonus the PINN does not predict
 ```bash
 python tools/export_geometry.py                      # ROM -> out/nsmb_geometry.bin
 bash rust/build.sh && python tools/parity_planner.py # Rust == tilemap_planner.py
-python tools/record_dashboard.py --planner rust      # -> media/nsmb_dashboard_clear.mp4
+python tools/record_dashboard.py --planner rust      # -> mp4 + the inline .gif above
 ```
 
 ## Contents

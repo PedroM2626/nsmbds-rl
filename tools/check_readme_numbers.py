@@ -50,6 +50,12 @@ def doc_checks(readme_text):
     grab(wm, r"(\d+) pits, the widest (\d+) tiles", n_pits, "PINN doc pit count")
     grab(wm, r"the widest (\d+) tiles", widest, "PINN doc widest pit tiles")
 
+    m = re.search(r"!\[[^\]]*\]\((media/[A-Za-z0-9_]+\.gif)\)", readme_text)
+    gif = os.path.join(ROOT, m.group(1)) if m else None
+    exists = bool(gif) and os.path.exists(gif)
+    out.append(("README inline gif referenced and present", "media/*.gif on disk",
+                m.group(1) if m else None, exists))
+
     for name, fname, pattern, label in (
             ("pinn_realtime_eval.json", "reactive", r"reactive.? reaches \*{0,2}([\d,]+) px",
              "README reactive mean px"),
