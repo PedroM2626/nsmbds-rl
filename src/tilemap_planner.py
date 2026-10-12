@@ -85,12 +85,10 @@ class TilemapAStar:
         # ?-blocks/coins that Mario cannot stand on from the floor. Row 30 = floor;
         # a smaller row = a higher surface. This unifies pits (None), pipes and the
         # end staircase into a single height profile the controller can follow.
-        solid_rows = {}          # col -> set(rows) of any solid tile
-        for r in course.rects:
-            for cc in range(r["tx"], r["tx"] + r["w"]):
-                s = solid_rows.setdefault(cc, set())
-                for yy in range(r["ty"], r["ty"] + r["h"]):
-                    s.add(yy)
+        # ground_cover is already "rows of ground-class solids per column" (see
+        # Course.__init__); re-walking course.rects here used to include bricks,
+        # ?-blocks and decor, which the profile then claimed as walkable ground.
+        solid_rows = course.ground_cover
         self.surface = {}        # col -> top walkable row (or absent = pit)
         for cc in range(self.min_col, self.max_col + 1):
             fr = course.floor_row(cc)

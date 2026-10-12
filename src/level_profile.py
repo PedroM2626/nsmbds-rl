@@ -38,14 +38,10 @@ class LevelProfile:
         cols = sorted(self.course.ground_cover.keys())
         self.min_col, self.max_col = cols[0], cols[-1]
 
-        # Walkable surface per column, same construction as TilemapAStar: the top
-        # of the solid run contiguous with the floor.
-        solid_rows = {}
-        for r in self.course.rects:
-            for cc in range(r["tx"], r["tx"] + r["w"]):
-                s = solid_rows.setdefault(cc, set())
-                for yy in range(r["ty"], r["ty"] + r["h"]):
-                    s.add(yy)
+        # Walkable surface per column: the top of the ground-class run contiguous
+        # with the floor. course.ground_cover already excludes bricks, ?-blocks and
+        # decor, so an elevated floating brick row is no longer mistaken for ground.
+        solid_rows = self.course.ground_cover
         self.surface = {}
         for cc in range(self.min_col, self.max_col + 1):
             fr = self.course.floor_row(cc)

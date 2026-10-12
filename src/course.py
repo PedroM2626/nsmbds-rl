@@ -105,9 +105,39 @@ class Course:
             self.flag_x_px = 4032.0
 
     def floor_row(self, tile_x):
-        """Ground row at column or None if pit."""
+        """Top row of the BOTTOM contiguous ground run at this column: the surface
+        Mario walks on.
+
+        This used to be min(rows), the highest ground tile. Ground-class objects
+        also cover floating brick rows and platforms, so min() reported a column's
+        floor as being up on the platform and hid the real ground underneath --
+        at cols 117..121 of A01_1 it returned 24 (the brick row the rendered frame
+        shows floating in the air) while the walkable floor runs at row 30.
+        """
         rows = self.ground_cover.get(int(tile_x))
-        return min(rows) if rows else None
+        if not rows:
+            return None
+        r = max(rows)
+        while (r - 1) in rows:
+            r -= 1
+        return r
+
+    def platform_rows(self, tile_x):
+        """Tops of the ground-class surfaces stacked ABOVE the floor, per column.
+
+        These are real solid surfaces (Mario can stand on them) but they are not
+        what a walking planner should follow.
+        """
+        rows = self.ground_cover.get(int(tile_x))
+        if not rows:
+            return []
+        floor_top = self.floor_row(tile_x)
+        tops, prev = [], None
+        for r in sorted(rows):
+            if prev is None or r != prev + 1:
+                tops.append(r)
+            prev = r
+        return [t for t in tops if t < floor_top]
 
     def pit_ahead(self, mario_px, n=6):
         """List of n flags (1.0 solid / 0.0 pit) for columns ahead."""
