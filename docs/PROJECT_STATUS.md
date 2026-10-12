@@ -203,15 +203,21 @@ Rust/Python query parity still passes on all 37,281 sampled queries, and the
 pure-geometry arm is still short (1,730 px), so parser fidelity was necessary but
 not sufficient: the remaining gap is in the reflex rules themselves.
 
-## 4d. Two formulas for Mario's absolute position
+## 4d. Two formulas for Mario's absolute position (resolved)
 
-`src/ram_env.py` reports `mario_px = st["mario_B"] / 4096`, while
+`src/ram_env.py` reports `info["mario_px"] = st["mario_B"] / 4096`, while
 `eval_pinn_realtime.py` and the controller use `SPAWN_ABS_PX + obs[0] * 512`.
-They disagree by enough that the eval's stop test (`abs_px >= goal - 16`) fires
-10 steps before the env's `level_cleared`. Consequence: the same trajectory is
-published as "209 steps" by the eval and "219 steps" by the recorder. Unifying
-them changes the eval's step count, so it needs its own parity run rather than a
-silent edit.
+They are not two approximations of one quantity: `mario_px` is **spawn-relative**
+(it differs from the other by exactly the 88 px spawn constant -- 3,934.379 vs
+4,022.379), so labelling it "px to the flagpole" against an absolute 4,032 px goal
+was wrong by that offset. That was a bug in the dashboard recorder, found by
+recording both values in the eval rather than by arguing about them.
+
+Resolved: `run_episode` now writes `final_mario_px` / `max_mario_px` alongside the
+existing fields (all previously published values verified unchanged), and
+`tools/record_dashboard.py` uses the eval's quantity **and its stop rule**
+(`abs_px >= goal - 16` or `level_cleared`). One trajectory, one number: the clip
+and `evals/pinn_realtime_eval.json` both report 209 steps and 4,022 px.
 
 ## 4e. Porting to another course: investigation results (2026-10-11)
 

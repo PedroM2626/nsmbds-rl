@@ -325,7 +325,9 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "media", "nsmb_dashboard_clear.mp4"))
     ap.add_argument("--gif", default=os.path.join(ROOT, "media", "nsmb_dashboard_preview.gif"),
                     help="inline preview for the README (GitHub does not stream repo mp4)")
-    ap.add_argument("--gif-start", type=float, default=20.0)
+    ap.add_argument("--gif-start", type=float, default=-1.0,
+                    help="seconds into the clip; negative means 'clip_seconds - gif_len', "
+                         "so the preview is always the closing gif_len seconds")
     # 10 s, not 9: the clip is 29.33 s long, and -t 9 stopped at step 216 (99.4%),
     # cutting the frame that carries the stage-clear caption.
     ap.add_argument("--gif-len", type=float, default=10.0)
@@ -407,7 +409,12 @@ def main():
             hist.append((pred_r, float(r)))
             step += 1
             game = cycle_frames[-1] if cycle_frames else grab_frame(env.emu)
-            st.update({"step": step, "abs_px": float(info.get("mario_px", 0.0)),
+            # the same quantity and the same stop rule src/eval_pinn_realtime.py
+            # uses, so the clip and the published eval describe one trajectory --
+            # info["mario_px"] is relative to the spawn, not an absolute stage x
+            abs_px = ev.SPAWN_ABS_PX + float(obs[0]) * 512.0
+            finished = abs_px >= (goal - 16.0) or bool(info.get("level_cleared"))
+            st.update({"step": step, "abs_px": abs_px,
                        "lives": float(obs[5]) * 10.0, "timer": float(obs[6]) * 400.0,
                        "vx": float(obs[2]) * 4.0, "vy": float(obs[3]) * 4.0,
                        "ground": float(obs[4]), "obs": obs,
@@ -415,7 +422,7 @@ def main():
                        "held": ACTION_BUTTONS[a],
                        "rule": RULES["surface_threat"] or "drive right",
                        "recent": list(recent), "hist": list(hist),
-                       "cleared": bool(info.get("level_cleared"))})
+                       "cleared": finished})
             # the panel is per decision, the gameplay per cycle
             seq = cycle_frames or [game]
             for cf in seq:
@@ -423,6 +430,8 @@ def main():
                 for _ in range(args.hold):
                     writer.write(frame)
                     made += 1
+            if finished:
+                break
             if step % 60 == 0 or done or trunc:
                 cv2.imwrite(os.path.join(snapdir, f"ep{ep}_step{step:04d}.png"),
                             compose(game, st))
@@ -455,26 +464,29 @@ def main():
     if args.gif:
         # GitHub does not stream mp4 out of a repo tree, so the README carries an
         # inline GIF of the closing seconds instead. Two passes: palette, then use.
+        clip_seconds = made / args.fps
+        gstart = max(0.0, clip_seconds - args.gif_len) if args.gif_start < 0 \
+            else args.gif_start
         filt = f"fps={args.gif_fps},scale={args.gif_width}:-1:flags=lanczos"
         pal = os.path.join(ROOT, "out", "gif_palette.png")
-        subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-ss", str(args.gif_start),
+        subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-ss", str(gstart),
                         "-t", str(args.gif_len), "-i", args.out,
                         "-vf", filt + ",palettegen=stats_mode=diff", pal], check=True)
-        subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-ss", str(args.gif_start),
+        subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-ss", str(gstart),
                         "-t", str(args.gif_len), "-i", args.out, "-i", pal,
                         "-lavfi", f"{filt}[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=3",
                         args.gif], check=True)
         print(f"[dash] wrote {args.gif} ({os.path.getsize(args.gif) / 1e6:.1f} MB, "
-              f"{args.gif_len} s from t={args.gif_start})")
+              f"{args.gif_len} s from t={gstart:.2f} of {clip_seconds:.2f} s)")
         # record whether the preview actually reaches the final frame, so the
         # README's "it ends on ..." claim is checkable rather than eyeballed
         meta_path = os.path.join(ROOT, "out", "dashboard_run.json")
         if os.path.exists(meta_path):
             meta = json.load(open(meta_path, encoding="utf-8"))
-            meta["clip_seconds"] = round(made / args.fps, 2)
+            meta["clip_seconds"] = round(clip_seconds, 2)
             meta["gif_seconds"] = args.gif_len
-            meta["gif_start"] = args.gif_start
-            meta["gif_reaches_end"] = args.gif_start + args.gif_len >= made / args.fps - 1e-6
+            meta["gif_start"] = round(gstart, 2)
+            meta["gif_reaches_end"] = gstart + args.gif_len >= clip_seconds - 1e-6
             json.dump(meta, open(meta_path, "w", encoding="utf-8"), indent=2)
     return 0
 
