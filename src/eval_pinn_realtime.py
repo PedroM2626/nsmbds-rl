@@ -468,14 +468,22 @@ def main():
                     help="pessimism on unpredictable enemy motion (probabilistic head)")
     ap.add_argument("--pit-enemy-suppress", type=float, default=0.0,
                     help="skip pit-jump if an enemy is within this many px (0=always jump)")
+    ap.add_argument("--planner", choices=["python", "rust"], default="python",
+                    help="geometry backend for wall/pipe queries (rust = rust/nsmb_planner.exe)")
+    ap.add_argument("--out", default="evals/pinn_realtime_eval.json",
+                    help="metrics json; point elsewhere to keep published evals intact")
     args = ap.parse_args()
 
     render = args.render and not args.headless
     device = args.device
     goal = args.goal_px or goal_px()
-    planner = TilemapAStar(rom_path=args.rom)   # ROM geometry -> wall/pipe perception
+    if args.planner == "rust":
+        from rust_planner import RustPlanner
+        planner = RustPlanner()          # rust/nsmb_planner.exe over a line protocol
+    else:
+        planner = TilemapAStar(rom_path=args.rom)   # ROM geometry -> wall/pipe perception
     print(f"[pinn-eval] controller={args.controller} device={device} goal_abs_px={goal} "
-          f"wall_planner=on")
+          f"planner={args.planner}")
 
     if args.controller == "mpc":
         ck = torch.load(args.model, map_location=device, weights_only=False)
@@ -538,9 +546,9 @@ def main():
         "mean_fps": float(np.mean([r["achieved_env_fps"] for r in results])),
         "mean_latency_ms": float(np.mean([r["mean_control_latency_ms"] for r in results])),
     }
-    os.makedirs("evals", exist_ok=True)
+    os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     out = {"aggregate": agg, "episodes": results}
-    with open("evals/pinn_realtime_eval.json", "w") as f:
+    with open(args.out, "w") as f:
         json.dump(out, f, indent=2)
     print("[pinn-eval] aggregate:", json.dumps(agg, indent=2))
 
