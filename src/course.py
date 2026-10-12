@@ -98,11 +98,17 @@ class Course:
                             cover.setdefault(xx, set()).add(yy)
         self.ground_cover = cover
 
-        # flag / level finish detection: sprite 32 or highest X goal object
+        # flag / level finish detection: sprite 32 or highest X goal object.
+        # Sprite 32 is BOTH the mid-level checkpoint flag and the level exit, so
+        # the exit is the rightmost candidate. An earlier revision took min(),
+        # which returned the checkpoint: identical on A01_1 (no checkpoint flag)
+        # but wrong on 17 of the 191 courses, e.g. E02_1 reported 416 px for a
+        # level whose ground runs to 1,680 px.
         flag_candidates = [s for s in self.sprites if s["type"] == 32 or "Flag" in s["name"]]
         self.exit_found = bool(flag_candidates)
+        self.flag_candidates_px = sorted(s["x_px"] for s in flag_candidates)
         if flag_candidates:
-            self.flag_x_px = float(min(s["x_px"] for s in flag_candidates))
+            self.flag_x_px = float(max(s["x_px"] for s in flag_candidates))
         else:
             # NOT the level exit. Only A01_1 ends on a flagpole sprite; several
             # courses end on a pipe/door object, and silently reporting 4032 px

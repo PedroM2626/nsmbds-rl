@@ -256,6 +256,22 @@ pipeline at another course needs no code change -- it needs the parser to stop
 lying, which is now enforced: `TilemapAStar` and `LevelProfile` raise
 `UnsupportedCourse` instead of planning on 4% of a level.
 
+The exit-object bug found while doing that scan: **sprite 32 is both the mid-level
+checkpoint flag and the level exit**, and `Course` took `min()` over the candidates
+while its own comment said "highest X". 17 of the 191 courses have two flagpole
+sprites, so those reported the checkpoint as the goal (E02_1 claimed 416 px for a
+level running to 1,680 px; G05_1 and B04_1 were off by ~3.7 kb px). Now `max()`,
+which matches the comment and leaves A01_1 unchanged at 4,032 px (one candidate).
+Residual: `J10_1` now reports an exit at 4,144 px beyond its own 1,376 px of parsed
+ground, so the exit should also be constrained to the ground span -- left as a
+known gap rather than fitted to one case.
+
+After the fix, 30 of 191 courses pass the guard, but the **main path (the `A`
+courses) has only three**: `A01_1` (1-1), `A04_1` (4-1, 95% coverage, exit at
+3,600 px) and `A07_3`. 4-1 is the natural transfer target: comparable length,
+same tileset family, and it needs no parser work -- only a savestate, which
+`emu.savestate.save_file()` can create by reaching the level in-game.
+
 ## 5. File Index
 
 ```
