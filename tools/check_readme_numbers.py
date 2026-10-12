@@ -121,6 +121,49 @@ def doc_checks(readme_text):
         ok = bool(row) and got[0] == want and (says_none == (not c.exit_found))
         out.append((f"PROJECT_STATUS 4e {short} coverage/exit", (want, "none" if not c.exit_found else "an exit object"),
                     got, ok))
+    # docs/PROJECT_STATUS.md 4f: the MUCD claims are recomputed from the ROM, not
+    # remembered from a notebook.
+    try:
+        import struct
+        import ndspy.rom as _R
+        from course import Course
+        _rom = _R.NintendoDSRom(open(os.path.join(
+            ROOT, "data", "0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"),
+            "rb").read())
+        _bg = _rom.filenames.subfolder('BG_chk')
+        _names = [n for n in _bg.files if n.endswith('MainUnitChangeData.bin')]
+        claims = [("4f MUCD file count", "48", str(len(_names)), len(_names) == 48)]
+        _sizes = {len(_rom.getFileByName('BG_chk/' + n)) for n in _names}
+        claims.append(("4f MUCD file size", "3072", str(sorted(_sizes)), _sizes == {3072}))
+        # the table is 6 u16 per object number (3 (unit, model) pairs), so 256*6
+        # slots; assert that reading is at least self-consistent across files
+        _slots = {len(struct.unpack('<1536H', bytes(_rom.getFileByName('BG_chk/' + n))))
+                  for n in _names}
+        claims.append(("4f slots per file (256 objects x 6)", "1536", str(sorted(_slots)),
+                       _slots == {1536}))
+        shiro = struct.unpack('<1536H', bytes(_rom.getFileByName(
+            'BG_chk/ShiRoMainUnitChangeData.bin')))
+        solid = {o for o in range(256) if any(shiro[o * 6:o * 6 + 6])}
+        cA = Course(name="course/A01_1.bin", rom_path=os.path.join(
+            ROOT, "data", "0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"))
+        cols = set()
+        for r in cA.rects:
+            if r["obj"] in solid:
+                cols.update(range(r["tx"], r["tx"] + r["w"]))
+        claims.append(("4f A01_1 columns under 'has any entry'", "246", str(len(cols)),
+                       len(cols) == 246))
+        # and the negative result that killed the boolean reading
+        _dom = set()
+        for n in _names:
+            _dom |= set(struct.unpack('<1536H', bytes(_rom.getFileByName('BG_chk/' + n))))
+        claims.append(("4f value domain is NOT boolean", "not {0,1}",
+                       f"{len(_dom)} distinct", len(_dom) > 2))
+        for label, exp, got, ok in claims:
+            out.append((label, exp, got, ok))
+        for label, exp, got, ok in claims:
+            out.append((label, exp, got, ok))
+    except Exception as e:  # noqa: BLE001 - a skipped claim must be visible, not silent
+        out.append(("4f MUCD claims", "recomputed", f"skipped: {e}", False))
     return out
 
 
