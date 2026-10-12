@@ -106,6 +106,21 @@ def doc_checks(readme_text):
     else:
         out.append(("PROJECT_STATUS 4b reflex rows", "out/reflex_parity.json",
                     "missing (run tools/parity_reflex.py)", False))
+    # docs/PROJECT_STATUS.md 4e: the per-course coverage table must equal the parser
+    from course import Course
+    for course_id, short in (("course/A01_1.bin", "A01_1"), ("course/A02_1.bin", "A02_1"),
+                             ("course/A05_1.bin", "A05_1"), ("course/A08_1.bin", "A08_1")):
+        c = Course(name=course_id, rom_path=os.path.join(
+            ROOT, "data", "0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"))
+        want = f"{c.ground_coverage * 100:.1f}%"
+        row = re.search(r"\|\s*`" + short + r"`[^|]*\|\s*(\d+)\s*\|\s*\**([\d.]+)%\**\s*\|\s*([^|]+)\|", ps)
+        got = (row.group(2) + "%", row.group(3).strip()) if row else None
+        # the exit cell is prose ("flagpole @ 4,032 px" / "**none**"), so check the
+        # claim it makes rather than an exact string
+        says_none = got is not None and "none" in got[1].lower().replace("*", "")
+        ok = bool(row) and got[0] == want and (says_none == (not c.exit_found))
+        out.append((f"PROJECT_STATUS 4e {short} coverage/exit", (want, "none" if not c.exit_found else "an exit object"),
+                    got, ok))
     return out
 
 

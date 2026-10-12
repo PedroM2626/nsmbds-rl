@@ -213,23 +213,48 @@ published as "209 steps" by the eval and "219 steps" by the recorder. Unifying
 them changes the eval's step count, so it needs its own parity run rather than a
 silent edit.
 
-## 4e. Porting to another course: what actually blocks it
+## 4e. Porting to another course: investigation results (2026-10-11)
 
-`out/nsmb_levels.json` already parses 191 courses including `A08_1` (World 8-1),
-and `LevelProfile` derives its spawn from that course's own entrance record
-(40 px, vs 88 px for 1-1), so no code change is needed to point at it. Two real
-blockers, neither of them a savestate:
+World 8-1 was the target, so the geometry layer was measured against it. The
+answer is worse than "8-1 needs a savestate": **the tile parser is valid for the
+grass tileset family and degrades everywhere else.** `Course` now reports
+`ground_coverage` (fraction of the course's own x extent that has ground-class
+tiles) and `exit_found`, and `tools/tileset_probe.py` reproduces these numbers:
 
-1. **`GROUND_OBJS` is calibrated to 1-1's tileset.** In `A08_1`, only 8 of 140
-   tile rects fall in the ground list; the dominant classes are `0x16..0x1B`,
-   which the list never included. Result: 10 ground columns and a 496 px span,
-   while the course's own entrance records run from x=32 to x=4272. The
-   tile-object classes must be mapped per tileset before geometry means anything
-   there.
-2. **No savestate is required** -- `py-desmume` exposes
-   `emu.savestate.save_file()`, so a state at 8-1 can be created by driving the
-   game there once and saving. What is required is the fix above, plus the 4b
-   geometry work, or the agent is planning against a fiction.
+| course | rects | ground coverage | exit object found | plannable |
+| --- | --- | --- | --- | --- |
+| `A01_1` (1-1) | 197 | **92.1%** | flagpole @ 4,032 px | yes |
+| `A02_1` (2-1) | 382 | 85.7% | **none** | refused |
+| `A05_1` (5-1) | 170 | **11.0%** | flagpole @ 6,160 px | refused |
+| `A08_1` (8-1) | 140 | **3.7%** | **none** | refused |
+
+Why: `GROUND_OBJS` is a flat set of tile-object numbers, but those numbers are
+**local to each course's tileset**. 1-1's floor is classes `0x0A/0x07/0x09/0x06/
+0x08/0x00` in its tileset 16; 8-1's terrain is `0x16/0x17/0x18` in *its* tileset
+16, and `0x16` never appears in 1-1 at all. The course header confirms the theme
+difference: the 32-byte block at offset 112 carries `0x0190` for A01_1/A02_1/
+A05_1 and `0x01f4` for A08_1.
+
+A geometric shortcut was tried and **rejected by measurement**: classifying a
+rect as floor-bearing when its bottom edge reaches row 28+ agrees with the class
+list on only 62.4% of A01_1's columns and 20.1% of A05_1's, and on A08_1 it
+invents an 86-column pit. It would have silently invalidated the published clear.
+
+The authoritative solidity data is `BG_chk/*MainUnitChangeData.bin`, present in
+the ROM but listed as undecoded in
+[`REVERSE_ENGINEERING_REPORT.md`](REVERSE_ENGINEERING_REPORT.md). So the real
+work is: decode the per-tileset behaviour table, key the ground classes by
+tileset instead of by a global list, and add per-course exit-object types (2-1
+and 8-1 end on something that is not a flagpole sprite, so `flag_x_px` currently
+falls back to 4032 for them).
+
+What is **not** a blocker: a savestate. `py-desmume` exposes
+`emu.savestate.save_file()`, so a state at any reachable course can be created by
+playing there once. And `LevelProfile` already derives its spawn from the
+course's own entrance record (40 px for 8-1 vs 88 px for 1-1), so pointing the
+pipeline at another course needs no code change -- it needs the parser to stop
+lying, which is now enforced: `TilemapAStar` and `LevelProfile` raise
+`UnsupportedCourse` instead of planning on 4% of a level.
 
 ## 5. File Index
 
