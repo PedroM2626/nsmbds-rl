@@ -12,7 +12,7 @@ The animation above is the closing 10 s of the run — its last frame is the
 stage-clear one. The full clip (29 s, 1280×720) is
 `media/nsmb_dashboard_clear.mp4` — GitHub does not stream video out of a
 repository tree, so open or download it from
-[`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/mario-ds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
+[`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/nsmbds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
 
 It records one episode of the `reactive` controller with the **Rust geometry
 planner** in the loop (`--planner rust`, see [rust/](rust)). Every panel is read
