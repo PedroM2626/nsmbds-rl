@@ -582,6 +582,8 @@ tools/
   parity_planner.py              Rust sidecar vs Python, 37,281 queries
   record_dashboard.py            The README clip and its measured caption
   check_readme_numbers.py        Gate: every number quoted in README.md
+  make_save.py                   Build/verify an NSMB DS .sav (checksum port is
+                                 validated 10/10 against the real save)
   tileset_probe.py               Per-course ground coverage (4e table)
   mucd_probe.py / mucd_bind.py / mucd_groups.py   4f investigation
   tileset_groups.py / tileset_posneg.py / tileset_sweep.py   4h investigation
