@@ -1,0 +1,35 @@
+{
+  "aggregate": {
+    "controller": "reactive",
+    "episodes": 1,
+    "goal_abs_px": 4576,
+    "goal_source": "course flag sprite",
+    "course": "course/E01_1.bin",
+    "state": "data\\0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+    "reflex": "profile",
+    "spawn_anchor_px": 56.0,
+    "planner": "python",
+    "clear_rate": 0.0,
+    "mean_progress_px": 1717.769287109375,
+    "max_progress_px": 1717.769287109375,
+    "mean_reward": 752.4347656250013,
+    "mean_fps": 20.591684744958293,
+    "mean_latency_ms": 0.037836427448176536
+  },
+  "episodes": [
+    {
+      "steps": 119,
+      "total_reward": 752.4347656250013,
+      "max_progress_px": 1661.769287109375,
+      "final_abs_px": 1717.769287109375,
+      "final_mario_px": 1661.769287109375,
+      "max_mario_px": 1661.769287109375,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.037836427448176536,
+      "achieved_env_fps": 20.591684744958293,
+      "death_diag": "abs 1718px vy=0.00 ground=1 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[194, -198, 0] enemy_type=[180, 258, 0]",
+      "episode": 1
+    }
+  ]
+}
