@@ -214,6 +214,23 @@ def main():
 
     checks += doc_checks(text)
 
+    if ap_ok:
+        # slow census: the "N of 191 courses pass the guard" claim in 4e
+        from course import Course
+        ps_text = open(os.path.join(ROOT, "docs", "PROJECT_STATUS.md"),
+                       encoding="utf-8").read()
+        rom_path = os.path.join(ROOT, "data",
+                                "0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds")
+        names = json.load(open(os.path.join(ROOT, "out", "nsmb_levels.json"),
+                               encoding="utf-8"))["levels"].keys()
+        n_pl = sum(1 for nm in names
+                   if (lambda c: c.ground_coverage >= 0.6 and c.exit_found)(
+                       Course(name=nm, rom_path=rom_path)))
+        m = re.search(r"\*\*(\d+) of 191\*\* courses pass the guard", ps_text)
+        checks.append(("PROJECT_STATUS 4e plannable count", str(n_pl),
+                       m.group(1) if m else None,
+                       bool(m) and m.group(1) == str(n_pl)))
+
     if "gif_seconds" in run:
         checks.append(("inline preview reaches the final frame", True,
                        run.get("gif_reaches_end"), bool(run.get("gif_reaches_end"))))

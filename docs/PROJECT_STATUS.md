@@ -260,17 +260,44 @@ The exit-object bug found while doing that scan: **sprite 32 is both the mid-lev
 checkpoint flag and the level exit**, and `Course` took `min()` over the candidates
 while its own comment said "highest X". 17 of the 191 courses have two flagpole
 sprites, so those reported the checkpoint as the goal (E02_1 claimed 416 px for a
-level running to 1,680 px; G05_1 and B04_1 were off by ~3.7 kb px). Now `max()`,
+level running to 1,680 px; G05_1 and B04_1 were off by ~3,700 px). Now `max()`,
 which matches the comment and leaves A01_1 unchanged at 4,032 px (one candidate).
-Residual: `J10_1` now reports an exit at 4,144 px beyond its own 1,376 px of parsed
-ground, so the exit should also be constrained to the ground span -- left as a
-known gap rather than fitted to one case.
 
-After the fix, 30 of 191 courses pass the guard, but the **main path (the `A`
+After the fix, **29 of 191** courses pass the guard, but the **main path (the `A`
 courses) has only three**: `A01_1` (1-1), `A04_1` (4-1, 95% coverage, exit at
 3,600 px) and `A07_3`. 4-1 is the natural transfer target: comparable length,
 same tileset family, and it needs no parser work -- only a savestate, which
 `emu.savestate.save_file()` can create by reaching the level in-game.
+
+The exit is also constrained to ground the course actually has: a flagpole beyond
+the parsed span is a parser gap, not a level end. That demotes `J10_1` (flagpole
+at 4,144 px over 1,376 px of ground) from "plannable" to refused, which is where
+the count of 30 became 29.
+
+## 4g. Reaching another course headless: both routes are closed for now
+
+Tried 2026-10-11 on a **copy** of the ROM and the game save (the user's
+`data/…sav` was verified unchanged by MD5 afterwards).
+
+1. **Title -> adventure -> map stalls headless.** The boot reaches "Select a Game"
+   and "Select a character" fine, then sits on the "Searching for Luigi..." card
+   forever. It ignores A, START and the d-pad, and it ignores the stylus
+   (`input.touch_set_pos` / `touch_release` exist and were tried at four points),
+   while `emu.is_running()` reports True and the core keeps cycling frames. So the
+   scene is running but not advancing -- something in that card's progression is
+   not satisfied by the headless SoftRasterizer path.
+2. **The in-level escape is structurally unavailable.** From the working 1-1
+   savestate the pause menu opens correctly (Continue / Return to map / Options /
+   Quit) but **"Return to map" is greyed out**, because that savestate was
+   created from a direct level start -- there is no map to return to. The menu
+   cursor therefore steps Continue -> Options, skipping the disabled item.
+
+Consequence: a savestate at 4-1 needs either the game booted to its map in the
+GUI (where the intro plays out normally) or the ARM9 route to start a course
+directly. Both are outside what this repo's tooling can do headless today.
+Verified side effect worth keeping: the pause menu rendered with the corrected
+palette -- blue sky, red-shirted Mario -- which is the palette fix confirmed on
+live game graphics rather than on my own compositor.
 
 ## 4f. `BG_chk/*MainUnitChangeData.bin` decoded (and the binding that is still missing)
 

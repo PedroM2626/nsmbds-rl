@@ -105,10 +105,15 @@ class Course:
         # but wrong on 17 of the 191 courses, e.g. E02_1 reported 416 px for a
         # level whose ground runs to 1,680 px.
         flag_candidates = [s for s in self.sprites if s["type"] == 32 or "Flag" in s["name"]]
-        self.exit_found = bool(flag_candidates)
+        # and it must sit on ground the course actually has: J10_1 carries a
+        # flagpole at 4,144 px above only 1,376 px of parsed ground, which is a
+        # parser gap rather than a level end, and planning on it would be fiction
+        span_px = float(max((r["tx"] + r["w"] for r in self.rects), default=0) * TILE)
+        in_span = [s for s in flag_candidates if s["x_px"] <= span_px]
+        self.exit_found = bool(in_span)
         self.flag_candidates_px = sorted(s["x_px"] for s in flag_candidates)
-        if flag_candidates:
-            self.flag_x_px = float(max(s["x_px"] for s in flag_candidates))
+        if in_span:
+            self.flag_x_px = float(max(s["x_px"] for s in in_span))
         else:
             # NOT the level exit. Only A01_1 ends on a flagpole sprite; several
             # courses end on a pipe/door object, and silently reporting 4032 px
