@@ -295,6 +295,12 @@ def main():
     ap.add_argument("--hold", type=int, default=4, help="video frames per agent step")
     ap.add_argument("--fps", type=int, default=30)
     ap.add_argument("--out", default=os.path.join(ROOT, "media", "nsmb_dashboard_clear.mp4"))
+    ap.add_argument("--gif", default=os.path.join(ROOT, "media", "nsmb_dashboard_preview.gif"),
+                    help="inline preview for the README (GitHub does not stream repo mp4)")
+    ap.add_argument("--gif-start", type=float, default=20.0)
+    ap.add_argument("--gif-len", type=float, default=9.0)
+    ap.add_argument("--gif-fps", type=int, default=15)
+    ap.add_argument("--gif-width", type=int, default=960)
     ap.add_argument("--png-frame", default=os.path.join(ROOT, "out", "dashboard_frame.png"))
     args = ap.parse_args()
 
@@ -407,6 +413,21 @@ def main():
     subprocess.run(cmd, check=True)
     mb = os.path.getsize(args.out) / 1e6
     print(f"[dash] encoded {args.out} ({mb:.1f} MB)")
+
+    if args.gif:
+        # GitHub does not stream mp4 out of a repo tree, so the README carries an
+        # inline GIF of the closing seconds instead. Two passes: palette, then use.
+        filt = f"fps={args.gif_fps},scale={args.gif_width}:-1:flags=lanczos"
+        pal = os.path.join(ROOT, "out", "gif_palette.png")
+        subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-ss", str(args.gif_start),
+                        "-t", str(args.gif_len), "-i", args.out,
+                        "-vf", filt + ",palettegen=stats_mode=diff", pal], check=True)
+        subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-ss", str(args.gif_start),
+                        "-t", str(args.gif_len), "-i", args.out, "-i", pal,
+                        "-lavfi", f"{filt}[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=3",
+                        args.gif], check=True)
+        print(f"[dash] wrote {args.gif} ({os.path.getsize(args.gif) / 1e6:.1f} MB, "
+              f"{args.gif_len} s from t={args.gif_start})")
     return 0
 
 

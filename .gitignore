@@ -37,3 +37,5 @@ out/dashboard_run.json
 out/parity_queries.txt
 out/parity_python.json
 out/parity_rust.json
+out/dashboard_tmp.avi
+out/gif_palette.png
