@@ -6,13 +6,31 @@ The codebase is engineered with MLOps best practices and supports diverse learni
 
 ### World 1-1, start to flagpole — the whole run in one clip
 
-![World 1-1 clear dashboard, final 9 seconds](media/nsmb_dashboard_preview.gif)
+![World 1-1 clear dashboard, closing 10 s](media/nsmb_dashboard_preview.gif)
 
 The animation above is the closing 10 s of the run — its last frame is the
 stage-clear one. The full clip (28 s, 1280×720) is
 `media/nsmb_dashboard_clear.mp4` — GitHub does not stream video out of a
 repository tree, so open or download it from
 [`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/nsmbds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
+
+**Every recording in this repository, and what it proves:**
+
+| File | What it shows | Status |
+|---|---|---|
+| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 28 s World 1-1 clear with all panels (209 decisions, 4,022 of 4,032 px) | current |
+| [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
+| [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png) | the frame + velocity trace of the pipe trap: a standstill jump that never advances, timer expired | current |
+| [`media/pinn_reflex_astar_run.avi`](media/pinn_reflex_astar_run.avi) | reflex + A\* planner run, raw gameplay | historical, **red/blue swapped** |
+| [`media/pinn_reflex_pipe.avi`](media/pinn_reflex_pipe.avi) | the pipe trap in motion: timer reaches 0001 with Mario still at the pipe base | historical, **red/blue swapped** |
+| [`media/pinn_mpc_run.avi`](media/pinn_mpc_run.avi) | CEM-MPC run over the learned model | historical, **red/blue swapped** |
+
+The three `.avi` files were recorded before the display-buffer fix
+(`src/eval_pinn_realtime.py` used to reverse channels the other way), so their
+red and blue are exchanged: measured sky in them is R≈247/B≈43 where the
+corrected clip reads B≈247/R≈70, and their coins render blue. The runs they
+recorded are real and the trajectories are unaffected — the pixels are the only
+thing inverted — but read them as history, not as the current look.
 
 It records one episode of the `reactive` controller with the **Rust geometry
 planner** in the loop (`--planner rust`, see [rust/](rust)). Every panel is read
