@@ -103,12 +103,32 @@ class BaseReflexController:
       - Dash drive: Action 3 (Right+X), horizontal velocity ~2.14 px/f.
       - In-place hop: Action 7 (A), pure vertical lift to clear close threats.
       - Retreat unstick: Action 5 (Left).
+
+    reflex_mode "legacy" keeps the World 1-1 pixel bands that produced the
+    published clear. "profile" replaces them with values derived from the ROM by
+    src/level_profile.py, which is what any other course would need. Both are
+    reachable from the CLI so the two can be compared instead of asserted.
     """
     HOP = 2    # right + jump (walking hop: climbs 1-tile staircase steps, avoids close frontal contact)
     RUN = 3    # right + dash (maintain dash speed / airborne momentum)
     JUMP = 4   # right + dash + jump (running leap: reach 109.73px, apex 71.06px @ frame 26)
     LEFT = 5   # retreat / unstick
     IN_PLACE_HOP = 7  # vertical jump in place
+
+    reflex_mode = "legacy"
+    profile = None
+
+    def _abs_px(self, obs):
+        """Mario's absolute stage x. Legacy anchors on the 1-1 spawn constant;
+        profile anchors on the course's own entrance record."""
+        if self.reflex_mode == "profile" and self.profile is not None:
+            return self.profile.abs_px(float(obs[0]))
+        return SPAWN_ABS_PX + obs[0] * 512.0
+
+    def _surface_threat(self, obs):
+        if self.reflex_mode == "profile" and self.profile is not None:
+            return self._surface_threat_profile(obs)
+        return self._surface_threat_legacy(obs)
 
     def __init__(self, planner=None, enemy_lo=0.0, enemy_hi=75.0, enemy_dy=55.0, pit_lookahead=2, enabled=True):
         self.planner = planner
@@ -130,7 +150,7 @@ class BaseReflexController:
         self._blocked = 0
         self._queue = []
 
-    def _surface_threat(self, obs):
+    def _surface_threat_legacy(self, obs):
         """Geometry decisions for pits, pipes, ledges, and the end staircase."""
         if self.pit_lookahead > 0 and any(obs[17 + c] < 0.5 for c in range(self.pit_lookahead)):
             return "leap"  # pit ahead -> commit running leap
@@ -170,14 +190,61 @@ class BaseReflexController:
                         return "hop"   # End staircase: climb 1-tile steps via walking hop
         return None
 
+    def _surface_threat_profile(self, obs):
+        """Same decisions, every threshold derived from the ROM course data."""
+        p = self.profile
+        if self.pit_lookahead > 0 and any(obs[17 + c] < 0.5 for c in range(self.pit_lookahead)):
+            return "leap"
+
+        abs_px = self._abs_px(obs)
+
+        # End staircase: take off from the last columns of the ramp, then sprint
+        # the flat ground up to the flag. Legacy used 3870/3920/4020.
+        if p.ramp_leap_from is not None and abs_px >= p.ramp_leap_from:
+            if abs_px <= p.ramp_leap_to:
+                return "leap"
+            elif abs_px < p.run_to_px:
+                return "run"
+
+        # A 2-tile step that keeps rising is a lip to climb onto, not a wall to
+        # leap. Legacy used the 1450..1485 band.
+        if p.ledge_ahead(abs_px, look_tiles=3) is not None:
+            return "hop"
+
+        if self.planner is not None:
+            cur, prof = self.planner.surface_ahead(abs_px, look_tiles=5)
+            if cur is not None:
+                for _c, row in prof:
+                    if row is None:
+                        continue
+                    # Isolated single-column rises are stacked ?-blocks Mario runs
+                    # under; only persistent rises are pipes/stairs. Legacy skipped
+                    # them with the 2430..2630 band.
+                    if _c not in p.persistent_rise_cols:
+                        continue
+                    rise = cur - row
+                    dist_px = _c * TILE - abs_px
+                    if rise >= 2 and 16.0 <= dist_px <= 55.0:
+                        return "leap"
+                    elif rise == 1 and 0.0 <= dist_px <= 24.0:
+                        return "hop"   # 1-tile steps, e.g. the end staircase
+        return None
+
+    def _in_corridor(self, abs_px):
+        """Legacy: a hardcoded column window for the 1-1 elevated corridor.
+        Profile: the approach to any derived 2-tile ledge."""
+        if self.reflex_mode == "profile" and self.profile is not None:
+            return self.profile.ledge_ahead(abs_px, look_tiles=6) is not None
+        return self.planner.is_narrow_corridor(abs_px)
+
     def _compound_threat(self, obs):
         """Perception for complex compound hazards (enemies in tight corridors or near walls)."""
         if self.planner is None:
             return None
-        abs_px = SPAWN_ABS_PX + obs[0] * 512.0
+        abs_px = self._abs_px(obs)
 
-        # Narrow elevated corridor at X = 1472-1552 px (cols 92-97)
-        if self.planner.is_narrow_corridor(abs_px):
+        # Narrow elevated corridor: legacy cols 92-97, profile the derived ledge
+        if self._in_corridor(abs_px):
             for k in range(3):
                 dx = obs[8 + 3 * k] * 256.0
                 dy = obs[9 + 3 * k] * 256.0
@@ -207,16 +274,21 @@ class BaseReflexController:
 
     def _threat(self, obs):
         """Hostile enemy threat detection based on empirical ballistic clearance."""
-        abs_px = SPAWN_ABS_PX + obs[0] * 512.0 if self.planner is not None else 0.0
+        abs_px = self._abs_px(obs) if self.planner is not None else 0.0
         for k in range(3):
             dx = obs[8 + 3 * k] * 256.0
             dy = obs[9 + 3 * k] * 256.0
             et = obs[10 + 3 * k] * 256.0
             if is_hostile_enemy(et) and abs(dy) < self.enemy_dy:
-                # Approach to Pit 9 (Cols 216-222, abs_px in [3480, 3520]):
-                # Suppress early leap at dx > 55px (step 174) so takeoff occurs at
-                # step 175 (X_RAM >= 3443px), giving 190px reach to clear Pit 9 (landing at X_RAM >= 3633px).
-                hi = 55.0 if (3480.0 <= abs_px <= 3520.0) else self.enemy_hi
+                # Approaching a pit takeoff: suppress the early leap so Mario
+                # commits to the long hop instead of stalling short of the gap.
+                # Legacy used the 3480..3520 band (pit 9 of 1-1); profile asks the
+                # geometry whether a takeoff edge is ahead.
+                if self.reflex_mode == "profile" and self.profile is not None:
+                    near_takeoff = self.profile.near_takeoff(abs_px)
+                else:
+                    near_takeoff = 3480.0 <= abs_px <= 3520.0
+                hi = 55.0 if near_takeoff else self.enemy_hi
                 if 0.0 <= dx <= hi:
                     return "leap"   # Running leap: clears apex > 50px high or stomps
         return None
@@ -473,6 +545,11 @@ def main():
                     help="skip pit-jump if an enemy is within this many px (0=always jump)")
     ap.add_argument("--planner", choices=["python", "rust"], default="python",
                     help="geometry backend for wall/pipe queries (rust = rust/nsmb_planner.exe)")
+    ap.add_argument("--reflex", choices=["legacy", "profile"], default="legacy",
+                    help="legacy = the World 1-1 pixel bands that produced the published "
+                         "clear; profile = thresholds derived from the ROM course data")
+    ap.add_argument("--course", default="course/A01_1.bin",
+                    help="course parsed by src/course.py, only used by --reflex profile")
     ap.add_argument("--out", default="evals/pinn_realtime_eval.json",
                     help="metrics json; point elsewhere to keep published evals intact")
     args = ap.parse_args()
@@ -485,8 +562,13 @@ def main():
         planner = RustPlanner()          # rust/nsmb_planner.exe over a line protocol
     else:
         planner = TilemapAStar(rom_path=args.rom)   # ROM geometry -> wall/pipe perception
+    if args.reflex == "profile":
+        from level_profile import LevelProfile
+        BaseReflexController.reflex_mode = "profile"
+        BaseReflexController.profile = LevelProfile(args.rom, args.course)
+        print("[pinn-eval] reflex profile: " + BaseReflexController.profile.summary())
     print(f"[pinn-eval] controller={args.controller} device={device} goal_abs_px={goal} "
-          f"planner={args.planner}")
+          f"planner={args.planner} reflex={args.reflex}")
 
     if args.controller == "mpc":
         ck = torch.load(args.model, map_location=device, weights_only=False)

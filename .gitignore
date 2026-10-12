@@ -39,3 +39,5 @@ out/parity_python.json
 out/parity_rust.json
 out/dashboard_tmp.avi
 out/gif_palette.png
+out/reflex_legacy.json
+out/reflex_profile.json
