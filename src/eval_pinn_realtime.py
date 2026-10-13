@@ -379,20 +379,43 @@ class BaseReflexController:
         if blocked:
             self._stuck = 0
             self._blocked += 1
-            if self.reflex_mode == "profile" or self._blocked >= 3:
-                # Profile arms go straight to the retreat burst: measured
-                # stall floors expire (H01_1's crumbling-block bridge dies to
-                # the in-place wall-stall jump, 4k), and the retreat buys
-                # runway and gets off the decaying tile. Two refinements were
-                # tried on top and both reverted by measurement: a
-                # no-wall "escape jump" for treadmill platforms (regressed
-                # F01_1 from 1,601 px alive-at-cap to a 1,250 px mid-air fish
-                # death), and a behind-solid guard (the parser's 16.5% gaps
-                # on F01_1 read as "no ground behind" exactly where the
-                # measured floor exists). The retreat is the measured-best
-                # blocked response; the unwinnable spots (B01_1's
-                # sprite-solid wall on an expiring ledge) need sprite
-                # geometry, which the bgdat parser cannot see.
+            if self.reflex_mode == "profile" and self.profile is not None:
+                # The probe-derived sprite-solids diagnosis. The bgdat parser
+                # cannot see sprite terrain, and the five reverted rules of
+                # 4m all failed on exactly that; but the drop probe DID
+                # measure those surfaces (B01_1's block at 20.35, the
+                # crumbling bridges, the ice ledges). When x freezes, ask the
+                # measured map what is standing in front of Mario:
+                #   a surface 0.5..1.5 rows above him -> hop onto it
+                #   a surface 1.5..4 rows above him   -> leap at it
+                #   nothing measured above, ground ahead -> ride it (a
+                #     moving platform: run, do not jump)
+                # Only an unprobed or pit answer falls back to the retreat.
+                #
+                # Coordinates: obs is ABSOLUTE mario_B/mario_A in 512 px
+                # units (the ram_env origin bug -- first poll after a load
+                # returns None and _x0 silently becomes 0), so course px is
+                # mario_B minus the half-sprite and the row is -y/16.
+                # profile.abs_px() must NOT be used here: it adds the spawn
+                # on top of an already-absolute value.
+                course_px = obs[0] * 512.0 - 8.0
+                my_row = -(obs[1] * 512.0) / 16.0
+                rise = self.profile.probe_rise_ahead(course_px, my_row)
+                if rise is not None:
+                    self._blocked = 0
+                    if rise[1] <= 1.5:
+                        return self.HOP       # one-row sprite step: land on it
+                    return self.JUMP          # taller sprite wall: leap at it
+                above = self.profile.probe_rise_ahead(
+                    course_px, my_row, look_tiles=4, lo=-99.0, hi=0.0)
+                knows = any(self.profile.course.probe_surface(
+                    int(course_px // 16) + d) is not None for d in range(1, 5))
+                if above is None and knows:
+                    self._blocked = 0
+                    return self.RUN  # measured ground, nothing above: ride the platform
+                self._blocked = 0
+                self._queue = [self.LEFT] * 4 + [self.RUN] * 8 + [self.JUMP]
+            elif self._blocked >= 3:
                 self._blocked = 0
                 self._queue = [self.LEFT] * 4 + [self.RUN] * 8 + [self.JUMP]
             else:

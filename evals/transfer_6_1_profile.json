@@ -13,8 +13,8 @@
     "mean_progress_px": 1600.999755859375,
     "max_progress_px": 1600.999755859375,
     "mean_reward": 620.5000000000515,
-    "mean_fps": 21.26420870007828,
-    "mean_latency_ms": 0.0067710479100545245
+    "mean_fps": 21.17003515656965,
+    "mean_latency_ms": 0.00975664456685384
   },
   "episodes": [
     {
@@ -26,8 +26,8 @@
       "max_mario_px": 1480.999755859375,
       "reached_goal": false,
       "termination": "trunc",
-      "mean_control_latency_ms": 0.0054200490315755205,
-      "achieved_env_fps": 21.19365181263773,
+      "mean_control_latency_ms": 0.009591778119405111,
+      "achieved_env_fps": 21.13909302551588,
       "death_diag": "",
       "episode": 1
     },
@@ -40,8 +40,8 @@
       "max_mario_px": 1480.999755859375,
       "reached_goal": false,
       "termination": "trunc",
-      "mean_control_latency_ms": 0.004476706186930339,
-      "achieved_env_fps": 21.274894139838203,
+      "mean_control_latency_ms": 0.004998445510864258,
+      "achieved_env_fps": 21.112178835885143,
       "death_diag": "",
       "episode": 2
     },
@@ -54,8 +54,8 @@
       "max_mario_px": 1480.999755859375,
       "reached_goal": false,
       "termination": "trunc",
-      "mean_control_latency_ms": 0.009977618853251139,
-      "achieved_env_fps": 21.203624861103005,
+      "mean_control_latency_ms": 0.013345082600911459,
+      "achieved_env_fps": 21.097999960421063,
       "death_diag": "",
       "episode": 3
     },
@@ -68,8 +68,8 @@
       "max_mario_px": 1480.999755859375,
       "reached_goal": false,
       "termination": "trunc",
-      "mean_control_latency_ms": 0.006881356239318848,
-      "achieved_env_fps": 21.176462005169924,
+      "mean_control_latency_ms": 0.010013182957967123,
+      "achieved_env_fps": 21.260127380784382,
       "death_diag": "",
       "episode": 4
     },
@@ -82,8 +82,8 @@
       "max_mario_px": 1480.999755859375,
       "reached_goal": false,
       "termination": "trunc",
-      "mean_control_latency_ms": 0.007099509239196777,
-      "achieved_env_fps": 21.472410681642543,
+      "mean_control_latency_ms": 0.010834733645121256,
+      "achieved_env_fps": 21.24077658024178,
       "death_diag": "",
       "episode": 5
     }

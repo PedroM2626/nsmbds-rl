@@ -37,6 +37,10 @@ class LevelProfile:
 
         ent = self.course.entrances[0] if self.course.entrances else {"x_px": 0}
         self.spawn_px = float(ent["x_px"]) + HALF_SPRITE_PX
+        # Mario's RAM y at spawn: the entrance record is the sprite origin,
+        # his base sits one full sprite (16 px) higher -- same calibration
+        # as the x half-sprite, measured on A01_1 (y 464 -> -480).
+        self.spawn_y_px = -(float(ent.get("y_px", 0)) + TILE)
         self.exit_px_is_override = exit_px is not None
         self.flag_px = float(exit_px) if exit_px is not None else float(self.course.flag_x_px)
 
@@ -150,6 +154,37 @@ class LevelProfile:
         for d in range(1, look_tiles + 1):
             if (col + d) in self.ledge_cols:
                 return col + d
+        return None
+
+    def mario_row(self, rel_y):
+        """Mario's current row from obs[1] (y relative to spawn, 512 px units).
+
+        Rows count down like the parser's (row 30 = A01_1's floor); higher
+        ground is a smaller number. Validated against the 2-1 ledge trace:
+        entrance y 400 -> spawn row 26, obs[1] at the ledge -> row 21.1,
+        which is where the trace shows Mario standing.
+        """
+        y_abs = self.spawn_y_px + rel_y * 512.0
+        return -y_abs / TILE
+
+    def probe_rise_ahead(self, abs_px, my_row, look_tiles=2, lo=0.5, hi=4.0):
+        """(col, rise) of the first probe-measured surface ahead that stands
+        above Mario's current row by lo..hi rows, or None.
+
+        This is the sprite-solids lookup: surfaces the bgdat classes cannot
+        see (sprite platforms, ledges in unknown tilesets, blocks). Rise is
+        how many rows the surface tops sit ABOVE him (a 1-row step is a hop,
+        2-4 rows a leap). Surfaces below him (rise <= 0) do not block, and
+        unprobed columns report None -- the caller decides what that means.
+        """
+        col = int(abs_px // TILE)
+        for d in range(1, look_tiles + 1):
+            r = self.course.probe_surface(col + d)
+            if r is None:
+                continue
+            rise = my_row - r
+            if lo <= rise <= hi:
+                return (col + d, rise)
         return None
 
     def on_end_ramp(self, abs_px):
