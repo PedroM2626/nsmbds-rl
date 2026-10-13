@@ -51,11 +51,12 @@ FRAME_DT = FRAMESKIP / 60.0  # wall-clock a single env step represents (s)
 # arcs through the standing body zone and killed a motionless Mario at frame
 # 160 (its first full cycle -- the initial 3-frame touch was too thin a
 # negative, corrected by standing-bait); 38/158 patrol F01_1 and both
-# stomp-vanish on contact; 232 is B01_1's desert crawler, stomp-vanish.
-# Measured NOT hostile and left out: 180 (140 pinned
+# stomp-vanish on contact; 232 is B01_1's desert crawler, stomp-vanish;
+# 135/311 patrol D01_1 (ice level), stomp-vanish. Measured NOT hostile and
+# left out: 180 (140 pinned
 # contact frames + repeated drops, harmless), 291/307 (static foam high at
 # the level edge).
-HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 38, 158, 172, 184, 232, 247, 258, 312}
+HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 38, 135, 158, 172, 184, 232, 247, 258, 311, 312}
 
 def is_hostile_enemy(et):
     return int(round(float(et))) in HOSTILE_ENEMY_TYPES
@@ -301,16 +302,13 @@ class BaseReflexController:
                     near_takeoff = 3480.0 <= abs_px <= 3520.0
                 hi = 55.0 if near_takeoff else self.enemy_hi
                 if 0.0 <= dx <= hi:
-                    # Close hostiles are stomped, not leapt over: the long
-                    # dash arc measured twice to clip a near enemy laterally
-                    # on its descent (B01_1's 232 crawler at 12 px, E01_1's
-                    # mid-air goomba) because the enemy walks forward under
-                    # the arc while Mario is airborne ~40 frames. The short
-                    # walking-hop arc keeps the overlap short and lands the
-                    # stomp. Profile mode only -- legacy stays the published
-                    # 1-1 trajectory.
-                    if self.reflex_mode == "profile" and 0.0 <= dx <= 24.0:
-                        return "stomp_hop"
+                    # A stomp_hop variant (short arc for dx <= 24 hostiles,
+                    # after the long arc measured clipping near enemies
+                    # laterally twice) was tried and reverted: it regressed
+                    # F01_1 from 1,601 px alive-at-cap to a 1,250 px death --
+                    # the short arc lands inside the fish zone -- while its
+                    # target case (B01_1's 232) never reaches takeoff. The
+                    # long leap stays.
                     return "leap"   # Running leap: clears apex > 50px high or stomps
         return None
 
@@ -383,8 +381,16 @@ class BaseReflexController:
                 # Profile arms go straight to the retreat burst: measured
                 # stall floors expire (H01_1's crumbling-block bridge dies to
                 # the in-place wall-stall jump, 4k), and the retreat buys
-                # runway and gets off the decaying tile. Legacy keeps the
-                # published 1-1 escalation.
+                # runway and gets off the decaying tile. Two refinements were
+                # tried on top and both reverted by measurement: a
+                # no-wall "escape jump" for treadmill platforms (regressed
+                # F01_1 from 1,601 px alive-at-cap to a 1,250 px mid-air fish
+                # death), and a behind-solid guard (the parser's 16.5% gaps
+                # on F01_1 read as "no ground behind" exactly where the
+                # measured floor exists). The retreat is the measured-best
+                # blocked response; the unwinnable spots (B01_1's
+                # sprite-solid wall on an expiring ledge) need sprite
+                # geometry, which the bgdat parser cannot see.
                 self._blocked = 0
                 self._queue = [self.LEFT] * 4 + [self.RUN] * 8 + [self.JUMP]
             else:
@@ -396,8 +402,6 @@ class BaseReflexController:
 
         if compound == "decelerate":
             return 1  # Action 1: Walk Right (time enemy cycle)
-        elif enemy == "stomp_hop":
-            return self.HOP  # short arc lands the stomp on a close hostile (see _threat)
         elif compound == "leap" or enemy == "leap" or surf == "leap":
             if surf != "leap" and self._threat_landing_unsafe(obs):
                 # An enemy-triggered leap is a commitment: ~110 px of travel

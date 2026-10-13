@@ -160,8 +160,8 @@ def doc_checks(readme_text):
                            r"\s*\|\s*(\d+)\s*\|\s*([\d.]+)\s*\|\s*(\w+)", ps)
             got = row.groups() if row else None
             out.append((f"PROJECT_STATUS 4j {tag} {arm} row", exp, got, got == exp))
-    # docs/PROJECT_STATUS.md 4m: the worlds 2/6 table, same cell-by-cell gate
-    for tag, cid in (("2-1", "B01_1"), ("6-1", "F01_1")):
+    # docs/PROJECT_STATUS.md 4m: the worlds 2/4/6 table, same cell-by-cell gate
+    for tag, cid in (("2-1", "B01_1"), ("4-1", "D01_1"), ("6-1", "F01_1")):
         for arm in ("profile", "legacy"):
             p = os.path.join(ROOT, "evals",
                              f"transfer_{tag.replace('-', '_')}_{arm}.json")

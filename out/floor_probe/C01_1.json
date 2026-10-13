@@ -1,0 +1,13 @@
+{
+ "course": "course/C01_1.bin",
+ "state": "data\\state_3-1.ds1",
+ "step": 1,
+ "summary": {
+  "agree": 0,
+  "parser_false_floor": 0,
+  "parser_missed_floor": 0,
+  "unmeasured": 0,
+  "columns": 0
+ },
+ "columns": []
+}

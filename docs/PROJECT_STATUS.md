@@ -785,41 +785,60 @@ carries them; parity still passes (none appear in 1-1's entity list).
 | --- | --- | --- | --- | --- | --- | --- |
 | 2-1 `B01_1` | profile | 973.7 px | 23% | 29 | 110.4 | death |
 | 2-1 `B01_1` | legacy | 973.7 px | 23% | 29 | 110.4 | death |
+| 4-1 `D01_1` | profile | 577.0 px | 14% | 43 | 391.8 | death |
+| 4-1 `D01_1` | legacy | 577.0 px | 14% | 43 | 391.8 | death |
 | 6-1 `F01_1` | profile | 1,601.0 px | 39% | 1200 | 620.5 | **trunc (alive)** |
 | 6-1 `F01_1` | legacy | 2,049.0 px | 50% | 1200 | 844.5 | **trunc (alive)** |
 
+**4-1 unlocked by measurement.** `D01_1` parsed at 48.6% (the ice tileset's
+objects are all unknown to the flat class list) and the drop probe measured
+**142 missed floor columns**; `require_plannable` now counts the
+probe-corrected columns, so 4-1 sits at **85.1% measured coverage** and is
+plannable. `G01_1` gained 134 the same way but stays honestly refused at
+28.4% -- the cloud level's gaps are real gaps. `C01_1`'s probe cannot even
+bound itself: its static parse is 1.6% and its "flagpole at 272 px" is a
+false sprite the tooling had not met before. Two more hostile types
+measured on the ice: 135 and 311, both stomp-vanish.
+
+The 4-1 rows die at the koopa (163) at 577 px: the same **mid-air lateral
+contact** class that killed 5-1's goomba and 2-1's 232 -- the threat-leap's
+descent passes through a hostile that walked forward during the ~40-frame
+flight. That class is now measured on three courses and defeated four
+candidate rules, each reverted with its regression on record:
+
+- level-diff row overrides (floor_row = the probe's top surface) broke the
+  published 1-1 clear: the probe lands on the TOP route (the row-15
+  corridor over the row-30 walkway) and only the walker knows which route
+  he is on. Route ambiguity needs reflex state, not a per-column constant.
+- a no-wall "escape jump" for treadmill platforms regressed F01_1 from
+  1,601 px alive-at-cap to a 1,250 px mid-air fish death.
+- a behind-solid retreat guard regressed the same way: the parser's 16.5%
+  gaps on F01_1 read as "no ground behind" exactly where the measured floor
+  exists.
+- a stomp_hop for close hostiles regressed F01_1 identically (the short
+  arc lands inside the fish zone) while its target case never reaches
+  takeoff.
+
+The reflex therefore stands at its measured-best state: parity passes, the
+1-1 clear holds on true geometry, and the named open problems are: (a) the
+mid-air lateral contact (three courses), (b) sprite-solid geometry the
+bgdat parser cannot see (B01_1's block wall on an expiring ledge), (c) the
+6-1 cliff stall, (d) C01_1's parse.
+
 The 6-1 rows are a first for this repo: **no arm had ever survived to the
-step cap outside world 1** -- both arms stand at the level's mid-section at
-the cap, no death. The 2-1 rows die at the 232 crawler: the threat-leap's
-descent clips it laterally mid-air (a stompable enemy, but the arc's tail
-passes through its side) -- the same measured mid-air-contact class as 5-1's
-goomba, and the cone rule cannot see enemies inside a safe cone.
+step cap outside world 1.** The stall itself, named by trace: legacy
+stands against a cliff at x=1929 in an endless blocked/in-place-hop loop
+inside the level's water/cliff mid-section; a standstill hop cannot clear
+it and no cliff-climb rule exists.
 
-Still open: the clear outside world 1 (the 6-1 stall at its water/cliff
-mid-section is the closest any arm has stood), the mid-air contact policy,
-and probes for the three statically-refused courses.
-
-**The 6-1 stall, named (trace, both arms).** Legacy stands against a cliff
-at x=1929 in an endless hop loop: blocked -> in-place jump -> land -> repeat,
-x frozen, the ground under him never moving. Profile stalls earlier
-(1,601 px) at the same class of obstacle. The cliff sits inside the level's
-water/cliff mid-section; a standstill hop cannot clear it, and the
-reflex has no cliff-climb rule.
-
-**The 2-1 death, autopsied (trace) -- two stacked findings.** The 232
-crawler that kills both arms at 973.7 px walks ~92 px *below* the elevated
-ledge Mario is on; what kills him is his own blocked-logic -- the no-stall
-retreat burst fires at the ledge's wall and takes him off the ledge edge,
-down to the crawler's level. The wall itself is a one-row step (col 39, top
-20.35 vs the ledge's measured 21) that the *hop* response should climb --
-but the parser reports the ledge's floor at row 25 while the walker stands
-at 21 (the desert tileset's ledge rows are the "level-diff" class the
-probe measured on 14 columns), so the rise detection never fires. A
-`stomp_hop` rule was added for close hostiles (dx <= 24: short arc lands
-the stomp -- the long arc clipped laterally twice, the 232 and E01_1's
-goomba) but it cannot fire here because the takeoff never happens; the
-blocker is the misparsed ledge rows plus a retreat that does not check the
-ground behind it. Both are named, measured open work.
+The 2-1 death, autopsied to the bottom (trace): the "wall" that stops
+Mario at x=613.7 is **sprite-solid geometry the bgdat parser cannot see**
+(x freezes even airborne with right held -- sprite 136's block, whose top
+the probe measured at 20.35), standing on a floor that expires (he falls
+through after ~30 frames). The 232 crawler merely waits 92 px below. An
+earlier reading blamed the retreat burst and a misparsed one-row step;
+the airborne freeze disproves the step reading -- nothing in the bgdat
+blocks him there. Unwinnable by any rule until sprite geometry exists.
 
 ## 4n. What a working controller cost, by era (2026-10-12)
 
@@ -892,6 +911,8 @@ evals/
   transfer_8_1_legacy.json       8-1, the 1-1 pixel bands (4j)
   transfer_2_1_profile.json      2-1 (B01_1), the headless-entered desert (4m)
   transfer_2_1_legacy.json       2-1 control arm (4m)
+  transfer_4_1_profile.json      4-1 (D01_1), unlocked by its 142 probe floors (4m)
+  transfer_4_1_legacy.json       4-1 control arm (4m)
   transfer_6_1_profile.json     6-1 (F01_1), first arm to survive to the
                                  step cap outside world 1 (4m)
   transfer_6_1_legacy.json       6-1 control arm: 50%, alive at the cap (4m)
@@ -943,6 +964,13 @@ out/floor_probe/
   B01_1.json / F01_1.json        the two headless-entered courses that parse:
                                  B01_1 gains four slope columns, F01_1 agrees
                                  with the parser on all 256 (4m)
+  D01_1.json                     142 measured floor columns -- what unlocked
+                                 4-1 at 85.1% measured coverage (4m)
+  G01_1.json / C01_1.json        134 floors found on G01_1 (still honestly
+                                 refused at 28.4%: the cloud gaps are real);
+                                 C01_1's probe cannot even bound itself
+                                 (its static parse is 1.6% and its
+                                 "flagpole at 272 px" is a false sprite)
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology
