@@ -106,13 +106,14 @@ def probe_drop(env, t, drops=10):
     return "no harmful contact in falls"
 
 
-def probe_walk(env, t, course_name, max_steps=80):
+def probe_walk(env, t, course_name, goal_px=None, max_steps=80):
     import eval_pinn_realtime as ev
     from tilemap_planner import TilemapAStar
     from level_profile import LevelProfile
     ev.BaseReflexController.reflex_mode = "profile"
-    ev.BaseReflexController.profile = LevelProfile(ROM, course_name)
-    agent = ev.ReactiveAgent(planner=TilemapAStar(rom_path=ROM, name=course_name))
+    ev.BaseReflexController.profile = LevelProfile(ROM, course_name, exit_px=goal_px)
+    agent = ev.ReactiveAgent(planner=TilemapAStar(rom_path=ROM, name=course_name,
+                                                  exit_known=goal_px is None))
     obs, _ = env.reset()
     agent.reset()
     for _ in range(max_steps):
@@ -131,10 +132,14 @@ def main():
     ap.add_argument("--mode", choices=("pin", "drop", "walk"), default="pin")
     ap.add_argument("--course", default="course/A01_1.bin",
                     help="needed for --mode walk (the agent needs its planner)")
+    ap.add_argument("--goal-px", type=int, default=0,
+                    help="override the course goal for --mode walk on courses "
+                         "whose exit is not a flagpole sprite (0 = from the ROM)")
     args = ap.parse_args()
 
     env = MarioRamEnv(rom_path=ROM, state_path=args.state, max_steps=100000,
                       geo=True, course_name=args.course)
+    goal = args.goal_px or None
     for t in args.types:
         env.reset()
         for _ in range(120):
@@ -144,7 +149,7 @@ def main():
         elif args.mode == "drop":
             verdict = probe_drop(env, t)
         else:
-            verdict = probe_walk(env, t, args.course)
+            verdict = probe_walk(env, t, args.course, goal_px=goal)
         print(f"RAM type {t}: {verdict}", flush=True)
     env.close()
 

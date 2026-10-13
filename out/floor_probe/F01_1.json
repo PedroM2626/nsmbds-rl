@@ -1,0 +1,2062 @@
+{
+ "course": "course/F01_1.bin",
+ "state": "data\\state_6-1.ds1",
+ "step": 1,
+ "summary": {
+  "agree": 15,
+  "parser_false_floor": 196,
+  "parser_missed_floor": 45,
+  "unmeasured": 0,
+  "columns": 256
+ },
+ "columns": [
+  {
+   "col": 1,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 2,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 3,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 4,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 5,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 6,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 7,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 8,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 9,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 10,
+   "measured": 29.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 11,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 12,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 13,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 14,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 15,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 16,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 17,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 18,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 19,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 20,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 21,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 22,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 23,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 24,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 25,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 26,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 27,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 28,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 29,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 30,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 31,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 32,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 33,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 34,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 35,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 36,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 37,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 38,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 39,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 40,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 41,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 42,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 43,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 44,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 45,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 46,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 47,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 48,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 49,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 50,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 51,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 52,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 53,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 54,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 55,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 56,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 57,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 58,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 59,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 60,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 61,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 62,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 63,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 64,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 65,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 66,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 67,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 68,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 69,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 70,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 71,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 72,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 73,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 74,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 75,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 76,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 77,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 78,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 79,
+   "measured": 6,
+   "parser": 25,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 80,
+   "measured": 6,
+   "parser": 23,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 81,
+   "measured": 6,
+   "parser": 23,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 82,
+   "measured": 6,
+   "parser": 23,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 83,
+   "measured": 6,
+   "parser": 23,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 84,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 85,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 86,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 87,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 88,
+   "measured": 6,
+   "parser": 31,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 89,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 90,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 91,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 92,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 93,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 94,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 95,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 96,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 97,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 98,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 99,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 100,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 101,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 102,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 103,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 104,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 105,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 106,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 107,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 108,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 109,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 110,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 111,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 112,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 113,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 114,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 115,
+   "measured": 6,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 116,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 117,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 118,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 119,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 120,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 121,
+   "measured": 6,
+   "parser": 25,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 122,
+   "measured": 6,
+   "parser": 19,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 123,
+   "measured": 6,
+   "parser": 19,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 124,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 125,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 126,
+   "measured": 6,
+   "parser": 20,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 127,
+   "measured": 6,
+   "parser": 23,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 128,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 129,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 130,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 131,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 132,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 133,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 134,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 135,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 136,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 137,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 138,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 139,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 140,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 141,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 142,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 143,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 144,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 145,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 146,
+   "measured": 6,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 147,
+   "measured": 6,
+   "parser": 21,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 148,
+   "measured": 6,
+   "parser": 21,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 149,
+   "measured": 6,
+   "parser": 21,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 150,
+   "measured": 6,
+   "parser": 21,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 151,
+   "measured": 6,
+   "parser": 21,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 152,
+   "measured": 6,
+   "parser": 20,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 153,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 154,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 155,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 156,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 157,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 158,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 159,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 160,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 161,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 162,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 163,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 164,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 165,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 166,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 167,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 168,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 169,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 170,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 171,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 172,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 173,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 174,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 175,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 176,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 177,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 178,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 179,
+   "measured": 15.0,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 180,
+   "measured": 15.0,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 181,
+   "measured": 15.0,
+   "parser": 23,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 182,
+   "measured": 14.96,
+   "parser": 22,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 183,
+   "measured": 22.0,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 184,
+   "measured": 25.0,
+   "parser": 25,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 185,
+   "measured": 18.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 186,
+   "measured": 18.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 187,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 188,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 189,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 190,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 191,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 192,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 193,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 194,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 195,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 196,
+   "measured": 9.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 197,
+   "measured": 26.0,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 198,
+   "measured": 26.0,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 199,
+   "measured": 26.0,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 200,
+   "measured": 28.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 201,
+   "measured": 25.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 202,
+   "measured": 28.0,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 203,
+   "measured": 25.88,
+   "parser": 27,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 204,
+   "measured": 11.0,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 205,
+   "measured": 11.0,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 206,
+   "measured": 11.0,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "landed"
+  },
+  {
+   "col": 207,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 208,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 209,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 210,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 211,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 212,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 213,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 214,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 215,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 216,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 217,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 218,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 219,
+   "measured": 6,
+   "parser": 26,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 220,
+   "measured": 6,
+   "parser": 31,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 221,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 222,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 223,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 224,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 225,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 226,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 227,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 228,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 229,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 230,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 231,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 232,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 233,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 234,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 235,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 236,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 237,
+   "measured": 6,
+   "parser": 18,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 238,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 239,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 240,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 241,
+   "measured": 6,
+   "parser": 28,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 242,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 243,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 244,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 245,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 246,
+   "measured": 6,
+   "parser": 29,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 247,
+   "measured": 6,
+   "parser": 31,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 248,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 249,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 250,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 251,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 252,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 253,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 254,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 255,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  },
+  {
+   "col": 256,
+   "measured": 6,
+   "parser": 30,
+   "walkable": true,
+   "floor_row_dominant": 29,
+   "note": "hover"
+  }
+ ]
+}
