@@ -440,21 +440,22 @@ class BaseReflexController:
                 # SWIMMING, and A in water is a stroke -- a fixed ~67 px
                 # impulse per PRESS, not per hold (measured: holding A
                 # through the ascent adds nothing; the stroke peaks and the
-                # sink starts while A is still down), and the rise lasts
-                # ~24 frames past the press, so the press that accumulates
-                # is the one at the previous stroke's APEX -- the burst
-                # rhythm is [JUMP, RUN, RUN]: press, two glide steps while
-                # the rise plays out, press again at the apex. Each cycle
-                # nets ~+50 px in water, and sixteen cycles climb from the
-                # seabed past the surface -- enough for the rows 15-19 gap
-                # over the col-122 wall (rows 20-31) in F01_1. On land the
-                # same burst is repeated leaps at the obstacle.
+                # sink starts while A is still down). The 4p burst pressed
+                # every 16 and every 24 frames and the LATER presses were
+                # swallowed -- the first stroke lifted ~3 rows and the rest
+                # did nothing, which smells like a stroke cooldown. The
+                # 6-1 wall map (out/wall_probe/F01_1_wall122.json) says
+                # the passage is the rows 20-21 corridor between the
+                # col-120 wall (rows 22-26) and the col-123 wall (rows
+                # 14-19): two more rows of climb and the burst passes. The
+                # rhythm below presses every 32 frames -- slower than the
+                # measured swallow point, so every stroke should take.
                 # Parity-safe by measurement: the published 1-1 clear logs
                 # ZERO blocked events, so this escalation cannot fire on it.
                 self._blocked = 0
                 self._blocked_positions = []
                 self._queue.clear()
-                self._queue = ([self.JUMP, self.RUN, self.RUN] * 16)
+                self._queue = ([self.JUMP, self.RUN, self.RUN, self.RUN] * 16)
                 self.clearing = True
                 return self._queue.pop(0)
             if self.reflex_mode == "profile" and self.profile is not None:
