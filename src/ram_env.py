@@ -83,6 +83,17 @@ class MarioRamEnv(gym.Env):
         st = self.ram.poll()
         mb, ma = st["mario_B"], st["mario_A"]
         if self._x0 is None:
+            # The origin must be Mario's own position at reset, but on the
+            # first poll after a fresh load the player object is not yet in
+            # the entity list and poll returns None -- falling back to 0
+            # here made every later obs[0] ABSOLUTE instead of relative
+            # (measured: second-poll obs[0]*512 == mario_B exactly; see
+            # PROJECT_STATUS 4o). Discover the object before fixing the
+            # origin. NOTE: _mario_pos() returns (A, B) = (y, x).
+            if mb is None or ma is None:
+                if self.ram.mario_base is None:
+                    self.ram.discover_mario()
+                ma, mb = self.ram._mario_pos()
             self._x0, self._y0 = (mb or 0), (ma or 0)
         x = ((mb or self._x0) - self._x0) / 4096.0 / 512.0
         y = ((ma or self._y0) - self._y0) / 4096.0 / 512.0
