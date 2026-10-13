@@ -13,7 +13,7 @@
     "mean_progress_px": 613.704345703125,
     "max_progress_px": 613.704345703125,
     "mean_reward": 110.40205078125004,
-    "mean_fps": 21.199659247123723,
+    "mean_fps": 21.119498306454563,
     "mean_latency_ms": 0.0
   },
   "episodes": [
@@ -27,7 +27,7 @@
       "reached_goal": false,
       "termination": "death",
       "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 21.112801040340987,
+      "achieved_env_fps": 18.84682628788778,
       "death_diag": "abs 614px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
       "episode": 1
     },
@@ -41,7 +41,7 @@
       "reached_goal": false,
       "termination": "death",
       "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 21.059913540557126,
+      "achieved_env_fps": 21.980012226496296,
       "death_diag": "abs 614px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
       "episode": 2
     },
@@ -55,7 +55,7 @@
       "reached_goal": false,
       "termination": "death",
       "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 21.955501211990263,
+      "achieved_env_fps": 21.678396443194174,
       "death_diag": "abs 614px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
       "episode": 3
     },
@@ -69,7 +69,7 @@
       "reached_goal": false,
       "termination": "death",
       "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 21.45319225077106,
+      "achieved_env_fps": 21.531106020965577,
       "death_diag": "abs 614px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
       "episode": 4
     },
@@ -83,7 +83,7 @@
       "reached_goal": false,
       "termination": "death",
       "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 20.416888191959156,
+      "achieved_env_fps": 21.561150553728975,
       "death_diag": "abs 614px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
       "episode": 5
     }

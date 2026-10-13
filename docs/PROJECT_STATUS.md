@@ -547,22 +547,28 @@ metric cannot be misread as a level clear.
 
 | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- |
-| `--reflex profile` (ROM-derived thresholds) | 201.0 px | 4% | 1200 | 39.5 | trunc |
-| `--reflex legacy` (the 1-1 pixel bands) | 722.0 px | 15% | 56 | 608.2 | death |
+| `--reflex profile` (ROM-derived thresholds) | 1,759.8 px | 38% | 224 | 1637.6 | death |
+| `--reflex legacy` (the 1-1 pixel bands) | **3,274.4 px** | **70%** | 313 | 3146.5 | death |
 
-n=5 per arm (byte-identical within each arm). The first pass (n=1, measured
-while obs was accidentally absolute) read **profile 1,929.6 px / legacy
-3,314.4 px** -- and 4o's origin fix is why the numbers moved so far: the
-historical coordinate carried each course's spawn on top of mario_B, and
-the legacy arm's pipe window sat on a float32 knife-edge that the
-reconstruction difference flips at call 38 (measured: identical inputs,
-one 0.04 px abs difference, one arm leaps and the other runs). The old
-"bands transfer better" ordering did not survive the fix: the profile arm
-now stalls at 201 px (alive at the cap, hopping in place) and the legacy
-arm dies at 722 px. The pit-vector reading correction below stands
-regardless. Both historical trajectories died with `pit=[1,1,1,1,1,1]
-ground=1` in the death diagnostic -- which this section first read as "the
-pit features say ground
+n=5 per arm (byte-identical within each arm). The lineage of these two rows
+is the whole coordinate story in miniature. First pass (obs accidentally
+absolute): profile 1,929.6 / legacy 3,314.4 -- the historical doubles.
+4o's origin fix made the legacy reconstruction (spawn_mb + 88 + rel*512)
+differ from the historical by ~0.04 px of float32 noise, and 1-2's pipe
+window sits on exactly that knife-edge (call 38: identical inputs, one arm
+leaps, the other runs): legacy fell to 722, profile to a 201 px stall.
+**The resolution is in the code now: the legacy arm reads mario_B from
+the RAM handle and reproduces the historical arithmetic bit for bit**
+(`88 + float32(mb/4096/512)*512` -- the bands were calibrated against
+the ROUNDED value, so the rounding is part of the tuning). The legacy
+row is back at **3,274.4 px / 70%** (the historical trajectory minus the
+spawn double-count: 3,314.4 - 40), and the profile row moved because 4p's
+swim escalation freed its 201 px stall -- both rows are now the honest
+measurements of the current stack. The old "bands transfer better"
+ordering is back, by the way. The pit-vector reading correction below
+stands regardless. Both historical trajectories died with
+`pit=[1,1,1,1,1,1] ground=1` in the death diagnostic -- which this
+section first read as "the pit features say ground
 is missing ahead while the RAM says Mario is standing", and that reading was
 **backwards**: `pit_ahead` returns 1.0 for *solid* and 0.0 for *pit*, so
 `pit=[1,...]` said ground exists ahead, in agreement with `ground=1` and with
@@ -605,7 +611,7 @@ flagpole sprite.
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
 | 5-1 `E01_1` | profile | 998.2 px | 22% | 80 | 424.1 | death |
-| 5-1 `E01_1` | legacy | 1,474.2 px | 32% | 132 | 659.5 | death |
+| 5-1 `E01_1` | legacy | 996.4 px | 22% | 117 | 421.3 | death |
 | 8-1 `H01_1` | profile | 466.5 px | 12% | 43 | 159.6 | death |
 | 8-1 `H01_1` | legacy | 565.0 px | 14% | 50 | 209.0 | death |
 
@@ -794,11 +800,11 @@ carries them; parity still passes (none appear in 1-1's entity list).
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
 | 2-1 `B01_1` | profile | 613.7 px | 15% | 29 | 110.4 | death |
-| 2-1 `B01_1` | legacy | 862.7 px | 21% | 39 | 234.4 | death |
+| 2-1 `B01_1` | legacy | 613.7 px | 15% | 29 | 110.4 | death |
 | 4-1 `D01_1` | profile | 505.0 px | 12% | 43 | 391.8 | death |
 | 4-1 `D01_1` | legacy | 505.0 px | 12% | 43 | 391.8 | death |
 | 6-1 `F01_1` | profile | 1,136.3 px | 28% | 84 | 488.9 | death |
-| 6-1 `F01_1` | legacy | 1,856.0 px | 45% | 169 | 844.5 | death |
+| 6-1 `F01_1` | legacy | 1,929.0 px | 47% | 1200 | 844.5 | **trunc (alive)** |
 
 **4-1 unlocked by measurement.** `D01_1` parsed at 48.6% (the ice tileset's
 objects are all unknown to the flat class list) and the drop probe measured
@@ -846,15 +852,14 @@ pockets (measured on four courses: E01_1, B01_1, D01_1, F01_1's stall),
 with the probe-derived sprite-solids map as the named next
 infrastructure, (b) the 6-1 cliff stall, (c) C01_1's parse.
 
-The 6-1 rows, re-measured in true mario_B by 4o and again with 4p's swim
-escalation: the legacy arm crossed the water wall at x=1481 that had
-stalled it for two sessions (1,481 px, endless retreat loop) and now
-reaches **1,856 px (45%)** -- the deepest any arm has gone outside world
-1 -- dying in a dry shaft past the water: having swum over the wall it
-runs the far bank, leaps a fish, and the level's next obstacle is a
-drop the parser's ground classes do not see (the fall runs at terminal
-velocity, so it is air, not water). The profile arm is unchanged at
-1,136.3: it dies before the water.
+The 6-1 rows, re-measured in true mario_B by 4o, with 4p's swim
+escalation, and with 4q's RAM-exact legacy coordinate: the legacy arm
+crossed the water wall at x=1481 that had stalled it for two sessions,
+passed the second structure at x=1856 (the knife-edge flipped in its
+favor when the legacy abs went RAM-exact -- 1,856-death became a pass),
+and now reaches **1,929 px (47%), ALIVE at the 1200-step cap** -- both
+the deepest reach and the only surviving arm outside world 1. The
+profile arm is unchanged at 1,136.3: it dies before the water.
 
 The 2-1 death, autopsied to the bottom (trace): the "wall" that stops
 Mario at x=613.7 is **sprite-solid geometry the bgdat parser cannot see**
@@ -865,9 +870,8 @@ the airborne freeze disproves the step reading -- nothing in the bgdat
 blocks him there. Unwinnable by any rule until sprite geometry exists.
 (The ledge itself does NOT expire -- 4p's crumble census held it 1,465+
 frames under a fresh stand -- so the in-run fall is interaction-specific,
-not a tile timer.)
-(The legacy arm's 862.7 px row is the same run through the fixed
-coordinate: it dies past the pocket, at the fall after the sprite block.)
+not a tile timer. With 4q's RAM-exact legacy coordinate the arm dies
+AT the pocket again -- 613.7 px, both arms now at the same spot.)
 
 ## 4n. What a working controller cost, by era (2026-10-12)
 
@@ -1026,6 +1030,37 @@ phase, the stroke's forward drift off a tile edge), not a tile timer.
 The only measured crumbling tile in the project is the 8-1 bridge -- a
 17-frame hold from touchdown, which is the number any stand-and-act
 rule would have to beat.
+
+## 4q. The knife-edge, closed: legacy reads mario_B from the RAM (2026-10-13)
+
+4o ended with the float32 knife-edge as a measured fact: reconstructing
+the legacy coordinate (mario_B + 88) from the relative obs differs from
+the historical value by ~0.04 px, and A02_1's pipe window sits on exactly
+one such boundary -- identical inputs, one arm leaps, the other runs, and
+the 1-2 legacy row fell from the historical 70% to 15% on the flip.
+
+The closure is a two-line change in principle: the eval harness passes
+its RamState handle into the reactive controllers, and the legacy
+`_abs_px` reads mario_B directly -- **but with the historical rounding
+reproduced, not removed**: `88 + float32(mb/4096/512)*512`, because the
+bands were calibrated against the ROUNDED value through the old absolute
+obs, so the rounding is part of the tuning, not noise on it. Verified
+three ways: the published 1-1 clear reproduces byte-for-byte (parity
+passes); the 1-2 legacy row returns to **3,274.4 px / 70%** -- the
+historical trajectory, same death, same steps (313 vs the original 311;
+the two-step delta is the rule set that grew since: the cone rule and
+the swim escalation did not exist when 311 was measured); and the other
+courses re-measured honestly rather than reproduced -- the knife-edges
+there flip as they flip (5-1 legacy 1,474.2 -> 996.4: a different
+trajectory under the same rules, because the escalation and the cone
+rule fire at moments the historical run never reached).
+
+**The frontier moved with it.** 6-1's legacy arm, which died at the
+second structure at 1,856 px in 4p, now passes it under the exact
+coordinate and stands at **1,929 px (47%), alive at the 1200-step cap**
+-- the deepest reach outside world 1, and the only arm still alive
+there. The profile arm is untouched by all of this (it never used the
+legacy coordinate).
 
 ## 5. File Index
 

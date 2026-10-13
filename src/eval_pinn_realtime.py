@@ -141,11 +141,26 @@ class BaseReflexController:
         obs[0] was accidentally absolute (the ram_env origin bug, 4o), so
         SPAWN_ABS_PX + obs[0]*512 computed 88 + mario_B on EVERY course,
         whatever that course's own spawn was. Reproducing that coordinate
-        with the fixed (truly relative) obs needs the course's own spawn
-        mario_B as the base: spawn_mb + 88 + relative == mario_B + 88.
+        through the relative obs (spawn_mb + 88 + rel*512) reconstructs
+        mario_B with ~0.04 px of float32 noise -- invisible until a
+        decision sits on a comparison boundary, and A02_1's pipe window
+        sits on exactly one (4o: identical inputs, one arm leaps and the
+        other runs). When the RAM handle is available the raw mario_B is
+        read instead and the historical value is exact: the 1-2
+        knife-edge reproduces and the historical trajectory comes back.
         """
         if self.reflex_mode == "profile" and self.profile is not None:
             return self.profile.abs_px(float(obs[0]))
+        if self.ram is not None:
+            mb = self.ram.poll()["mario_B"]
+            if mb is not None:
+                # Bit-exact historical arithmetic: the tuning era computed
+                # 88 + obs0*512 with obs0 the env's float32 obs value --
+                # float32(mb/4096/512) -- so the bands were calibrated
+                # against the ROUNDED mario_B, and knife-edge decisions
+                # (A02_1's pipe window) flip on exactly that rounding.
+                v = np.float32(mb / 4096.0 / 512.0)
+                return 88.0 + float(v) * 512.0
         base = (self.profile.spawn_px if self.profile is not None
                 else SPAWN_ABS_PX)
         return base + 88.0 + obs[0] * 512.0
@@ -155,8 +170,9 @@ class BaseReflexController:
             return self._surface_threat_profile(obs)
         return self._surface_threat_legacy(obs)
 
-    def __init__(self, planner=None, enemy_lo=0.0, enemy_hi=75.0, enemy_dy=55.0, pit_lookahead=2, enabled=True):
+    def __init__(self, planner=None, enemy_lo=0.0, enemy_hi=75.0, enemy_dy=55.0, pit_lookahead=2, enabled=True, ram=None):
         self.planner = planner
+        self.ram = ram
         self.enemy_lo = enemy_lo
         self.enemy_hi = enemy_hi
         self.enemy_dy = enemy_dy
@@ -544,8 +560,10 @@ class ReactiveAgent(BaseReflexController):
         enemy_dy = k.pop("enemy_dy", 55.0)
         pit_lookahead = k.pop("pit_lookahead", 2)
         enabled = k.pop("enabled", True)
-        super().__init__(planner=planner, enemy_lo=enemy_lo, enemy_hi=enemy_hi,
-                         enemy_dy=enemy_dy, pit_lookahead=pit_lookahead, enabled=enabled)
+        ram = k.pop("ram", None)
+        super().__init__(planner=planner, enemy_lo=enemy_lo,
+                         enemy_hi=enemy_hi, enemy_dy=enemy_dy,
+                         pit_lookahead=pit_lookahead, enabled=enabled, ram=ram)
 
     def act(self, obs):
         if self.enabled:
@@ -761,7 +779,7 @@ def main():
             None, device, args.horizon, args.n_cand, args.n_iter, args.seed,
             enemy_lo=args.enemy_lo, enemy_hi=args.enemy_hi, enemy_dy=args.enemy_dy,
             pit_lookahead=args.pit_lookahead, pit_enemy_suppress=args.pit_enemy_suppress,
-            planner=planner, enabled=not args.no_reflex)
+            planner=planner, enabled=not args.no_reflex, ram=env.ram)
     elif args.controller == "ppo+reflex":
         make_agent = lambda: ReflexivePPOAgent(
             args.policy, device, planner=planner,
