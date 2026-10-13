@@ -799,6 +799,53 @@ Still open: the clear outside world 1 (the 6-1 stall at its water/cliff
 mid-section is the closest any arm has stood), the mid-air contact policy,
 and probes for the three statically-refused courses.
 
+**The 6-1 stall, named (trace, both arms).** Legacy stands against a cliff
+at x=1929 in an endless hop loop: blocked -> in-place jump -> land -> repeat,
+x frozen, the ground under him never moving. Profile stalls earlier
+(1,601 px) at the same class of obstacle. The cliff sits inside the level's
+water/cliff mid-section; a standstill hop cannot clear it, and the
+reflex has no cliff-climb rule.
+
+**The 2-1 death, autopsied (trace) -- two stacked findings.** The 232
+crawler that kills both arms at 973.7 px walks ~92 px *below* the elevated
+ledge Mario is on; what kills him is his own blocked-logic -- the no-stall
+retreat burst fires at the ledge's wall and takes him off the ledge edge,
+down to the crawler's level. The wall itself is a one-row step (col 39, top
+20.35 vs the ledge's measured 21) that the *hop* response should climb --
+but the parser reports the ledge's floor at row 25 while the walker stands
+at 21 (the desert tileset's ledge rows are the "level-diff" class the
+probe measured on 14 columns), so the rise detection never fires. A
+`stomp_hop` rule was added for close hostiles (dx <= 24: short arc lands
+the stomp -- the long arc clipped laterally twice, the 232 and E01_1's
+goomba) but it cannot fire here because the takeoff never happens; the
+blocker is the misparsed ledge rows plus a retreat that does not check the
+ground behind it. Both are named, measured open work.
+
+## 4n. What a working controller cost, by era (2026-10-12)
+
+`mlflow.db` holds every finished training run this repo ever made (34 of
+them), and the current learned stack writes its own durations into
+`evals/*.json`. Measured:
+
+| era | what was trained | wall time | result |
+| --- | --- | --- | --- |
+| 2026-06 (visual RL) | RecurrentPPO, one run | 1,376 min (22.9 h) | no clear |
+| | IMPALA-CURL, one run | 1,135 min (18.9 h) | no clear |
+| | pixel PPO 100k steps, 7 arms | ~48-50 min each | no clear (pixel PPO: 120.8 px) |
+| 2026-09-06 (world models) | GA/CMA world models + ICM PPO | 44-101 min each | no clear |
+| 2026-09-10 (RAM era) | ram_ppo / ram_geo / gnn, 100k steps | 45.4 / 46.1 / 47.8 min | no clear |
+| 2026-09-23 (PINN) | world model Stage 1 | **52.6 s** (3,500 transitions, 43,440 params) | enables 418 steps/s imagination |
+| | Dyna-PPO Stage 2, 200k steps | **478 s (8.0 min)** at 418 steps/s | no clear (learned arms peak at 1,510 px) |
+| 2026-10 (measured reflex) | nothing trains | **0** | **1-1 cleared 5/5; 6-1 alive at 50%** |
+
+Total finished training wall time in mlflow: **56.0 h across 34 runs -- and
+not one of those hours produced a clear.** The clear came from measurement
+instead of gradient. The per-course bring-up cost today is one-time
+calibration, roughly half an hour per course: `enter_course` (~3 min),
+`identify_state` (~2 min), a floor probe (~10-15 min), hostility oracles
+(~2 min per type), and the n=5 eval (~3-8 min at ~20 fps headless) -- and
+the reflex itself iterates in minutes, not epochs.
+
 ## 5. File Index
 
 ```
