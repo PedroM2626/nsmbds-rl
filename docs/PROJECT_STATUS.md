@@ -812,9 +812,12 @@ measured on the ice: 135 and 311, both stomp-vanish.
 
 The 4-1 rows die in a **pocket trap**, autopsied by trace: Mario pinned at
 x=505 between sprite solids (x frozen in BOTH directions, hop/leap/retreat
-all unable to move him) on a floor that expires (~28 frames), with the
-koopa patrolling in place 12 px ahead (its dx is constant for a dozen
-steps) -- the fall through the expiring floor lands on it. That autopsy
+all unable to move him), with the koopa patrolling in place 12 px ahead
+(its dx is constant for a dozen steps) -- the fall lands on it. (This
+autopsy first said "on a floor that expires"; 4p's crumble census
+retracts that reading for the 2-1 and 6-1 tiles, and D01_1 col 31 is
+untested -- the claim is kept only for the 8-1 bridge, which measures
+17 frames.) That autopsy
 killed the fifth rule candidate for the mid-air contact class: an
 approach-direction hop (hop over walkers whose dx is closing, leap over
 everything else) was implemented with a first-sighting wait and its own
@@ -856,11 +859,13 @@ velocity, so it is air, not water). The profile arm is unchanged at
 The 2-1 death, autopsied to the bottom (trace): the "wall" that stops
 Mario at x=613.7 is **sprite-solid geometry the bgdat parser cannot see**
 (x freezes even airborne with right held -- sprite 136's block, whose top
-the probe measured at 20.35), standing on a floor that expires (he falls
-through after ~30 frames). The 232 crawler merely waits 92 px below. An
+the probe measured at 20.35). The 232 crawler merely waits 92 px below. An
 earlier reading blamed the retreat burst and a misparsed one-row step;
 the airborne freeze disproves the step reading -- nothing in the bgdat
 blocks him there. Unwinnable by any rule until sprite geometry exists.
+(The ledge itself does NOT expire -- 4p's crumble census held it 1,465+
+frames under a fresh stand -- so the in-run fall is interaction-specific,
+not a tile timer.)
 (The legacy arm's 862.7 px row is the same run through the fixed
 coordinate: it dies past the pocket, at the fall after the sprite block.)
 
@@ -996,6 +1001,31 @@ flag cap requires the parse to validate its own flagpole (coverage
 >= 30%). C01_1's probe still measures only 16 floors before 47 columns
 of unmeasurable drops (its water and its enemies), so World 3-1 stays
 honestly refused at 26% measured coverage.
+
+**The crumble census, and two retractions.** With three putative
+"expiring floors" on record (the 8-1 bridge, the 2-1 pocket ledge, the
+6-1 rock at x=1856), a timer was measured on each: pin ABOVE the tile
+(no contact), release, let Mario land on it fresh, and count frames
+from touchdown to the fall -- pinning ON the tile contaminates the
+reading (the timer runs while touched; released, the 2-1 and 6-1 tiles
+read as already gone until the no-contact protocol fixed it).
+
+| tile | fresh-touchdown hold | verdict |
+| --- | --- | --- |
+| `H01_1` col 16 (8-1's opening bridge) | **17 frames, then falls** | a real crumbling tile |
+| `B01_1` col 38 (the 2-1 pocket ledge) | **1,465+ frames, still standing** | does NOT expire |
+| `F01_1` col 116 (the 6-1 rock past the water) | **1,485+ frames, still standing** | does NOT expire |
+
+So the 4m autopsy line "standing on a floor that expires (~28 frames)"
+is wrong twice: neither the 2-1 ledge nor the 6-1 rock is a crumbling
+tile. What makes the in-run falls happen there is still unnamed -- both
+falls occur during reflex burst actions at those spots (the 2-1 retreat
+leap, the 6-1 swim escalation), on tiles that hold indefinitely under a
+plain fresh stand, so the cause is interaction-specific (platform flip
+phase, the stroke's forward drift off a tile edge), not a tile timer.
+The only measured crumbling tile in the project is the 8-1 bridge -- a
+17-frame hold from touchdown, which is the number any stand-and-act
+rule would have to beat.
 
 ## 5. File Index
 
