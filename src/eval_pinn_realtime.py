@@ -287,6 +287,15 @@ class BaseReflexController:
     def _threat(self, obs):
         """Hostile enemy threat detection based on empirical ballistic clearance."""
         abs_px = self._abs_px(obs) if self.planner is not None else 0.0
+        # The mid-air lateral contact class was chased with five rule
+        # candidates, all measured and all reverted or neutral; the autopsy
+        # that settled it is D01_1's pocket: the koopa there PATROLS IN
+        # PLACE (dx constant at 12 px for a dozen steps) while Mario is
+        # pinned between sprite solids on an expiring floor -- approach
+        # detection has nothing to see, and the death is the pocket class,
+        # not a leap timing problem. What the class needs is terrain
+        # semantics (sprite solids, expiring floors), which bgdat+rules
+        # cannot carry.
         for k in range(3):
             dx = obs[8 + 3 * k] * 256.0
             dy = obs[9 + 3 * k] * 256.0
@@ -302,13 +311,6 @@ class BaseReflexController:
                     near_takeoff = 3480.0 <= abs_px <= 3520.0
                 hi = 55.0 if near_takeoff else self.enemy_hi
                 if 0.0 <= dx <= hi:
-                    # A stomp_hop variant (short arc for dx <= 24 hostiles,
-                    # after the long arc measured clipping near enemies
-                    # laterally twice) was tried and reverted: it regressed
-                    # F01_1 from 1,601 px alive-at-cap to a 1,250 px death --
-                    # the short arc lands inside the fish zone -- while its
-                    # target case (B01_1's 232) never reaches takeoff. The
-                    # long leap stays.
                     return "leap"   # Running leap: clears apex > 50px high or stomps
         return None
 
