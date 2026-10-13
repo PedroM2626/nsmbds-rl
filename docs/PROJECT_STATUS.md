@@ -800,30 +800,38 @@ bound itself: its static parse is 1.6% and its "flagpole at 272 px" is a
 false sprite the tooling had not met before. Two more hostile types
 measured on the ice: 135 and 311, both stomp-vanish.
 
-The 4-1 rows die at the koopa (163) at 577 px: the same **mid-air lateral
-contact** class that killed 5-1's goomba and 2-1's 232 -- the threat-leap's
-descent passes through a hostile that walked forward during the ~40-frame
-flight. That class is now measured on three courses and defeated four
-candidate rules, each reverted with its regression on record:
+The 4-1 rows die in a **pocket trap**, autopsied by trace: Mario pinned at
+x=505 between sprite solids (x frozen in BOTH directions, hop/leap/retreat
+all unable to move him) on a floor that expires (~28 frames), with the
+koopa patrolling in place 12 px ahead (its dx is constant for a dozen
+steps) -- the fall through the expiring floor lands on it. That autopsy
+killed the fifth rule candidate for the mid-air contact class: an
+approach-direction hop (hop over walkers whose dx is closing, leap over
+everything else) was implemented with a first-sighting wait and its own
+landing cone, and was **neutral on its target** -- the koopa there never
+approaches, it patrols -- so it was reverted too. The class ledger now
+reads: level-diff row overrides (broke 1-1 parity), no-wall escape jump
+(F01_1 1,601-alive -> 1,250-dead), behind-solid retreat guard (same
+regression via the parser's own gaps), stomp_hop (same regression), and
+approach-direction hop (neutral: the D01_1 killer never approaches). All
+five with their measurements live in the code comments where each rule
+used to be.
 
-- level-diff row overrides (floor_row = the probe's top surface) broke the
-  published 1-1 clear: the probe lands on the TOP route (the row-15
-  corridor over the row-30 walkway) and only the walker knows which route
-  he is on. Route ambiguity needs reflex state, not a per-column constant.
-- a no-wall "escape jump" for treadmill platforms regressed F01_1 from
-  1,601 px alive-at-cap to a 1,250 px mid-air fish death.
-- a behind-solid retreat guard regressed the same way: the parser's 16.5%
-  gaps on F01_1 read as "no ground behind" exactly where the measured floor
-  exists.
-- a stomp_hop for close hostiles regressed F01_1 identically (the short
-  arc lands inside the fish zone) while its target case never reaches
-  takeoff.
+The conclusion the five share: **the remaining deaths are terrain
+semantics, not decision timing** -- sprite solids, expiring floors,
+patrolling-in-place enemies -- and bgdat-plus-rules cannot carry them.
+The measured way forward is the probe itself: the drop probe already
+LANDS on sprite tops (B01_1 col 39's 20.35 came from the probe, not the
+parser), so a sprite-solids map derived from probe-vs-bgdat disagreement
+is the infrastructure this needs next, and it is derivable from data this
+repo already collects.
 
 The reflex therefore stands at its measured-best state: parity passes, the
-1-1 clear holds on true geometry, and the named open problems are: (a) the
-mid-air lateral contact (three courses), (b) sprite-solid geometry the
-bgdat parser cannot see (B01_1's block wall on an expiring ledge), (c) the
-6-1 cliff stall, (d) C01_1's parse.
+1-1 clear holds on true geometry, and the named open problems are: (a)
+terrain semantics -- sprite solids, expiring floors, patrol-in-place
+pockets (measured on four courses: E01_1, B01_1, D01_1, F01_1's stall),
+with the probe-derived sprite-solids map as the named next
+infrastructure, (b) the 6-1 cliff stall, (c) C01_1's parse.
 
 The 6-1 rows are a first for this repo: **no arm had ever survived to the
 step cap outside world 1.** The stall itself, named by trace: legacy
