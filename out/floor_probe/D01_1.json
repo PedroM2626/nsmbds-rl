@@ -1,0 +1,2206 @@
+{
+ "course": "course/D01_1.bin",
+ "state": "data\\state_4-1.ds1",
+ "step": 1,
+ "summary": {
+  "agree": 85,
+  "parser_false_floor": 47,
+  "parser_missed_floor": 142,
+  "unmeasured": 0,
+  "columns": 274
+ },
+ "columns": [
+  {
+   "col": 1,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 2,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 3,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 4,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 5,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 6,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 7,
+   "measured": 45.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 8,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 9,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 10,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 11,
+   "measured": 41.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 12,
+   "measured": 38.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 13,
+   "measured": 38.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 14,
+   "measured": 41.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 15,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 16,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 17,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 18,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 19,
+   "measured": 44.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 20,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 21,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 22,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 23,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 24,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 25,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 26,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 27,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 28,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 29,
+   "measured": 45.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 30,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 31,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 32,
+   "measured": 44.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 33,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 34,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 35,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 36,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 37,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 38,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 39,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 40,
+   "measured": 45.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 41,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 42,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 43,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 44,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 45,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 46,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 47,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 48,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 49,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 50,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 51,
+   "measured": 46.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 52,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 53,
+   "measured": 43.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 54,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 55,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 56,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 57,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 58,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 59,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 60,
+   "measured": 45.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 61,
+   "measured": 45.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 62,
+   "measured": 45.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 63,
+   "measured": 41.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 64,
+   "measured": 38.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 65,
+   "measured": 41.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 66,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 67,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 68,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 69,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 70,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 71,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 72,
+   "measured": 44.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 73,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 74,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 75,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 76,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 77,
+   "measured": 44.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 78,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 79,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 80,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 81,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 82,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 83,
+   "measured": 42.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 84,
+   "measured": 42.0,
+   "parser": 42,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 85,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 86,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 87,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 88,
+   "measured": 43.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 89,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 90,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 91,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 92,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 93,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 94,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 95,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 96,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 97,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 98,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 99,
+   "measured": 45.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 100,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 101,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 102,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 103,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 104,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 105,
+   "measured": 45.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 106,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 107,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 108,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 109,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 110,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 111,
+   "measured": 44.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 112,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 113,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 114,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 115,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 116,
+   "measured": 43.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 117,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 118,
+   "measured": 42.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 119,
+   "measured": 42.0,
+   "parser": 42,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 120,
+   "measured": 42.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 121,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 122,
+   "measured": 44.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 123,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 124,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 125,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 126,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 127,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 128,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 129,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 130,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 131,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 132,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 133,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 134,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 135,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 136,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 137,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 138,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 139,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 140,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 141,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 142,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 143,
+   "measured": 41.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 144,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 145,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 146,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 147,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 148,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 149,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 150,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 151,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 152,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 153,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 154,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 155,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 156,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 157,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 158,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 159,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 160,
+   "measured": 41.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 161,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 162,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 163,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 164,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 165,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 166,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 167,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 168,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 169,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 170,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 171,
+   "measured": null,
+   "parser": null,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 172,
+   "measured": null,
+   "parser": null,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 173,
+   "measured": null,
+   "parser": 29,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 174,
+   "measured": null,
+   "parser": null,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 175,
+   "measured": null,
+   "parser": null,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 176,
+   "measured": 41.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 177,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 178,
+   "measured": 41.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 179,
+   "measured": 32.0,
+   "parser": 41,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 180,
+   "measured": 32.0,
+   "parser": 32,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 181,
+   "measured": 21.0,
+   "parser": 32,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 182,
+   "measured": 21.0,
+   "parser": 32,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 183,
+   "measured": 21.0,
+   "parser": 21,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 184,
+   "measured": null,
+   "parser": null,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 185,
+   "measured": null,
+   "parser": null,
+   "walkable": false,
+   "floor_row_dominant": 48,
+   "note": "pit"
+  },
+  {
+   "col": 186,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 187,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 188,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 189,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 190,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 191,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 192,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 193,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 194,
+   "measured": 47.6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 195,
+   "measured": 46.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 196,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 197,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 198,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 199,
+   "measured": 45.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 200,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 201,
+   "measured": 45.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 202,
+   "measured": 44.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 203,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 204,
+   "measured": 44.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 205,
+   "measured": 43.0,
+   "parser": 45,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 206,
+   "measured": 43.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 207,
+   "measured": 43.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 208,
+   "measured": 42.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 209,
+   "measured": 42.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 210,
+   "measured": 42.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 211,
+   "measured": 42.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 212,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 213,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 214,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 215,
+   "measured": 44.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 216,
+   "measured": 46.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 217,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 218,
+   "measured": 42.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 219,
+   "measured": 42.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 220,
+   "measured": 42.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 221,
+   "measured": 47.46,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 222,
+   "measured": 46.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 223,
+   "measured": 46.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 224,
+   "measured": 6,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "hover"
+  },
+  {
+   "col": 225,
+   "measured": 6,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "hover"
+  },
+  {
+   "col": 226,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 227,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 228,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 229,
+   "measured": 15.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 230,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 231,
+   "measured": 12.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 232,
+   "measured": 12.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 233,
+   "measured": 12.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 234,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 235,
+   "measured": 15.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 236,
+   "measured": 15.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 237,
+   "measured": 10.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 238,
+   "measured": 10.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 239,
+   "measured": 10.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 240,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 241,
+   "measured": 15.0,
+   "parser": 40,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 242,
+   "measured": 15.0,
+   "parser": 40,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 243,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 244,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 245,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 246,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 247,
+   "measured": 15.0,
+   "parser": 44,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 248,
+   "measured": 15.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 249,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 250,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 251,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 252,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 253,
+   "measured": 15.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 254,
+   "measured": 15.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 255,
+   "measured": 15.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 256,
+   "measured": 15.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 257,
+   "measured": 15.0,
+   "parser": 47,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 258,
+   "measured": 15.0,
+   "parser": 43,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 259,
+   "measured": 15.0,
+   "parser": 39,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 260,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 261,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 262,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 263,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 264,
+   "measured": 15.0,
+   "parser": null,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 265,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 266,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 267,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 268,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 269,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 270,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 271,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 272,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 273,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  },
+  {
+   "col": 274,
+   "measured": 15.0,
+   "parser": 46,
+   "walkable": true,
+   "floor_row_dominant": 48,
+   "note": "landed"
+  }
+ ]
+}
