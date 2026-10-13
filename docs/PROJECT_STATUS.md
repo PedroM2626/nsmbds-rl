@@ -170,7 +170,7 @@ arms:
 | arm | steps | final px | reward | outcome |
 | --- | --- | --- | --- | --- |
 | `--reflex legacy` | 235 | 4,022 | 1529.075 | **cleared** |
-| `--reflex profile` | 159 | 1,816 | 620.1389 | died (peak 1,728 px), **short of the flagpole** |
+| `--reflex profile` | 110 | 1,819 | 623.6411 | died (peak 1,727 px), **short of the flagpole** |
 
 So the bands are load-bearing: with pure geometry the controller gets ~45% of the
 way. The stall is not a reflex bug but a **geometry-fidelity** bug -- see 4c.
@@ -596,23 +596,26 @@ kept only as history: profile 1,717.8 px, legacy 1,701.5 px on 5-1; both arms
 | --- | --- | --- | --- | --- | --- | --- |
 | 5-1 `E01_1` | profile | 1,052.4 px | 23% | 81 | 423.1 | death |
 | 5-1 `E01_1` | legacy | 1,530.7 px | 33% | 117 | 660.5 | death |
-| 8-1 `H01_1` | profile | 660.0 px | 17% | 65 | 227.7 | death |
+| 8-1 `H01_1` | profile | 621.0 px | 16% | 50 | 209.0 | death |
 | 8-1 `H01_1` | legacy | 522.5 px | 13% | 43 | 159.6 | death |
 
 All 20 episodes are byte-identical within their arm: the emulator, the course
 and the reflex are deterministic, so these are five confirmations of one
-trajectory each, not a rate. The numbers with 4k's detection fixes plus 4l's
-two policy rules (the landing cone applies to both arms; the no-stall retreat
-is profile-only, so the legacy arm keeps its published escalation): 8-1's
-profile arm went 337 -> 522 -> 660 px (9% -> 17%) as the missed kazan floors,
-the hostile 172/184/312 types and the no-stall retreat landed. 5-1's profile
-arm gets *less far* (1,718 -> 1,052 px) because the spinner at x~944 (RAM type
-247, measured to kill on the first contact frame) is now seen and dodged --
-the dodge leap predates any landing check and lands in the adjacent pit, the
-same policy failure the 4k autopsies measure directly. No arm has yet cleared
-a course outside world 1, and the blocker is no longer detection: it is the
-reflex's leap-on-threat policy on 5-1's platform complexes, now measured in
-4k.
+trajectory each, not a rate. The numbers with 4k's detection fixes, 4l's two
+policy rules (the landing cone applies to both arms; the no-stall retreat is
+profile-only) and 4o's probe-solids blocked diagnosis (also profile-only):
+8-1's profile arm went 337 -> 522 -> 660 -> 621 px (9% -> 16%) as the missed
+kazan floors, the hostile 172/184/312 types, the no-stall retreat and the
+probe diagnosis landed -- the last trades the retreat's runway leap on the
+crumbling bridge for a measured "ground ahead, nothing above: ride it", and
+the bridge expires under the ride (the trade is -39 px, on record). 5-1's
+profile arm gets *less far* (1,718 -> 1,052 px) because the spinner at
+x~944 (RAM type 247, measured to kill on the first contact frame) is now
+seen and dodged -- the dodge leap predates any landing check and lands in
+the adjacent pit, the same policy failure the 4k autopsies measure directly.
+No arm has yet cleared a course outside world 1, and the blocker is no
+longer detection: it is the reflex's leap-on-threat policy on 5-1's
+platform complexes, now measured in 4k.
 
 ## 4k. The tile map measured against the game, and the reflex's real failure modes (2026-10-12)
 
@@ -726,8 +729,9 @@ The measured result, all on the true four-pit profile (`A01_1.json` now
   on the phantom-pit profile), reward 1529.075, and the pixel bands are
   untouched: the clear generalizes to true geometry through the one
   physics rule.
-- profile (pure geometry, no bands): 159 steps, dies at 1,816 px -- the
-  bands remain load-bearing for the full clear, unchanged story.
+- profile (pure geometry, no bands): 110 steps, dies at 1,819 px (4o's
+  probe-solids diagnosis replaced the retreat at its one 1-1 block event) --
+  the bands remain load-bearing for the full clear, unchanged story.
 - `evals/pinn_realtime_eval.json` re-published from that n=5 run;
   `tools/parity_reflex.py` passes against it (legacy == published, all five
   metrics); `tools/export_geometry.py` regenerated the Rust planner's
@@ -872,6 +876,58 @@ calibration, roughly half an hour per course: `enter_course` (~3 min),
 `identify_state` (~2 min), a floor probe (~10-15 min), hostility oracles
 (~2 min per type), and the n=5 eval (~3-8 min at ~20 fps headless) -- and
 the reflex itself iterates in minutes, not epochs.
+
+## 4o. obs is absolute, not relative: the origin bug, measured (2026-10-12)
+
+Building the sprite-solids map (4m's named next step) needed the reflex to
+know Mario's own row. The first attempt diagnosed a block 22 columns east of
+where he stood -- and the chase exposed a bug that has been in
+`ram_env._observe` since the beginning:
+
+**On the first poll after a fresh load the player object is not yet in the
+entity list, `poll()` returns None, and the origin silently becomes 0.** From
+the second poll on, `obs[0]*512` equals `mario_B` exactly -- measured: second
+poll 2.0 px with `mario_B` 90.0 on 1-1, and the pocket at B01_1 reporting
+973.7 in "abs_px" while the true pocket sits at 613.7. The docstring's
+"relative to episode reset" has never been true.
+
+What shipped on top of it, all measured:
+
+- **The 1-1 pixel bands were tuned in the shifted space** (88 + mario_B) --
+  which is why they look like arbitrary constants: they are, in a coordinate
+  nobody chose on purpose. They are kept verbatim; `_abs_px` documents the
+  shift.
+- **The eval's stop rule ends every run 88 px early**: `abs >= goal - 16`
+  computes spawn + mario_B, so the published 1-1 clear (235 steps, "4,022.4
+  px of 4,032") actually stopped at mario_B 3934 -- 106 px short of the
+  flagpole, without touching it. The RAM clear flag never fired; the harness
+  declared the clear. (A full fix was measured: with the origin corrected
+  the same trajectory runs 245 steps to mario_B 4020.6, a true flagpole
+  contact -- but re-baselining every published number, clip and gate row for
+  seven courses is its own session, so the fix is written here and the
+  published artifact stands until then.)
+- **The profile arm queried geometry east of Mario by entrance_x + 16 px** --
+  6 columns on 1-1, 23 on B01_1. Every profile-mode planner query (pits,
+  walls, ledges, cones) ran on the wrong columns until now.
+- One trap while fixing it, on record: `_mario_pos()` returns `(A, B)` =
+  (y, x); unpacking it as (x, y) put the y in the x origin and sent the
+  legacy arm into the pipe at 71 steps.
+
+**What landed:** the origin stays as-is (the cascade above), and the new
+probe-solids code computes true course coordinates from the absolute obs
+directly -- `course_px = obs[0]*512 - 8`, `row = -obs[1]*512/16`. The
+sprite-solids map itself works: at B01_1's pocket the diagnosis now fires a
+hop onto the sprite block at col 39 (probe surface 20.35, measured) instead
+of the blind retreat -- the hop goes up, and the pocket still kills him
+because it is walled both ways on an expiring floor, which is terrain
+semantics, not detection. The blocked diagnosis costs nothing where probes
+agree with the parser: 5-1, 4-1 and 6-1 are unchanged, and 8-1 trades the
+retreat's runway leap on the crumbling bridge for the measured "ride it"
+(-39 px, 660 -> 621, on record).
+
+The full coordinate re-baseline -- origin fix in `ram_env`, every table row
+re-measured in true mario_B, clip and gates re-recorded -- is the named next
+step, with the 245-step true-contact clear already measured above.
 
 ## 5. File Index
 

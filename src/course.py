@@ -132,6 +132,35 @@ class Course:
         # tools/probe_floor.py (the teleport-drop oracle). Loaded AFTER the
         # static classes so floor_row/solid_columns can prefer the measurement.
         self.floor_probe = self._load_floor_probe()
+        # The FULL measured surface map -- every column the probe landed on,
+        # at the row the game's own physics reported. This includes sprite
+        # tops, moving platforms caught mid-flight, ledges and slopes the
+        # bgdat classes cannot see; it is the sprite-solids map (4m/4n).
+        # Read-only information for the reflex: the walker's route ambiguity
+        # means it must NOT replace floor_row, but wall/step detection at
+        # the moment of being stuck is exactly where it is unambiguous.
+        self.probe_surfaces = self._load_probe_surfaces()
+
+    def _load_probe_surfaces(self):
+        cid = os.path.basename(self.name).replace(".bin", "")
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "out", "floor_probe", cid + ".json")
+        out = {}
+        if not os.path.exists(path):
+            return out
+        try:
+            data = json.load(open(path, encoding="utf-8"))
+            for c in data.get("columns", []):
+                m = c.get("measured")
+                if c.get("note") == "landed" and m is not None:
+                    out[c["col"]] = float(m)
+        except Exception:
+            return {}
+        return out
+
+    def probe_surface(self, col):
+        """The measured top surface at this column, or None (not probed/pit)."""
+        return self.probe_surfaces.get(int(col))
 
     def _load_floor_probe(self):
         """{col: row or None} for columns where a confirmed drop measurement
