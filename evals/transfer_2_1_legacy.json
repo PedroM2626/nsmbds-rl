@@ -1,0 +1,91 @@
+{
+  "aggregate": {
+    "controller": "reactive",
+    "episodes": 5,
+    "goal_abs_px": 4208,
+    "goal_source": "operator --goal-px",
+    "course": "course/B01_1.bin",
+    "state": "data\\state_2-1.ds1",
+    "reflex": "legacy",
+    "spawn_anchor_px": 360.0,
+    "planner": "python",
+    "clear_rate": 0.0,
+    "mean_progress_px": 973.704345703125,
+    "max_progress_px": 973.704345703125,
+    "mean_reward": 110.40205078125004,
+    "mean_fps": 20.296631638816528,
+    "mean_latency_ms": 0.006924004390321929
+  },
+  "episodes": [
+    {
+      "steps": 29,
+      "total_reward": 110.40205078125005,
+      "max_progress_px": 613.704345703125,
+      "final_abs_px": 973.704345703125,
+      "final_mario_px": 613.704345703125,
+      "max_mario_px": 613.704345703125,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 21.75726097251088,
+      "death_diag": "abs 974px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
+      "episode": 1
+    },
+    {
+      "steps": 29,
+      "total_reward": 110.40205078125005,
+      "max_progress_px": 613.704345703125,
+      "final_abs_px": 973.704345703125,
+      "final_mario_px": 613.704345703125,
+      "max_mario_px": 613.704345703125,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.034620021951609646,
+      "achieved_env_fps": 19.683012321825466,
+      "death_diag": "abs 974px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
+      "episode": 2
+    },
+    {
+      "steps": 29,
+      "total_reward": 110.40205078125005,
+      "max_progress_px": 613.704345703125,
+      "final_abs_px": 973.704345703125,
+      "final_mario_px": 613.704345703125,
+      "max_mario_px": 613.704345703125,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 20.81863583515059,
+      "death_diag": "abs 974px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
+      "episode": 3
+    },
+    {
+      "steps": 29,
+      "total_reward": 110.40205078125005,
+      "max_progress_px": 613.704345703125,
+      "final_abs_px": 973.704345703125,
+      "final_mario_px": 613.704345703125,
+      "max_mario_px": 613.704345703125,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 20.23298129816641,
+      "death_diag": "abs 974px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
+      "episode": 4
+    },
+    {
+      "steps": 29,
+      "total_reward": 110.40205078125005,
+      "max_progress_px": 613.704345703125,
+      "final_abs_px": 973.704345703125,
+      "final_mario_px": 613.704345703125,
+      "max_mario_px": 613.704345703125,
+      "reached_goal": false,
+      "termination": "death",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 18.991267766429303,
+      "death_diag": "abs 974px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[12, 0, 0] enemy_type=[232, 0, 0]",
+      "episode": 5
+    }
+  ]
+}

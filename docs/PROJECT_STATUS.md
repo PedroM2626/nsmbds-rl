@@ -739,7 +739,65 @@ The measured result, all on the true four-pit profile (`A01_1.json` now
 What is still open after this: the 5-1 leap-on-threat policy around its
 platform complexes (the 4k autopsies; the cone rule cannot help a mid-air
 goomba collision inside a safe cone), and a clear outside world 1 by any
-arm.
+arm -- 4m takes the second half further than any prior session.
+
+## 4m. The world row, unlocked from RAM: every world's 1-1 is now a savestate (2026-10-12)
+
+The stylus was the last input the headless pipeline could not produce, and
+it gated exactly one thing: the world row on the map (`4i`). The py-desmume
+touch API is measured dead twice (ambient drift only, four points, both
+coordinate scales, per-frame holds and full tap cycles), but 4k's
+memory-write capability made the question moot from the game's own side.
+
+**What the A-press actually commits is the running course's area index** --
+a u16 at 0x020980D4 with a copy at 0x0209B59E, whose value is the course
+file's position among the 191. Calibrated on the four savestates this repo
+already had and verified against the ROM's own file order: A01_1=0,
+A02_1=3, E01_1=88, H01_1=152. Writing the Stage group/id/area globals alone
+(the decomp's `Stage::stageID` at 0x02098054, DebugScene's route) through the
+fade still loaded 1-1 -- the map commits early, and the load reads whatever
+stands at scene-create, so `tools/enter_course.py` re-writes the course id
+and the Stage globals (for the intro plate) after **every** cycle of the
+transition. The last writer wins, and the tool is the last writer.
+
+Five new savestates made this way and identified by entrance + walk trace
+(`data/state_*.ds1`, gitignored like every state): **2-1 `B01_1`, 3-1
+`C01_1`, 4-1 `D01_1`, 6-1 `F01_1`, 7-1 `G01_1`**. The identification of the
+4-1/7-1 states ties at one grounded sample (D01_1 vs F03_1, D07_1 vs
+G01_1); the injected, calibrated area index is the stronger evidence there.
+
+Static parse: `F01_1` 83.5% coverage with a real flagpole at 4,080 px (the
+drop probe then measured 253 of 256 columns in agreement, zero real
+falsehoods -- the kaigan tileset parses); `B01_1` 78.2% but no flagpole
+sprite (goal passed explicitly at 4,208 px, the last parsed ground column --
+the 4j protocol), with four measured slope columns overriding; `C01_1`
+(1.6%), `D01_1` (48.6%, under the 60% guard) and `G01_1` (21.6%) stay
+refused pending their own probes.
+
+Two more hostile actor types measured by contact (`tools/probe_hostility.py`,
+stomp-vanish on touch): 38/158, the `F01_1` fish that killed the first 6-1
+run at 609 px, and 232, `B01_1`'s desert crawler. `HOSTILE_ENEMY_TYPES`
+carries them; parity still passes (none appear in 1-1's entity list).
+
+**First measurements on the new states** (n=5 per arm, same protocol):
+
+| course | arm | distance | of goal | steps | reward | outcome |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2-1 `B01_1` | profile | 973.7 px | 23% | 29 | 110.4 | death |
+| 2-1 `B01_1` | legacy | 973.7 px | 23% | 29 | 110.4 | death |
+| 6-1 `F01_1` | profile | 1,601.0 px | 39% | 1200 | 620.5 | **trunc (alive)** |
+| 6-1 `F01_1` | legacy | 2,049.0 px | 50% | 1200 | 844.5 | **trunc (alive)** |
+
+The 6-1 rows are a first for this repo: **no arm had ever survived to the
+step cap outside world 1** -- both arms stand at the level's mid-section at
+the cap, no death. The 2-1 rows die at the 232 crawler: the threat-leap's
+descent clips it laterally mid-air (a stompable enemy, but the arc's tail
+passes through its side) -- the same measured mid-air-contact class as 5-1's
+goomba, and the cone rule cannot see enemies inside a safe cone.
+
+Still open: the clear outside world 1 (the 6-1 stall at its water/cliff
+mid-section is the closest any arm has stood), the mid-air contact policy,
+and probes for the three statically-refused courses.
 
 ## 5. File Index
 
@@ -785,6 +843,11 @@ evals/
   transfer_5_1_legacy.json       5-1, the 1-1 pixel bands (4j)
   transfer_8_1_profile.json      8-1 (H01_1), ROM-derived thresholds (4j)
   transfer_8_1_legacy.json       8-1, the 1-1 pixel bands (4j)
+  transfer_2_1_profile.json      2-1 (B01_1), the headless-entered desert (4m)
+  transfer_2_1_legacy.json       2-1 control arm (4m)
+  transfer_6_1_profile.json     6-1 (F01_1), first arm to survive to the
+                                 step cap outside world 1 (4m)
+  transfer_6_1_legacy.json       6-1 control arm: 50%, alive at the cap (4m)
   benchmark_n30_merged.json      n=30 stochastic + n=10 det, 14 models
 
 tools/
@@ -801,6 +864,10 @@ tools/
                                  (4k); emits out/floor_probe/*.json
   probe_hostility.py             Behavioral hostility: pin/drop/walk onto an
                                  actor type and measure death/stomp/nothing (4k)
+  enter_course.py                Enter ANY course headless: holds the running
+                                 course id through the map's A-press fade, so
+                                 the stylus-only world row is no longer a gate
+                                 (4m); produces the savestate directly
   parity_reflex.py               Legacy arm must equal the published 1-1 eval
   parity_planner.py              Rust sidecar vs Python, 37,281 queries
   record_dashboard.py            The README clip and its measured caption
@@ -826,6 +893,9 @@ out/floor_probe/
                                  contradictions (4k). A01_1's carries
                                  apply_overrides=false -- see 4k for why the
                                  published clear keeps the static profile.
+  B01_1.json / F01_1.json        the two headless-entered courses that parse:
+                                 B01_1 gains four slope columns, F01_1 agrees
+                                 with the parser on all 256 (4m)
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology

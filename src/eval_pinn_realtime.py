@@ -50,10 +50,12 @@ FRAME_DT = FRAMESKIP / 60.0  # wall-clock a single env step represents (s)
 # spinner in E01_1 that kills on the first contact frame; 258 is a leaper that
 # arcs through the standing body zone and killed a motionless Mario at frame
 # 160 (its first full cycle -- the initial 3-frame touch was too thin a
-# negative, corrected by standing-bait). Measured NOT hostile and left out:
-# 180 (140 pinned contact frames + repeated drops, harmless), 291/307 (static
-# foam high at the level edge).
-HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 172, 184, 247, 258, 312}
+# negative, corrected by standing-bait); 38/158 patrol F01_1 and both
+# stomp-vanish on contact; 232 is B01_1's desert crawler, stomp-vanish.
+# Measured NOT hostile and left out: 180 (140 pinned
+# contact frames + repeated drops, harmless), 291/307 (static foam high at
+# the level edge).
+HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 38, 158, 172, 184, 232, 247, 258, 312}
 
 def is_hostile_enemy(et):
     return int(round(float(et))) in HOSTILE_ENEMY_TYPES
