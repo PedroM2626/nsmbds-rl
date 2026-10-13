@@ -2019,6 +2019,6 @@
    "note": "landed"
   }
  ],
- "apply_overrides": false,
- "apply_overrides_reason": "the five slope ramps are measured truth, but the published 1-1 clear was flown against the nine-pit static profile; with the true four-pit profile the reflex dies at 1,338 px (parity_reflex FAIL) - re-tuning on true geometry is open work"
+ "apply_overrides": true,
+ "apply_overrides_reason": "resolved by the 4l re-tune: the leap landing-cone rule puts the published clear on the true four-pit profile at 235 steps, 5/5"
 }
