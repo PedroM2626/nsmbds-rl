@@ -51,7 +51,7 @@ class TilemapAStar:
                  exit_known=True):
         course = Course(name=name, rom_path=rom_path)
         require_plannable(course, exit_known=exit_known)   # refuse to plan on a fiction
-        cols = sorted(course.ground_cover.keys())
+        cols = sorted(course.solid_columns())
         self.min_col, self.max_col = cols[0], cols[-1]
         self.solid = set(cols)
         self.goal_col = self.max_col
