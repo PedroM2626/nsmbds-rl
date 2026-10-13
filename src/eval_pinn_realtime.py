@@ -44,7 +44,14 @@ FRAME_DT = FRAMESKIP / 60.0  # wall-clock a single env step represents (s)
 
 # Hostile entities in RAM that require avoidance/stomp (ignores coins, items, moving platforms)
 # 160: Goomba, 163: Koopa, 164: Paratroopa, 31: Piranha, 54: Spiney, 68: Buzzy, 69: DryBones, 81: HammerBro
-HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81}
+# Measured 2026-10-12 with the behavioral hostility oracles (pin-contact and
+# agent-walk-touch, see 4k): 172/184/312 patrol H01_1 (ledge walker, floor
+# patrol, ceiling-corner sitter -- all stomp-vanish on contact) and 247 is a
+# small spinner in E01_1 that kills on the first contact frame. Measured
+# NOT hostile and left out: 180 (E01_1 bobber: 140 pinned contact frames and
+# repeated drops, harmless), 258 (E01_1 leaper: direct contact frames, no
+# death), 291/307 (E01_1 static foam at the level edge).
+HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 172, 184, 247, 312}
 
 def is_hostile_enemy(et):
     return int(round(float(et))) in HOSTILE_ENEMY_TYPES

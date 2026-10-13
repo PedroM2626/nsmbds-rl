@@ -539,9 +539,13 @@ thresholds do.** On 1-1 the ordering is the same way round (legacy clears, profi
 peaks at 1,818 px), so the reflex arms are consistent in *which* one is stronger;
 what changed is that the gap narrowed from "clears vs 45%" to "71% vs 41%" on a
 level neither was tuned for. Both died with `pit=[1,1,1,1,1,1] ground=1` in the
-death diagnostic -- the pit features say ground is missing ahead while the RAM
-says Mario is standing, which is the coverage gap of 4e showing up as a bad
-decision rather than as a refusal.
+death diagnostic -- which this section first read as "the pit features say ground
+is missing ahead while the RAM says Mario is standing", and that reading was
+**backwards**: `pit_ahead` returns 1.0 for *solid* and 0.0 for *pit*, so
+`pit=[1,...]` said ground exists ahead, in agreement with `ground=1` and with
+the level. There was no detection disagreement at the 1-2 deaths (4k's drop
+probe later confirmed the parser has zero false floors on every probed course);
+what actually failed was the leap itself, and 4k's autopsies name the pattern.
 
 Reporting fix that came out of this: `run_episode` used to add the 1-1 spawn
 constant (88 px) to every arm's distance. On a course whose spawn is at 40 px that
@@ -569,26 +573,111 @@ committed as `media/nsmb_w5_1_spawn.png` / `media/nsmb_w8_1_spawn.png`):
 Both courses parse with exits: `E01_1` flagpole at 4,576 px over 96.0% ground
 coverage, `H01_1` at 3,920 px over 78.8%.
 
-**Second and third transfers, same protocol as the first: n=1 per arm, goal
-from the course's own flagpole sprite.**
+**Second and third transfers, now at n=5 per arm on the corrected stack (4k
+re-measured these; the first n=1 pass ran before the detection fixes and is
+kept only as history: profile 1,717.8 px, legacy 1,701.5 px on 5-1; both arms
+337.0 px on 8-1).** Goal from the course's own flagpole sprite.
 
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
-| 5-1 `E01_1` | profile | 1,717.8 px | 38% | 119 | 752.4 | death |
-| 5-1 `E01_1` | legacy | 1,701.5 px | 37% | 127 | 745.0 | death |
-| 8-1 `H01_1` | profile | 337.0 px | 9% | 30 | 68.0 | death |
-| 8-1 `H01_1` | legacy | 337.0 px | 9% | 30 | 68.0 | death |
+| 5-1 `E01_1` | profile | 1,052.4 px | 23% | 81 | 423.1 | death |
+| 5-1 `E01_1` | legacy | 1,530.7 px | 33% | 117 | 660.5 | death |
+| 8-1 `H01_1` | profile | 522.5 px | 13% | 43 | 159.6 | death |
+| 8-1 `H01_1` | legacy | 522.5 px | 13% | 43 | 159.6 | death |
 
-The 1-2 transfer's ordering -- the 1-1 bands ahead of the ROM-derived
-thresholds -- does not reproduce on 5-1: the arms die 16 px apart, with the same
-`ground=1 pit=[1,1,1,1,1,1]` disagreement the 1-2 deaths showed, so on this
-course the two reflexes are equally insufficient. On 8-1 neither arm survives
-the opening 30 steps: both fall into the pit around x=258 px that the jump-less
-identification trace falls into too, with byte-identical death diagnostics --
-and unlike 1-2 and 5-1, this one is internally consistent (`ground=0`,
-mid-fall). No arm has yet cleared a course outside world 1; the reactive
-controller's measured world row is now 1-1 (100%), 1-2 (71%, legacy), 5-1
-(38%), 8-1 (9%).
+All 20 episodes are byte-identical within their arm: the emulator, the course
+and the reflex are deterministic, so these are five confirmations of one
+trajectory each, not a rate. What the numbers say after 4k's detection fixes:
+8-1 gets 55% further (337 -> 522 px) once the volcano tileset's three missed
+floor columns and the three hostile actor types are known. 5-1's profile arm
+gets *less far* (1,718 -> 1,052 px) because the spinner at x~944 (RAM type
+247, measured to kill on the first contact frame) is now seen and dodged --
+the dodge leap predates any landing check and lands in the adjacent pit, the
+same policy failure the 4k autopsies measure directly. No arm has yet cleared
+a course outside world 1, and the blocker is no longer detection: it is the
+reflex's leap-on-threat and stall-at-wall policies, both now measured in 4k.
+
+## 4k. The tile map measured against the game, and the reflex's real failure modes (2026-10-12)
+
+**The drop probe: Mario as the solidity oracle.** The decomp names
+`CollisionMgr::getSolidTileType(x, y)` but its body is not decompiled, the
+ARM9 route is closed (4h), and the course->tileset binding is still unknown
+(4f). `tools/probe_floor.py` takes the other end: py-desmume can *write*
+memory, so the probe teleports Mario above every column and lets the game's
+own physics answer. The teleport took three measured discoveries: the
+player's x authority is `+0x5C` (the synced actor B at `+0x68` follows it;
+writing B does nothing), y authority IS the A field, and after a mid-run
+death the player object re-allocates -- a second type-0x1C copy keeps reading
+spawn coordinates, so the live one is found by testing whose `+0x5C` write
+moves its own `+0x68`. The camera cannot be teleported (enemy linking and
+streaming follow it), so each drop pins until the y-write *engages* -- in
+unloaded space the game holds the player at y=0 and nothing is measured.
+
+784 columns probed across the three savestate courses (A01_1 251, E01_1 287,
+H01_1 246; `out/floor_probe/*.json`):
+
+- **Zero confirmed false floors.** Every candidate fall was a probe artifact
+  or -- the interesting case -- a ride on a moving platform: E01_1 col 213
+  "falls" at 0.2 px/frame for 200+ frames, i.e. it *lands* on the descending
+  platform the static parser cannot see but whose existence agrees with its
+  floor claim.
+- **The real falsehood class is fake pits: slope ramps the flat class list
+  misses.** On A01_1, **five of the nine published pits are ramps** (cols
+  51-52, 59-60, 64-65, 147-148, 206-207: Mario lands on them at rows
+  28-29.75; objects 0x48/0x49/0x4A/0x4B/0x35/0x66 of the grass tileset). On
+  H01_1, three floor columns sit on kazan objects 0x15/0x16.
+- **Hover is not floor**: a landing stable at the drop height is a cave roof
+  or high structure (H01_1's ceiling produces 27 of them); a landing far
+  below the dominant floor is a pit's inner shelf. Neither overrides the
+  parser -- the walker cannot use either surface.
+- **Corrections to this document's own earlier readings:** `pit_ahead`
+  returns 1.0 for *solid* (fixed above, in 4j); and the 8-1 opening "pit at
+  x~258" is not a pit -- it is a **crumbling-block bridge** (the probe lands
+  on it in under 12 frames; a 32-frame stall collapses it, which is what
+  killed the jump-less identification trace).
+
+**The measured overrides.** `Course` now loads `out/floor_probe/<id>.json`
+and prefers a confirmed measurement wherever it contradicts the static
+classes (`floor_row`/`solid_columns`; see `_load_floor_probe` for exactly
+what counts as confirmed). H01_1's three columns are active -- its pit list
+shrinks accordingly. **A01_1's override is deliberately staged off**: with
+the true four-pit profile the legacy arm dies at 1,338 px and
+`tools/parity_reflex.py` fails all four metrics -- the published clear
+measurably depended on leaping the five phantom pits, and re-tuning the
+reflex on true geometry is open work rather than a silent invalidation of
+the repo's one published clear.
+
+**Hostility measured by contact** (`tools/probe_hostility.py`): species names
+are unreadable (the decomp's classes for those slots are stubs), but the game
+can answer contact directly -- pin Mario onto the actor, drop onto it, or
+walk there with the agent when it only links near the camera.
+
+| RAM type | where | verdict |
+| --- | --- | --- |
+| 172, 184, 312 | `H01_1` | **hostile** -- all three stomp-vanish on contact |
+| 247 | `E01_1` | **hostile** -- kills on the first contact frame |
+| 180 | `E01_1` | harmless: 140 pinned contact frames and repeated drops |
+| 258 | `E01_1` | no death in direct contact frames (leaper) |
+| 291, 307 | `E01_1` | static foam at the level edge, deep below |
+
+`HOSTILE_ENEMY_TYPES` gains 172/184/247/312; parity still passes because none
+of those ids appear in 1-1's entity list.
+
+**The autopsies: what actually kills the arms outside world 1.**
+
+- *5-1* (trace, `E01_1` profile): the fatal leap is **enemy-triggered ~90 px
+  before the pit** -- at takeoff the pit vector correctly reads all-solid;
+  the full-height arc peaks, descends past the lip, and Mario lands *inside*
+  the 4-tile pit, wedges into the east wall at row 35.6, and the kill line
+  finishes him 7 steps later. The leap has no landing-safety check.
+- *8-1* (trace, `H01_1`): he runs into the level's opening structure at
+  x=281, the blocked-logic jumps **in place on the crumbling block**, and the
+  block expires under him. The pit vector was never wrong once.
+
+Both are reflex *policy* failures -- leap-on-threat and stall-at-wall -- with
+the detections now measured true. Fixing them (a landing-safety rule during
+descent, a no-stall rule over decaying floors) is the concrete open work this
+section leaves behind, alongside the A01_1 re-tune above.
 
 ## 5. File Index
 
@@ -645,6 +734,11 @@ tools/
   identify_state.py              Which course a savestate is in: entrance match
                                  over all 191, then floor rows on a walk-right
                                  trace (4j)
+  probe_floor.py                 The drop oracle: teleport Mario per column and
+                                 let the game's physics report the true floor
+                                 (4k); emits out/floor_probe/*.json
+  probe_hostility.py             Behavioral hostility: pin/drop/walk onto an
+                                 actor type and measure death/stomp/nothing (4k)
   parity_reflex.py               Legacy arm must equal the published 1-1 eval
   parity_planner.py              Rust sidecar vs Python, 37,281 queries
   record_dashboard.py            The README clip and its measured caption
@@ -663,6 +757,13 @@ out/dataset/
   object_ids.json                342 actor profile mappings
   physics.json                   20.12 fixed-point engine constants and laws
   meta.json                      Dataset schema specification
+
+out/floor_probe/
+  A01_1.json / E01_1.json / H01_1.json   measured per-column floors from the
+                                 drop probe; Course prefers their confirmed
+                                 contradictions (4k). A01_1's carries
+                                 apply_overrides=false -- see 4k for why the
+                                 published clear keeps the static profile.
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology

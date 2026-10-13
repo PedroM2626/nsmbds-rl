@@ -128,6 +128,70 @@ class Course:
         span = (max(xs) - min(xs)) if xs else 0
         self.ground_coverage = (len(self.ground_cover) / span) if span else 0.0
 
+        # Measured floor corrections, when this course has been probed with
+        # tools/probe_floor.py (the teleport-drop oracle). Loaded AFTER the
+        # static classes so floor_row/solid_columns can prefer the measurement.
+        self.floor_probe = self._load_floor_probe()
+
+    def _load_floor_probe(self):
+        """{col: row or None} for columns where a confirmed drop measurement
+        contradicts the static classes -- and only those.
+
+        What counts as confirmed (the rest of the probe's rich output is
+        deliberately ignored here):
+          * ``landed`` within the walking band (dominant floor -5 rows above
+            to +3 below, i.e. reachable by a jump or a fall) on a column the
+            static classes call a pit: a floor the parser missed. Measured on
+            A01_1: five of its nine "pits" are sloped ramps (objects 0x48/
+            0x49/0x4A/0x4B/0x35/0x66 of the grass tileset); on H01_1: three
+            floor columns (kazan objects 0x15/0x16).
+          * ``pit`` (a fall past every plausible surface) on a column the
+            static classes call floor: a floor the parser invented. Measured:
+            zero of these on all three probed courses.
+
+        What does NOT override: ``hover`` (support at the drop height -- a
+        cave roof or a high structure, not the walking plane), ``timeout``
+        (measured to be a ride on a moving platform, e.g. E01_1 col 213
+        descends 0.2 px/frame: real support, and the static floor claim was
+        right), and landings far above the floor (the parser's floor_row is
+        the bottom run on purpose; the probe lands on the top surface).
+
+        Staging: a probe JSON can carry ``"apply_overrides": false`` to keep
+        the static classes in charge for that course. A01_1 does this on
+        purpose -- its five slope ramps are measured truth, but the published
+        1-1 clear was flown against the parser's nine-pit profile, and with
+        the true four-pit profile the reflex dies at 1,338 px
+        (tools/parity_reflex.py FAILs all four metrics). The clear's margin
+        measurably depended on the phantom pits; re-tuning the reflex on true
+        geometry is open work, and until it is done the published artifact
+        must not be silently invalidated.
+        """
+        cid = os.path.basename(self.name).replace(".bin", "")
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "out", "floor_probe", cid + ".json")
+        if not os.path.exists(path):
+            return {}
+        try:
+            data = json.load(open(path, encoding="utf-8"))
+            if data.get("apply_overrides") is False:
+                return {}
+            cols = data.get("columns", [])
+            dom = next((c.get("floor_row_dominant") for c in cols
+                        if c.get("floor_row_dominant") is not None), None)
+            if dom is None:
+                return {}
+            out = {}
+            for c in cols:
+                m, note, p = c.get("measured"), c.get("note"), c.get("parser")
+                if note == "landed" and m is not None and p is None:
+                    if (dom - m) <= 5 and (m - dom) <= 3:
+                        out[c["col"]] = int(round(m))
+                elif note == "pit" and p is not None:
+                    out[c["col"]] = None
+            return out
+        except Exception:
+            return {}
+
     def floor_row(self, tile_x):
         """Top row of the BOTTOM contiguous ground run at this column: the surface
         Mario walks on.
@@ -137,7 +201,16 @@ class Course:
         floor as being up on the platform and hid the real ground underneath --
         at cols 117..121 of A01_1 it returned 24 (the brick row the rendered frame
         shows floating in the air) while the walkable floor runs at row 30.
+
+        Measured corrections from tools/probe_floor.py take precedence when the
+        course has a floor probe: a confirmed walkable landing on a column the
+        static classes call a pit, or a confirmed fall on a column they call a
+        floor. See _load_floor_probe for what counts as confirmed.
         """
+        if self.floor_probe:
+            c = int(tile_x)
+            if c in self.floor_probe:
+                return self.floor_probe[c]
         rows = self.ground_cover.get(int(tile_x))
         if not rows:
             return None
@@ -145,6 +218,24 @@ class Course:
         while (r - 1) in rows:
             r -= 1
         return r
+
+    def solid_columns(self):
+        """Columns with walking ground, static classes corrected by the probe.
+
+        TilemapAStar builds its pit list from these; ground_cover alone would
+        keep every slope gap the static classes miss (measured on A01_1: five
+        of its nine "pits" are sloped ramps, and on H01_1 three floor columns
+        sit on tileset objects the flat class list does not know).
+        """
+        if not self.floor_probe:
+            return set(self.ground_cover)
+        solid = set(self.ground_cover)
+        for c, r in self.floor_probe.items():
+            if r is None:
+                solid.discard(c)
+            else:
+                solid.add(c)
+        return solid
 
     def platform_rows(self, tile_x):
         """Tops of the ground-class surfaces stacked ABOVE the floor, per column.
