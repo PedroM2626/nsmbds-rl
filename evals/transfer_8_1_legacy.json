@@ -13,8 +13,8 @@
     "mean_progress_px": 564.956787109375,
     "max_progress_px": 564.956787109375,
     "mean_reward": 208.97851562499972,
-    "mean_fps": 19.042526468958428,
-    "mean_latency_ms": 0.03001880645751953
+    "mean_fps": 18.399684853954064,
+    "mean_latency_ms": 0.0200347900390625
   },
   "episodes": [
     {
@@ -26,8 +26,8 @@
       "max_mario_px": 564.956787109375,
       "reached_goal": false,
       "termination": "death",
-      "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 19.31546958425475,
+      "mean_control_latency_ms": 0.06015300750732422,
+      "achieved_env_fps": 19.142451136889733,
       "death_diag": "abs 565px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[0, 118, 179] enemy_type=[184, 172, 36]",
       "episode": 1
     },
@@ -40,8 +40,8 @@
       "max_mario_px": 564.956787109375,
       "reached_goal": false,
       "termination": "death",
-      "mean_control_latency_ms": 0.05986213684082031,
-      "achieved_env_fps": 18.704063758664606,
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 17.709559116295406,
       "death_diag": "abs 565px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[0, 118, 179] enemy_type=[184, 172, 36]",
       "episode": 2
     },
@@ -55,7 +55,7 @@
       "reached_goal": false,
       "termination": "death",
       "mean_control_latency_ms": 0.0,
-      "achieved_env_fps": 18.995379394106713,
+      "achieved_env_fps": 18.735742615105686,
       "death_diag": "abs 565px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[0, 118, 179] enemy_type=[184, 172, 36]",
       "episode": 3
     },
@@ -68,8 +68,8 @@
       "max_mario_px": 564.956787109375,
       "reached_goal": false,
       "termination": "death",
-      "mean_control_latency_ms": 0.020017623901367188,
-      "achieved_env_fps": 19.508717355267343,
+      "mean_control_latency_ms": 0.01999378204345703,
+      "achieved_env_fps": 17.472678943256984,
       "death_diag": "abs 565px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[0, 118, 179] enemy_type=[184, 172, 36]",
       "episode": 4
     },
@@ -82,8 +82,8 @@
       "max_mario_px": 564.956787109375,
       "reached_goal": false,
       "termination": "death",
-      "mean_control_latency_ms": 0.07021427154541016,
-      "achieved_env_fps": 18.689002252498728,
+      "mean_control_latency_ms": 0.02002716064453125,
+      "achieved_env_fps": 18.937992458222492,
       "death_diag": "abs 565px vy=-1.00 ground=0 pit=[1, 1, 1, 1, 1, 1] enemy_dx_px=[0, 118, 179] enemy_type=[184, 172, 36]",
       "episode": 5
     }
