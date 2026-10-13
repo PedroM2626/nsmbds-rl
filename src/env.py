@@ -27,15 +27,22 @@ class MarioNdsEnv(gym.Env):
     # Calibrated against optical flow (~1.0 correlation in deltas).
     RAM_PX_PER_UNIT = 1.0 / 4096.0
 
-    def __init__(self, rom_path, state_path, render_mode=None, reward_mode="flow"):
+    def __init__(self, rom_path, state_path, render_mode=None, reward_mode="ram"):
         super(MarioNdsEnv, self).__init__()
-        
+
         self.rom_path = rom_path
         self.state_path = state_path
         self.render_mode = render_mode
-        # "flow": visual reward via optical flow (legacy); "ram": progress via camera-RAM
-        # + death via lives (src/ram_state.py). Template matching detection remains
-        # active in both modes as redundancy.
+        # "ram" (the default since 4s): reward = camera-RAM progress * 2 - 0.05,
+        #   death via RAM lives (-15), finish/timeout via templates (+100/-50) --
+        #   the SAME reward the MarioRamEnv gives, so the only difference between
+        #   the two training arms is the observation (this one: grayscale 84x84
+        #   top screen; the RAM env: the 23-float scenario vector). A CV agent
+        #   must learn from pixels what the RAM env reads directly.
+        # "flow" (legacy): visual reward via background optical flow. Kept for
+        #   reproducing the June-era runs; all n30 benchmark rows for the visual
+        #   arms were measured under it. Template matching detection remains
+        #   active in both modes as redundancy.
         self.reward_mode = reward_mode
         self.ram = None
         
@@ -250,6 +257,14 @@ class MarioNdsEnv(gym.Env):
             done = True
             reward -= 15.0
             print("Death detected (RAM lives)!")
+
+        # Level clear via RAM flag (redundant with the ORB finish template).
+        # Active only in ram mode, where the poll dict is populated.
+        st_r = getattr(self, "last_ram_state", None)
+        if st_r is not None and not done and st_r.get("cleared", False):
+            done = True
+            reward += 100.0
+            print("Finish detected (RAM clear flag)!")
                 
         # ORB matching for finish and timeout
         if hasattr(self, 'last_top_screen_gray') and self.last_top_screen_gray is not None:
