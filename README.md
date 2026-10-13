@@ -111,6 +111,14 @@ Place the target ROM binary and initial episode savestate in `data/`:
 
 ## 🔬 Visual Reward Methodology
 
+> **Status (2026-10-13):** the default reward on the visual arm is now the
+> **unified RAM reward** (camera-RAM progress, RAM-lives death, RAM clear
+> flag) — the same one the RAM arm trains on, so the two arms differ only in
+> observations and their numbers are comparable. The visual tracker below is
+> retained as the legacy opt-in (`reward_mode="flow"`) and as redundant
+> terminal detection; the June-era runs and the n30 benchmark rows were
+> measured under it. See PROJECT_STATUS 4s for the full reward ledger.
+
 To avoid rigid coupling with volatile emulator RAM addresses, the baseline visual reward function combines two computer vision heuristics operating on top-screen grayscale observation tensors ($84 \times 84$):
 
 1. **Dense Optical Flow (Farneback Method):** Computes pixel velocity vectors across the background. When the virtual camera tracks the agent to the right, the background shifts leftward, yielding an advance gradient along the X-axis. Directional median filtering isolates background translation from foreground agent motion.

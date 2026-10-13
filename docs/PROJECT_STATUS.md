@@ -1109,6 +1109,54 @@ stroke. Three burst rhythms were measured against it -- press every 16,
 stands at 1,929 px alive at the cap. The frontier is now oracle-mapped,
 not just traced.
 
+## 4s. The reward ledger: one reward, two arms (2026-10-13)
+
+The project's original goal was a vision-only agent; along the way a parallel
+RAM arm grew and the two drifted apart in reward. They no longer. As of this
+section the **reward is the same on both arms and reads only the RAM**;
+the only thing that differs between the arms is the observation. The ledger,
+so no future re-measure has to rediscover it:
+
+**Reward systems that exist in the codebase:**
+
+1. **The unified RAM reward** (`MarioRamEnv.step`, src/ram_env.py; and
+   `MarioNdsEnv` with `reward_mode="ram"`, src/env.py): +2.0 per pixel of
+   camera-RAM progress, -0.05 per step, **-15 on death** (RAM lives), **+100
+   on level clear** (RAM clear flag / flagpole contact), **-50 on stage-clock
+   timeout**. This is the reward of every current training and every eval.
+2. **The optical-flow reward** (`MarioNdsEnv` with `reward_mode="flow"`, the
+   June-era default): Farneback median background flow + Mario's absdiff
+   displacement - 0.05. Retained **only** to reproduce the June-era mlflow
+   runs and the n30 benchmark rows, which were measured under it; it is no
+   longer the default anywhere.
+3. **The imagination shaping** (`ShapingConfig`, src/pinn_world_model.py):
+   what the Dyna-PPO/CEM planner optimizes *inside the world model* --
+   learned reward + 4.0*cam_delta - 3.5*enemy-proximity (Gaussian, 48/42 px
+   sigmas) - 1.5*pit-in-next-column - 0.02/step - pessimism*enemy-uncertainty,
+   with a grounded -15 on predicted lethal collisions (stomps exempt). This
+   shapes planning, not the emulator reward.
+4. **ICM curiosity** (`--use-icm`, src/train_ppo_recurrent.py): an intrinsic
+   bonus logged separately as intrinsic vs extrinsic; an experiment knob,
+   not part of the unified design.
+
+**The change (this section):** `MarioNdsEnv`'s default flipped
+`reward_mode="flow"` -> `"ram"`, plus a RAM clear-flag finish check (+100)
+so that death, clear and progress are all RAM-derived on the visual arm too.
+The visual arm's terminal templates (Bowser-silhouette death, ORB
+finish/timeout) remain active as redundant detectors, as they always were.
+
+**The two arms, as they now stand:**
+
+| arm | observation | reward |
+|---|---|---|
+| RAM (`MarioRamEnv`) | 23 floats: Mario (x,y,vx,vy,ground,lives,time,cam), 3 enemies (dx,dy,type), 6 pit flags | unified RAM reward |
+| vision (`MarioNdsEnv`) | top screen, grayscale, 84x84x1 | **the same unified RAM reward** |
+
+Which is exactly the design brief restated: a CV agent must learn from pixels
+what the RAM arm reads directly -- the scenario, the enemies, Mario's
+position -- while progress and death mean the same thing on both arms, so
+their numbers are directly comparable.
+
 ## 5. File Index
 
 ```
