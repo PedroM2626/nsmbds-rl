@@ -169,11 +169,14 @@ arms:
 
 | arm | steps | final px | reward | outcome |
 | --- | --- | --- | --- | --- |
-| `--reflex legacy` | 209 | 4,022 | 1530.375 | **cleared** |
-| `--reflex profile` | 109 | 1,819 | 623.6911 | died (peak 1,730 px), **short of the flagpole** |
+| `--reflex legacy` | 235 | 4,022 | 1529.075 | **cleared** |
+| `--reflex profile` | 159 | 1,816 | 620.1389 | died (peak 1,728 px), **short of the flagpole** |
 
-So the bands are load-bearing: with pure geometry the controller gets ~43% of the
+So the bands are load-bearing: with pure geometry the controller gets ~45% of the
 way. The stall is not a reflex bug but a **geometry-fidelity** bug -- see 4c.
+(Both rows are re-measured by `tools/parity_reflex.py` against the **true**
+four-pit profile since 4l; the original nine-pit rows were 209 steps / 1530.375
+for legacy and 109 / 623.6911 for profile.)
 
 ## 4c. Walkable-surface fidelity fix (2026-10-11)
 
@@ -195,13 +198,17 @@ Fixes:
   profile -- that is what the hardcoded `2430..2630` reflex band was patching
   over, and why the dashboard's tile panel showed blocks that are not there.
 
-Effect, measured: the pit census is unchanged (9 pits, widths 2-3, `feasible=True`),
+Effect, measured: the pit census is unchanged (9 pits, widths 2-3, `feasible=True`
+-- on the static classes as they stood then; the drop probe later measured five
+of those nine as slope ramps, 4k/4l),
 obstacle columns went 49 -> 60 (heights recomputed against the real floor), the
 Rust/Python query parity still passes on all 37,281 sampled queries, and the
 `reactive` arm still clears 5/5 at 4,022.4 px -- one step shorter than before
-(209 vs 210), which is why `evals/pinn_realtime_eval.json` was regenerated. The
-pure-geometry arm is still short (1,730 px), so parser fidelity was necessary but
-not sufficient: the remaining gap is in the reflex rules themselves.
+(209 vs 210), which is why `evals/pinn_realtime_eval.json` was regenerated
+(superseded again by the 4l re-baseline, now 235 steps on the true profile).
+The pure-geometry arm is still short (1,730 px then; 1,728 on the true
+profile), so parser fidelity was necessary but not sufficient: the remaining
+gap is in the reflex rules themselves.
 
 ## 4d. Two formulas for Mario's absolute position (resolved)
 
@@ -217,7 +224,9 @@ Resolved: `run_episode` now writes `final_mario_px` / `max_mario_px` alongside t
 existing fields (all previously published values verified unchanged), and
 `tools/record_dashboard.py` uses the eval's quantity **and its stop rule**
 (`abs_px >= goal - 16` or `level_cleared`). One trajectory, one number: the clip
-and `evals/pinn_realtime_eval.json` both report 209 steps and 4,022 px.
+and `evals/pinn_realtime_eval.json` both reported 209 steps and 4,022 px at the
+time of writing; the 4l re-baseline moved both to 235 steps on the true
+four-pit profile.
 
 ## 4e. Porting to another course: investigation results (2026-10-11)
 
@@ -332,6 +341,8 @@ Attempted 2026-10-11. What the file actually is:
 - What *does* correlate with terrain is coarser: **"this object number has at
   least one non-zero pair"**. On A01_1 that reproduces the hand-validated ground
   set exactly -- 246 of 267 columns, 92.1% coverage, 9 pits, widths [2 x8, 3 x1]
+(the static-class census as it stood then; five of the nine are measured slope
+ramps, 4k)
   -- and it separates A01_1's ground classes at 94.9% against a 64.1% baseline
   (`tools/mucd_probe.py`). **Read 4h before using this as a solidity source: it
   holds for the grass tileset and fails as a general rule.**
@@ -413,8 +424,8 @@ The route is the game's own: **touch the flagpole, and the level ends by putting
 Mario back on the World 1 map.** No title screen, no menu, no stylus, no save
 editing. `tools/reach_map.py` automates it end to end:
 
-1. drive the published reactive agent to the clear (219 env steps, same trajectory
-   as `evals/pinn_realtime_eval.json`);
+1. drive the published reactive agent to the clear (219 env steps on the
+   trajectory as it stood then, pre-4l; the re-baselined clear runs 235);
 2. keep cycling. The clear animation, the castle walk and the fade take **540
    cycles (9 s of game time)**; the fade-to-black frame is the marker;
 3. the map appears with 1-1 flagged and the next node unlocked, but it **slides in
@@ -427,6 +438,9 @@ editing. `tools/reach_map.py` automates it end to end:
 Re-running the finished tool reproduces the state the transfer experiment used:
 `--node 1` enters with `mario_B = 40.0 px, mario_A = -416.0 px`, the same two
 numbers measured from the manual run that produced `data/state_1-2.ds1`.
+(Those states were made with the pre-4l agent; the shipped .ds1 files are
+unchanged, and re-running today reproduces the sequence with the 4l clear's
+slightly different timing.)
 
 **What the map does not give: another world.** The world row (`w1..w8`) along the
 bottom of the map screen is stylus-operated, and the stylus is inert in
@@ -582,20 +596,23 @@ kept only as history: profile 1,717.8 px, legacy 1,701.5 px on 5-1; both arms
 | --- | --- | --- | --- | --- | --- | --- |
 | 5-1 `E01_1` | profile | 1,052.4 px | 23% | 81 | 423.1 | death |
 | 5-1 `E01_1` | legacy | 1,530.7 px | 33% | 117 | 660.5 | death |
-| 8-1 `H01_1` | profile | 522.5 px | 13% | 43 | 159.6 | death |
+| 8-1 `H01_1` | profile | 660.0 px | 17% | 65 | 227.7 | death |
 | 8-1 `H01_1` | legacy | 522.5 px | 13% | 43 | 159.6 | death |
 
 All 20 episodes are byte-identical within their arm: the emulator, the course
 and the reflex are deterministic, so these are five confirmations of one
-trajectory each, not a rate. What the numbers say after 4k's detection fixes:
-8-1 gets 55% further (337 -> 522 px) once the volcano tileset's three missed
-floor columns and the three hostile actor types are known. 5-1's profile arm
-gets *less far* (1,718 -> 1,052 px) because the spinner at x~944 (RAM type
+trajectory each, not a rate. The numbers with 4k's detection fixes plus 4l's
+two policy rules (the landing cone applies to both arms; the no-stall retreat
+is profile-only, so the legacy arm keeps its published escalation): 8-1's
+profile arm went 337 -> 522 -> 660 px (9% -> 17%) as the missed kazan floors,
+the hostile 172/184/312 types and the no-stall retreat landed. 5-1's profile
+arm gets *less far* (1,718 -> 1,052 px) because the spinner at x~944 (RAM type
 247, measured to kill on the first contact frame) is now seen and dodged --
 the dodge leap predates any landing check and lands in the adjacent pit, the
 same policy failure the 4k autopsies measure directly. No arm has yet cleared
 a course outside world 1, and the blocker is no longer detection: it is the
-reflex's leap-on-threat and stall-at-wall policies, both now measured in 4k.
+reflex's leap-on-threat policy on 5-1's platform complexes, now measured in
+4k.
 
 ## 4k. The tile map measured against the game, and the reflex's real failure modes (2026-10-12)
 
@@ -640,12 +657,12 @@ H01_1 246; `out/floor_probe/*.json`):
 and prefers a confirmed measurement wherever it contradicts the static
 classes (`floor_row`/`solid_columns`; see `_load_floor_probe` for exactly
 what counts as confirmed). H01_1's three columns are active -- its pit list
-shrinks accordingly. **A01_1's override is deliberately staged off**: with
-the true four-pit profile the legacy arm dies at 1,338 px and
-`tools/parity_reflex.py` fails all four metrics -- the published clear
-measurably depended on leaping the five phantom pits, and re-tuning the
-reflex on true geometry is open work rather than a silent invalidation of
-the repo's one published clear.
+shrinks accordingly. **A01_1's override was at first deliberately staged
+off**: with the true four-pit profile the legacy arm died at 1,338 px and
+`tools/parity_reflex.py` failed all four metrics, because the published
+clear measurably depended on leaping the five phantom pits. 4l resolves
+this: one policy rule (the leap landing cone) re-tunes the clear onto the
+true profile at 235 steps, and A01_1's overrides are now on.
 
 **Hostility measured by contact** (`tools/probe_hostility.py`): species names
 are unreadable (the decomp's classes for those slots are stubs), but the game
@@ -678,6 +695,51 @@ Both are reflex *policy* failures -- leap-on-threat and stall-at-wall -- with
 the detections now measured true. Fixing them (a landing-safety rule during
 descent, a no-stall rule over decaying floors) is the concrete open work this
 section leaves behind, alongside the A01_1 re-tune above.
+
+## 4l. The re-tune: one policy rule puts the 1-1 clear on true geometry (2026-10-12)
+
+The 4k autopsy of the 1,338 px death named the mechanism exactly: the
+goomba-triggered leap took off from a *slope*, the slope-launched apex
+measured 83 px (vs the 71 px flat calibration), the touchdown ran ~55 px past
+the nominal 109.73 px reach, and the arc came down inside the real pit at
+cols 76-77, wedging into the far wall. The published clear had survived the
+same stretch because the phantom-pit leap at col 63 repositioned it first --
+a dependency on the parser's lie.
+
+The fix is one rule, and it is physics rather than pixel bands: **a
+threat-triggered leap is a commitment of ~110-165 px with no way back, so it
+is only made when the landing cone has ground.** `_threat_landing_unsafe`
+queries the planner's own `surface_ahead` over cols `reach-1 .. reach+4`
+(the +4 is the measured overshoot; a cone that only covers the nominal arc
+is a cone the game has already been measured to miss) and when the cone
+overlaps a pit the reflex hops in place instead -- the threat passes
+underneath, and the pit's own edge-leap, which is never suppressed, clears
+both. A no-stall retreat burst (straight to the [LEFT x4, RUN x8, JUMP]
+escalation instead of in-place jumps) is added for the profile arm only,
+where measured stall floors expire; the legacy arm keeps the published
+escalation.
+
+The measured result, all on the true four-pit profile (`A01_1.json` now
+`apply_overrides: true`):
+
+- **legacy clears again, 5/5, at 4,022.4 px of 4,032** -- 235 steps (was 209
+  on the phantom-pit profile), reward 1529.075, and the pixel bands are
+  untouched: the clear generalizes to true geometry through the one
+  physics rule.
+- profile (pure geometry, no bands): 159 steps, dies at 1,816 px -- the
+  bands remain load-bearing for the full clear, unchanged story.
+- `evals/pinn_realtime_eval.json` re-published from that n=5 run;
+  `tools/parity_reflex.py` passes against it (legacy == published, all five
+  metrics); `tools/export_geometry.py` regenerated the Rust planner's
+  geometry with the true pit census (4 pits, 4 takeoffs); the README clip was
+  re-recorded on the new trajectory (31 s, 1,880 frames = 235 steps x 8).
+- The transfer table in 4j picks up the same rules: 8-1 profile 522 -> 660
+  px (the no-stall retreat); 5-1 unchanged at its measured failure points.
+
+What is still open after this: the 5-1 leap-on-threat policy around its
+platform complexes (the 4k autopsies; the cone rule cannot help a mid-air
+goomba collision inside a safe cone), and a clear outside world 1 by any
+arm.
 
 ## 5. File Index
 

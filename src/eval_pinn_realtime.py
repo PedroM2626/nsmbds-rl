@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ram_env import MarioRamEnv  # noqa: E402
 from pinn_world_model import MarioPINNWorldModel, CEMMPController, N_ACTIONS, ShapingConfig  # noqa: E402
 from course import Course, TILE  # noqa: E402
-from tilemap_planner import TilemapAStar  # noqa: E402
+from tilemap_planner import TilemapAStar, dynamic_jump_reach_tiles  # noqa: E402
 
 ROM = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
 STATE = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1"
@@ -44,14 +44,16 @@ FRAME_DT = FRAMESKIP / 60.0  # wall-clock a single env step represents (s)
 
 # Hostile entities in RAM that require avoidance/stomp (ignores coins, items, moving platforms)
 # 160: Goomba, 163: Koopa, 164: Paratroopa, 31: Piranha, 54: Spiney, 68: Buzzy, 69: DryBones, 81: HammerBro
-# Measured 2026-10-12 with the behavioral hostility oracles (pin-contact and
-# agent-walk-touch, see 4k): 172/184/312 patrol H01_1 (ledge walker, floor
-# patrol, ceiling-corner sitter -- all stomp-vanish on contact) and 247 is a
-# small spinner in E01_1 that kills on the first contact frame. Measured
-# NOT hostile and left out: 180 (E01_1 bobber: 140 pinned contact frames and
-# repeated drops, harmless), 258 (E01_1 leaper: direct contact frames, no
-# death), 291/307 (E01_1 static foam at the level edge).
-HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 172, 184, 247, 312}
+# Measured with the behavioral hostility oracles (pin-contact, standing-bait,
+# agent-walk-touch -- see 4k): 172/184/312 patrol H01_1 (ledge walker, floor
+# patrol, ceiling-corner sitter -- all stomp-vanish on contact); 247 is a small
+# spinner in E01_1 that kills on the first contact frame; 258 is a leaper that
+# arcs through the standing body zone and killed a motionless Mario at frame
+# 160 (its first full cycle -- the initial 3-frame touch was too thin a
+# negative, corrected by standing-bait). Measured NOT hostile and left out:
+# 180 (140 pinned contact frames + repeated drops, harmless), 291/307 (static
+# foam high at the level edge).
+HOSTILE_ENEMY_TYPES = {160, 163, 164, 31, 54, 68, 69, 81, 172, 184, 247, 258, 312}
 
 def is_hostile_enemy(et):
     return int(round(float(et))) in HOSTILE_ENEMY_TYPES
@@ -300,6 +302,31 @@ class BaseReflexController:
                     return "leap"   # Running leap: clears apex > 50px high or stomps
         return None
 
+    def _threat_landing_unsafe(self, obs):
+        """True when the cone a threat-leap would land in overlaps a pit.
+
+        The cone is reach-1 .. reach+4 columns ahead: far wider than the
+        nominal 109.73 px reach on purpose, because measured leaps keep
+        landing past it -- off an E01_1 slope the touchdown ran ~48 px long,
+        and off A01_1's slope the apex hit 83 px (vs the 71 px calibration)
+        and the touchdown ~55 px past reach. A cone that only covers the
+        nominal arc is a cone the game has already been measured to miss.
+
+        Reads the surface through the planner's own surface_ahead so both
+        backends (TilemapAStar, RustPlanner) answer identically.
+        """
+        if self.planner is None:
+            return False
+        abs_px = self._abs_px(obs)
+        col = int(abs_px // 16)
+        reach = dynamic_jump_reach_tiles()
+        lo, hi = col + reach - 1, col + reach + 4
+        try:
+            _, prof = self.planner.surface_ahead(abs_px, look_tiles=hi - col + 1)
+        except Exception:
+            return False
+        return any(r is None and lo <= c <= hi for c, r in prof)
+
     def reflex_act(self, obs):
         on_ground = obs[4] > 0.5
         vy = obs[3]
@@ -340,7 +367,12 @@ class BaseReflexController:
         if blocked:
             self._stuck = 0
             self._blocked += 1
-            if self._blocked >= 3:
+            if self.reflex_mode == "profile" or self._blocked >= 3:
+                # Profile arms go straight to the retreat burst: measured
+                # stall floors expire (H01_1's crumbling-block bridge dies to
+                # the in-place wall-stall jump, 4k), and the retreat buys
+                # runway and gets off the decaying tile. Legacy keeps the
+                # published 1-1 escalation.
                 self._blocked = 0
                 self._queue = [self.LEFT] * 4 + [self.RUN] * 8 + [self.JUMP]
             else:
@@ -353,6 +385,17 @@ class BaseReflexController:
         if compound == "decelerate":
             return 1  # Action 1: Walk Right (time enemy cycle)
         elif compound == "leap" or enemy == "leap" or surf == "leap":
+            if surf != "leap" and self._threat_landing_unsafe(obs):
+                # An enemy-triggered leap is a commitment: ~110 px of travel
+                # with no way back, and the flat-ground calibration
+                # understates it -- leaping off a slope measured an 83 px apex
+                # (vs 71) and a ~165 px touchdown, 55 px past the nominal
+                # reach, which is how A01_1's true-geometry run wedged into
+                # the pit at cols 76-77 (4k autopsy class). When the landing
+                # cone overlaps a pit, hop in place instead: the threat
+                # passes underneath and the pit's own edge-leap (never
+                # suppressed) clears both.
+                return self.IN_PLACE_HOP
             self.clearing = True
             return self.JUMP
         elif compound == "hop" or surf == "hop":

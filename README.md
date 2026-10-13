@@ -9,7 +9,7 @@ The codebase is engineered with MLOps best practices and supports diverse learni
 ![World 1-1 clear dashboard, closing 10 s](media/nsmb_dashboard_preview.gif)
 
 The animation above is the closing 10 s of the run — its last frame is the
-stage-clear one. The full clip (28 s, 1280×720) is
+stage-clear one. The full clip (31 s, 1280×720) is
 `media/nsmb_dashboard_clear.mp4` — GitHub does not stream video out of a
 repository tree, so open or download it from
 [`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/nsmbds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
@@ -18,7 +18,7 @@ repository tree, so open or download it from
 
 | File | What it shows | Status |
 |---|---|---|
-| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 28 s World 1-1 clear with all panels (209 decisions, 4,022 of 4,032 px) | current |
+| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 31 s World 1-1 clear with all panels (235 decisions, 4,022 of 4,032 px) | current |
 | [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
 | [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png) | the frame + velocity trace of the pipe trap: a standstill jump that never advances, timer expired | current |
 | [`media/pinn_reflex_astar_run.avi`](media/pinn_reflex_astar_run.avi) | reflex + A\* planner run, raw gameplay | historical, **red/blue swapped** |
@@ -46,7 +46,7 @@ from the same step loop that drives the emulator, so the frame is the evidence:
 | reward prediction (green) vs actual (grey) | `models/pinn_nsmb.pt` `step_batch()` reward head |
 | SciML panel (reach, units, pits) | `src/tilemap_planner.py` + `out/nsmb_physics.json` |
 
-Measured on this run: **209 steps, 4022 px of 4032 px, stage-clear flag raised** —
+Measured on this run: **235 steps, 4022 px of 4032 px, stage-clear flag raised** —
 the same numbers `evals/pinn_realtime_eval.json` reports, because the recorder
 now stops on the criterion the eval uses. The grey spike at the end is the `+100`
 terminal bonus the PINN does not predict.
@@ -364,7 +364,7 @@ python src/eval_pinn_realtime.py --controller reactive --render                 
 python src/tilemap_planner.py                                                             # A* feasibility proof (stage is completable)
 ```
 
-**Real-time console results** (World 1-1; the flagpole is at 4,032 px and the last solid tile column ends at 4,256 px — the first is what `level_cleared` fires on): the dash unlock **doubles** reach, and with ROM **wall/pipe perception** the reflex + A\* planner now **clears the stage end to end**: `reactive` reaches **4,022 px of 4,032 px in 5/5 episodes** ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json), and the clip at the top of this file). The learned arms still stop short — CEM-MPC peaks at 1,510 px, PPO+Reflex at 1,139 px, pixel PPO at 120.8 px — and the imagination PPO (2.5 ms/frame, >400 FPS) also runs live. The **tilemap A\*** proves the stage is **geometrically feasible** (9 pits, max 3 tiles, all within a running jump). The barrier that had to be broken sat at the **pipe + dense block-staircase** just after it: a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires — direct in-game evidence (rendered frame + velocity trace) is in [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png). The reflex layer clears it by taking off from the exact edge column with dash speed still on; a *learned* controller clearing it still needs a full solid-tile 2D platformer planner or large-scale direct RL. Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, `media/nsmb_dashboard_clear.mp4`.
+**Real-time console results** (World 1-1; the flagpole is at 4,032 px and the last solid tile column ends at 4,256 px — the first is what `level_cleared` fires on): the dash unlock **doubles** reach, and with ROM **wall/pipe perception** the reflex + A\* planner now **clears the stage end to end**: `reactive` reaches **4,022 px of 4,032 px in 5/5 episodes** ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json), and the clip at the top of this file). The learned arms still stop short — CEM-MPC peaks at 1,510 px, PPO+Reflex at 1,139 px, pixel PPO at 120.8 px — and the imagination PPO (2.5 ms/frame, >400 FPS) also runs live. The **tilemap A\*** proves the stage is **geometrically feasible** (4 pits, max 3 tiles, all within a running jump — the true pit census measured against the game's own physics, five slope ramps the static classes miscounted as pits notwithstanding). The barrier that had to be broken sat at the **pipe + dense block-staircase** just after it: a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires — direct in-game evidence (rendered frame + velocity trace) is in [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png). The reflex layer clears it by taking off from the exact edge column with dash speed still on; a *learned* controller clearing it still needs a full solid-tile 2D platformer planner or large-scale direct RL. Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, `media/nsmb_dashboard_clear.mp4`.
 
 ---
 
