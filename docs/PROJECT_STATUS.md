@@ -605,7 +605,7 @@ flagpole sprite.
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
 | 5-1 `E01_1` | profile | 998.2 px | 22% | 80 | 424.1 | death |
-| 5-1 `E01_1` | legacy | 1,474.2 px | 32% | 118 | 660.2 | death |
+| 5-1 `E01_1` | legacy | 1,474.2 px | 32% | 132 | 659.5 | death |
 | 8-1 `H01_1` | profile | 466.5 px | 12% | 43 | 159.6 | death |
 | 8-1 `H01_1` | legacy | 565.0 px | 14% | 50 | 209.0 | death |
 
@@ -798,7 +798,7 @@ carries them; parity still passes (none appear in 1-1's entity list).
 | 4-1 `D01_1` | profile | 505.0 px | 12% | 43 | 391.8 | death |
 | 4-1 `D01_1` | legacy | 505.0 px | 12% | 43 | 391.8 | death |
 | 6-1 `F01_1` | profile | 1,136.3 px | 28% | 84 | 488.9 | death |
-| 6-1 `F01_1` | legacy | 1,481.0 px | 36% | 1200 | 620.5 | **trunc (alive)** |
+| 6-1 `F01_1` | legacy | 1,856.0 px | 45% | 169 | 844.5 | death |
 
 **4-1 unlocked by measurement.** `D01_1` parsed at 48.6% (the ice tileset's
 objects are all unknown to the flat class list) and the drop probe measured
@@ -843,14 +843,15 @@ pockets (measured on four courses: E01_1, B01_1, D01_1, F01_1's stall),
 with the probe-derived sprite-solids map as the named next
 infrastructure, (b) the 6-1 cliff stall, (c) C01_1's parse.
 
-The 6-1 rows, re-measured in true mario_B by 4o: the **legacy arm still
-survives to the step cap** -- the first and only arm outside world 1 to do
-so (1,481 px, alive at 1200 steps; the historical coordinates reported
-2,049). The profile arm regressed from alive-at-cap to a 1,136.3 px death
-under the corrected queries. The stall itself, named by trace: legacy
-stands against a cliff at x=1929 in an endless blocked/in-place-hop loop
-inside the level's water/cliff mid-section; a standstill hop cannot clear
-it and no cliff-climb rule exists.
+The 6-1 rows, re-measured in true mario_B by 4o and again with 4p's swim
+escalation: the legacy arm crossed the water wall at x=1481 that had
+stalled it for two sessions (1,481 px, endless retreat loop) and now
+reaches **1,856 px (45%)** -- the deepest any arm has gone outside world
+1 -- dying in a dry shaft past the water: having swum over the wall it
+runs the far bank, leaps a fish, and the level's next obstacle is a
+drop the parser's ground classes do not see (the fall runs at terminal
+velocity, so it is air, not water). The profile arm is unchanged at
+1,136.3: it dies before the water.
 
 The 2-1 death, autopsied to the bottom (trace): the "wall" that stops
 Mario at x=613.7 is **sprite-solid geometry the bgdat parser cannot see**
@@ -860,7 +861,7 @@ through after ~30 frames). The 232 crawler merely waits 92 px below. An
 earlier reading blamed the retreat burst and a misparsed one-row step;
 the airborne freeze disproves the step reading -- nothing in the bgdat
 blocks him there. Unwinnable by any rule until sprite geometry exists.
-(The legacy arm's new 862.7 px row is the same run through the fixed
+(The legacy arm's 862.7 px row is the same run through the fixed
 coordinate: it dies past the pocket, at the fall after the sprite block.)
 
 ## 4n. What a working controller cost, by era (2026-10-12)
@@ -943,6 +944,58 @@ retreat. At B01_1's pocket it fires a hop onto the sprite block at col 39
 (probe surface 20.35) instead of the blind retreat -- the hop goes up, and
 the pocket still kills him because it is walled both ways on an expiring
 floor, which is terrain semantics, not detection.
+
+## 4p. The swim rule: the water wall crossed (2026-10-13)
+
+The 6-1 stall that two sessions called a "cliff" is **water**. The drop
+probe's whole cols 112+ block of F01_1 reads "hover at row 6" -- Mario
+floats to the surface and bobs there; the seabed he actually walks (row
+22 at the stall) is invisible to a probe that floats first. The trace at
+the stall told the rest: x frozen at exactly 1,481 even airborne with
+right held, a wall at col 93 spanning rows 9-21 per the rects -- whose
+top sits BELOW the water surface (row 6), so the route is over the top,
+through the water, swimming.
+
+The water mechanics, measured before writing any rule:
+
+- **A in water is a stroke: a fixed ~67 px impulse per PRESS, not per
+  hold.** Holding A through the ascent (clearing armed) changed nothing:
+  the stroke peaks at the same height and the sink starts while A is
+  still down. A 16-JUMP queue = one stroke and 15 no-ops.
+- **The sink between strokes is ~40 px per 8-frame step**, so the game's
+  own swim rhythm is press/release alternation: each fresh press = a new
+  67 px stroke, each release = a short sink, net ~+48 px per pair.
+- The reflex's blocked events DO fire on the seabed (vy==0 at the
+  touch-downs), roughly every 7 steps -- the stall was never the stuck
+  counter's fault; it was that the retreat queue cannot cross water.
+
+**The rule:** on the third blocked event at the same spot (~8 px), the
+reflex escalates to `[JUMP, RUN] x 12` -- alternating stroke/glide with
+right and dash held throughout, ~576 frames, enough to climb from the
+seabed to the surface and over any wall whose top sits below it.
+Parity-safe by measurement: the published 1-1 clear logs ZERO blocked
+events, so the escalation cannot fire on it -- and `tools/parity_reflex.py`
+passes unchanged.
+
+Measured result on 6-1 legacy: the endless 1,481 px retreat loop became
+a crossing -- stroke-climb to the surface, over the wall at col 93, down
+the far bank, running east at row 30, a leapt fish, and a new death at
+**1,856 px (45%)**: past the water the level's next obstacle is a dry
+shaft (the fall hits terminal velocity -- air, not water) that the
+parser's ground classes do not see. The deepest any arm has gone outside
+world 1, and the first water wall ever crossed. The other courses:
+5-1's legacy stall now runs the escalation once (118 -> 132 steps, same
+1,474 px death spot); 2-1, 4-1 and 8-1 are byte-identical.
+
+Also from this pass: `tools/probe_floor.py` no longer lets a false
+flagpole bound the probe -- C01_1's claimed "flagpole at 272 px" on a
+1.6%-coverage parse first inverted the range (cols 53..18, zero
+probed), then, with rect-span bounds, truncated it to 18 columns of a
+280-column level. The bounds now come from the ROM's rect span, and the
+flag cap requires the parse to validate its own flagpole (coverage
+>= 30%). C01_1's probe still measures only 16 floors before 47 columns
+of unmeasurable drops (its water and its enemies), so World 3-1 stays
+honestly refused at 26% measured coverage.
 
 ## 5. File Index
 

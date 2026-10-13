@@ -223,11 +223,23 @@ def main():
     args = ap.parse_args()
 
     course = Course(name=args.course, rom_path=args.rom)
-    lo = min(course.ground_cover) + 1
-    hi = args.max_col or max(course.ground_cover)
-    if course.exit_found:
-        # beyond the flagpole the clear cutscene owns Mario and the drop
-        # measurement would only record the cutscene
+    xs = [r["tx"] + r["w"] for r in course.rects] + [r["tx"] for r in course.rects]
+    if xs:
+        lo = max(min(xs) + 1, 1)
+        hi = args.max_col or max(xs)
+    else:
+        lo = min(course.ground_cover) + 1
+        hi = args.max_col or max(course.ground_cover)
+    if (course.exit_found and course.ground_coverage >= 0.30
+            and int(course.flag_x_px // 16) + 1 >= lo):
+        # Beyond the flagpole the clear cutscene owns Mario and the drop
+        # measurement would only record the cutscene. The coverage guard
+        # matters: a "flagpole" on a course whose tileset the parser
+        # cannot read (C01_1: 1.6% coverage, a claimed flagpole at 272 px
+        # = col 18) is a false sprite, and capping on it probed 18 columns
+        # of a level whose rects run to col 280. When the parse cannot
+        # validate its own flagpole, the cap is skipped; --max-col bounds
+        # the run instead.
         hi = min(hi, int(course.flag_x_px // 16) + 1)
     cols = list(range(lo, hi + 1, args.step))
     print(f"probing {len(cols)} columns of {args.course} "

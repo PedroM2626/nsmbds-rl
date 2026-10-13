@@ -167,6 +167,7 @@ class BaseReflexController:
         self._stuck = 0
         self._blocked = 0
         self._queue = []
+        self._blocked_positions = []  # abs px of every blocked event
 
     def reset(self):
         self.clearing = False
@@ -174,6 +175,7 @@ class BaseReflexController:
         self._stuck = 0
         self._blocked = 0
         self._queue = []
+        self._blocked_positions = []
 
     def _surface_threat_legacy(self, obs):
         """Geometry decisions for pits, pipes, ledges, and the end staircase."""
@@ -410,6 +412,34 @@ class BaseReflexController:
         if blocked:
             self._stuck = 0
             self._blocked += 1
+            here = self._abs_px(obs)
+            self._blocked_positions.append(here)
+            near = sum(1 for p in self._blocked_positions[-6:] if abs(p - here) < 8.0)
+            if near >= 3:
+                # The third blocked event at the same spot: neither the
+                # in-place jump nor the retreat queue is solving this.
+                # Measured on F01_1 (World 6-1, the water mid-section):
+                # the retreat loop is ENDLESS there -- walk left, run right,
+                # hop, sink, block again -- because the level expects
+                # SWIMMING, and A in water is a stroke -- a fixed ~67 px
+                # impulse per PRESS, not per hold (measured: holding A
+                # through the ascent adds nothing; the stroke peaks and the
+                # sink starts while A is still down). The burst therefore
+                # alternates press and release -- [JUMP, RUN] x 12: each
+                # JUMP step is a fresh A press (a new stroke, forward+up),
+                # each RUN step releases A (a short sink, forward kept) --
+                # which is the game's own swim rhythm, a net climb of
+                # ~48 px per pair, enough to reach the surface from the
+                # seabed and pass over walls whose tops sit below it. On
+                # land the same burst is repeated leaps at the obstacle.
+                # Parity-safe by measurement: the published 1-1 clear logs
+                # ZERO blocked events, so this escalation cannot fire on it.
+                self._blocked = 0
+                self._blocked_positions = []
+                self._queue.clear()
+                self._queue = ([self.JUMP, self.RUN] * 12)
+                self.clearing = True
+                return self._queue.pop(0)
             if self.reflex_mode == "profile" and self.profile is not None:
                 # The probe-derived sprite-solids diagnosis. The bgdat parser
                 # cannot see sprite terrain, and the five reverted rules of
