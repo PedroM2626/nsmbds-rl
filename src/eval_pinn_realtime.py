@@ -301,6 +301,16 @@ class BaseReflexController:
                     near_takeoff = 3480.0 <= abs_px <= 3520.0
                 hi = 55.0 if near_takeoff else self.enemy_hi
                 if 0.0 <= dx <= hi:
+                    # Close hostiles are stomped, not leapt over: the long
+                    # dash arc measured twice to clip a near enemy laterally
+                    # on its descent (B01_1's 232 crawler at 12 px, E01_1's
+                    # mid-air goomba) because the enemy walks forward under
+                    # the arc while Mario is airborne ~40 frames. The short
+                    # walking-hop arc keeps the overlap short and lands the
+                    # stomp. Profile mode only -- legacy stays the published
+                    # 1-1 trajectory.
+                    if self.reflex_mode == "profile" and 0.0 <= dx <= 24.0:
+                        return "stomp_hop"
                     return "leap"   # Running leap: clears apex > 50px high or stomps
         return None
 
@@ -386,6 +396,8 @@ class BaseReflexController:
 
         if compound == "decelerate":
             return 1  # Action 1: Walk Right (time enemy cycle)
+        elif enemy == "stomp_hop":
+            return self.HOP  # short arc lands the stomp on a close hostile (see _threat)
         elif compound == "leap" or enemy == "leap" or surf == "leap":
             if surf != "leap" and self._threat_landing_unsafe(obs):
                 # An enemy-triggered leap is a commitment: ~110 px of travel
