@@ -611,7 +611,7 @@ flagpole sprite.
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
 | 5-1 `E01_1` | profile | 998.2 px | 22% | 80 | 424.1 | death |
-| 5-1 `E01_1` | legacy | 996.4 px | 22% | 117 | 421.3 | death |
+| 5-1 `E01_1` | legacy | 1,009.1 px | 22% | 101 | 428.5 | death |
 | 8-1 `H01_1` | profile | 466.5 px | 12% | 43 | 159.6 | death |
 | 8-1 `H01_1` | legacy | 565.0 px | 14% | 50 | 209.0 | death |
 
@@ -979,7 +979,8 @@ The water mechanics, measured before writing any rule:
   counter's fault; it was that the retreat queue cannot cross water.
 
 **The rule:** on the third blocked event at the same spot (~8 px), the
-reflex escalates to `[JUMP, RUN] x 12` -- alternating stroke/glide with
+reflex escalates to `[JUMP, RUN, RUN] x 16` -- press, two glide steps
+while the rise plays out, press again at the apex -- with
 right and dash held throughout, ~576 frames, enough to climb from the
 seabed to the surface and over any wall whose top sits below it.
 Parity-safe by measurement: the published 1-1 clear logs ZERO blocked
@@ -1051,9 +1052,10 @@ historical trajectory, same death, same steps (313 vs the original 311;
 the two-step delta is the rule set that grew since: the cone rule and
 the swim escalation did not exist when 311 was measured); and the other
 courses re-measured honestly rather than reproduced -- the knife-edges
-there flip as they flip (5-1 legacy 1,474.2 -> 996.4: a different
-trajectory under the same rules, because the escalation and the cone
-rule fire at moments the historical run never reached).
+there flip as they flip (5-1 legacy moved 1,474.2 -> 996.4 -> 1,009.1
+across the rhythm change: different trajectories under the same rules,
+because the escalation and the cone rule fire at moments the historical
+run never reached).
 
 **The frontier moved with it.** 6-1's legacy arm, which died at the
 second structure at 1,856 px in 4p, now passes it under the exact
