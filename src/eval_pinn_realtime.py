@@ -131,11 +131,24 @@ class BaseReflexController:
     profile = None
 
     def _abs_px(self, obs):
-        """Mario's absolute stage x. Legacy anchors on the 1-1 spawn constant;
-        profile anchors on the course's own entrance record."""
+        """Mario's absolute stage x.
+
+        Profile mode: true mario_B (spawn + relative), so every geometry
+        query lands on the column Mario actually stands in.
+
+        Legacy mode: the historical coordinate the pixel bands and planner
+        windows were tuned in -- mario_B + 88. When they were tuned,
+        obs[0] was accidentally absolute (the ram_env origin bug, 4o), so
+        SPAWN_ABS_PX + obs[0]*512 computed 88 + mario_B on EVERY course,
+        whatever that course's own spawn was. Reproducing that coordinate
+        with the fixed (truly relative) obs needs the course's own spawn
+        mario_B as the base: spawn_mb + 88 + relative == mario_B + 88.
+        """
         if self.reflex_mode == "profile" and self.profile is not None:
             return self.profile.abs_px(float(obs[0]))
-        return SPAWN_ABS_PX + obs[0] * 512.0
+        base = (self.profile.spawn_px if self.profile is not None
+                else SPAWN_ABS_PX)
+        return base + 88.0 + obs[0] * 512.0
 
     def _surface_threat(self, obs):
         if self.reflex_mode == "profile" and self.profile is not None:
@@ -168,7 +181,11 @@ class BaseReflexController:
             return "leap"  # pit ahead -> commit running leap
 
         if self.planner is not None:
-            abs_px = SPAWN_ABS_PX + obs[0] * 512.0
+            # _abs_px, not the raw formula: legacy's coordinate is
+            # mario_B + 88 on every course (see _abs_px), and with the
+            # origin-fixed (relative) obs the raw SPAWN_ABS_PX + obs[0]*512
+            # would read mario_B -- 88 px west of every band below.
+            abs_px = self._abs_px(obs)
 
             # Endgame flagpole push (X >= 3870 px)
             if abs_px >= 3870.0:
@@ -340,6 +357,20 @@ class BaseReflexController:
         return any(r is None and lo <= c <= hi for c, r in prof)
 
     def reflex_act(self, obs):
+        r = self._reflex_act_impl(obs)
+        import os as _os
+        _log = _os.environ.get("REFLEX_LOG")
+        if _log:
+            with open(_log, "a") as f:
+                f.write(f"obs0={obs[0]:.6f} obs1={obs[1]:.6f} vy={obs[3]:.4f} "
+                        f"g={obs[4]:.0f} a={r} stuck={self._stuck} "
+                        f"q={len(self._queue)} "
+                        f"en={obs[8]:.3f},{obs[9]:.3f},{obs[10]:.0f};"
+                        f"{obs[11]:.3f},{obs[12]:.3f},{obs[13]:.0f} "
+                        f"pit={[int(x * 100) for x in obs[17:23]]}\n")
+        return r
+
+    def _reflex_act_impl(self, obs):
         on_ground = obs[4] > 0.5
         vy = obs[3]
 
@@ -392,14 +423,13 @@ class BaseReflexController:
                 #     moving platform: run, do not jump)
                 # Only an unprobed or pit answer falls back to the retreat.
                 #
-                # Coordinates: obs is ABSOLUTE mario_B/mario_A in 512 px
-                # units (the ram_env origin bug -- first poll after a load
-                # returns None and _x0 silently becomes 0), so course px is
-                # mario_B minus the half-sprite and the row is -y/16.
-                # profile.abs_px() must NOT be used here: it adds the spawn
-                # on top of an already-absolute value.
-                course_px = obs[0] * 512.0 - 8.0
-                my_row = -(obs[1] * 512.0) / 16.0
+                # Coordinates: obs is spawn-relative in 512 px units (the
+                # origin fix made that true), so mario_B is
+                # spawn_mb + relative, course px is mario_B minus the
+                # half-sprite, and the row comes from the profile.
+                mb_px = self.profile.spawn_px + obs[0] * 512.0
+                course_px = mb_px - 8.0
+                my_row = self.profile.mario_row(obs[1])
                 rise = self.profile.probe_rise_ahead(course_px, my_row)
                 if rise is not None:
                     self._blocked = 0
