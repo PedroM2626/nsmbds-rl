@@ -816,12 +816,14 @@ bound itself: its static parse is 1.6% and its "flagpole at 272 px" is a
 false sprite the tooling had not met before. Two more hostile types
 measured on the ice: 135 and 311, both stomp-vanish.
 
-The 4-1 rows die in a **pocket trap**, autopsied by trace: Mario pinned at
-x=505 between sprite solids (x frozen in BOTH directions, hop/leap/retreat
-all unable to move him), with the koopa patrolling in place 12 px ahead
-(its dx is constant for a dozen steps) -- the fall lands on it. (This
+The 4-1 rows die in a **pocket trap** -- or so the trace autopsy read:
+Mario frozen at x=505 with the koopa patrolling in place 12 px ahead
+(its dx constant for a dozen steps), the fall landing on it. The 4r wall
+oracle retracts the "pinned between sprite solids" half: all 63 cells
+of cols 29..35 x rows 20..28 are free, so whatever froze the run was
+not a solid -- the same self-inflicted-retreat class as 2-1. (This
 autopsy first said "on a floor that expires"; 4p's crumble census
-retracts that reading for the 2-1 and 6-1 tiles, and D01_1 col 31 is
+retracted that reading for the 2-1 and 6-1 tiles, and D01_1 col 31 is
 untested -- the claim is kept only for the 8-1 bridge, which measures
 17 frames.) That autopsy
 killed the fifth rule candidate for the mid-air contact class: an
@@ -861,17 +863,17 @@ and now reaches **1,929 px (47%), ALIVE at the 1200-step cap** -- both
 the deepest reach and the only surviving arm outside world 1. The
 profile arm is unchanged at 1,136.3: it dies before the water.
 
-The 2-1 death, autopsied to the bottom (trace): the "wall" that stops
-Mario at x=613.7 is **sprite-solid geometry the bgdat parser cannot see**
-(x freezes even airborne with right held -- sprite 136's block, whose top
-the probe measured at 20.35). The 232 crawler merely waits 92 px below. An
-earlier reading blamed the retreat burst and a misparsed one-row step;
-the airborne freeze disproves the step reading -- nothing in the bgdat
-blocks him there. Unwinnable by any rule until sprite geometry exists.
-(The ledge itself does NOT expire -- 4p's crumble census held it 1,465+
-frames under a fresh stand -- so the in-run fall is interaction-specific,
-not a tile timer. With 4q's RAM-exact legacy coordinate the arm dies
-AT the pocket again -- 613.7 px, both arms now at the same spot.)
+The 2-1 death: this autopsy was retracted twice, and the wall oracle
+(4r) is what settled it -- there is no wall at all at x=613.7. The
+original reading ("sprite-solid geometry, x frozen even airborne") was
+the retreat queue's own LEFT holds read as a wall; plain RIGHT walks
+straight through the spot, off the ledge edge (which the parser reports
+as row-27 floor while the walker stands at row 21 -- the level-diff
+class), down to the base floor and on to 665. The reflex dies there
+because the blocked response knocks it off the edge into the 232
+crawler's patrol. (The ledge itself does NOT expire -- 4p's crumble
+census held it 1,465+ frames under a fresh stand. With 4q's RAM-exact
+legacy coordinate both arms now die at the same 613.7 px spot.)
 
 ## 4n. What a working controller cost, by era (2026-10-12)
 
@@ -1064,6 +1066,49 @@ coordinate and stands at **1,929 px (47%), alive at the 1200-step cap**
 there. The profile arm is untouched by all of this (it never used the
 legacy coordinate).
 
+## 4r. The wall oracle: both "sprite-solid pockets" retracted, the 6-1 wall mapped (2026-10-13)
+
+The drop probe answers "where can Mario land"; nothing answered "can
+Mario's body occupy this cell and move east through it" -- which is the
+question the three remaining blockers actually need. `tools/probe_walls.py`
+answers it: teleport to each (col, row), pin until the write engages,
+release, hold RIGHT for 90 frames, measure the x advance. Frozen x = a
+cell solid to Mario at that height; the reading is validated by the
+plain-walk control below. Three regions probed:
+
+**The 2-1 pocket: there is no wall.** Every cell of cols 37..40 x rows
+20..23 is free (17-65 px of advance). And a control walk -- teleport to
+col 35, hold plain RIGHT, log every 15 frames -- walks straight through
+the "pocket": 568 -> 614, where Mario walks off the edge of the ledge
+the parser reports as row-27 floor while he stands at row 21 (the
+level-diff class again), falls to the base floor, and continues east to
+665. The 4m autopsy's "sprite-solid wall, x frozen even airborne" was
+the retreat queue's own LEFT holds read as a wall -- the third retraction
+of that autopsy. The reflex dies there because the blocked response
+(leap + retreat) knocks it off the ledge edge into the 232 crawler's
+patrol, not because anything blocks east.
+
+**The 4-1 pocket: also no wall.** All 63 cells of cols 29..35 x rows
+20..28 are free. The "pinned between sprite solids in both directions"
+reading does not survive the oracle either; whatever froze the run at
+x=505, it was not a solid -- the same self-inflicted-retreat class.
+
+**The 6-1 wall: real, and now mapped.** The bgdat claimed col 122 rows
+20-31; the oracle measures two walls -- col 120 blocking rows 22..26
+and col 123 blocking rows 14..19 -- with the rows 20..21 corridor
+between them FREE at every probed column (cols 118..125). The route past
+the stall is that corridor, 5 rows above the seabed where the run
+stands. A direct stroke test at the stall cell (teleport, press A in the
+measured burst rhythm, 16 cycles) settles why the burst cannot take it:
+**each press bobs 10 px and sinks back, cycle after cycle** -- not the
+67 px stroke that carried the 1856 crossing 65 px west. The stall cell
+is a dry pocket under the water region (NSMB DS water is region-based;
+rows 6..20 are wet, the corridor is not): there, A is neither jump nor
+stroke. Three burst rhythms were measured against it -- press every 16,
+24 and 32 frames -- all neutral; the terrain wins, and the run correctly
+stands at 1,929 px alive at the cap. The frontier is now oracle-mapped,
+not just traced.
+
 ## 5. File Index
 
 ```
@@ -1131,6 +1176,10 @@ tools/
                                  (4k); emits out/floor_probe/*.json
   probe_hostility.py             Behavioral hostility: pin/drop/walk onto an
                                  actor type and measure death/stomp/nothing (4k)
+  probe_walls.py                 The wall oracle: teleport per (col,row) cell,
+                                 hold RIGHT, measure the x advance -- a 2D
+                                 solidity map of what actually blocks (4r);
+                                 emits out/wall_probe/*.json
   enter_course.py                Enter ANY course headless: holds the running
                                  course id through the map's A-press fade, so
                                  the stylus-only world row is no longer a gate
@@ -1167,9 +1216,18 @@ out/floor_probe/
                                  4-1 at 85.1% measured coverage (4m)
   G01_1.json / C01_1.json        134 floors found on G01_1 (still honestly
                                  refused at 28.4%: the cloud gaps are real);
-                                 C01_1's probe cannot even bound itself
-                                 (its static parse is 1.6% and its
-                                 "flagpole at 272 px" is a false sprite)
+                                 C01_1: 16 floors measured, 47 columns
+                                 unmeasurable (water + enemies), 26% coverage
+
+out/wall_probe/
+  D01_1_pocket.json / B01_1_pocket.json   the wall oracle's cell maps:
+                                 zero blocked cells in either "pocket" --
+                                 both sprite-solid readings retracted (4r)
+  F01_1_wall122.json            the 6-1 wall region: col 120 rows 22-26
+                                 and col 123 rows 14-19, the rows 20-21
+                                 corridor free -- the route past 1,929 is
+                                 mapped, and the dry-pocket stroke test
+                                 explains why no rhythm crosses it
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology
