@@ -152,6 +152,36 @@ class Course:
         # beating the stall; no reflex code reads it.
         self.water_columns, self.water_fraction = self._load_water_columns()
         self.is_water_course = self.water_fraction > 0.5
+        # The wall oracle's cell verdicts (4v): every (col,row) the
+        # teleport-hold-RIGHT probe measured, True = blocked / False = free
+        # (x advances there). The blocked response consults this at the
+        # moment of being stuck: where the oracle measured NO wall, the
+        # retreat/leap response is the measured killer (4r), not a solution.
+        self.wall_probe_cells = self._load_wall_probe_cells()
+
+    def _load_wall_probe_cells(self):
+        cid = os.path.basename(self.name).replace(".bin", "")
+        d = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "..", "out", "wall_probe")
+        cells = {}
+        if not os.path.isdir(d):
+            return cells
+        import glob
+        for path in sorted(glob.glob(os.path.join(d, cid + "*.json"))):
+            try:
+                data = json.load(open(path, encoding="utf-8"))
+            except Exception:
+                continue
+            for c in data.get("cells", []):
+                if "advance" in c:
+                    # store FREE-ness (the getter's contract), not blocked-ness
+                    cells[(int(c["col"]), int(c["row"]))] = not bool(c.get("blocked"))
+        return cells
+
+    def wall_probe_free(self, col, row):
+        """The wall oracle's verdict for one cell: True = measured free
+        (x advances), False = measured blocked, None = never probed."""
+        return self.wall_probe_cells.get((int(col), int(row)))
 
     def _load_water_columns(self):
         cid = os.path.basename(self.name).replace(".bin", "")
