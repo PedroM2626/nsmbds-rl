@@ -425,6 +425,44 @@ class BaseReflexController:
                 return self.JUMP
             return self.RUN
 
+        # THE LEDGE GUARD (4x, candidates eleven and twelve). Measured on
+        # 2-1: the Pokey below the ledge edge is stationary, unstompable
+        # from above (the double-fall test, 4w), and its damage column is
+        # dx -16..+8. The eleventh candidate fired the leap AT the freeze
+        # (stuck >= 1) and was measured ignored: the spot at 613.7 is a
+        # game hold that suppresses x AND jumps (three JUMP presses -> a
+        # 3 px bob, vy pinned at 0.0000), so any action-level answer is
+        # too late once grabbed. The 4r control walk crossed the same
+        # edge at speed without being held -- the escape is to cross it
+        # AIRBORNE, committing the leap while the below-ledge hostile is
+        # still far (dx <= 75: the leap's 109 px of travel then carries
+        # over the lip and touches down ~50+ px past the guard, inside
+        # the measured miss column). Gated to wall-probed courses -- the
+        # course OBJECT is always set, so the gate must be the probe DATA
+        # itself (empty on 1-1/1-2/5-1/8-1: parity structural). The first
+        # version gated on the object and broke parity at once, dying at
+        # 2,912 px inside the wider dx<=75 window; the published clear also
+        # logs zero below-window-while-frozen moments (grep of the
+        # 245-step log: zero). The below-ledge window is dx 0..75, dy
+        # -55..-120 -- below the +-55 threat window, hence invisible to
+        # every other rule. And the TYPE must have a measured contact
+        # map with NO stomp window (the 4w oracle: 2-1's Pokey is
+        # unstompable from above; goombas and Koopas are not): the first
+        # version fired on 6-1's fish too and knocked that frontier from
+        # 1,929 back to 1,481 -- stompable and unmapped enemies keep
+        # their ordinary handling.
+        if self.wall_probe_course is not None \
+                and self.wall_probe_course.wall_probe_cells and on_ground:
+            for k in range(3):
+                edx = obs[8 + 3 * k] * 256.0
+                edy = obs[9 + 3 * k] * 256.0
+                et = obs[10 + 3 * k] * 256.0
+                if is_hostile_enemy(et) \
+                        and int(round(et)) in self.wall_probe_course.contact_unstompable \
+                        and 0.0 <= edx <= 75.0 and -120.0 <= edy <= -55.0:
+                    self.clearing = True
+                    return self.JUMP
+
         self.clearing = False
 
         blocked = self._stuck >= 3

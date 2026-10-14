@@ -799,8 +799,8 @@ carries them; parity still passes (none appear in 1-1's entity list).
 
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2-1 `B01_1` | profile | 613.7 px | 15% | 29 | 110.4 | death |
-| 2-1 `B01_1` | legacy | 613.7 px | 15% | 29 | 110.4 | death |
+| 2-1 `B01_1` | profile | 862.7 px | 20% | 39 | 234.4 | death |
+| 2-1 `B01_1` | legacy | 862.7 px | 20% | 39 | 234.4 | death |
 | 4-1 `D01_1` | profile | 505.0 px | 12% | 43 | 391.8 | death |
 | 4-1 `D01_1` | legacy | 505.0 px | 12% | 43 | 391.8 | death |
 | 6-1 `F01_1` | profile | 1,136.3 px | 28% | 84 | 488.9 | death |
@@ -1454,6 +1454,61 @@ than its planning earns. Both evals are committed
 (`evals/transfer_4_1_mpc_noreflex.json`,
 `evals/transfer_2_1_mpc_noreflex.json`) as the baseline any future
 planner work on these pockets has to beat.
+
+## 4x. The ledge guard crossed: 2-1 moves 613.7 -> 862.7 px (2026-10-14)
+
+The 4w Pokey retraction opened this: the 2-1 ledge edge is guarded by
+a stationary, unstompable-from-above enemy sitting below it, outside
+the +-55 px threat window and invisible to every existing rule. Three
+candidates measured, two shipped as one rule.
+
+**Eleventh candidate (leap at the freeze): fires and is IGNORED.** At
+the first frozen step with a below-window hostile in the slots
+(dx 0..40, dy -55..-120), commit the leap. The rule fired exactly as
+designed (a=4 at stuck 1, 2, 3 in the trace) and changed nothing: the
+spot at 613.7 is a game HOLD that suppresses x AND jumps -- three
+JUMP presses bobbed Mario 3 px with vy pinned at 0.0000 -- then the
+fall off the edge drops him nearly vertically through the guard's
+measured damage column (dx -16..+8). Once grabbed, no action-level
+answer exists. The 4r control walk crossed the same edge at speed
+without being held, so the escape is to cross AIRBORNE, before the
+hold engages.
+
+**Twelfth candidate (the early leap, wall-probe-gated).** Widen the
+window (dx <= 75) so the leap commits while the guard is still ~50+ px
+ahead -- the 109 px running leap then carries over the lip and
+touches down past the guard, inside the measured miss column. The
+first gate (the course object) broke parity instantly: the object is
+always set, so the rule fired on 1-1's own below-window moments and
+died at 2,912 px. The second gate (the probe data itself, empty on
+1-1) passed parity -- and the measurement: **2-1 613.7 -> 862.7 px on
+BOTH arms, +249 px, the largest single transfer gain the project has
+measured** -- but 6-1 regressed 1,929 -> 1,481: the wider window
+caught one of the water region's fish below the seabed walk and broke
+the 4p crossing.
+
+**Thirteenth refinement (the type gate): the shipped rule.** The 4w
+contact maps carry exactly the semantics needed: an enemy qualifies
+only if ITS OWN measured map has no stomp window anywhere -- 2-1's
+Pokey (232: damage at every probed offset) qualifies; goombas and
+Koopas (measured stompable) and 6-1's fish (unmapped on F01_1) do
+not. `Course.contact_unstompable` loads the verdicts; the rule now
+fires only for an unstompable-mapped hostile in the below-ledge
+window, on a wall-probed course, on the ground. Battery: **2-1
+862.7/862.7 (both arms, the frontier's new number, committed to the
+transfer evals), 6-1 restored to 1,929 byte-identical, 4-1 unchanged
+at 505, 1-1/1-2/5-1/8-1 structurally silent (no probe or contact data
+-- the code path cannot execute), parity PASS.** The 2-1 run now dies
+at 862.7 to the next hazard class (type 54 at contact, with 43/44 in
+the slots) -- a new frontier with a new autopsy waiting.
+
+The rule's full condition stack, for whoever tunes it next:
+`wall_probe_cells` non-empty (probed course) AND on_ground AND a
+hostile slot with `type in contact_unstompable` AND 0 <= dx <= 75 AND
+-120 <= dy <= -55 -> JUMP. Every clause is a measured retracement:
+drop the type gate and 6-1 loses 448 px; drop the data gate and 1-1's
+parity dies at 2,912 px; fire at the freeze instead of on approach
+and the hold ignores you.
 
 ## 5. File Index
 
