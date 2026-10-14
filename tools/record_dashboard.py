@@ -43,6 +43,7 @@ DIM = (140, 134, 124)
 ACCENT = (60, 190, 245)
 GOOD = (90, 200, 120)
 BAD = (80, 90, 235)
+ENTITY = (150, 130, 170)   # non-hostile linked-list entities: coins, items, fx
 TILE_FLOOR = (120, 96, 58)
 TILE_BLOCK = (60, 190, 235)
 TILE_PIT = (18, 16, 12)
@@ -132,21 +133,59 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs):
         px = x + (6 + k) * cw
         cv2.rectangle(img, (px, y + rows * ch + 4), (px + cw - 1, y + rows * ch + 9),
                       BAD if flag < 0.5 else GOOD, -1)
-    # enemies from RAM: dx,dy in px relative to Mario (positive dy is UP).
-    # A slot with no enemy type is padding, not a phantom: draw only real entries.
-    mario_top = geo["surface"].get(mario_col)
-    mario_r = rows - 1 if mario_top is None else (mario_top - r0) - 1
+    # enemies from RAM: dx,dy in px relative to Mario's REAL position
+    # (positive dy is UP). Two fixes over the first version of this panel:
+    #
+    # 1. THE ANCHOR. The obs dy is relative to Mario's live y, but the
+    #    first version anchored enemies to Mario's row on the STATIC
+    #    parsed surface -- so every jump translated all enemies by the
+    #    jump height and pushed them out of the drawn window: enemies
+    #    visibly "appeared and disappeared" whenever Mario jumped or
+    #    fell. The anchor is now Mario's real row, derived from obs[1]
+    #    (the origin-fixed relative y, 512-px units; x32 = tiles),
+    #    measured against the spawn column's standing row.
+    # 2. THE CLASS. The 3 obs slots hold whatever the entity linked list
+    #    holds -- measured census of the published clear trajectory:
+    #    Goomba 160 and Koopa 163 (the only measured-hostile types),
+    #    coin 157, star coin 159, powerup 44, 76/187/49/43/307 (items,
+    #    decorations, effects). Painting them all "enemy" red showed
+    #    enemies that did not exist. Hostile types now draw red, every
+    #    other real entity draws as a neutral "entity" tile, and
+    #    off-panel entities tick the panel edge instead of vanishing.
+    spawn_col = 5  # SPAWN_ABS_PX 88 / TILE; 1-1's start, where obs[1] = 0
+    spawn_top = geo["surface"].get(spawn_col)
+    spawn_r = (spawn_top - r0) - 1 if spawn_top is not None else rows - 1
+    real_mario_r = spawn_r - float(obs[1]) * (512.0 / TILE)
     drawn_enemies = 0
     for k in range(3):
         dx, dy, et = obs[8 + 3 * k] * 256.0, obs[9 + 3 * k] * 256.0, obs[10 + 3 * k] * 256.0
         if et < 0.5:
             continue
+        hostile = ev.is_hostile_enemy(et)
+        col = BAD if hostile else ENTITY
         i = 6 + int(round(dx / TILE))
-        j = mario_r - int(round(dy / TILE))
+        j = int(round(real_mario_r - dy / TILE))
         if 0 <= i < cols and 0 <= j < rows:
             cv2.rectangle(img, (x + i * cw, y + j * ch), (x + (i + 1) * cw - 1, y + (j + 1) * ch - 1),
-                          BAD, -1)
+                           col, -1)
             drawn_enemies += 1
+        else:
+            # Out of the drawn window: a SOLID tick at the nearest edge.
+            # The first version used a thin AA outline, which the GIF's
+            # palette compression dissolves -- and a silently vanishing
+            # entity is exactly what this panel must never do.
+            ei = min(max(i, 0), cols - 1)
+            ej = min(max(j, 0), rows - 1)
+            cx, cy = x + ei * cw + cw // 2, y + ej * ch + ch // 2
+            m = 4
+            if j < 0:
+                cv2.rectangle(img, (cx - m, y), (cx + m, y + m), col, -1)
+            elif j >= rows:
+                cv2.rectangle(img, (cx - m, y + rows * ch - m), (cx + m, y + rows * ch - 1), col, -1)
+            elif i < 0:
+                cv2.rectangle(img, (x, cy - m), (x + m, cy + m), col, -1)
+            else:
+                cv2.rectangle(img, (x + cols * cw - m, cy - m), (x + cols * cw - 1, cy + m), col, -1)
     # Isolated single-column rises in the profile are stacked ?-blocks the parser
     # absorbed into the walkable surface; outline them instead of filling them so
     # the panel cannot claim ground the game does not have.
@@ -164,10 +203,16 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs):
             if 0 <= j < rows:
                 cv2.rectangle(img, (x + i * cw, y + j * ch), (x + (i + 1) * cw - 1,
                               y + (j + 1) * ch - 1), (120, 160, 235), 1, cv2.LINE_AA)
-    # Mario stands on the surface column he occupies
-    j = max(0, min(rows - 1, mario_r))
+    # Mario at his REAL row (obs[1]-anchored, not the static surface): the
+    # panel shows the jump. Off the drawn window (the flagpole leap exits
+    # the top): clamp and mark, so he never silently vanishes either.
+    j = max(0, min(rows - 1, int(round(real_mario_r))))
     cv2.rectangle(img, (x + 6 * cw - 2, y + j * ch - ch // 2), (x + 7 * cw + 1, y + (j + 1) * ch - 1),
                   FG, 2, cv2.LINE_AA)
+    if not (0 <= int(round(real_mario_r)) < rows):
+        text(img, "^" if real_mario_r < 0 else "v",
+             x + 6 * cw + cw // 2 - 4, y + (0 if real_mario_r < 0 else rows * ch - 2),
+             0.5, FG, 1)
     text(img, f"cols {c0}..{c0 + cols - 1}  (Mario at col {mario_col})", x, y - 6, 0.34, DIM)
     text(img, "pit flags", x, y + rows * ch + 9, 0.30, DIM)
 
@@ -278,10 +323,15 @@ def compose(game, st):
     panel(img, x0, 66, 440, 226, "what the agent sees: 23 RAM floats (tiles = ROM profile)")
     draw_agent_view(img, x0 + 12, 104, 416, 130, st["geo"], st["abs_px"], st["obs"])
     lx = x0 + 12
-    for i, (lab, col) in enumerate([("floor/step", TILE_FLOOR), ("block", TILE_BLOCK),
-                                    ("pit (no ground)", (30, 27, 22)), ("enemy", BAD)]):
-        cv2.rectangle(img, (lx + i * 106, 268), (lx + i * 106 + 10, 268 + 10), col, -1)
-        text(img, lab, lx + i * 106 + 15, 277, 0.32, DIM)
+    # five legend entries: the hostile/entity split is the 4t-style honesty --
+    # the slots hold coins and items too, and painting them "enemy" was how
+    # this panel used to show enemies that did not exist.
+    legend = [("floor/step", TILE_FLOOR), ("block", TILE_BLOCK),
+              ("pit (no ground)", (30, 27, 22)),
+              ("enemy (hostile)", BAD), ("entity (coin/item)", ENTITY)]
+    for i, (lab, col) in enumerate(legend):
+        cv2.rectangle(img, (lx + i * 84, 268), (lx + i * 84 + 10, 268 + 10), col, -1)
+        text(img, lab, lx + i * 84 + 14, 277, 0.30, DIM)
     cv2.rectangle(img, (lx, 282), (lx + 10, 292), (120, 160, 235), 1)
     text(img, "isolated rise: parser-only, Mario runs under it", lx + 15, 291, 0.30, DIM)
 

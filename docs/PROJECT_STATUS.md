@@ -1259,6 +1259,44 @@ per-episode stall-phase detail moved (final_mario_px 1,897 -> 1,929 at
 the truncation step, the phase of the stall loop the two rhythms leave
 him in).
 
+## 4u. The dashboard's enemy panel: two measured bugs, fixed (2026-10-14)
+
+The README's inline GIF showed enemy detection nobody could trust:
+enemies that did not exist, and enemies that appeared or vanished
+whenever Mario jumped or fell. Both were real, and both are in
+`tools/record_dashboard.py`'s panel, not in the agent.
+
+**Bug one, the anchor.** The obs dy of each enemy slot is relative to
+Mario's *live* y, but the panel anchored the drawn tile to Mario's row
+on the *static parsed surface* -- so every jump translated all enemy
+tiles by the jump height and pushed them out of the 10-row window.
+Fix: anchor to Mario's real row, derived from obs[1] (the origin-fixed
+relative y) against the spawn column's standing row; Mario himself is
+now drawn at his real row too, so the panel shows the jump instead of
+pretending he never leaves the floor. Measured on the re-recorded clip:
+across 82 frames with enemies visible during >8 px vertical Mario
+transitions, Mario shifts a mean 20.1 px while the enemy tiles shift
+3.2 px (their own walking) -- decoupled, where the old panel moved them
+in lockstep.
+
+**Bug two, the class.** The 3 obs slots hold whatever the entity linked
+list holds, and the panel painted every nonzero type red as "enemy". A
+census of the published clear trajectory (`_last_enemies`, 245 steps)
+finds ten distinct types in the slots: Goomba 160 and Koopa 163 -- the
+only measured-hostile ones -- plus coin 157, star coin 159, powerup 44,
+and 76/187/49/43/307 (items, decorations, effects). Eight of ten were
+phantom "enemies", including the star coins on the end staircase the
+GIF actually displays. Fix: hostile types (the `HOSTILE_ENEMY_TYPES`
+set the hostility oracle measured) draw red; every other real entity
+draws a neutral violet "entity" tile; entities pushed out of the
+window by a jump tick the panel edge with a solid marker (a thin AA
+outline dissolves in the GIF's palette compression -- the first
+attempt at the tick re-introduced the vanishing).
+
+The clip was re-recorded: same trajectory byte-for-byte (the panel
+draws after the agent decides), 245 steps, 4,021 px, clear flag raised,
+33 s, preview reaching the final frame; the gate stays 48/48.
+
 ## 5. File Index
 
 ```
