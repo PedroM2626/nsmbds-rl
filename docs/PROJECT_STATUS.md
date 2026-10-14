@@ -1428,6 +1428,24 @@ cannot COUNT enemies ahead or plan two contacts -- that is planner
 work, the same frontier the CEM-MPC's imagination shaping was built
 for and never measured against these pockets.
 
+**The planner hypothesis, measured the same day.** The pure CEM-MPC
+(`--controller mpc --no-reflex`, the first time it has ever run on
+the pockets): on 4-1 it does what the reflex cannot -- episodes 3
+and 4 plan PAST the double-Koopa gate to **606 px**, past both
+Koopas, dying instead to the NEXT contact class (the 135 at dx 14)
+-- but the other three episodes die at 429/457 before the gate, so
+the mean (505.3) only equals the reactive's hard 505, at 134 ms/act
+and with cross-episode variance the deterministic reflex does not
+have. On 2-1 it is simply worse: a 360 px stall, alive at the
+1,200-step cap, west of everything the reactive clears. The
+capability is real -- a planner CAN count enemies and route past a
+gate that pins the reflex -- but this planner's enemy imagination
+does not yet survive a second contact, and its variance costs more
+than its planning earns. Both evals are committed
+(`evals/transfer_4_1_mpc_noreflex.json`,
+`evals/transfer_2_1_mpc_noreflex.json`) as the baseline any future
+planner work on these pockets has to beat.
+
 ## 5. File Index
 
 ```
