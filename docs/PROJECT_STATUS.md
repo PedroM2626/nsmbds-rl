@@ -1361,6 +1361,73 @@ gate stays (measured neutral, structurally safe, and the correct
 answer for any freeze that does reach the machinery); the candidate
 does not ship.
 
+## 4w. The contact oracle: stomp zones measured, three questions closed (2026-10-14)
+
+The 4v veto left a named blocker: no counter could separate 1-1's
+survived 16-step point-blank run from 4-1's fatal bounce, and the
+separating measurement was the contact geometry itself.
+`tools/probe_contact.py` is that measurement: per (dx, dy) offset it
+teleports Mario near the target actor, releases a pure vertical fall,
+and classifies the frame-by-frame outcome -- stomp (the actor vanishes
+or changes type), damage-death, damage-hit (a vy spike with the actor
+unchanged), or miss. Three tool bugs were caught by their own output
+before any map was trusted: a sign error that teleported Mario INTO
+the ground under the actor (`ey - dy` under the mario_A convention
+where more negative is lower); a plain-RIGHT pre-phase that 4-1's
+opening step pins at x 105 (the working-state walk now drives the
+reactive agent itself); and a first-link working state on 4-1 that sat
+in a trailing hostile's range, painting every cell with that enemy's
+hit (the walk now stops only at a CLEAN link -- no other hostile
+within 120 px).
+
+**Goomba (A01_1, 27 cells).** The stomp window, in teleport
+coordinates: Mario falling with the goomba 0-24 px to his WEST
+(dx -24..0) stomps; 24-32 px west is the lateral catch (damage);
+east of it the goomba walks away (miss). Which closes the 1-1
+question: the published clear's survived point-blank run (steps
+219-234) held the goomba at obs dx ~15 -- the goomba EAST of Mario,
+i.e. Mario west of it by 15 px -- **inside the stomp window**. The
+published trajectory survived by stomping, exactly as hypothesized.
+
+**Koopa (D01_1, 27 cells).** Every fall in the window stomps --
+27/27, dx -32..+32 at every probed height, the actor converting to
+its shell form. So 4-1's fatal bounce cannot be a stomp-geometry
+problem, and the in-run trace shows why it never got the chance: the
+pocket holds **two Koopas ~65 px apart**. The reflex leaps over the
+first (the trace shows the arc passing it at contact dx 0.3, landing
+past it), lands pinned against the second's body, and from a
+standstill every leap is a vertical hop; the first contact is
+lateral (damage, the Super-to-small shrink), the following arcs
+phase through during the invincibility frames (the trace's dy sign
+flip -- he falls PAST the Koopa with no collision), and when they
+expire the next contact kills. The fix 4-1 needs is spacing -- land
+short of the second Koopa, deal with them one at a time -- a
+two-step plan the reactive layer has no arithmetic for (leap length
+vs the gap between hostiles).
+
+**Pokey (B01_1, 27 cells).** The falls read damage-hit across the
+window by the classifier's letter -- but the verbose cell trace says
+otherwise: vy +0.81 with NO knockback, NO death, NO x drift -- the
+stomp-bounce signature, not the damage hop (which knocks back west).
+The entity's A never shifts because it anchors the Pokey's base, so
+the segment-pop is invisible to the A-delta check; distinguishing
+pop from no-pop needs either an entity census for the popped segment
+or a double-fall (a popped top sits 16 px lower) -- the one measured
+ambiguity this oracle leaves open, noted in the JSON's raw readings.
+Either way the 2-1 killer is unchanged: the in-run Pokey sits BELOW
+the ledge (dy -94), outside every window measured here.
+
+**What the numbers support.** Not one of the three courses yields a
+clean rule candidate: 1-1 already stomps (no change needed), 4-1 needs
+spacing arithmetic (a named capability gap, not a threshold), 2-1
+needs a below-ledge threat window whose parity grep already showed
+would fire 12 times on the published clear. The blocker statement
+stands sharpened: the reactive layer can see every enemy and stomp
+geometry is generous (falls onto a Koopa always kill it), but it
+cannot COUNT enemies ahead or plan two contacts -- that is planner
+work, the same frontier the CEM-MPC's imagination shaping was built
+for and never measured against these pockets.
+
 ## 5. File Index
 
 ```
@@ -1504,6 +1571,25 @@ tools/
   probe_water.py                 the water oracle: teleport per cell,
                                   float phase + one clean A press, drag
                                   and stroke response measured (4t)
+  probe_contact.py               the contact oracle: teleport-release
+                                  vertical falls around an actor, the
+                                  stomp/damage zone per type measured
+                                  (4w); the working-state walk drives the
+                                  reactive agent to a CLEAN first link
+
+out/contact_probe/
+  A01_1_160.json                 the goomba map: stomp window = falls
+                                  with the goomba 0-24 px west of Mario;
+                                  lateral west is damage, east walks off
+  D01_1_163.json                 the Koopa map: 27/27 stomps -- every
+                                  fall in the window shells it; 4-1's
+                                  death is the double-Koopa spacing trap,
+                                  not stomp geometry
+  B01_1_232.json                 the Pokey map: falls bounce with no
+                                  knockback and no death (stomp-class;
+                                  the segment pop itself is the one open
+                                  ambiguity -- the entity's A anchors its
+                                  base and never shifts)
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology

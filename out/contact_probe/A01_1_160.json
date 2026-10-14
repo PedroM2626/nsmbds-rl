@@ -1,0 +1,180 @@
+{
+ "state": "data\\0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+ "type": 160,
+ "dxs": [
+  -32,
+  32
+ ],
+ "dys": [
+  16,
+  48
+ ],
+ "kinds": {
+  "damage-hit": 4,
+  "stomp": 6,
+  "miss": 15,
+  "pin-never-engaged": 2
+ },
+ "cells": [
+  {
+   "dx": -32,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 11.0
+  },
+  {
+   "dx": -24,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 11.3
+  },
+  {
+   "dx": -16,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -16.0
+  },
+  {
+   "dx": -8,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -20.9
+  },
+  {
+   "dx": 0,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -30.4
+  },
+  {
+   "dx": 8,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -56.0
+  },
+  {
+   "dx": 16,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -64.0
+  },
+  {
+   "dx": 24,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -72.0
+  },
+  {
+   "dx": 32,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -80.0
+  },
+  {
+   "dx": -32,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": 10.9
+  },
+  {
+   "dx": -24,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -20.9
+  },
+  {
+   "dx": -16,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -28.9
+  },
+  {
+   "dx": -8,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -37.7
+  },
+  {
+   "dx": 0,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -51.6
+  },
+  {
+   "dx": 8,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -59.6
+  },
+  {
+   "dx": 16,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -67.6
+  },
+  {
+   "dx": 24,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -75.6
+  },
+  {
+   "dx": 32,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -83.6
+  },
+  {
+   "dx": -32,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": 11.0
+  },
+  {
+   "dx": -24,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": 10.0
+  },
+  {
+   "dx": -16,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -14.5
+  },
+  {
+   "dx": -8,
+   "dy": 48,
+   "kind": "pin-never-engaged"
+  },
+  {
+   "dx": 0,
+   "dy": 48,
+   "kind": "pin-never-engaged"
+  },
+  {
+   "dx": 8,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -63.1
+  },
+  {
+   "dx": 16,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -71.2
+  },
+  {
+   "dx": 24,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -79.2
+  },
+  {
+   "dx": 32,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -87.2
+  }
+ ]
+}
