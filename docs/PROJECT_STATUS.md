@@ -799,8 +799,8 @@ carries them; parity still passes (none appear in 1-1's entity list).
 
 | course | arm | distance | of goal | steps | reward | outcome |
 | --- | --- | --- | --- | --- | --- | --- |
-| 2-1 `B01_1` | profile | 862.7 px | 20% | 39 | 234.4 | death |
-| 2-1 `B01_1` | legacy | 862.7 px | 20% | 39 | 234.4 | death |
+| 2-1 `B01_1` | profile | 862.7 px | 21% | 39 | 234.4 | death |
+| 2-1 `B01_1` | legacy | 862.7 px | 21% | 39 | 234.4 | death |
 | 4-1 `D01_1` | profile | 505.0 px | 12% | 43 | 391.8 | death |
 | 4-1 `D01_1` | legacy | 505.0 px | 12% | 43 | 391.8 | death |
 | 6-1 `F01_1` | profile | 1,136.3 px | 28% | 84 | 488.9 | death |
