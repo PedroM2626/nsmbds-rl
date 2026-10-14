@@ -40,7 +40,7 @@ from the same step loop that drives the emulator, so the frame is the evidence:
 | --- | --- |
 | gameplay, HUD, flagpole | DeSmuME top screen, `display_buffer_as_rgbx()` |
 | which stage, px travelled, % of the level | `info["mario_px"]` over the 4032 px flagpole (`eval_pinn_realtime.goal_px()`) |
-| the tile grid + pit flags + enemies | the 23-float observation of `src/ram_env.py` + `out/nsmb_geometry.bin` |
+| the tile grid + pit flags + enemies | the 23-float observation of `src/ram_env.py` + `out/nsmb_geometry.bin`; enemies are anchored to Mario's *live* height and split by the measured hostility set -- hostile types red, coins/items/entities violet, off-window ones tick the panel edge |
 | action share (%) over the last 60 decisions | the controller's own action history |
 | buttons held this step | `MarioRamEnv._action_keys` |
 | reward prediction (green) vs actual (grey) | `models/pinn_nsmb.pt` `step_batch()` reward head |
