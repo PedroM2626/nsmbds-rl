@@ -129,6 +129,10 @@ class BaseReflexController:
 
     reflex_mode = "legacy"
     profile = None
+    # The wall oracle's course handle (4v), set per course by the eval
+    # entrypoint for BOTH arms. None or an unprobed cell = the rule is
+    # silent and every existing response stands.
+    wall_probe_course = None
 
     def _abs_px(self, obs):
         """Mario's absolute stage x.
@@ -430,6 +434,42 @@ class BaseReflexController:
             here = self._abs_px(obs)
             self._blocked_positions.append(here)
             near = sum(1 for p in self._blocked_positions[-6:] if abs(p - here) < 8.0)
+            # THE WALL-MAP GATE (4v). The 4r autopsy retracted the
+            # "sprite-solid wall" reading at both remaining pockets: every
+            # cell there measured FREE (B01_1 cols 36-40: 17-81 px of x
+            # advance; D01_1 cols 29-35: all 63 cells), and a plain-RIGHT
+            # control walk strolls through the 2-1 pocket, off the ledge
+            # edge, down to the base floor and east to 665. What kills the
+            # run at those freezes is the blocked response itself -- the
+            # 1st/2nd JUMP leaps off the ledge edge into the 232 crawler's
+            # patrol, the 3rd+ retreat walks back into it. So when the
+            # oracle has measured Mario's own cell FREE, there is no wall
+            # to answer: keep driving. The override is capped at three
+            # events (the _blocked counter is left alone, so the fourth
+            # event falls through to the normal chain and its escalation)
+            # -- a freeze the map does not explain still gets every
+            # existing response. Parity is safe twice over: the published
+            # 1-1 clear logs ZERO blocked events, and 1-1 has no wall-probe
+            # data at all, so the gate is structurally dead there. On 6-1
+            # the stall cell IS measured blocked (col 120, rows 22-26), so
+            # the frontier's behavior is untouched.
+            if self.wall_probe_course is not None and self._blocked <= 3:
+                try:
+                    if self.reflex_mode == "profile" and self.profile is not None:
+                        cpx = self.profile.abs_px(float(obs[0]))
+                        crow = int(self.profile.mario_row(obs[1]))
+                    elif self.ram is not None:
+                        st = self.ram.poll()
+                        if st.get("mario_B") is None:
+                            raise ValueError("no mario in entity list")
+                        cpx = st["mario_B"] / 4096.0
+                        crow = int(-(st["mario_A"] or 0) / 4096.0 / 16.0)
+                    else:
+                        raise ValueError("no coordinate source")
+                    if self.wall_probe_course.wall_probe_free(int(cpx // 16), crow):
+                        return self.RUN
+                except Exception:
+                    pass
             if near >= 3:
                 # The third blocked event at the same spot: neither the
                 # in-place jump nor the retreat queue is solving this.
@@ -748,7 +788,11 @@ def main():
     # The reporting anchor is the course's own entrance, not 1-1's, so both
     # reflex arms are scored on the same ruler even though the legacy one still
     # reasons in 1-1 pixels. For course/A01_1 this is 88 px, i.e. unchanged.
-    spawn_anchor = Course(name=args.course, rom_path=args.rom).entrances[0]["x_px"] + TILE / 2.0
+    course_obj = Course(name=args.course, rom_path=args.rom)
+    spawn_anchor = course_obj.entrances[0]["x_px"] + TILE / 2.0
+    # The wall oracle's handle for the blocked-response gate (4v) -- BOTH
+    # arms: on courses without probe data the gate is structurally silent.
+    BaseReflexController.wall_probe_course = course_obj
     if args.planner == "rust":
         from rust_planner import RustPlanner
         planner = RustPlanner()          # rust/nsmb_planner.exe over a line protocol

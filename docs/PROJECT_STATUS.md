@@ -1297,6 +1297,70 @@ The clip was re-recorded: same trajectory byte-for-byte (the panel
 draws after the agent decides), 245 steps, 4,021 px, clear flag raised,
 33 s, preview reaching the final frame; the gate stays 48/48.
 
+## 4v. The wall-map gate, and the blocked-response hypothesis refuted by trace (2026-10-14)
+
+The 4r autopsy blamed the 2-1/4-1 deaths on the blocked *response* --
+"the retreat/leap knocks Mario off the ledge edge into the crawler's
+patrol". This section implemented the obvious fix for that story and
+measured it, and the trace refutes the story instead: the deaths
+preempt the blocked machinery entirely.
+
+**The map first.** B01_1's pocket sweep was re-run for the committed
+record (cols 36..42 x rows 19..28, 70 cells): the pocket itself is
+free -- 17-81 px of x advance per cell across cols 36-40, all rows --
+and the one real solid in the window is a block at col 41, rows 24-27.
+`Course` now loads every `out/wall_probe/<id>*.json` into a
+`(col,row) -> free` map with a `wall_probe_free()` query.
+
+**The gate.** When the 3-stuck blocked event fires and the wall oracle
+has measured Mario's own cell FREE, there is no wall to answer: the
+response is plain RUN (the 4r control walk strolls through the pocket,
+off the ledge, down to the base floor and east). Capped at three
+overrides before the normal chain takes over; silent on any unprobed
+cell; parity-safe twice over (1-1 logs zero blocked events AND has no
+probe data). Testing caught a semantics inversion before it shipped --
+the loader stored `blocked` under a getter named `free`, which would
+have fired the rule exactly at the 6-1 stall wall and stayed silent in
+the pocket.
+
+**Measured: byte-identical everywhere.** 2-1: 613.704 px, 4-1: 505.0,
+6-1: 1,928.999755859375, 1-2: 3,274.374755859375 -- the gate never
+changes an outcome, because on 2-1 and 4-1 **no blocked event ever
+fires**: the death arrives first.
+
+**The traces.** On 2-1 Mario freezes at 613.7 for three ground steps
+(stuck 0->2, plain RUN held, x frozen) while the Pokey (type 232, the
+log's rounded slot type "1") sits at dx 12 px, dy -94 px -- *below the
+ledge, outside the +-55 px threat window, invisible to the reflex*.
+The first hit lands on the fourth step (vy +0.7: the damage launch),
+stuck resets because he is airborne, he falls with x still frozen, and
+the second hit kills him at step 29. On 4-1 the Koopa (163) is at dx
+12, dy -12 -- *inside* the window -- and its body is the wall: x
+pinned at 505, the reflex's answer to a close hostile is leap, and
+with no run-up room every leap is a vertical bounce; he bounces
+against the Koopa for ten-plus steps until contact kills him.
+
+**The 4r refinement.** The response-is-the-killer reading is refuted
+for both pockets: the freeze plus enemy contact kills before any
+response can misfire. Two distinct mechanisms share the outcome:
+an out-of-window enemy below (2-1) and an in-window enemy whose body
+blocks x while point-blank leaps bounce off it (4-1).
+
+**The tenth candidate, vetoed by parity before implementation.** The
+obvious rule -- count consecutive point-blank hostile steps
+(dx < 24, |dy| < 55) and answer with retreat-then-leap once the count
+says the situation is not resolving -- cannot be thresholded: the
+published 1-1 clear itself contains a **16-step consecutive
+point-blank run** (steps 219-234, a goomba at dx 15 that the published
+trajectory survived by resolving, likely stomping) -- longer than the
+4-1 fatal bounce. No counter separates the surviving case from the
+fatal one; what would is per-frame hitbox measurement of the stomp
+contact (did the 1-1 bounces land on the goomba's head while the 4-1
+arcs pass beside the Koopa?) -- a new named blocker, not a guess. The
+gate stays (measured neutral, structurally safe, and the correct
+answer for any freeze that does reach the machinery); the candidate
+does not ship.
+
 ## 5. File Index
 
 ```
@@ -1408,9 +1472,15 @@ out/floor_probe/
                                  unmeasurable (water + enemies), 26% coverage
 
 out/wall_probe/
-  D01_1_pocket.json / B01_1_pocket.json   the wall oracle's cell maps:
-                                 zero blocked cells in either "pocket" --
-                                 both sprite-solid readings retracted (4r)
+  D01_1_pocket.json            the 4-1 pocket: all 63 cells free -- the
+                                  "pinned between sprite solids" reading
+                                  retracted (4r)
+  B01_1_pocket.json             the 2-1 pocket, re-measured for the record
+                                  (4v): cols 36-40 free at every probed row
+                                  (17-81 px advance), the window's one real
+                                  solid at col 41 rows 24-27; the in-run
+                                  freeze at 613.7 is enemy contact, not
+                                  geometry
   F01_1_wall122.json            the 6-1 wall region: col 120 rows 22-26
                                   and col 123 rows 14-19, the rows 20-21
                                   corridor free -- the route past 1,929 is
