@@ -140,6 +140,34 @@ class Course:
         # means it must NOT replace floor_row, but wall/step detection at
         # the moment of being stuck is exactly where it is unambiguous.
         self.probe_surfaces = self._load_probe_surfaces()
+        # Water marking (4t): the floor probe's marker floats at the water
+        # surface on water columns ('hover', measured at row 6 on F01_1 for
+        # 218 of 256 columns). A course is a WATER course when most of its
+        # columns hover -- on 1-1's twenty hover columns the reading is cave
+        # roofs / high structures, 8% of the course. Measured fractions:
+        # F01_1 0.85 (water), D01_1 0.008, A01_1 0.078. This is measurement
+        # data for tools/probe_water.py and PROJECT_STATUS 4t -- the six
+        # swim-rule candidates that consumed it were all measured (276,
+        # 632, 1433, and three byte-identical 1929s) and reverted, none
+        # beating the stall; no reflex code reads it.
+        self.water_columns, self.water_fraction = self._load_water_columns()
+        self.is_water_course = self.water_fraction > 0.5
+
+    def _load_water_columns(self):
+        cid = os.path.basename(self.name).replace(".bin", "")
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "out", "floor_probe", cid + ".json")
+        if not os.path.exists(path):
+            return frozenset(), 0.0
+        try:
+            data = json.load(open(path, encoding="utf-8"))
+            cols = data.get("columns", [])
+            water = frozenset(c["col"] for c in cols
+                              if c.get("note") == "hover")
+            frac = (len(water) / len(cols)) if cols else 0.0
+            return water, frac
+        except Exception:
+            return frozenset(), 0.0
 
     def _load_probe_surfaces(self):
         cid = os.path.basename(self.name).replace(".bin", "")

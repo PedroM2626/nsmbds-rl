@@ -1,0 +1,1314 @@
+{
+ "course": "course/F01_1.bin",
+ "state": "data\\state_6-1.ds1",
+ "cols": [
+  114,
+  126
+ ],
+ "rows": [
+  18,
+  27
+ ],
+ "cells": [
+  {
+   "col": 114,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.0,
+   "row0": 18.0,
+   "float_dy": -144.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.0,
+   "row0": 18.0,
+   "float_dy": -144.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -289.3,
+   "row0": 18.08,
+   "float_dy": -142.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.6,
+   "row0": 18.04,
+   "float_dy": -175.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.6,
+   "row0": 18.04,
+   "float_dy": -175.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.6,
+   "row0": 18.04,
+   "float_dy": -127.4,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.6,
+   "row0": 18.04,
+   "float_dy": -15.4,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.6,
+   "row0": 18.04,
+   "float_dy": -15.4,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 122,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.6,
+   "row0": 18.04,
+   "float_dy": -15.4,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 123,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -289.3,
+   "row0": 18.08,
+   "float_dy": -14.7,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 124,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.0,
+   "row0": 18.0,
+   "float_dy": -16.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 125,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.0,
+   "row0": 18.0,
+   "float_dy": -16.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 126,
+   "row": 18,
+   "kind": "dry-air",
+   "y0": -288.0,
+   "row0": 18.0,
+   "float_dy": -16.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 114,
+   "row": 19,
+   "kind": "dry-air",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": -128.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 19,
+   "kind": "dry-air",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": -128.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 19,
+   "kind": "dry-air",
+   "y0": -305.3,
+   "row0": 19.08,
+   "float_dy": -126.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 19,
+   "kind": "dry-air",
+   "y0": -304.6,
+   "row0": 19.04,
+   "float_dy": -159.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 19,
+   "kind": "dry-air",
+   "y0": -304.6,
+   "row0": 19.04,
+   "float_dy": -159.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 19,
+   "kind": "dry-air",
+   "y0": -304.6,
+   "row0": 19.04,
+   "float_dy": -111.4,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 122,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 123,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 124,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 125,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 126,
+   "row": 19,
+   "kind": "bob",
+   "y0": -304.0,
+   "row0": 19.0,
+   "float_dy": 0.0,
+   "row_after_float": 19.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 114,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -112.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -112.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -321.3,
+   "row0": 20.08,
+   "float_dy": -110.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.6,
+   "row0": 20.04,
+   "float_dy": -143.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.6,
+   "row0": 20.04,
+   "float_dy": -143.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -321.3,
+   "row0": 20.08,
+   "float_dy": -94.7,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 20,
+   "kind": "no-response",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": 0.0,
+   "row_after_float": 20.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 121,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -20.4,
+   "row_after_float": 21.28,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 122,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -32.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 123,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -32.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 124,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -32.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 125,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -32.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 126,
+   "row": 20,
+   "kind": "dry-air",
+   "y0": -320.0,
+   "row0": 20.0,
+   "float_dy": -32.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 114,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -96.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -96.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -337.3,
+   "row0": 21.08,
+   "float_dy": -94.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.6,
+   "row0": 21.04,
+   "float_dy": -127.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.6,
+   "row0": 21.04,
+   "float_dy": -127.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -337.3,
+   "row0": 21.08,
+   "float_dy": -78.7,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -351.0,
+   "row0": 21.94,
+   "float_dy": -65.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -16.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 122,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -16.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 123,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -16.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 124,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -16.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 125,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -16.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 126,
+   "row": 21,
+   "kind": "dry-air",
+   "y0": -336.0,
+   "row0": 21.0,
+   "float_dy": -16.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 114,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": -80.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": -80.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -353.3,
+   "row0": 22.08,
+   "float_dy": -78.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -352.6,
+   "row0": 22.04,
+   "float_dy": -111.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -352.6,
+   "row0": 22.04,
+   "float_dy": -111.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -352.6,
+   "row0": 22.04,
+   "float_dy": -63.4,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 22,
+   "kind": "dry-air",
+   "y0": -353.3,
+   "row0": 22.08,
+   "float_dy": -62.7,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 22,
+   "kind": "bob",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": 0.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 122,
+   "row": 22,
+   "kind": "bob",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": 0.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 123,
+   "row": 22,
+   "kind": "bob",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": 0.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 124,
+   "row": 22,
+   "kind": "bob",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": 0.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 125,
+   "row": 22,
+   "kind": "bob",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": 0.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 126,
+   "row": 22,
+   "kind": "bob",
+   "y0": -352.0,
+   "row0": 22.0,
+   "float_dy": 0.0,
+   "row_after_float": 22.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 114,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": -64.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": -64.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -369.3,
+   "row0": 23.08,
+   "float_dy": -62.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -368.6,
+   "row0": 23.04,
+   "float_dy": -95.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -368.6,
+   "row0": 23.04,
+   "float_dy": -95.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -368.6,
+   "row0": 23.04,
+   "float_dy": -47.4,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 23,
+   "kind": "dry-air",
+   "y0": -369.3,
+   "row0": 23.08,
+   "float_dy": -46.7,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 23,
+   "kind": "no-response",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": 0.0,
+   "row_after_float": 23.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 122,
+   "row": 23,
+   "kind": "no-response",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": 0.0,
+   "row_after_float": 23.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 123,
+   "row": 23,
+   "kind": "no-response",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": 0.0,
+   "row_after_float": 23.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 124,
+   "row": 23,
+   "kind": "no-response",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": 0.0,
+   "row_after_float": 23.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 125,
+   "row": 23,
+   "kind": "no-response",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": 0.0,
+   "row_after_float": 23.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 126,
+   "row": 23,
+   "kind": "no-response",
+   "y0": -368.0,
+   "row0": 23.0,
+   "float_dy": 0.0,
+   "row_after_float": 23.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 114,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -399.0,
+   "row0": 24.94,
+   "float_dy": -33.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -399.0,
+   "row0": 24.94,
+   "float_dy": -33.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -385.3,
+   "row0": 24.08,
+   "float_dy": -46.7,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -384.6,
+   "row0": 24.04,
+   "float_dy": -79.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -384.6,
+   "row0": 24.04,
+   "float_dy": -79.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -384.6,
+   "row0": 24.04,
+   "float_dy": -31.4,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 24,
+   "kind": "dry-air",
+   "y0": -385.3,
+   "row0": 24.08,
+   "float_dy": -30.7,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 24,
+   "kind": "no-response",
+   "y0": -384.0,
+   "row0": 24.0,
+   "float_dy": 0.0,
+   "row_after_float": 24.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 122,
+   "row": 24,
+   "kind": "no-response",
+   "y0": -384.0,
+   "row0": 24.0,
+   "float_dy": 0.0,
+   "row_after_float": 24.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 123,
+   "row": 24,
+   "kind": "no-response",
+   "y0": -384.0,
+   "row0": 24.0,
+   "float_dy": 0.0,
+   "row_after_float": 24.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 124,
+   "row": 24,
+   "kind": "no-response",
+   "y0": -384.0,
+   "row0": 24.0,
+   "float_dy": 0.0,
+   "row_after_float": 24.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 125,
+   "row": 24,
+   "kind": "no-response",
+   "y0": -384.0,
+   "row0": 24.0,
+   "float_dy": 0.0,
+   "row_after_float": 24.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 126,
+   "row": 24,
+   "kind": "no-response",
+   "y0": -384.0,
+   "row0": 24.0,
+   "float_dy": 0.0,
+   "row_after_float": 24.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 114,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -400.6,
+   "row0": 25.04,
+   "float_dy": -31.4,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -400.6,
+   "row0": 25.04,
+   "float_dy": -31.4,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -400.6,
+   "row0": 25.04,
+   "float_dy": -31.4,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -400.6,
+   "row0": 25.04,
+   "float_dy": -63.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -400.6,
+   "row0": 25.04,
+   "float_dy": -63.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -400.6,
+   "row0": 25.04,
+   "float_dy": -15.4,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 25,
+   "kind": "dry-air",
+   "y0": -401.3,
+   "row0": 25.08,
+   "float_dy": -14.7,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 25,
+   "kind": "no-response",
+   "y0": -400.0,
+   "row0": 25.0,
+   "float_dy": 0.0,
+   "row_after_float": 25.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 122,
+   "row": 25,
+   "kind": "no-response",
+   "y0": -400.0,
+   "row0": 25.0,
+   "float_dy": 0.0,
+   "row_after_float": 25.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 123,
+   "row": 25,
+   "kind": "no-response",
+   "y0": -400.0,
+   "row0": 25.0,
+   "float_dy": 0.0,
+   "row_after_float": 25.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 124,
+   "row": 25,
+   "kind": "no-response",
+   "y0": -400.0,
+   "row0": 25.0,
+   "float_dy": 0.0,
+   "row_after_float": 25.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 125,
+   "row": 25,
+   "kind": "no-response",
+   "y0": -400.0,
+   "row0": 25.0,
+   "float_dy": 0.0,
+   "row_after_float": 25.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 126,
+   "row": 25,
+   "kind": "no-response",
+   "y0": -400.0,
+   "row0": 25.0,
+   "float_dy": 0.0,
+   "row_after_float": 25.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 114,
+   "row": 26,
+   "kind": "dry-air",
+   "y0": -416.6,
+   "row0": 26.04,
+   "float_dy": -15.4,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 26,
+   "kind": "dry-air",
+   "y0": -416.6,
+   "row0": 26.04,
+   "float_dy": -15.4,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 26,
+   "kind": "dry-air",
+   "y0": -416.6,
+   "row0": 26.04,
+   "float_dy": -15.4,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 26,
+   "kind": "dry-air",
+   "y0": -416.6,
+   "row0": 26.04,
+   "float_dy": -47.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 26,
+   "kind": "dry-air",
+   "y0": -416.6,
+   "row0": 26.04,
+   "float_dy": -47.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 26,
+   "kind": "bob",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 120,
+   "row": 26,
+   "kind": "bob",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 121,
+   "row": 26,
+   "kind": "no-response",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 122,
+   "row": 26,
+   "kind": "no-response",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 123,
+   "row": 26,
+   "kind": "no-response",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 124,
+   "row": 26,
+   "kind": "no-response",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 125,
+   "row": 26,
+   "kind": "no-response",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 126,
+   "row": 26,
+   "kind": "no-response",
+   "y0": -416.0,
+   "row0": 26.0,
+   "float_dy": 0.0,
+   "row_after_float": 26.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 114,
+   "row": 27,
+   "kind": "bob",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 115,
+   "row": 27,
+   "kind": "bob",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 116,
+   "row": 27,
+   "kind": "bob",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 117,
+   "row": 27,
+   "kind": "dry-air",
+   "y0": -432.6,
+   "row0": 27.04,
+   "float_dy": -31.4,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 118,
+   "row": 27,
+   "kind": "dry-air",
+   "y0": -433.3,
+   "row0": 27.08,
+   "float_dy": -30.7,
+   "row_after_float": 29.0,
+   "a_apex_px": 23.5
+  },
+  {
+   "col": 119,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 120,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 121,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 122,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 123,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 124,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 125,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  },
+  {
+   "col": 126,
+   "row": 27,
+   "kind": "no-response",
+   "y0": -432.0,
+   "row0": 27.0,
+   "float_dy": 0.0,
+   "row_after_float": 27.0,
+   "a_apex_px": 0.0
+  }
+ ]
+}

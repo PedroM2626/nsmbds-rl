@@ -1157,6 +1157,108 @@ what the RAM arm reads directly -- the scenario, the enemies, Mario's
 position -- while progress and death mean the same thing on both arms, so
 their numbers are directly comparable.
 
+## 4t. The water oracle: warm-only strokes, and six swim-rule candidates measured and reverted (2026-10-14)
+
+The wall oracle (4r) mapped the 6-1 stall's solids but left the water
+itself unmeasured -- whether the rows 20-21 corridor is wet, and whether
+any rhythm can climb out of the dry pocket, were claims from the bgdat
+parse, not measurements. `tools/probe_water.py` measures it: teleport to
+each (col,row), release, 120 frames of no-input float, then one clean A
+press, classifying every cell by what the physics does. The sweep
+(cols 114..126 x rows 18..27, 130 cells) and the follow-ups retracted
+three beliefs and produced the attempt history below.
+
+**Retraction one: NSMB water sinks, it does not buoy.** The oracle's
+first classifier assumed "wet = floats up" and read every fall as
+"dry-air" -- wrong on both ends. The measured falls are 0.1-1.5 px/f
+(a dry free-fall covers ~500 px in the same 120 frames), i.e. the whole
+region is water-drag, and the 'hover 6' of the floor probe is the
+surface bob, not mid-water buoyancy. Mario in deep NSMB water sinks at
+~1-2.5 px/f unless he strokes; only the surface band holds him.
+
+**Retraction two: the swim state is warm-only, and the 4r stall test
+was a cold artifact.** Teleporting into the water leaves Mario with the
+drag but no stroke -- a cold A press mid-water does nothing, and from
+the floor it gives only the 24 px contact hop. In-run, where he entered
+the water by falling through its surface, strokes chain fine (the
+in-run trace shows +vy 0.90 and 0.77 on presses 16-24 frames apart),
+and the stall ladder climbs +82 px off the seabed. So the 4r reading
+"each press bobs 10 px at the stall, A is neither jump nor stroke
+there" overstated the barrier: the stall IS swimmable-warm; what it
+lacks is enough climb.
+
+**What the region actually is (all measured):** an underwater ledge at
+rows 18-19 spanning cols 116..122, walkable east at 17-49 px/90 f until
+the col-123 wall (rows 14-19) blocks it; the corridor rows 20-21 free
+and cold-swimmable east (106-133 px/90 f); the seabed floor at rows
+26-27 with a hole to row 29 at cols 117-118; and embedded solids (stand,
+A does nothing) at cols 121-126 rows 22-27 -- the body under the
+corridor. The stall pocket floor sits at the col-120 wall's west face.
+
+**The six candidates, with their numbers.** The route the map suggests
+is the surface band (rows 6-8, over both walls); the reflex needed (a)
+to know it is in water, (b) a stroke cadence that climbs, (c) not to
+fire on dry jumps over water. Six measured attempts:
+
+1. **Ungated cadence** (airborne over a hover column -> stroke every
+   32 f): **276 px, dead at step 25** -- the cadence broke a dry
+   start-section jump over a hover column; a fish (type 38) killed him
+   at point-blank.
+2. **Two-tick latch** (two in-band vy samples): **632 px stall** -- a
+   dry arc's apex spends two steps in the drag band with a small
+   derivative; the false latch steered him onto a walkway-block loop.
+3. **Three-near-constant latch, 32 f cadence:** **1,929 px, byte-equal**
+   -- never engaged: every water moment happens inside queued burst
+   sequences, which return before the state update runs.
+4. **State update moved before the queue, 16 f cadence:** **1,433 px,
+   dead at step 101** -- engaged at the fall-in, floundered (the deep
+   stroke band is net-zero: stroke +40 vs sink -2.5x16), drifted west
+   onto a ledge, hopped off its edge and died to the fish at 1,369 px.
+5. **Depth gate (stroke only above obs1 0.25, else the old RUN):**
+   **1,929 px** -- the stall's ladder apex (obs1 0.252) is above the
+   line, but the three-sample latch arms two steps after the apex, when
+   obs1 has sunk below it; the cadence inherited a floor-level Mario.
+6. **Latch armed at the blocked event itself, ladder cut to [JUMP,RUN]*8
+   so it drains at the apex:** **1,929 px** -- and this one is
+   trace-proven to work as designed: the cadence fires JUMP at the apex
+   (obs1 0.252, a=4 in the log) and holds him at altitude. It still
+   cannot leave: the sustained stroke band is net-zero, the +82 px
+   apex is the measured ceiling of every rhythm tried, the drift at
+   altitude is west (against the wall faces), and the exits -- the
+   surface band at obs1 0.64, the col-123 wall top at 0.39 -- are far
+   above the ceiling.
+
+All six were reverted; the parity gate passes byte-for-byte and the 6-1
+legacy arm re-measured at HEAD gives the same aggregate row (1,929 px /
+47% / trunc / 844.5). What remains committed is the measurement, not
+the rule: the oracle, its sweep JSON, the rows 18-21 walk/swim JSON,
+and `Course.water_columns`/`is_water_course` as documented data (218/256
+hover columns on F01_1 = 0.85; D01_1 0.008; A01_1 0.078 -- the marking
+that would gate any future rule, with the engagement history that says
+how sharp its gates must be).
+
+**The blocker, restated with the new numbers.** From the stall floor the
+reflex's action set has a measured climb ceiling of +82 px (row ~18.4);
+every exit of the pocket is higher (corridor walls, ledge faces, the
+col-123 wall at row 14, the surface at row 6). The ceiling exists
+because floor-contact presses jump full-height but mid-water strokes
+only break even against the drag. A surface entry exists in the level --
+the western walkway falls enter shallow, one stroke from the surface --
+but the seabed route, which is the only route the reflex's rules ever
+follow, never passes one. Crossing 6-1 therefore needs route knowledge
+(enter the water shallow, swim the surface over both walls) or
+collision/behavior RE beyond what the oracles can measure -- the same
+named blocker as 4r, now with the numbers that close the
+"just climb out" branch for good.
+
+Also from this pass: the committed `evals/transfer_6_1_legacy.json` was
+regenerated at HEAD -- the 2177afe burst-rhythm change ([JUMP,RUN,RUN]
+-> [JUMP,RUN,RUN,RUN]) had never been re-measured into the file. The
+aggregate row is unchanged (1,929.0 / 47 / 1200 / 844.5 / trunc); the
+per-episode stall-phase detail moved (final_mario_px 1,897 -> 1,929 at
+the truncation step, the phase of the stall loop the two rhythms leave
+him in).
+
 ## 5. File Index
 
 ```
@@ -1272,10 +1374,28 @@ out/wall_probe/
                                  zero blocked cells in either "pocket" --
                                  both sprite-solid readings retracted (4r)
   F01_1_wall122.json            the 6-1 wall region: col 120 rows 22-26
-                                 and col 123 rows 14-19, the rows 20-21
-                                 corridor free -- the route past 1,929 is
-                                 mapped, and the dry-pocket stroke test
-                                 explains why no rhythm crosses it
+                                  and col 123 rows 14-19, the rows 20-21
+                                  corridor free -- the route past 1,929 is
+                                  mapped, and the dry-pocket stroke test
+                                  explains why no rhythm crosses it
+  F01_1_row19.json               the rows 18-21 walk/swim map: the
+                                  underwater ledge walkable east to the
+                                  col-123 wall, the corridor
+                                  cold-swimmable 106-133 px/90 f (4t)
+
+out/water_probe/
+  F01_1.json                     the swim-state oracle sweep (130 cells,
+                                  cols 114-126 x rows 18-27): water drag
+                                  everywhere (falls 0.1-1.5 px/f), floors,
+                                  the row-19 ledge, the hole, embedded
+                                  solids -- and the cold-teleport no-A
+                                  cells that exposed the warm-only swim
+                                  state (4t)
+
+tools/
+  probe_water.py                 the water oracle: teleport per cell,
+                                  float phase + one clean A press, drag
+                                  and stroke response measured (4t)
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology
