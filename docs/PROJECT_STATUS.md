@@ -1405,17 +1405,26 @@ short of the second Koopa, deal with them one at a time -- a
 two-step plan the reactive layer has no arithmetic for (leap length
 vs the gap between hostiles).
 
-**Pokey (B01_1, 27 cells).** The falls read damage-hit across the
-window by the classifier's letter -- but the verbose cell trace says
-otherwise: vy +0.81 with NO knockback, NO death, NO x drift -- the
-stomp-bounce signature, not the damage hop (which knocks back west).
-The entity's A never shifts because it anchors the Pokey's base, so
-the segment-pop is invisible to the A-delta check; distinguishing
-pop from no-pop needs either an entity census for the popped segment
-or a double-fall (a popped top sits 16 px lower) -- the one measured
-ambiguity this oracle leaves open, noted in the JSON's raw readings.
-Either way the 2-1 killer is unchanged: the in-run Pokey sits BELOW
-the ledge (dy -94), outside every window measured here.
+**Pokey (B01_1, 42 cells across two sweeps).** The first map read
+"damage-hit" everywhere and the verbose cell looked stomp-class -- a
++0.81 vy bounce with no knockback and no death. **That reading was
+wrong, and the double-fall test retracts it.** The entity's A anchors
+the Pokey's BASE, not its center, so the first sweep's dy 16..48
+teleported Mario INSIDE the 48 px body, and the "no knockback" was the
+artifact of landing pinned on top of it, not a stomp signature. The
+double-fall (land, keep bouncing, no reload): the first contact hops
+(the Super-to-small shrink), the i-frames expire around frame ~90,
+and the next contact KILLS at frame 107 -- two damage hits, zero
+segment pops, zero new entities in the census, the entity's A never
+moves. The head-height re-sweep (dy 48..80 above the base, dx -16..16)
+completes the map: damage at dx -16..+8, miss beyond -- **no stomp
+window exists for this Pokey; it is unstompable from above**, a
+stationary spiky hazard (its B never moved in any trace). The in-run
+implication stands sharpened: the 2-1 ledge edge is guarded by a
+fixed, unstompable enemy below it, and the only measured safe
+interaction is to not be there -- the 4r control walk fell past it
+(the dx +16.. miss column) while the reflex froze at the edge long
+enough to take the hits.
 
 **What the numbers support.** Not one of the three courses yields a
 clean rule candidate: 1-1 already stomps (no change needed), 4-1 needs
@@ -1603,11 +1612,17 @@ out/contact_probe/
                                   fall in the window shells it; 4-1's
                                   death is the double-Koopa spacing trap,
                                   not stomp geometry
-  B01_1_232.json                 the Pokey map: falls bounce with no
-                                  knockback and no death (stomp-class;
-                                  the segment pop itself is the one open
-                                  ambiguity -- the entity's A anchors its
-                                  base and never shifts)
+  B01_1_232.json                 the Pokey body sweep: A anchors its
+                                  BASE, so dy 16-48 teleports INSIDE the
+                                  48px body -- damage at every measured
+                                  offset (the first "stomp-class bounce"
+                                  reading is retracted in 4w by the
+                                  double-fall test)
+  B01_1_232_head.json            the head-height re-sweep: falls from
+                                  48-80px above its base damage at
+                                  dx -16..+8, miss beyond -- NO stomp
+                                  window: the 2-1 Pokey is unstompable
+                                  from above, a stationary hazard
 
 docs/
   WORLD_MODEL_PINN.md                         Deep-dive: PINN methodology
