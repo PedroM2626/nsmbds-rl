@@ -158,6 +158,32 @@ class Course:
         # moment of being stuck: where the oracle measured NO wall, the
         # retreat/leap response is the measured killer (4r), not a solution.
         self.wall_probe_cells = self._load_wall_probe_cells()
+        # The contact oracle's verdicts (4x): types whose measured map has
+        # NO stomp window anywhere -- the unstompable hazards. The ledge
+        # guard gates on this: cross an unstompable below-ledge guard
+        # airborne (2-1's Pokey), but leave stompable enemies (goombas,
+        # Koopas -- and 6-1's fish, which are unmapped there entirely)
+        # to the ordinary at-level logic.
+        self.contact_unstompable = self._load_contact_unstompable()
+
+    def _load_contact_unstompable(self):
+        cid = os.path.basename(self.name).replace(".bin", "")
+        d = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "..", "out", "contact_probe")
+        out = set()
+        if not os.path.isdir(d):
+            return out
+        import glob
+        for path in sorted(glob.glob(os.path.join(d, cid + "_*.json"))):
+            try:
+                data = json.load(open(path, encoding="utf-8"))
+            except Exception:
+                continue
+            t = data.get("type")
+            kinds = data.get("kinds", {})
+            if t is not None and not any("stomp" in k for k in kinds):
+                out.add(int(t))
+        return out
 
     def _load_wall_probe_cells(self):
         cid = os.path.basename(self.name).replace(".bin", "")
