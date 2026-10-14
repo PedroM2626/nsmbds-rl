@@ -1,0 +1,180 @@
+{
+ "state": "data\\state_2-1.ds1",
+ "type": 232,
+ "dxs": [
+  -32,
+  32
+ ],
+ "dys": [
+  16,
+  48
+ ],
+ "kinds": {
+  "damage-hit": 18,
+  "miss": 9
+ },
+ "cells": [
+  {
+   "dx": -32,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 8.8
+  },
+  {
+   "dx": -24,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 10.4
+  },
+  {
+   "dx": -16,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 3.2
+  },
+  {
+   "dx": -8,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 8.1
+  },
+  {
+   "dx": 0,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": 0.1
+  },
+  {
+   "dx": 8,
+   "dy": 16,
+   "kind": "damage-hit",
+   "contact_dx": -7.9
+  },
+  {
+   "dx": 16,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -39.7
+  },
+  {
+   "dx": 24,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -39.3
+  },
+  {
+   "dx": 32,
+   "dy": 16,
+   "kind": "miss",
+   "contact_dx": -39.7
+  },
+  {
+   "dx": -32,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": 12.6
+  },
+  {
+   "dx": -24,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": 12.2
+  },
+  {
+   "dx": -16,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": 11.0
+  },
+  {
+   "dx": -8,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": 8.1
+  },
+  {
+   "dx": 0,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": 0.1
+  },
+  {
+   "dx": 8,
+   "dy": 32,
+   "kind": "damage-hit",
+   "contact_dx": -7.9
+  },
+  {
+   "dx": 16,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -39.6
+  },
+  {
+   "dx": 24,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -39.7
+  },
+  {
+   "dx": 32,
+   "dy": 32,
+   "kind": "miss",
+   "contact_dx": -39.7
+  },
+  {
+   "dx": -32,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": 12.0
+  },
+  {
+   "dx": -24,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": 11.0
+  },
+  {
+   "dx": -16,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": 10.5
+  },
+  {
+   "dx": -8,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": 8.1
+  },
+  {
+   "dx": 0,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": 0.1
+  },
+  {
+   "dx": 8,
+   "dy": 48,
+   "kind": "damage-hit",
+   "contact_dx": -7.9
+  },
+  {
+   "dx": 16,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -39.7
+  },
+  {
+   "dx": 24,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -39.7
+  },
+  {
+   "dx": 32,
+   "dy": 48,
+   "kind": "miss",
+   "contact_dx": -97.5
+  }
+ ]
+}

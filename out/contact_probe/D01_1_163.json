@@ -1,0 +1,179 @@
+{
+ "state": "data\\state_4-1.ds1",
+ "type": 163,
+ "dxs": [
+  -32,
+  32
+ ],
+ "dys": [
+  16,
+  48
+ ],
+ "kinds": {
+  "stomp": 27
+ },
+ "cells": [
+  {
+   "dx": -32,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": 32.0
+  },
+  {
+   "dx": -24,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": 24.0
+  },
+  {
+   "dx": -16,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": 16.0
+  },
+  {
+   "dx": -8,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": 8.0
+  },
+  {
+   "dx": 0,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": null
+  },
+  {
+   "dx": 8,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -8.0
+  },
+  {
+   "dx": 16,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -16.0
+  },
+  {
+   "dx": 24,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -24.0
+  },
+  {
+   "dx": 32,
+   "dy": 16,
+   "kind": "stomp",
+   "contact_dx": -32.0
+  },
+  {
+   "dx": -32,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": 32.0
+  },
+  {
+   "dx": -24,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": 24.0
+  },
+  {
+   "dx": -16,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": 16.0
+  },
+  {
+   "dx": -8,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": 8.0
+  },
+  {
+   "dx": 0,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": null
+  },
+  {
+   "dx": 8,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -8.0
+  },
+  {
+   "dx": 16,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -16.0
+  },
+  {
+   "dx": 24,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -24.0
+  },
+  {
+   "dx": 32,
+   "dy": 32,
+   "kind": "stomp",
+   "contact_dx": -32.0
+  },
+  {
+   "dx": -32,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": 32.0
+  },
+  {
+   "dx": -24,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": 24.0
+  },
+  {
+   "dx": -16,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": 16.0
+  },
+  {
+   "dx": -8,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": 8.0
+  },
+  {
+   "dx": 0,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": null
+  },
+  {
+   "dx": 8,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": -8.0
+  },
+  {
+   "dx": 16,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": -16.0
+  },
+  {
+   "dx": 24,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": -24.0
+  },
+  {
+   "dx": 32,
+   "dy": 48,
+   "kind": "stomp",
+   "contact_dx": -32.0
+  }
+ ]
+}
