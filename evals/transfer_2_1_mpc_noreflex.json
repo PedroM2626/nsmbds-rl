@@ -1,0 +1,91 @@
+{
+  "aggregate": {
+    "controller": "mpc",
+    "episodes": 5,
+    "goal_abs_px": 4208,
+    "goal_source": "operator --goal-px",
+    "course": "course/B01_1.bin",
+    "state": "data/state_2-1.ds1",
+    "reflex": "legacy",
+    "spawn_anchor_px": 360.0,
+    "planner": "python",
+    "clear_rate": 0.0,
+    "mean_progress_px": 360.2734375,
+    "max_progress_px": 360.2734375,
+    "mean_reward": -59.99999999999873,
+    "mean_fps": 5.241177691929634,
+    "mean_latency_ms": 147.57104126612344
+  },
+  "episodes": [
+    {
+      "steps": 1200,
+      "total_reward": -59.99999999999873,
+      "max_progress_px": 0.2734375,
+      "final_abs_px": 360.2734375,
+      "final_mario_px": 360.2734375,
+      "max_mario_px": 360.2734375,
+      "reached_goal": false,
+      "termination": "trunc",
+      "mean_control_latency_ms": 150.13236463069916,
+      "achieved_env_fps": 5.1580737824367615,
+      "death_diag": "",
+      "episode": 1
+    },
+    {
+      "steps": 1200,
+      "total_reward": -59.99999999999873,
+      "max_progress_px": 0.2734375,
+      "final_abs_px": 360.2734375,
+      "final_mario_px": 360.2734375,
+      "max_mario_px": 360.2734375,
+      "reached_goal": false,
+      "termination": "trunc",
+      "mean_control_latency_ms": 146.78118030230203,
+      "achieved_env_fps": 5.254203492667779,
+      "death_diag": "",
+      "episode": 2
+    },
+    {
+      "steps": 1200,
+      "total_reward": -59.99999999999873,
+      "max_progress_px": 0.2734375,
+      "final_abs_px": 360.2734375,
+      "final_mario_px": 360.2734375,
+      "max_mario_px": 360.2734375,
+      "reached_goal": false,
+      "termination": "trunc",
+      "mean_control_latency_ms": 148.22850982348123,
+      "achieved_env_fps": 5.2240351909297695,
+      "death_diag": "",
+      "episode": 3
+    },
+    {
+      "steps": 1200,
+      "total_reward": -59.99999999999873,
+      "max_progress_px": 0.2734375,
+      "final_abs_px": 360.2734375,
+      "final_mario_px": 360.2734375,
+      "max_mario_px": 360.2734375,
+      "reached_goal": false,
+      "termination": "trunc",
+      "mean_control_latency_ms": 146.69910848140717,
+      "achieved_env_fps": 5.268353421731658,
+      "death_diag": "",
+      "episode": 4
+    },
+    {
+      "steps": 1200,
+      "total_reward": -59.99999999999873,
+      "max_progress_px": 0.2734375,
+      "final_abs_px": 360.2734375,
+      "final_mario_px": 360.2734375,
+      "max_mario_px": 360.2734375,
+      "reached_goal": false,
+      "termination": "trunc",
+      "mean_control_latency_ms": 146.01404309272766,
+      "achieved_env_fps": 5.301222571882208,
+      "death_diag": "",
+      "episode": 5
+    }
+  ]
+}
