@@ -402,7 +402,6 @@ class BaseReflexController:
         if self._queue:
             return self._queue.pop(0)
 
-
         # Airborne momentum preservation:
         # During ascent (vy > 0): hold JUMP to maintain low gravity (0.096 px/f^2) and achieve full 71px apex.
         # During descent (vy <= 0): hold RUN to preserve dash speed while releasing KEY_A.
