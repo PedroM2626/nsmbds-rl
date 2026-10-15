@@ -43,8 +43,16 @@ DIM = (140, 134, 124)
 ACCENT = (60, 190, 245)
 GOOD = (90, 200, 120)
 BAD = (80, 90, 235)
-ENTITY = (150, 130, 170)   # non-hostile linked-list entities: coins, items, fx
+ENTITY = (150, 130, 170)   # unidentified linked-list entities: the fallback class
+COIN = (30, 205, 235)      # coins and star coins (4z positional census)
+SCENERY = (115, 115, 120)  # fences, flagpole, static decorations, spawn fx
 BLOCKOBJ = (80, 175, 235)  # floating ?/brick block objects (parser bgdat, 4y)
+# entity classes identified by the 4z positional census (world columns
+# vs bgdat feature positions on the published 1-1 clear trajectory)
+COIN_TYPES = {157, 159}
+SCENERY_TYPES = {43, 49, 76, 307}
+PLATFORM_TYPES = {44}       # the moving platform (OBJ_TYPES' name is wrong)
+BLOCK_ENTITY_TYPES = {187}  # the interactable-block actor beside the 154-160 trio
 TILE_FLOOR = (120, 96, 58)
 TILE_BLOCK = (60, 190, 235)
 TILE_PIT = (18, 16, 12)
@@ -167,13 +175,21 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs, block_rects=()):
     #    (the origin-fixed relative y, 512-px units; x32 = tiles),
     #    measured against the spawn column's standing row.
     # 2. THE CLASS. The 3 obs slots hold whatever the entity linked list
-    #    holds -- measured census of the published clear trajectory:
-    #    Goomba 160 and Koopa 163 (the only measured-hostile types),
-    #    coin 157, star coin 159, powerup 44, 76/187/49/43/307 (items,
-    #    decorations, effects). Painting them all "enemy" red showed
-    #    enemies that did not exist. Hostile types now draw red, every
-    #    other real entity draws as a neutral "entity" tile, and
-    #    off-panel entities tick the panel edge instead of vanishing.
+    #    holds. The 4u census split hostile from the rest; the 4z
+    #    POSITIONAL census identifies the rest by geometry (entity world
+    #    columns vs the bgdat feature positions):
+    #      157/159  coin/star coin -- static rows at the coin positions
+    #               (the 5-coin row over 1-1's final staircase)
+    #      43       the FENCES -- five static positions matching the
+    #               bgdat row-28 2x2 scenery rects
+    #      44       the MOVING PLATFORM -- slides cols 22.5..28.7 in
+    #               half-column steps (OBJ_TYPES' "Powerup" name is
+    #               wrong); drawn as solid-cyan like the fill class
+    #      49/76/307  flagpole, scenery, spawn-time fx -- static scenery
+    #      187      one static actor at col 153, beside the 154-160
+    #               block trio -- the interactable-block actor, drawn
+    #               with the parser's warm block class
+    #    Anything else stays the honest violet "entity" fallback.
     spawn_col = 5  # SPAWN_ABS_PX 88 / TILE; 1-1's start, where obs[1] = 0
     spawn_top = geo["surface"].get(spawn_col)
     spawn_r = (spawn_top - r0) - 1 if spawn_top is not None else rows - 1
@@ -183,8 +199,19 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs, block_rects=()):
         dx, dy, et = obs[8 + 3 * k] * 256.0, obs[9 + 3 * k] * 256.0, obs[10 + 3 * k] * 256.0
         if et < 0.5:
             continue
-        hostile = ev.is_hostile_enemy(et)
-        col = BAD if hostile else ENTITY
+        ti = int(round(et))
+        if ev.is_hostile_enemy(et):
+            col = BAD
+        elif ti in COIN_TYPES:
+            col = COIN
+        elif ti in BLOCK_ENTITY_TYPES:
+            col = BLOCKOBJ
+        elif ti in SCENERY_TYPES:
+            col = SCENERY
+        elif ti in PLATFORM_TYPES:
+            col = TILE_BLOCK
+        else:
+            col = ENTITY
         i = 6 + int(round(dx / TILE))
         j = int(round(real_mario_r - dy / TILE))
         if 0 <= i < cols and 0 <= j < rows:
@@ -346,15 +373,15 @@ def compose(game, st):
     draw_agent_view(img, x0 + 12, 104, 416, 130, st["geo"], st["abs_px"], st["obs"],
                     st.get("blocks", ()))
     lx = x0 + 12
-    # six legend entries, compact: the hostile/entity split is the 4u
-    # honesty; the floating block class is the 4y fix -- the ?-block and
-    # brick rows the game renders above the surface were invisible here.
+    # seven legend entries, compact: the hostile/coin/scenery/block splits
+    # are the 4u/4y/4z honesty stack -- every class is a measured census.
     legend = [("floor", TILE_FLOOR), ("fill", TILE_BLOCK),
               ("pit", (30, 27, 22)),
-              ("enemy", BAD), ("item", ENTITY), ("?/brick", BLOCKOBJ)]
+              ("enemy", BAD), ("coin", COIN), ("block", BLOCKOBJ),
+              ("scenery", SCENERY)]
     for i, (lab, col) in enumerate(legend):
-        cv2.rectangle(img, (lx + i * 70, 268), (lx + i * 70 + 9, 268 + 9), col, -1)
-        text(img, lab, lx + i * 70 + 12, 277, 0.28, DIM)
+        cv2.rectangle(img, (lx + i * 61, 268), (lx + i * 61 + 9, 268 + 9), col, -1)
+        text(img, lab, lx + i * 61 + 12, 277, 0.27, DIM)
     cv2.rectangle(img, (lx, 282), (lx + 9, 291), (120, 160, 235), 1)
     text(img, "isolated rise: parser-only, Mario runs under it", lx + 13, 290, 0.28, DIM)
 
