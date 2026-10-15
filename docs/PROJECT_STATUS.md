@@ -1666,6 +1666,23 @@ itself showed two such clusters at 0x02012C4E and 0x02026EAA worth
 disassembling first). The needles stay banked: v0 0x3980, terminal
 0xFFFFC000, held-jump g 0x100, stroke 0x6D00, water g ~0x2C0.
 
+**The static hunt's honest close (the rizin pass).** The ARM-mode field
+scan across arm9 + overlays returns zero clusters -- because the
+engine IS the ARM9 (853 Thumb field accesses, the overlays are mostly
+per-level data). Rizin's full `aaa` on the raw 465 KB Thumb blob
+does not finish inside 30 minutes (no symbols, no entry map), and
+targeted function analysis from PUSH-prologue heuristics drifts
+across the interleaved data. The finding that closes the scalar
+route for good: the physics constants are COMPUTED, not stored --
+the measured jump v0 0x3980 appears as a u32 in exactly zero of the
+136 binaries (the full-FS needle scan), so the game derives it
+(base + form/state bonuses); no constant scan can find the physics
+function. What remains is the real-tooling pass -- Ghidra with a
+Java install (the winget UAC needs the user's admin prompt) or an
+entry-point archaeology project in rizin through the ARM9's init
+sequence -- and the behavioral oracles stay the cheap judge of
+whatever either claims.
+
 ## 5. File Index
 
 ```
