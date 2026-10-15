@@ -1579,6 +1579,57 @@ staircase row (312 px), warm blocks throughout -- and ZERO violet
 pixels anywhere: every entity type on the published trajectory is now
 classified by census, not by name.
 
+## 4aa. The RE attempt, and the stall premises it reversed (2026-10-14)
+
+Asked whether agent-driven reverse engineering (REA-class tooling)
+could close the game's remaining gaps, the first attempt ran without
+Ghidra: extract the ARM9 (ndspy header parse, 465 KB at 0x02000000),
+parse the overlay table (135 overlays), and scan every binary for the
+known RAM anchors. Result: absolute addresses never appear -- DS code
+reaches EWRAM through a base register, and the physics constants are
+not stored as plain u32 literals either (the fall-terminal
+0xFFFFC000 appears exactly once, in overlay 10 at 0x0210AC48, in a
+neighborhood that disassembles as garbage in both ARM and Thumb --
+the same wall 4h hit, now with better instruments). The exact needles
+for a future Ghidra pass are measured and on record: held-jump v0
+**0x3980** (14720), fall terminal **0xFFFFC000** (-16384), held-jump
+gravity **0x100/frame**, water arc gravity ~**0x2C0/frame** (from the
+fine trace's vy decay).
+
+**The behavioral pivot paid instead -- three premise reversals:**
+
+1. **The 4r reading "A is neither jump nor stroke at the stall cell"
+   is REFUTED.** A single A-press at the cold-teleported stall cell
+   (col 120.5, row 26.5, settled 40+ frames) gives the FULL impulse
+   every time: YVEL +0x3980 -- the same v0 as the 1-1 ground jump. The
+   measured "10 px bobs" were the burst-rhythm protocol (32-frame
+   press spacing with RIGHT held), not a property of the cell.
+2. **The "24 px bob" of the 4t water sweep was the full jump too**:
+   at v0 0.898 px/f and g 0.0156 the standstill apex is 25.8 px. The
+   water-probe's bob column and the jump column were the same
+   phenomenon at two sampling resolutions.
+3. **The warm-only swim state is demoted.** The cold stall presses
+   stroke fine; the chaining curve at the stall (presses at 8/16/24/
+   32/48/64-frame gaps) shows NO cooldown at 32+ frames -- every
+   press full. The warm/cold distinction the 4t/4w/4x chain was built
+   on remains unexplained only for the in-run chained-stroke rises
+   (vy +0.9/+0.77 at 16-24-frame spacing inside a live run), but it
+   gates nothing at the stall cell. The RAM diff's warm-only candidates
+   (+0x2B0 = 0xC0210000, the 0x0CF00000 family at +0x98/+0xB0/+0x204,
+   +0x2EC) are recorded but unconfirmed -- the write-test was mooted
+   by reversal #1 (the baseline already strokes, so there is no
+   off-state to switch on).
+
+**What does not move: the stall ceiling.** The no-keys 24-frame
+cadence is a stable LIMIT CYCLE (rows 24.75 -> 25.78, apex +1.2 rows,
+no cumulative climb); the 16-frame RIGHT-held ladder remains the best
+measured climb (row ~21.4, the 4x +82 px). The 6-1 frontier stands at
+1,929 with its blocker restated: no tested rhythm converts chained
+presses into a sustained climb at the stall cell, and the surface
+band stays ~190 px above the best apex. The static route's next step
+is now sharply defined and cheap to aim: a real decompiler pass over
+overlay 10 with the exact constants above as anchors.
+
 ## 5. File Index
 
 ```
