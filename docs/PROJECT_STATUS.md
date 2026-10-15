@@ -1551,6 +1551,34 @@ stays unmeasured and the panel honestly draws one class. What would
 measure it: walking (not teleporting) the camera into place, or
 extracting the tileset graphics from the ROM with ndspy.
 
+## 4z. The entity classes, identified by position (2026-10-14)
+
+Two viewer complaints, both real, both about the violet "entity"
+class: a fence drawn as an item, and the interactable blocks grouped
+with the coins. The fix is a POSITIONAL census: log every linked
+entity's (type, world-column) along the published 1-1 clear, then
+match types to the bgdat feature positions. Geometric identification,
+no naming table needed (OBJ_TYPES turns out to be wrong for at least
+one class):
+
+| type | world columns | measured identity |
+|---|---|---|
+| 43 | 22.5, 38.5, 95.5, 141.5, 229.5 -- five static positions matching the row-28 scenery rects | **the fences** |
+| 157 | one static row, cols 238.5-242.5 (93 step-sightings, 5 columns) | **the coin row over the final staircase** |
+| 159 | 123.0, 184.5 | **the star coins** |
+| 44 | slides 22.5 -> 28.7 in half-column steps | **the moving platform** -- OBJ_TYPES' "Powerup" name is wrong |
+| 187 | one static actor at col 153, beside the 154-160 block trio | **the interactable-block actor** |
+| 49 / 76 / 307 | 252 (the flagpole), 86, 0 | flag, scenery, spawn-time fx |
+
+The panel now draws: hostile red, coins gold, the 187 block-actor with
+the 4y warm block class, fences/flag/fx gray scenery, the moving
+platform as solid-cyan fill, and anything unknown keeps the honest
+violet fallback. Verified in the re-recorded clip: gray scenery in
+all three stretches (130/81/168 px), gold coins peaking at the
+staircase row (312 px), warm blocks throughout -- and ZERO violet
+pixels anywhere: every entity type on the published trajectory is now
+classified by census, not by name.
+
 ## 5. File Index
 
 ```
