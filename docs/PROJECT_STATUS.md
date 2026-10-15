@@ -1647,6 +1647,25 @@ radare2 is the lighter alternative) over overlays 10 and 128 with the
 banked needles -- and the behavioral oracles stay the cheap judge of
 anything it claims.
 
+**The tooling checkpoint (day three of the static route).** Rizin
+0.9.1 (portable, no admin needed) is installed under the temp area;
+`tools/extract_overlays.py` now regenerates `out/re/arm9.bin` and all
+135 overlay binaries with their RAM bases (`out/re/overlay_table.json`
+carries the table). The overlay loading model is measured from the
+table: the small modules all share the 0x020DE360 slot (mutually
+exclusive, swapped in and out), overlay 10 -- the 190 KB main engine
+-- loads into that same slot, overlay 128 (181 KB) into 0x020C2020.
+Neither big overlay begins with code (ov128 opens with 64 zero bytes),
+so the entry convention lives in the ARM9's overlay dispatcher. The
+immediate next steps, in order: find the dispatcher's call (the
+FS_LoadOverlay path in arm9.bin, then the init-jump convention), seed
+rizin's `aaa` from real entry points, and hunt the physics function
+through the mario-object field accesses ([obj+0x5C/0x60/0x74/0x78],
+whose ARM-mode encodings the Thumb-only scan missed -- the ARM9
+itself showed two such clusters at 0x02012C4E and 0x02026EAA worth
+disassembling first). The needles stay banked: v0 0x3980, terminal
+0xFFFFC000, held-jump g 0x100, stroke 0x6D00, water g ~0x2C0.
+
 ## 5. File Index
 
 ```

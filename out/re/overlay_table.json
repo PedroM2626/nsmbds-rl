@@ -1,0 +1,1086 @@
+{
+ "arm9_ram": 33554432,
+ "arm9_size": 465128,
+ "overlays": [
+  {
+   "id": 0,
+   "ram": 34254720,
+   "file_size": 121216,
+   "ram_size": 201632,
+   "bss": 8256,
+   "file_id": 0
+  },
+  {
+   "id": 1,
+   "ram": 34464608,
+   "file_size": 9048,
+   "ram_size": 10464,
+   "bss": 32,
+   "file_id": 6
+  },
+  {
+   "id": 2,
+   "ram": 34464608,
+   "file_size": 2636,
+   "ram_size": 4128,
+   "bss": 32,
+   "file_id": 8
+  },
+  {
+   "id": 3,
+   "ram": 34464608,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 10
+  },
+  {
+   "id": 4,
+   "ram": 34464608,
+   "file_size": 2336,
+   "ram_size": 3296,
+   "bss": 32,
+   "file_id": 12
+  },
+  {
+   "id": 5,
+   "ram": 34464608,
+   "file_size": 1976,
+   "ram_size": 2752,
+   "bss": 0,
+   "file_id": 14
+  },
+  {
+   "id": 6,
+   "ram": 34464608,
+   "file_size": 688,
+   "ram_size": 864,
+   "bss": 0,
+   "file_id": 16
+  },
+  {
+   "id": 7,
+   "ram": 34464608,
+   "file_size": 816,
+   "ram_size": 960,
+   "bss": 0,
+   "file_id": 18
+  },
+  {
+   "id": 8,
+   "ram": 34464608,
+   "file_size": 77752,
+   "ram_size": 140480,
+   "bss": 13216,
+   "file_id": 20
+  },
+  {
+   "id": 9,
+   "ram": 34464608,
+   "file_size": 35648,
+   "ram_size": 67872,
+   "bss": 1696,
+   "file_id": 22
+  },
+  {
+   "id": 10,
+   "ram": 34464608,
+   "file_size": 190448,
+   "ram_size": 368064,
+   "bss": 7680,
+   "file_id": 24
+  },
+  {
+   "id": 11,
+   "ram": 34840352,
+   "file_size": 10148,
+   "ram_size": 18048,
+   "bss": 32,
+   "file_id": 26
+  },
+  {
+   "id": 12,
+   "ram": 34858432,
+   "file_size": 6368,
+   "ram_size": 10656,
+   "bss": 96,
+   "file_id": 28
+  },
+  {
+   "id": 13,
+   "ram": 34858432,
+   "file_size": 25588,
+   "ram_size": 48576,
+   "bss": 160,
+   "file_id": 30
+  },
+  {
+   "id": 14,
+   "ram": 34858432,
+   "file_size": 8368,
+   "ram_size": 13856,
+   "bss": 0,
+   "file_id": 31
+  },
+  {
+   "id": 15,
+   "ram": 34858432,
+   "file_size": 10748,
+   "ram_size": 19776,
+   "bss": 0,
+   "file_id": 33
+  },
+  {
+   "id": 16,
+   "ram": 34858432,
+   "file_size": 9964,
+   "ram_size": 16064,
+   "bss": 160,
+   "file_id": 35
+  },
+  {
+   "id": 17,
+   "ram": 34858432,
+   "file_size": 10864,
+   "ram_size": 17056,
+   "bss": 128,
+   "file_id": 37
+  },
+  {
+   "id": 18,
+   "ram": 34858432,
+   "file_size": 7252,
+   "ram_size": 11104,
+   "bss": 0,
+   "file_id": 39
+  },
+  {
+   "id": 19,
+   "ram": 34858432,
+   "file_size": 17268,
+   "ram_size": 30720,
+   "bss": 64,
+   "file_id": 41
+  },
+  {
+   "id": 20,
+   "ram": 34858432,
+   "file_size": 9320,
+   "ram_size": 14560,
+   "bss": 64,
+   "file_id": 43
+  },
+  {
+   "id": 21,
+   "ram": 34858432,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 45
+  },
+  {
+   "id": 22,
+   "ram": 34907168,
+   "file_size": 1336,
+   "ram_size": 1792,
+   "bss": 32,
+   "file_id": 47
+  },
+  {
+   "id": 23,
+   "ram": 34907168,
+   "file_size": 7140,
+   "ram_size": 11328,
+   "bss": 32,
+   "file_id": 49
+  },
+  {
+   "id": 24,
+   "ram": 34907168,
+   "file_size": 8576,
+   "ram_size": 14400,
+   "bss": 128,
+   "file_id": 51
+  },
+  {
+   "id": 25,
+   "ram": 34907168,
+   "file_size": 14080,
+   "ram_size": 23328,
+   "bss": 96,
+   "file_id": 53
+  },
+  {
+   "id": 26,
+   "ram": 34907168,
+   "file_size": 4044,
+   "ram_size": 6592,
+   "bss": 0,
+   "file_id": 55
+  },
+  {
+   "id": 27,
+   "ram": 34907168,
+   "file_size": 2572,
+   "ram_size": 3680,
+   "bss": 0,
+   "file_id": 57
+  },
+  {
+   "id": 28,
+   "ram": 34907168,
+   "file_size": 12648,
+   "ram_size": 21376,
+   "bss": 224,
+   "file_id": 59
+  },
+  {
+   "id": 29,
+   "ram": 34907168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 61
+  },
+  {
+   "id": 30,
+   "ram": 34907168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 63
+  },
+  {
+   "id": 31,
+   "ram": 34907168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 64
+  },
+  {
+   "id": 32,
+   "ram": 34930592,
+   "file_size": 4092,
+   "ram_size": 6656,
+   "bss": 0,
+   "file_id": 66
+  },
+  {
+   "id": 33,
+   "ram": 34930592,
+   "file_size": 6736,
+   "ram_size": 10272,
+   "bss": 0,
+   "file_id": 68
+  },
+  {
+   "id": 34,
+   "ram": 34930592,
+   "file_size": 7832,
+   "ram_size": 13472,
+   "bss": 128,
+   "file_id": 70
+  },
+  {
+   "id": 35,
+   "ram": 34930592,
+   "file_size": 4516,
+   "ram_size": 7264,
+   "bss": 0,
+   "file_id": 72
+  },
+  {
+   "id": 36,
+   "ram": 34930592,
+   "file_size": 4048,
+   "ram_size": 6560,
+   "bss": 96,
+   "file_id": 74
+  },
+  {
+   "id": 37,
+   "ram": 34930592,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 76
+  },
+  {
+   "id": 38,
+   "ram": 34930592,
+   "file_size": 3676,
+   "ram_size": 5568,
+   "bss": 0,
+   "file_id": 78
+  },
+  {
+   "id": 39,
+   "ram": 34930592,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 80
+  },
+  {
+   "id": 40,
+   "ram": 34930592,
+   "file_size": 11564,
+   "ram_size": 18944,
+   "bss": 96,
+   "file_id": 82
+  },
+  {
+   "id": 41,
+   "ram": 34930592,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 84
+  },
+  {
+   "id": 42,
+   "ram": 34949632,
+   "file_size": 26344,
+   "ram_size": 45536,
+   "bss": 64,
+   "file_id": 86
+  },
+  {
+   "id": 43,
+   "ram": 34949632,
+   "file_size": 5032,
+   "ram_size": 7744,
+   "bss": 0,
+   "file_id": 88
+  },
+  {
+   "id": 44,
+   "ram": 34949632,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 90
+  },
+  {
+   "id": 45,
+   "ram": 34949632,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 92
+  },
+  {
+   "id": 46,
+   "ram": 34949632,
+   "file_size": 4460,
+   "ram_size": 6336,
+   "bss": 64,
+   "file_id": 94
+  },
+  {
+   "id": 47,
+   "ram": 34949632,
+   "file_size": 4192,
+   "ram_size": 5632,
+   "bss": 32,
+   "file_id": 96
+  },
+  {
+   "id": 48,
+   "ram": 34949632,
+   "file_size": 4660,
+   "ram_size": 7552,
+   "bss": 32,
+   "file_id": 98
+  },
+  {
+   "id": 49,
+   "ram": 34949632,
+   "file_size": 3552,
+   "ram_size": 5120,
+   "bss": 0,
+   "file_id": 100
+  },
+  {
+   "id": 50,
+   "ram": 34949632,
+   "file_size": 4024,
+   "ram_size": 5920,
+   "bss": 0,
+   "file_id": 102
+  },
+  {
+   "id": 51,
+   "ram": 34949632,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 104
+  },
+  {
+   "id": 52,
+   "ram": 34995232,
+   "file_size": 24840,
+   "ram_size": 40832,
+   "bss": 992,
+   "file_id": 106
+  },
+  {
+   "id": 53,
+   "ram": 35037056,
+   "file_size": 104,
+   "ram_size": 128,
+   "bss": 174080,
+   "file_id": 108
+  },
+  {
+   "id": 54,
+   "ram": 34995232,
+   "file_size": 68064,
+   "ram_size": 120224,
+   "bss": 3968,
+   "file_id": 110
+  },
+  {
+   "id": 55,
+   "ram": 35119424,
+   "file_size": 60,
+   "ram_size": 64,
+   "bss": 102400,
+   "file_id": 112
+  },
+  {
+   "id": 56,
+   "ram": 35119424,
+   "file_size": 7204,
+   "ram_size": 12128,
+   "bss": 96,
+   "file_id": 114
+  },
+  {
+   "id": 57,
+   "ram": 35119424,
+   "file_size": 7860,
+   "ram_size": 12096,
+   "bss": 0,
+   "file_id": 116
+  },
+  {
+   "id": 58,
+   "ram": 35119424,
+   "file_size": 2816,
+   "ram_size": 4320,
+   "bss": 0,
+   "file_id": 118
+  },
+  {
+   "id": 59,
+   "ram": 35119424,
+   "file_size": 5264,
+   "ram_size": 8480,
+   "bss": 0,
+   "file_id": 120
+  },
+  {
+   "id": 60,
+   "ram": 35119424,
+   "file_size": 2768,
+   "ram_size": 3584,
+   "bss": 0,
+   "file_id": 122
+  },
+  {
+   "id": 61,
+   "ram": 35119424,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 124
+  },
+  {
+   "id": 62,
+   "ram": 35119424,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 126
+  },
+  {
+   "id": 63,
+   "ram": 35119424,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 127
+  },
+  {
+   "id": 64,
+   "ram": 35119424,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 129
+  },
+  {
+   "id": 65,
+   "ram": 35119424,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 131
+  },
+  {
+   "id": 66,
+   "ram": 35131648,
+   "file_size": 7636,
+   "ram_size": 12448,
+   "bss": 32,
+   "file_id": 132
+  },
+  {
+   "id": 67,
+   "ram": 35131648,
+   "file_size": 2572,
+   "ram_size": 3680,
+   "bss": 32,
+   "file_id": 133
+  },
+  {
+   "id": 68,
+   "ram": 35131648,
+   "file_size": 8588,
+   "ram_size": 14784,
+   "bss": 0,
+   "file_id": 65
+  },
+  {
+   "id": 69,
+   "ram": 35131648,
+   "file_size": 6724,
+   "ram_size": 10784,
+   "bss": 96,
+   "file_id": 1
+  },
+  {
+   "id": 70,
+   "ram": 35131648,
+   "file_size": 4440,
+   "ram_size": 7424,
+   "bss": 32,
+   "file_id": 67
+  },
+  {
+   "id": 71,
+   "ram": 35131648,
+   "file_size": 9216,
+   "ram_size": 15424,
+   "bss": 32,
+   "file_id": 32
+  },
+  {
+   "id": 72,
+   "ram": 35131648,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 69
+  },
+  {
+   "id": 73,
+   "ram": 35131648,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 15
+  },
+  {
+   "id": 74,
+   "ram": 35131648,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 71
+  },
+  {
+   "id": 75,
+   "ram": 35131648,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 34
+  },
+  {
+   "id": 76,
+   "ram": 35147104,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 73
+  },
+  {
+   "id": 77,
+   "ram": 35147104,
+   "file_size": 7100,
+   "ram_size": 11680,
+   "bss": 64,
+   "file_id": 2
+  },
+  {
+   "id": 78,
+   "ram": 35147104,
+   "file_size": 4504,
+   "ram_size": 6944,
+   "bss": 32,
+   "file_id": 75
+  },
+  {
+   "id": 79,
+   "ram": 35147104,
+   "file_size": 6516,
+   "ram_size": 10176,
+   "bss": 0,
+   "file_id": 36
+  },
+  {
+   "id": 80,
+   "ram": 35147104,
+   "file_size": 9512,
+   "ram_size": 15872,
+   "bss": 192,
+   "file_id": 77
+  },
+  {
+   "id": 81,
+   "ram": 35147104,
+   "file_size": 3884,
+   "ram_size": 7616,
+   "bss": 0,
+   "file_id": 17
+  },
+  {
+   "id": 82,
+   "ram": 35147104,
+   "file_size": 5224,
+   "ram_size": 8224,
+   "bss": 0,
+   "file_id": 79
+  },
+  {
+   "id": 83,
+   "ram": 35147104,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 38
+  },
+  {
+   "id": 84,
+   "ram": 35147104,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 81
+  },
+  {
+   "id": 85,
+   "ram": 35147104,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 7
+  },
+  {
+   "id": 86,
+   "ram": 35163168,
+   "file_size": 2952,
+   "ram_size": 4256,
+   "bss": 32,
+   "file_id": 83
+  },
+  {
+   "id": 87,
+   "ram": 35163168,
+   "file_size": 4468,
+   "ram_size": 7168,
+   "bss": 0,
+   "file_id": 40
+  },
+  {
+   "id": 88,
+   "ram": 35163168,
+   "file_size": 10436,
+   "ram_size": 17824,
+   "bss": 128,
+   "file_id": 85
+  },
+  {
+   "id": 89,
+   "ram": 35163168,
+   "file_size": 5088,
+   "ram_size": 8384,
+   "bss": 64,
+   "file_id": 19
+  },
+  {
+   "id": 90,
+   "ram": 35163168,
+   "file_size": 17516,
+   "ram_size": 29696,
+   "bss": 32,
+   "file_id": 87
+  },
+  {
+   "id": 91,
+   "ram": 35163168,
+   "file_size": 1416,
+   "ram_size": 2112,
+   "bss": 0,
+   "file_id": 42
+  },
+  {
+   "id": 92,
+   "ram": 35163168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 89
+  },
+  {
+   "id": 93,
+   "ram": 35163168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 3
+  },
+  {
+   "id": 94,
+   "ram": 35163168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 91
+  },
+  {
+   "id": 95,
+   "ram": 35163168,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 44
+  },
+  {
+   "id": 96,
+   "ram": 35192896,
+   "file_size": 6068,
+   "ram_size": 10496,
+   "bss": 64,
+   "file_id": 93
+  },
+  {
+   "id": 97,
+   "ram": 35192896,
+   "file_size": 8652,
+   "ram_size": 13056,
+   "bss": 288,
+   "file_id": 21
+  },
+  {
+   "id": 98,
+   "ram": 35192896,
+   "file_size": 10128,
+   "ram_size": 16256,
+   "bss": 64,
+   "file_id": 95
+  },
+  {
+   "id": 99,
+   "ram": 35192896,
+   "file_size": 2708,
+   "ram_size": 3968,
+   "bss": 96,
+   "file_id": 46
+  },
+  {
+   "id": 100,
+   "ram": 35192896,
+   "file_size": 8224,
+   "ram_size": 16256,
+   "bss": 32,
+   "file_id": 97
+  },
+  {
+   "id": 101,
+   "ram": 35192896,
+   "file_size": 4220,
+   "ram_size": 7936,
+   "bss": 0,
+   "file_id": 9
+  },
+  {
+   "id": 102,
+   "ram": 35192896,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 99
+  },
+  {
+   "id": 103,
+   "ram": 35192896,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 48
+  },
+  {
+   "id": 104,
+   "ram": 35192896,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 101
+  },
+  {
+   "id": 105,
+   "ram": 35192896,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 23
+  },
+  {
+   "id": 106,
+   "ram": 35209216,
+   "file_size": 3300,
+   "ram_size": 4896,
+   "bss": 0,
+   "file_id": 103
+  },
+  {
+   "id": 107,
+   "ram": 35209216,
+   "file_size": 2948,
+   "ram_size": 3776,
+   "bss": 32,
+   "file_id": 50
+  },
+  {
+   "id": 108,
+   "ram": 35209216,
+   "file_size": 3636,
+   "ram_size": 5632,
+   "bss": 64,
+   "file_id": 105
+  },
+  {
+   "id": 109,
+   "ram": 35209216,
+   "file_size": 6896,
+   "ram_size": 10944,
+   "bss": 32,
+   "file_id": 4
+  },
+  {
+   "id": 110,
+   "ram": 35209216,
+   "file_size": 2660,
+   "ram_size": 3648,
+   "bss": 32,
+   "file_id": 107
+  },
+  {
+   "id": 111,
+   "ram": 35209216,
+   "file_size": 2192,
+   "ram_size": 3104,
+   "bss": 32,
+   "file_id": 52
+  },
+  {
+   "id": 112,
+   "ram": 35209216,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 109
+  },
+  {
+   "id": 113,
+   "ram": 35209216,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 25
+  },
+  {
+   "id": 114,
+   "ram": 35209216,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 111
+  },
+  {
+   "id": 115,
+   "ram": 35209216,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 54
+  },
+  {
+   "id": 116,
+   "ram": 35220192,
+   "file_size": 6300,
+   "ram_size": 10240,
+   "bss": 0,
+   "file_id": 113
+  },
+  {
+   "id": 117,
+   "ram": 35220192,
+   "file_size": 3664,
+   "ram_size": 6464,
+   "bss": 0,
+   "file_id": 11
+  },
+  {
+   "id": 118,
+   "ram": 35220192,
+   "file_size": 8416,
+   "ram_size": 13728,
+   "bss": 128,
+   "file_id": 115
+  },
+  {
+   "id": 119,
+   "ram": 35220192,
+   "file_size": 4872,
+   "ram_size": 6464,
+   "bss": 0,
+   "file_id": 56
+  },
+  {
+   "id": 120,
+   "ram": 35220192,
+   "file_size": 3912,
+   "ram_size": 6016,
+   "bss": 192,
+   "file_id": 117
+  },
+  {
+   "id": 121,
+   "ram": 35220192,
+   "file_size": 3412,
+   "ram_size": 6496,
+   "bss": 0,
+   "file_id": 27
+  },
+  {
+   "id": 122,
+   "ram": 35220192,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 119
+  },
+  {
+   "id": 123,
+   "ram": 35220192,
+   "file_size": 6804,
+   "ram_size": 11744,
+   "bss": 160,
+   "file_id": 58
+  },
+  {
+   "id": 124,
+   "ram": 35220192,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 121
+  },
+  {
+   "id": 125,
+   "ram": 35220192,
+   "file_size": 20,
+   "ram_size": 32,
+   "bss": 0,
+   "file_id": 5
+  },
+  {
+   "id": 126,
+   "ram": 34254720,
+   "file_size": 5600,
+   "ram_size": 8672,
+   "bss": 1056,
+   "file_id": 123
+  },
+  {
+   "id": 127,
+   "ram": 34254720,
+   "file_size": 46724,
+   "ram_size": 88352,
+   "bss": 6016,
+   "file_id": 60
+  },
+  {
+   "id": 128,
+   "ram": 34349088,
+   "file_size": 181800,
+   "ram_size": 195104,
+   "bss": 0,
+   "file_id": 125
+  },
+  {
+   "id": 129,
+   "ram": 34544192,
+   "file_size": 188540,
+   "ram_size": 306272,
+   "bss": 8544,
+   "file_id": 29
+  },
+  {
+   "id": 130,
+   "ram": 34859008,
+   "file_size": 2532,
+   "ram_size": 6560,
+   "bss": 0,
+   "file_id": 134
+  },
+  {
+   "id": 131,
+   "ram": 34544192,
+   "file_size": 260884,
+   "ram_size": 421216,
+   "bss": 4640,
+   "file_id": 62
+  },
+  {
+   "id": 132,
+   "ram": 34970048,
+   "file_size": 3324,
+   "ram_size": 10816,
+   "bss": 0,
+   "file_id": 128
+  },
+  {
+   "id": 133,
+   "ram": 34980864,
+   "file_size": 55284,
+   "ram_size": 92544,
+   "bss": 7552,
+   "file_id": 13
+  },
+  {
+   "id": 134,
+   "ram": 35080960,
+   "file_size": 4288,
+   "ram_size": 4288,
+   "bss": 0,
+   "file_id": 130
+  }
+ ]
+}
