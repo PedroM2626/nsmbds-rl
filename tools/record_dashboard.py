@@ -44,6 +44,7 @@ ACCENT = (60, 190, 245)
 GOOD = (90, 200, 120)
 BAD = (80, 90, 235)
 ENTITY = (150, 130, 170)   # non-hostile linked-list entities: coins, items, fx
+BLOCKOBJ = (80, 175, 235)  # floating ?/brick block objects (parser bgdat, 4y)
 TILE_FLOOR = (120, 96, 58)
 TILE_BLOCK = (60, 190, 235)
 TILE_PIT = (18, 16, 12)
@@ -107,7 +108,7 @@ def text(img, s, x, y, scale=0.45, color=FG, thick=1):
     cv2.putText(img, s, (x, y), cv2.FONT_HERSHEY_SIMPLEX, scale, color, thick, cv2.LINE_AA)
 
 
-def draw_agent_view(img, x, y, w, h, geo, abs_px, obs):
+def draw_agent_view(img, x, y, w, h, geo, abs_px, obs, block_rects=()):
     """The 23 numbers the policy receives, drawn spatially: surface profile from
     the tile geometry, the 6 pit-lookahead flags, the 3 nearest enemies, Mario."""
     mario_col = int(abs_px / TILE)
@@ -127,6 +128,27 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs):
             if r0 + r >= top:
                 col = TILE_FLOOR if (r0 + r) - top < 2 else TILE_BLOCK
                 cv2.rectangle(img, (px, py), (px + cw - 1, py + ch - 1), col, -1)
+    # Floating block objects (4y): the ?-blocks and brick rows the game
+    # renders ABOVE the walkable surface were invisible here -- the
+    # surface profile is one scalar per column, so anything floating over
+    # it simply does not exist in this panel's old drawing, and the
+    # "isolated rise" outline below only caught single-column peaks
+    # absorbed INTO the surface. The parser's bgdat rects carry the
+    # floating ones (A01_1: obj 0x30 at cols 154/157/160 row 26 -- the
+    # very trio src/eval_pinn_realtime.py's legacy bands name as "the
+    # floating question/brick blocks" -- and obj 0x14's 23-tile cluster
+    # at cols 54-78). Drawn as one class: the ?/brick distinction is a
+    # texture question this panel cannot answer from the parser alone
+    # (pixel-verification attempts are on record: the camera does not
+    # follow teleports, so screen sampling never reached the blocks).
+    for rect in block_rects:
+        for c in range(rect["tx"], rect["tx"] + rect["w"]):
+            for rr in range(rect["ty"], rect["ty"] + rect["h"]):
+                i, j = c - c0, rr - r0
+                if 0 <= i < cols and 0 <= j < rows:
+                    px, py = x + i * cw, y + j * ch
+                    cv2.rectangle(img, (px + 1, py + 1), (px + cw - 2, py + ch - 2),
+                                  BLOCKOBJ, -1)
     # pit-lookahead flags the agent reads directly (obs[17:23]): 1 = solid, 0 = pit
     for k in range(GEO_DIM):
         flag = obs[OBS_DIM + k] if OBS_DIM + k < len(obs) else 0.0
@@ -321,19 +343,20 @@ def compose(game, st):
 
     x0 = 572
     panel(img, x0, 66, 440, 226, "what the agent sees: 23 RAM floats (tiles = ROM profile)")
-    draw_agent_view(img, x0 + 12, 104, 416, 130, st["geo"], st["abs_px"], st["obs"])
+    draw_agent_view(img, x0 + 12, 104, 416, 130, st["geo"], st["abs_px"], st["obs"],
+                    st.get("blocks", ()))
     lx = x0 + 12
-    # five legend entries: the hostile/entity split is the 4t-style honesty --
-    # the slots hold coins and items too, and painting them "enemy" was how
-    # this panel used to show enemies that did not exist.
-    legend = [("floor/step", TILE_FLOOR), ("block", TILE_BLOCK),
-              ("pit (no ground)", (30, 27, 22)),
-              ("enemy (hostile)", BAD), ("entity (coin/item)", ENTITY)]
+    # six legend entries, compact: the hostile/entity split is the 4u
+    # honesty; the floating block class is the 4y fix -- the ?-block and
+    # brick rows the game renders above the surface were invisible here.
+    legend = [("floor", TILE_FLOOR), ("fill", TILE_BLOCK),
+              ("pit", (30, 27, 22)),
+              ("enemy", BAD), ("item", ENTITY), ("?/brick", BLOCKOBJ)]
     for i, (lab, col) in enumerate(legend):
-        cv2.rectangle(img, (lx + i * 84, 268), (lx + i * 84 + 10, 268 + 10), col, -1)
-        text(img, lab, lx + i * 84 + 14, 277, 0.30, DIM)
-    cv2.rectangle(img, (lx, 282), (lx + 10, 292), (120, 160, 235), 1)
-    text(img, "isolated rise: parser-only, Mario runs under it", lx + 15, 291, 0.30, DIM)
+        cv2.rectangle(img, (lx + i * 70, 268), (lx + i * 70 + 9, 268 + 9), col, -1)
+        text(img, lab, lx + i * 70 + 12, 277, 0.28, DIM)
+    cv2.rectangle(img, (lx, 282), (lx + 9, 291), (120, 160, 235), 1)
+    text(img, "isolated rise: parser-only, Mario runs under it", lx + 13, 290, 0.28, DIM)
 
     panel(img, x0, 302, 440, 174, "what it thinks (share of last 60 decisions)")
     draw_thinks(img, x0 + 12, 314, 416, 152, st["recent"], st["action_idx"])
@@ -397,6 +420,28 @@ def main():
     goal = ev.goal_px()
     geo = load_geometry(GEOM)
     physics = physics_rows(env, geo)
+    # Floating block objects (4y): the parser's bgdat rects, filtered to
+    # the block family by position (rows 20..27, at most 3x3) -- this
+    # keeps the ?/brick rows (A01_1: obj 0x30 at cols 154/157/160, obj
+    # 0x14's cluster at cols 54-78, obj 0x2C's rows) and drops
+    # ground-adjacent decorations (the row-28 2x2 set), the staircase
+    # (0x0D), and tall structures (the 2x9). 0x2C and 0x30 are IN
+    # GROUND_OBJS -- the parser absorbed the floating blocks into the
+    # walkable surface, which is why the panel used to show them as
+    # floor spikes with an outline -- they draw here as blocks instead,
+    # over the floor fill; the planner keeps reading them as surface.
+    # Identification is position-based: the ?-vs-brick hue split could
+    # not be verified on screen (the camera does not follow teleports
+    # -- three sampling attempts are on record), so both draw as one
+    # honest class.
+    from course import Course, GROUND_OBJS
+    course = Course(name="course/A01_1.bin", rom_path=ROM)
+    ABSORBED_BLOCKS = (0x2C, 0x30)     # block classes the parser calls ground
+    blocks = [r for r in course.rects
+              if (r["obj"] not in GROUND_OBJS or r["obj"] in ABSORBED_BLOCKS)
+              and 20 <= r["ty"] <= 27 and r["w"] <= 3 and r["h"] <= 3]
+    print(f"[dash] floating block objects: {len(blocks)} rects "
+          f"({len({r['obj'] for r in blocks})} classes)", flush=True)
 
     model = None
     device = "cpu"
@@ -439,6 +484,7 @@ def main():
         st = {"level": "World 1-1 (course A01_1)", "ep": ep, "planner": args.planner,
               "controller": args.controller, "geo": geo, "goal_px": goal,
               "physics": physics, "cleared": False, "step": 0, "abs_px": 0.0,
+              "blocks": blocks,
               "lives": 0.0, "timer": 0.0, "vx": 0.0, "vy": 0.0, "ground": 1.0,
               "obs": obs, "action_idx": 0, "action_name": ACTION_NAMES[0],
               "held": [], "rule": "-", "recent": [], "hist": []}

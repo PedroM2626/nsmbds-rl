@@ -1510,6 +1510,47 @@ drop the type gate and 6-1 loses 448 px; drop the data gate and 1-1's
 parity dies at 2,912 px; fire at the freeze instead of on approach
 and the hold ignores you.
 
+## 4y. The floating blocks: invisible in the panel, and why the camera cannot verify them (2026-10-14)
+
+The dashboard's tile grid showed neither the destructible brick rows nor
+the yellow ?-blocks the gameplay screen displays right next to it. Two
+causes, one fix, and a camera discovery worth recording.
+
+**Cause one: the profile is a scalar.** The panel drew `surface[c]` --
+one walkable-top number per column -- so anything FLOATING above the
+surface did not exist in it. The old "isolated rise" outline only
+caught single-column peaks, and those peaks are the blocks the parser
+ABSORBED into the surface: `GROUND_OBJS` includes 0x2C and 0x30 -- the
+bgdat classes behind the floating ?/brick rows (obj 0x30 sits at
+exactly cols 154/157/160 row 26, the trio src/eval_pinn_realtime.py's
+legacy bands call "the floating question/brick blocks"; obj 0x14's
+23-tile cluster spans cols 54-78 rows 24-26). So the ?-blocks appeared
+as outlined floor spikes and the non-absorbed brick clusters appeared
+as nothing at all.
+
+**The fix:** the panel now draws the parser's floating block rects
+(rows 20..27, at most 3x3, the absorbed 0x2C/0x30 included over the
+floor fill) as one warm `?/brick` class -- 61 rects, 14 classes on
+A01_1. Verified in the re-recorded clip: BLOCKOBJ pixels present in the
+panel across all three stretches of the run (peaks 827/1,441/863 px,
+7-12 blocks on screen at once). The planner's reading is unchanged --
+the panel is visualization; the profile the code reasons over is the
+parser's, absorption and all.
+
+**The camera discovery, three attempts deep.** Distinguishing ? from
+brick by rendered hue needed screen sampling, and the sampler kept
+reading sky: the mario_A row mapping was validated against the floor,
+but the X mapping never was -- the floor exists at every x. The
+decisive test: the camera X **does not follow teleported Mario**. Write
+attempts get reverted by the game's follow logic every frame, and
+after a teleport the camera stays at the spawn's view (read back:
+458 px while Mario stood at 2,400 px) -- the deadzone comment on
+CAM_ADDRS said as much. So on-screen sampling of arbitrary positions
+is not reachable with the current RAM map; the ?/brick hue split
+stays unmeasured and the panel honestly draws one class. What would
+measure it: walking (not teleporting) the camera into place, or
+extracting the tileset graphics from the ROM with ndspy.
+
 ## 5. File Index
 
 ```
