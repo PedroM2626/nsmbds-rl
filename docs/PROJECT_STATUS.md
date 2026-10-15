@@ -1630,6 +1630,23 @@ band stays ~190 px above the best apex. The static route's next step
 is now sharply defined and cheap to aim: a real decompiler pass over
 overlay 10 with the exact constants above as anchors.
 
+**The static hunt's terminal state, the next day.** The full-filesystem
+sweep (ARM9 + all 135 overlays, uncompressed per ndspy and entropy
+checks) for the measured constants in every cheap encoding -- u32
+words, float32, ARM MOV/CMP immediate encodings with corrected
+rotations, pool-reference hunts in both ARM and Thumb, phase-bootstrapped
+disassembly around each hit -- ends where 4h ended, now with better
+instruments: three scattered, pool-unreferenced 0xFFFFC000 words
+(overlays 10, 81), a 0x6D00 and a 0xE60 sitting in byte
+neighborhoods that decode as neither clean ARM nor clean Thumb, and
+zero LDR references to any of them. The constants either come from
+data archives (NARC) or are computed, and no scalar scan will find
+the physics function. The route that remains is the one 4aa named: a
+real decompiler pass (Ghidra needs a Java install on this machine;
+radare2 is the lighter alternative) over overlays 10 and 128 with the
+banked needles -- and the behavioral oracles stay the cheap judge of
+anything it claims.
+
 ## 5. File Index
 
 ```
