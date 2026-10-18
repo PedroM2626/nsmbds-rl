@@ -10,13 +10,17 @@ with the two formulas calibrated on `A01_1` and re-validated on `A02_1` (4j):
     mario_B / 4096 == entrance.x_px + 8      (half a sprite, sprites are 16 px)
     mario_A / 4096 == -(entrance.y_px + 16)  (one tile row below the entrance)
 
---match prints every course of the 191 whose any entrance satisfies both. That
-is often not unique: a dozen-plus courses share the left-edge entrance x=48, so
---trace then holds RIGHT for a few seconds and scores the surviving candidates
-by the floor rows Mario actually walks on (`Course.floor_row`), counting only
+The entrance scan prints every course of the 191 whose any entrance satisfies
+both. That is often not unique: a dozen-plus courses share the left-edge
+entrance x=48, so --trace then holds RIGHT for a few seconds and scores the
+surviving candidates by the floor rows Mario actually walks on
+(`Course.floor_row`), counting only
 grounded samples (y stable between consecutive samples while x advances). That
 is how the 8-1 savestate was told apart from its entrance-tied decoy: `H01_1`
 matched 4/4 grounded samples where `F07_2` managed 1/4 (4j).
+An entrance tie is only resolved when the trace has at least one grounded
+sample and exactly one candidate has the highest non-zero agreement score;
+ties and traces with no grounded samples are reported as inconclusive.
 
 The trace needs no stylus and no clear: it usually ends in a fall, because
 RIGHT-only does not jump; the samples before the fall are the measurement.
@@ -29,6 +33,9 @@ Usage
 
 Outputs the candidate list, the trace agreement score per candidate, and the
 frame the state booted in (before any input) when --shot is given.
+`--all-courses` prints the ten highest static floor-row scores across the ROM
+as a ranking only; because parsed floor coverage varies by course, this scan
+does not identify a course by itself.
 """
 from __future__ import annotations
 
@@ -81,6 +88,11 @@ def main():
                          "candidates by the floor rows actually walked on")
     ap.add_argument("--cycles", type=int, default=900,
                     help="emulated cycles for the trace (default 900 = 15 s)")
+    ap.add_argument("--sample-every", type=int, default=30,
+                    help="emulated frames between RAM samples (default 30)")
+    ap.add_argument("--all-courses", action="store_true",
+                    help="score the trace against all parsed courses, even if "
+                         "their entrances do not match the spawn")
     ap.add_argument("--shot", default="", help="PNG path for the booted frame")
     args = ap.parse_args()
 
@@ -118,11 +130,17 @@ def main():
         return
 
     names = [c[0] for c in cands]
+    if args.all_courses:
+        with open(LEVELS_JL, encoding="utf-8") as f:
+            names = [json.loads(line)["level"] for line in f]
     courses = {n: Course(name=n, rom_path=args.rom) for n in set(names)}
+    sample_every = max(1, args.sample_every)
     emu.input.keypad_add_key(keymask(Keys.KEY_RIGHT))
     samples, prev, prev_x = [], None, None
-    for _ in range(max(1, args.cycles // 30)):
-        for _ in range(30):
+    batches = max(1, (args.cycles + sample_every - 1) // sample_every)
+    for batch in range(batches):
+        frame_count = min(sample_every, max(1, args.cycles - batch * sample_every))
+        for _ in range(frame_count):
             emu.cycle()
         _, s = env._observe()
         x, y = s["mario_B"] / 4096.0, s["mario_A"] / 4096.0
@@ -135,16 +153,34 @@ def main():
     emu.input.keypad_rm_key(keymask(Keys.KEY_RIGHT))
 
     print(f"grounded samples: {len(samples)}")
-    best, best_score = None, -1
+    scores = []
     for n in dict.fromkeys(names):
         ok = sum(1 for x, y in samples
                  if courses[n].floor_row(int(x // 16)) is not None
                  and abs(courses[n].floor_row(int(x // 16)) - (-y / 16.0)) < 1.0)
-        print(f"  {n}: floor-row agreement {ok}/{len(samples)}")
-        if ok > best_score:
-            best, best_score = n, ok
-    if best:
-        print(f"IDENTIFIED (walk-right trace): {best}")
+        if not args.all_courses:
+            print(f"  {n}: floor-row agreement {ok}/{len(samples)}")
+        scores.append((n, ok))
+    if args.all_courses:
+        scores.sort(key=lambda item: (-item[1], item[0]))
+        print("top all-course floor matches:")
+        for n, score in scores[:10]:
+            print(f"  {n}: {score}/{len(samples)}")
+    if samples and args.all_courses:
+        top_score = max(score for _, score in scores)
+        leaders = [name for name, score in scores if score == top_score]
+        print("INCONCLUSIVE (all-course floor scores are rankings, not identity proof): "
+              f"{', '.join(leaders)} top at {top_score}/{len(samples)}")
+    elif samples:
+        top_score = max(score for _, score in scores)
+        leaders = [name for name, score in scores if score == top_score]
+        if len(leaders) == 1 and top_score > 0:
+            print(f"IDENTIFIED (walk-right trace): {leaders[0]}")
+        else:
+            print("INCONCLUSIVE (walk-right trace): "
+                  f"{', '.join(leaders)} tied at {top_score}/{len(samples)}")
+    else:
+        print("INCONCLUSIVE (walk-right trace): no grounded samples")
     env.close()
 
 

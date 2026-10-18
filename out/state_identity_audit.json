@@ -1,7 +1,7 @@
 {
   "date": "2026-10-18",
   "rom": "NSMB DS EUR (NTR-A2DP-EUR)",
-  "method": "tools/identify_state.py entrance match plus grounded walk-right trace",
+  "method": "RAM entrance match and grounded walk-right trace, with all-course floor scoring and in-game boot screenshot when needed",
   "results": [
     {
       "state": "data/state_1-2.ds1",
@@ -11,10 +11,19 @@
         {"course": "course/H12_2.bin", "entrance": 0},
         {"course": "course/H12_2.bin", "entrance": 2}
       ],
-      "trace_cycles": 900,
-      "grounded_samples": 0,
-      "course_identified": null,
-      "status": "inconclusive; filename is not verified as the in-game course"
+      "trace_cycles": 180,
+      "sample_every_frames": 1,
+      "grounded_samples": 84,
+      "floor_row_agreement": {"course/H11_1.bin": "0/84", "course/H12_2.bin": "0/84"},
+      "all_course_floor_top": [
+        {"course": "course/C02_1.bin", "matches": "58/84"},
+        {"course": "course/E04_1.bin", "matches": "51/84"},
+        {"course": "course/A02_1.bin", "matches": "49/84"}
+      ],
+      "hud_label": "W1-2",
+      "screenshot": "out/state_identity_audit/state_1-2_spawn.png",
+      "course_identified": "course/A02_1.bin",
+      "status": "identified by in-game boot HUD W1-2; entrance and floor-row models conflict, so geometry score is not authoritative for this state"
     },
     {
       "state": "data/state_2-1.ds1",
@@ -27,6 +36,88 @@
       "floor_row_agreement": "3/3",
       "course_identified": "course/B01_1.bin",
       "status": "identified by unique entrance and confirmed by trace"
+    },
+    {
+      "state": "data/state_3-1.ds1",
+      "spawn_px": {"x": 808.0, "y": -192.0},
+      "entrance_matches": [
+        {"course": "course/C01_1.bin", "entrance": 0}
+      ],
+      "trace_cycles": 1800,
+      "grounded_samples": 1,
+      "floor_row_agreement": "1/1",
+      "course_identified": "course/C01_1.bin",
+      "status": "identified by unique entrance and consistent trace"
+    },
+    {
+      "state": "data/state_4-1.ds1",
+      "spawn_px": {"x": 72.0, "y": -736.0},
+      "entrance_matches": [
+        {"course": "course/D01_1.bin", "entrance": 0},
+        {"course": "course/F03_1.bin", "entrance": 0}
+      ],
+      "trace_cycles": 180,
+      "sample_every_frames": 1,
+      "grounded_samples": 44,
+      "floor_row_agreement": {"course/D01_1.bin": "44/44", "course/F03_1.bin": "29/44"},
+      "course_identified": "course/D01_1.bin",
+      "status": "identified by per-frame floor trace; the prior 30-frame sampling tied at 1/1"
+    },
+    {
+      "state": "data/state_6-1.ds1",
+      "spawn_px": {"x": 120.0, "y": -464.0},
+      "entrance_matches": [
+        {"course": "course/F01_1.bin", "entrance": 0}
+      ],
+      "trace_cycles": 1800,
+      "sample_every_frames": 30,
+      "grounded_samples": 2,
+      "floor_row_agreement": "2/2",
+      "course_identified": "course/F01_1.bin",
+      "status": "identified by unique entrance and confirmed by trace"
+    },
+    {
+      "state": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+      "spawn_px": {"x": 56.0, "y": -480.0},
+      "lives": 99,
+      "entrance_matches": [
+        {"course": "course/E01_1.bin", "entrance": 0}
+      ],
+      "trace_cycles": 1800,
+      "sample_every_frames": 30,
+      "grounded_samples": 2,
+      "floor_row_agreement": "2/2",
+      "course_identified": "course/E01_1.bin",
+      "status": "identified by unique entrance and confirmed by trace before death"
+    },
+    {
+      "state": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds3",
+      "spawn_px": {"x": 56.0, "y": -736.0},
+      "entrance_matches": [
+        {"course": "course/F07_2.bin", "entrance": 2},
+        {"course": "course/H01_1.bin", "entrance": 0}
+      ],
+      "lives": 99,
+      "trace_cycles": 1800,
+      "sample_every_frames": 30,
+      "grounded_samples": 4,
+      "floor_row_agreement": {"course/F07_2.bin": "1/4", "course/H01_1.bin": "4/4"},
+      "course_identified": "course/H01_1.bin",
+      "status": "identified by discriminating floor trace (4/4 vs 1/4) before death"
+    },
+    {
+      "state": "data/state_7-1.ds1",
+      "spawn_px": {"x": 40.0, "y": -688.0},
+      "entrance_matches": [
+        {"course": "course/D07_1.bin", "entrance": 0},
+        {"course": "course/G01_1.bin", "entrance": 0}
+      ],
+      "trace_cycles": 180,
+      "sample_every_frames": 1,
+      "grounded_samples": 44,
+      "floor_row_agreement": {"course/D07_1.bin": "29/44", "course/G01_1.bin": "44/44"},
+      "course_identified": "course/G01_1.bin",
+      "status": "identified by per-frame floor trace; the prior 30-frame sampling tied at 1/1"
     }
   ]
 }

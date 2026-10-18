@@ -1818,17 +1818,52 @@ The full traces are in
 **Savestate label audit.** `data/state_2-1.ds1` identifies uniquely as
 `course/B01_1.bin` (spawn 360, −416 px; 3/3 grounded trace samples match its
 floor rows). `data/state_1-2.ds1` does not currently prove its filename: its
-spawn (40, −416 px) matches both H11_1 and H12_2 entrances, and the 900-cycle
-walk produced zero grounded samples. The audit is recorded in
+spawn (40, −416 px) matches both H11_1 and H12_2 entrances. A 180-frame
+right-only trace sampled every frame produced 84 grounded samples but none
+matching either candidate's parsed floor rows. The audit is recorded in
 [`out/state_identity_audit.json`](../out/state_identity_audit.json); do not use
 that savestate as verified evidence for 1-2 until a better trace or another
-independent course marker resolves it.
+independent course marker resolves it. This was the 4ad status; the boot HUD
+measurement in 4ae supplies that independent marker.
 
 **Still open after this pass.** The 2-1 type-54 contact map was not extended:
 from the available B01_1 state, the actor did not enter the link list during
 the attempted approach. No contact JSON was emitted for that attempt, and no
 new rule is justified by it. The 862.7 px trace, wall map, and earlier
 autopsy remain the evidence for the 2-1 frontier.
+
+## 4ae. Savestate identity extension and conservative tie handling (2026-10-18)
+
+The entrance-plus-floor oracle adds six identified states: `state_3-1.ds1` is
+`C01_1` (unique entrance; 1/1 grounded sample), `state_6-1.ds1` is `F01_1`
+(unique entrance; 2/2), the existing `.ds2` is `E01_1` (unique entrance; 2/2
+before death), and `.ds3` is `H01_1` (4/4 versus 1/4 for its tied `F07_2`
+entrance, before death). Per-frame samples also resolve `state_4-1.ds1` as
+`D01_1` (44/44 floor rows versus 29/44 for `F03_1`) and `state_7-1.ds1` as
+`G01_1` (44/44 versus 29/44 for `D07_1`). These are course identities from
+RAM entrance/floor evidence, not proof that filenames themselves encode the
+in-game course.
+
+The boot screenshot of `state_1-2.ds1` visibly displays `W1-2`, identifying it
+as `A02_1` and agreeing with the transfer-eval metadata. This visual evidence
+resolves the filename's actual in-game course. It also exposes a limitation:
+the entrance matcher returns `H11_1`/`H12_2`, and a full static floor scan
+scores `C02_1` at 58/84 versus `A02_1` at 49/84. The HUD wins for identity;
+the floor-row parser is not reliable enough on this trace to override it. The
+screenshot is committed at
+[`out/state_identity_audit/state_1-2_spawn.png`](../out/state_identity_audit/state_1-2_spawn.png),
+and the conflicting scores remain in the JSON audit.
+
+The earlier coarse trace (one sample per 30 frames) tied on `state_4-1.ds1`
+and `state_7-1.ds1`; per-frame sampling separated their candidates. To
+prevent overstating evidence, `tools/identify_state.py` now labels a trace as
+identifying a course only when it has at least one grounded sample and exactly
+one candidate has the highest non-zero score; ties, zero-score traces, and
+empty traces are explicitly inconclusive. `--sample-every 1` enables the
+per-frame protocol; `--all-courses` compares a trace with all 191 parsed
+courses and reports the top ten floor matches, without treating that score as
+ground truth. Raw candidate lists, coordinates, counts, and scores are recorded in
+[`out/state_identity_audit.json`](../out/state_identity_audit.json).
 
 ## 5. File Index
 
@@ -1930,8 +1965,11 @@ out/dataset/
   jump_button_equivalence.json   1-1 standing-jump A/B comparison (4ad)
   meta.json                      Dataset schema specification
 
-out/state_identity_audit.json    Identified B01_1 state and inconclusive
-                                 state_1-2 label trace (4ad)
+out/state_identity_audit.json    B01_1, A02_1, C01_1, D01_1, F01_1, E01_1,
+                                 G01_1, H01_1 identified; 1-2 geometry
+                                 conflict documented (4ad-4ae)
+out/state_identity_audit/
+  state_1-2_spawn.png            W1-2 HUD evidence for the boot-state identity (4ae)
 
 out/floor_probe/
   A01_1.json / E01_1.json / H01_1.json   measured per-column floors from the
