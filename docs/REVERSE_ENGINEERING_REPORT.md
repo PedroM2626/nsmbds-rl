@@ -1,5 +1,15 @@
 # Academic Reverse Engineering Report: *New Super Mario Bros.* (Nintendo DS)
 
+> **Continued (2026-10-14):** the ARM9/overlay route this report closed
+> was reopened with better instruments and a different finding --
+> see PROJECT_STATUS 4aa. In brief: the engine is the ARM9 (Thumb; the
+> 190 KB "overlays" are mostly per-level data), the physics constants
+> are COMPUTED not stored (the measured jump v0 0x3980 exists as a u32
+> in zero of the 136 binaries), and the tooling checkpoint (rizin
+> portable, `tools/extract_overlays.py`, `out/re/`, the exact physics
+> needles) waits only on the decompiler pass. The report below remains
+> the September-era record.
+
 **Technical Report NTR-A2DP-EUR-RE-01**  
 *Author:* Reinforcement Learning & Reverse Engineering Team  
 *Date:* September 2026  

@@ -56,17 +56,23 @@ Extracted directly from DS Main RAM (`0x02000000`–`0x023FFFFF`) via pointer ch
 
 ## 4. Action Space Parameterization
 
-The agent operates over a discrete 7-element control repertoire mapped to Nintendo DS digital gamepad registers:
+The agent operates over a discrete 8-element control repertoire mapped to Nintendo DS digital gamepad registers (`MarioRamEnv._action_keys`, src/ram_env.py):
 
 | Action ID | Nintendo DS Key Mask | Semantic Maneuver | Purpose |
 |:---:|:---|:---|:---|
 | `0` | None | NOOP / Coast | Dynamic deceleration / latency buffer |
 | `1` | `KEY_RIGHT` | Walk Right | Low-speed navigation |
-| `2` | `KEY_RIGHT` + `KEY_B` | Walk + Jump | Short hurdle / 1-tile stair climb |
-| `3` | `KEY_RIGHT` + `KEY_Y` | Dash Right | Maximum horizontal velocity ($v_{\max} = 3.6\text{ px/frame}$) |
-| `4` | `KEY_RIGHT` + `KEY_Y` + `KEY_B` | Dash + Jump | Ballistic long leap ($X_{\text{reach}} \approx 172.8\text{ px}$) |
+| `2` | `KEY_RIGHT` + `KEY_A` | Walk + Jump | Short hurdle / 1-tile stair climb |
+| `3` | `KEY_RIGHT` + `KEY_X` | Dash Right | Maximum horizontal velocity (~2.14 px/frame, measured) |
+| `4` | `KEY_RIGHT` + `KEY_X` + `KEY_A` | Dash + Jump | Ballistic long leap (reach 109.73 px, apex 71.06 px @ f26, measured) |
 | `5` | `KEY_LEFT` | Walk Left | Decoupled braking / runway recovery |
-| `6` | `KEY_B` | Standing Vertical Jump | Vertical evasion without horizontal displacement |
+| `6` | `KEY_X` + `KEY_A` | Dash + Jump in Place | Vertical evasion with spin |
+| `7` | `KEY_A` | Standing Vertical Jump | Vertical evasion without horizontal displacement |
+
+> Corrected 2026-10-14: this table previously described the June-era
+> mapping (KEY_B for jump, KEY_Y for dash, `v_max = 3.6 px/frame`,
+> reach 172.8 px) which matches no current code path -- the RAM env
+> has jumped with KEY_A and dashed with KEY_X since the RAM era.
 
 ---
 
@@ -98,7 +104,15 @@ For each episode $i \in \{1, \dots, N\}$:
 
 ### 6.1 Cumulative Episodic Return ($R_i$)
 $$R_i = \sum_{t=0}^{T_i} r_t$$
-where step reward $r_t$ includes camera advancement, life loss penalty ($-50.0$), time penalty ($-0.01$), and terminal goal completion ($+100.0$).
+where step reward $r_t$ is the unified RAM reward (4s): camera-RAM
+advancement $\times 2.0$, per-step time penalty ($-0.05$), death via
+RAM lives ($-15.0$), stage-clock timeout ($-50.0$), and terminal goal
+completion ($+100.0$).
+
+> Corrected 2026-10-14: the previous text read "life loss penalty
+> ($-50.0$), time penalty ($-0.01$)" -- both wrong against the code:
+> death is $-15$ (and was $-15$ before the 4s unification too), the
+> per-step penalty is $-0.05$, and $-50$ is the stage-clock timeout.
 
 ### 6.2 Absolute Spatial Level Progression ($X_{\text{prog}}$)
 $$X_{\text{prog}, i} = \max_{0 \le t \le T_i} X_t - X_0$$
