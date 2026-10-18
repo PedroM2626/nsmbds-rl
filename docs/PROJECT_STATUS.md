@@ -36,7 +36,7 @@ The pipeline goes from raw DS emulator → RAM telemetry → physics-informed wo
 | Entrance block (Block 5) | ✅ | 20 B/record: x,y,cam in pixels |
 | `_bgdat.bin` tile objects | ✅ | All walkable ground/slope/pipe/stair objects included; false pits eliminated |
 | Calibration vs RAM (1-1) | ✅ | Spawn tile 3 → RAM 48 px, ground row 30 → RAM −480 px, Goomba tile 24 → RAM 365 px |
-| All 382 course files parsed | ✅ | ndspy `NintendoDSRom`, 2449-file FS, manifest at `tools/fs_manifest.json` |
+| All 382 course files parsed | ✅ | ndspy `NintendoDSRom`, 2449-file FS, manifest at `tools/fs_manifest.json`. Parse ≠ plannable: only 29 of 191 courses pass the coverage guard (`src/course.py:require_plannable`); see §4e |
 | JSON export for all levels | ✅ | 191 levels exported (`out/dataset/levels.jsonl`, `entities.csv` via `tools/build_dataset.py`) |
 | Enemy-type ID mapping | ✅ (85%) | 342 profile slots extracted from CC0 decomp into `out/dataset/object_ids.json`, loaded by `src/course.py` |
 | Level-finish tile detection | ✅ | Flagpole detected at tile 252 (`4032.0 px`) across course sprites |
@@ -46,10 +46,10 @@ The pipeline goes from raw DS emulator → RAM telemetry → physics-informed wo
 | Component | Status | Notes |
 |-----------|--------|-------|
 | Ground/pit mask from `_bgdat.bin` | ✅ | `GROUND_OBJS` includes all solid surfaces; real 1-1 pits detected at width 2-3 tiles |
-| Run-jump reachability | ✅ | Dynamic ballistic reach: $X_{reach} = v_x \cdot t_{airborne}$ ($t_{air} = 48\text{ frames}$) |
+| Run-jump reachability | ✅ | Dynamic ballistic reach: $X_{reach} = v_x \cdot t_{airborne}$ ($t_{air} = 52\text{ frames}$ in code; documented as 48 in earlier sections — use code value) |
 | A\* over tile columns | ✅ | Global layer; feeds takeoff column to CEM-MPC |
 | Enemy-aware planning | ✅ | `enemy_threat_ahead()` checks takeoff/landing corridors; triggers `dash_leap` or `retreat_wait` |
-| Multi-level support | ⚠️ Not tested | Only validated on 1-1 |
+| Multi-level support | ⚠️ Partial | Validated on 1-1; tested headless on 2-1–8-1 via `tools/enter_course.py`; only grass-tileset family plannable (92.1% on A01_1; others refused at coverage guard) |
 
 ### 1.4 PINN World Model (`src/pinn_world_model.py`, `src/train_pinn_world_model.py`)
 
@@ -72,10 +72,9 @@ The pipeline goes from raw DS emulator → RAM telemetry → physics-informed wo
 | Reactive baseline | ✅ | Rule-based: run right + jump on pit/enemy |
 | **Results (n=8 each)** | | |
 | — PPO | ❌ | Mean 347 px, max 424 px; dies at first Goomba |
-| — Reactive | ❌ | Mean 484 px, max 561 px; truncation at 1000 steps |
+| — Reactive | ✅ | Mean 4,020.6 px, max 4,020.6 px; clears 5/5; `clear_rate = 1.0` (`evals/pinn_realtime_eval.json`) |
 | — MPC | ❌ | Mean 1269 px, max 1730 px; best so far but never clears pit cluster at ~1730 px |
-| — Reactive (PINN obs) | ❌ | Mean 1137 px, max 1203 px; consistent Goomba deaths |
-| Level clear | ❌ **Not achieved** | Goal: 4256 px |
+| Level clear | ✅ **Achieved** | Reactive controller clears World 1-1 end to end: 5/5 episodes, 4,020.6 px of the 4,032 px flagpole (`evals/pinn_realtime_eval.json`) |
 
 ### 1.6 Model-Free Baselines (`src/train_ppo_recurrent.py`, `src/train_ram.py`, `src/train_gnn.py`, etc.)
 
@@ -98,7 +97,7 @@ Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a p
 | Gap | Impact | Suggested Fix |
 |-----|--------|---------------|
 | **Level-finish detection** | Agents cannot get the +100 reward for clearing; reward signal is truncated | ✅ Solved: Hardware flag isolated at `CLEAR_FLAG_ADDR = 0x020DCF27` via differential RAM search |
-| **Absolute X ambiguity ±40 px** | Progress reward is correct (delta), but absolute position reporting in evals is off | Fix: anchor `B_OFFSET` once; compare `0x021C1828` spawn value with known entrance coordinate |
+| **Absolute X ambiguity ±40 px** | Progress reward is correct (delta), but absolute position reporting in evals is off | ✅ Solved: Origin fix in `src/ram_env.py` (4o/4q); `ram_env` discovers Mario before fixing origin; `eval_pinn_realtime.py` reads `mario_B` directly with historical rounding; `evals/pinn_realtime_eval.json` reports `final_mario_px` / `max_mario_px` |
 | **PPO policy collapses at ~336 px** | First Goomba on flat ground always kills the PPO agent (87 identical steps across 7/8 episodes → deterministic death loop) | Grounded contact mortality added to imagination + $25\times$ death loss weight in PINN |
 
 ### P1 — World model quality
@@ -107,15 +106,15 @@ Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a p
 |-----|--------|---------------|
 | **Open-loop drift 1738 px over 44 frames** | MPC re-plans every step (mitigates this), but PPO relies on long imagined rollouts where the model is inaccurate | Increase transitions to 10k (currently 3500); add recurrent state in the PINN trunk (GRU head); or use an ensemble of 3 PINNs and take pessimistic lower bound |
 | **Enemy dynamics unmodeled beyond relative position** | Enemies move; their relative position changes in ways the PINN doesn't capture well (logvar head marks this as high-uncertainty) | ✅ Solved: Dynamic enemy velocities `(vx, vy)` tracked in `RamState.enemies()` |
-| **No contact/death prediction** | The PINN `continue` head is a binary; it doesn't distinguish death-by-enemy from death-by-pit | ✅ Solved: Explicit physical collision hitbox check in `PINNImaginationEnv` |
+| **No contact/death prediction** | The PINN `continue` head is a binary; it doesn't distinguish death-by-enemy from death-by-pit | ⚠️ Partially solved: Explicit physical collision hitbox override in `PINNImaginationEnv` (`src/pinn_world_model.py:124-127`), but the `continue` head remains binary and does not learn cause-of-death |
 
 ### P2 — Planning gaps
 
 | Gap | Impact | Suggested Fix |
 |-----|--------|---------------|
 | **Enemy-unaware A\* planner** | MPC consistently dies at ~1730 px where a Goomba blocks the approach to a pit edge | ✅ Solved: `enemy_threat_ahead` added to `TilemapAStar` |
-| **Multi-level generalization** | Planner and RAM addresses only validated on 1-1 | Run `course.py` batch export on all 382 levels → JSON; verify calibration on 1-2 and 2-1 |
-| **JUMP_REACH_PX hardcoded** | 120 px works for most pits in 1-1 but breaks on wider pits in later worlds | ✅ Solved: Dynamic reach $X_{\text{reach}}(v_x) = v_x \cdot t_{\text{air}}$ ($t_{\text{air}} = 48\text{ frames}$) |
+| **Multi-level generalization** | Planner and RAM addresses only validated on 1-1 | Savestate not a blocker (`tools/enter_course.py`, states for 2-1–8-1 exist); tileset binding route closed (4f/4h: MUCD does not encode solidity). Remaining: no clear outside World 1 yet; courses refused at coverage guard (`C01_1` 26%, `G01_1` 28.4%); probe-based overrides + honest `UnsupportedCourse` refusal are in place |
+| **JUMP_REACH_PX hardcoded** | 120 px works for most pits in 1-1 but breaks on wider pits in later worlds | ⚠️ Partially solved: `dynamic_jump_reach_px(vx)` exists (`src/tilemap_planner.py:34`) but hardcoded `JUMP_REACH_PX = 109.73` remains the default constructor value (`tilemap_planner.py:30,50`); doc says `t_air = 48 frames` but code default is `airborne_frames=52.0` |
 
 ### P3 — Documentation & reproducibility
 
@@ -125,7 +124,7 @@ Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a p
 | **Complete Gap Analysis & Roadmap** | Gaps across all pillars not centralized | ✅ Solved: Documented in [`docs/COMPREHENSIVE_GAP_ANALYSIS_AND_ROADMAP.md`](COMPREHENSIVE_GAP_ANALYSIS_AND_ROADMAP.md) |
 | **`evals/benchmark_n30_merged.json` not described** | The eval protocol (n=30, seeds, det/stoch split) is in the JSON but not in any doc | ✅ Solved: Documented in [`docs/BENCHMARK_PROTOCOL.md`](BENCHMARK_PROTOCOL.md) |
 | **No trained model cards** | Each `.zip`/`.pt` in `models/` has no metadata doc | ✅ Solved: Documented in [`docs/MODEL_CARDS.md`](MODEL_CARDS.md) |
-| **README §14 (PINN) not linked to WORLD_MODEL_PINN.md** | The detailed doc exists but README only has a CLI snippet | Add link in README |
+| **README §14 (PINN) not linked to WORLD_MODEL_PINN.md** | The detailed doc exists but README only has a CLI snippet | ✅ Solved: Link added in `README.md:375` and `README.md:98` |
 
 ---
 
