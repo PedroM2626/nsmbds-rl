@@ -1682,6 +1682,52 @@ entry-point archaeology project in rizin through the ARM9's init
 sequence -- and the behavioral oracles stay the cheap judge of
 whatever either claims.
 
+## 4ab. The 863 autopsy: a floating bar, and the rear blind spot (2026-10-14)
+
+The 4x crossing put 2-1's death at 862.7 px "to the next hazard class
+(type 54 at contact)". The autopsy traces it fully:
+
+**The trace.** The approach runs east and lands on the base floor at
+col 53.9 (863 px); x then freezes for 11+ steps (stuck 0->2 cycling,
+blocked events answering with the leap). The leap is VERTICAL -- x
+pinned at 0.981844 through the whole arc, the same hold-class x-pin as
+the 613.7 ledge -- rising +48 px and falling back, over and over. The
+killer (54) arrives from BEHIND during the freeze: contact at dx -5,
+dy -14, and the death line reads it with the fence (43) and platform
+(44) classes in the slots. The final arc falls below the floor
+reference and the episode ends at step 39.
+
+**The geometry (wall probe, 48 cells, cols 51..58 x rows 23..28,
+committed as out/wall_probe/B01_1_step863.json).** The only solids in
+the window besides the base floor: **a one-tile bar at row 25, cols
+53..55** (pin-never-engaged on all three cells; rows 24 and 26 above
+and below it FREE). The floor probe's "elevated floor, row 24" at
+those columns is markers landing ON TOP of the bar. The parser sees
+none of it: its floor is 27 across the window and the pit flags read
+solid throughout. A floating bar, head-height to a runner on the base
+floor, invisible to every layer the planner reads.
+
+**The verdict: a named blocker, not a rule -- twice over.**
+
+1. *The bar.* The blocked machinery cannot answer it: the leap that
+   would clear (horizontal travel onto the bar's top or past it) is
+   exactly what the hold-class pin forbids, and the parser has no row-
+   25 surface for the profile arm's hop-onto-it branch to find.
+2. *The rear blind spot.* The 54 killed from dx = -5 -- behind
+   Mario -- and the threat window is one-sided (`enemy_lo=0,
+   enemy_hi=75`: nothing behind is ever watched). But a watch-behind
+   rule is parity-dead by measurement: the PUBLISHED 1-1 clear contains
+   **91 hostile-behind-within-75px moments** (goombas trail him the
+   whole run -- at dx -1 for the steps 218-234 tail-ride) and survives
+   every one of them by outrunning the pursuit; any rear-window rule
+   fires on the published trajectory and breaks parity. The rear
+   threat is only lethal COMBINED with a freeze, and the frozen-plus-
+   rear shape also fires at 1-1's own steps 218-234.
+
+2-1's gate count is now three, all measured: the 613.7 ledge guard
+(crossed, 4x), the 863 floating bar (parser-blind, hold-pinned), and
+the rear pursuit that only a freeze makes lethal.
+
 ## 5. File Index
 
 ```
