@@ -1,16 +1,17 @@
 """The wall probe: a 2D solidity oracle, cell by cell.
 
-The drop probe (tools/probe_floor.py) answers "where can Mario land?" but
-the three remaining transfer blockers are WALLS the bgdat parse cannot
-see (the 2-1 pocket blocks x in both directions, the 4-1 pocket pins him,
-the 6-1 col-122 wall spans most of the water column). This tool answers
-"can Mario's body occupy this cell and move east through it?": teleport
+The drop probe (tools/probe_floor.py) answers "where can Mario land?" This
+tool answers "can Mario's body occupy this cell and move east through it?": teleport
 to each (col, row) of a target region, pin until the write engages,
 release, hold RIGHT for ~1.5 s of game time, and measure the x advance.
 
 A frozen x means the cell is solid to Mario at that height -- sprite
 geometry, tileset-local classes, whatever the parser misses. A large x
 advance means the cell is free even if the parser says nothing about it.
+The 2-1 and 4-1 "sprite-solid pocket" hypotheses were retracted by the
+measured wall maps (PROJECT_STATUS 4r/4v); their frontiers are enemy/contact
+problems. The 6-1 wall at cols 120/123 is confirmed. Keep this oracle general
+and use it to measure a named region, not to presume a blocker is geometric.
 A fall (y dropping away) does not invalidate the x reading: the 4i trace
 measured x frozen even airborne with right held.
 

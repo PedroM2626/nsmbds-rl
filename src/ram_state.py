@@ -13,9 +13,11 @@ Discoveries validated via differential search + screenshots + memory pokes (see 
   Circular linked list of entities: node = obj+0x38 [prev, next];
   enemies link into list upon screen proximity (goomba links at ~20 steps).
 
-Unresolved: absolute screen pixel X (two consistent bases: 0x021C1828 spawns
-at 48.0px; object B differs by +40px — deltas are identical, which suffices
-for reward); pixel Y is analogous. Enemies: RELATIVE position (dx, dy) to Mario.
+Position is exposed from Mario's object fields in 20.12 units; the environment
+anchors its episode-relative observation at the observed Mario position. The
+earlier ±40 px origin ambiguity was measured and resolved for the published
+eval path (PROJECT_STATUS 4o/4q). Enemies are exposed relative to Mario as
+(dx, dy), with per-poll finite-difference velocities.
 """
 import numpy as np
 

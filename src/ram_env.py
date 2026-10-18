@@ -6,9 +6,8 @@ Observation (Box 17, normalized for MLP):
   x,y relative to episode reset (px, /512); vx,vy in px/frame (/4);
   enemies: 3 closest in |dx|, dx/dy in px (/256), type/256.
 Reward: identical formula to visual env (progress*2 - 0.05, death -15).
-Done: death (lives drop), timer reaches zero (-50, equivalent to timeout), or 1000 steps cap.
-Without pixels: level finish (+100) is not detected in this v1 (no policy reached stage end in
-short evaluations); timeout is monitored via RAM stage timer.
+Done: death (lives drop), timer reaches zero (-50, equivalent to timeout), clear (+100),
+or 1000 steps cap. The clear flag and flagpole fallback are checked from RAM/course data.
 """
 import os
 import numpy as np
@@ -34,8 +33,10 @@ MAX_STEPS = 1000
 
 # Action -> held DS buttons. Discovered empirically (see docs): the face button
 # A is JUMP and X (or Y) is the RUN/DASH button (doubles speed 1.5->3.0 px/frame),
-# enabling running jumps that clear the 64-80 px pits. B is inert in this control
-# scheme. Index layout is also mirrored in pinn_world_model.N_ACTIONS.
+# enabling running jumps that clear the 64-80 px pits. This agent emits A for jump
+# and never emits B; a 1-1 standing-jump probe found matching A/B trajectories in
+# one state/protocol (see out/dataset/jump_button_equivalence.json). Index layout
+# is also mirrored in pinn_world_model.N_ACTIONS.
 #   0 noop | 1 right | 2 right+jump | 3 right+dash | 4 right+dash+jump
 #   5 left  | 6 dash+jump (broad running leap) | 7 jump in place
 

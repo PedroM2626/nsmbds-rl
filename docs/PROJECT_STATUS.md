@@ -1,16 +1,34 @@
 ﻿# Project Status & Gap Analysis
 
-*Last updated: 2026-10-11. ROM: NSMB DS EUR (NTR-A2DP-EUR). All code lives under `src/`.*
+*Current snapshot: 2026-10-18. Target: NSMB DS EUR (NTR-A2DP-EUR). Historical experiment notes remain below.*
 
 ---
 
 ## Executive Summary
 
-The pipeline goes from raw DS emulator → RAM telemetry → physics-informed world model → real-time agent. All three PINN pipeline stages are executable and produce metrics. **The rule-based `reactive` controller clears World 1-1 end to end**: 5/5 episodes, 4,022 px of the 4,032 px flagpole, `clear_rate = 1.0` ([`evals/pinn_realtime_eval.json`](../evals/pinn_realtime_eval.json), reproduced 2026-10-11 on a second machine with an identical `total_reward`). The learned controllers are still far from that: CEM-MPC peaks at 1,510 px and PPO+Reflex at 1,139 px, both dying at pit/enemy approaches, and the pixel PPO baselines still show the early-death cluster at ~336 px caused by the first Goomba on flat ground. An earlier revision of this page reported "no controller has cleared 1-1 (max ≈ 1730 px)"; that predates commit `f70b262`.
+The published legacy reactive controller clears World 1-1. Its parity contract is **245 steps, reward 1663.087402343757, final Mario X 4020.6328125 px**, against the 4032 px flagpole; `tools/parity_reflex.py` reproduces the saved episode. Learned agents still do not clear: saved 1-1 evals peak at 1510.0 px for CEM-MPC and 1139.5 px for PPO+Reflex; the asymmetric RAM-critic's stochastic maximum is 2610.9 px at n=3. No clear outside World 1 is recorded.
+
+Not every game value is resolved. The measurements suffice to reproduce the 1-1 clear and explain several local transfer frontiers, but do not establish whole-game collision semantics, all actor identities, all player physics states, or all course geometry.
+
+## Current Status (reconciled 2026-10-18)
+
+| Area | Status | Current evidence and boundary |
+|------|--------|-------------------------------|
+| RAM telemetry, origin, clear flag, unified reward | ✅ | EUR addresses validated; origin ambiguity resolved in 4o/4q; legacy parity remains the frozen contract |
+| Course parsing | ✅ structure / ⚠️ geometry | 191 courses and their records parse; static ground classes are tileset-local and only 29/191 courses pass the current coverage guard |
+| Measured geometry | ⚠️ Partial | Floor probes: A01_1, B01_1, C01_1, D01_1, E01_1, F01_1, G01_1, H01_1. Wall probes: B01_1, D01_1, F01_1. Water: F01_1. Contact: A01_1 Goomba, B01_1 Pokey, D01_1 Koopa |
+| `BG_chk` collision tables | ⚠️ Partial | 48 tables are structurally inspected; nonzero entries are not a solidity mask, and course/table/solid-class binding is unresolved (4f/4h) |
+| Actor identity | ⚠️ Partial | 342 profile slots (~85%) extracted; some runtime types in transfer traces remain unnamed |
+| Player physics | ⚠️ Empirically measured, statically unresolved | Four jump regimes are in `physics_jump_state_machine.json`; the new 1-1 button comparison measures matching A/B traces for one standing-jump protocol. This does not establish behavior for every power-up, water state, or movement regime |
+| Planner | ⚠️ Partial | A* uses a conservative six-tile (96 px) default reach; `dynamic_jump_reach_px` exists but is not wired into the planner default |
+| Learned models | ⚠️ Partial | PINN pool has 3500 transitions; the recorded 44-frame drift is 1738 px. No newer drift eval is recorded. PPO, PPO+Reflex, and MPC saved evals do not clear 1-1 |
+| Transfer | ⚠️ Partial | 2-1 reaches 862.7 px on both arms (4x); 4-1 reaches 505 px; the 6-1 ledger records a 1929 px frontier (4p/4x). No outside-World-1 clear is recorded |
+
+The September-era checklist in sections 1–3 below is retained as a historical note, not the current inventory. The experiment ledger in 4a–4ad remains the authoritative history of measurements and retractions.
 
 ---
 
-## 1. What Is Done ✅
+## 1. Historical Snapshot (2026-10-11; superseded by Current Status)
 
 ### 1.1 Environment & RAM Telemetry (`src/ram_env.py`, `src/ram_state.py`)
 
@@ -88,7 +106,7 @@ All 14 paradigms in the README are implemented. Benchmark results in `evals/benc
 
 ---
 
-## 2. What Is Missing ❌
+## 2. Historical Gap Checklist (2026-10-11; superseded by Current Status)
 
 Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a publishable result).
 
@@ -128,7 +146,7 @@ Listed in priority order for advancing the ML goal (clearing 1-1 or reaching a p
 
 ---
 
-## 3. Current Research Status & Next Steps (ordered)
+## 3. Historical Milestone Checklist (2026-10-11; superseded by Current Status)
 
 ### Completed Milestones ✅
 1. **Level-Finish Detection:** Hardware stage clear flag isolated at `CLEAR_FLAG_ADDR = 0x020DCF27` (transitions $0 \to 1$ on flagpole descent / castle entry).
@@ -1774,6 +1792,44 @@ Artifacts: `models/ac_pixels_200k.zip` + `models/ac_ram_200k.zip`
 (19-20 MB each), `out/ac_{pixels,ram}_200k.log`, the eval tool
 `src/eval_asymmetric_ac.py`, the env `src/dual_obs_env.py`.
 
+## 4ad. Documentation reconciliation and jump-button oracle (2026-10-18)
+
+The current-state summary above replaces the September-era checklist in
+sections 1–3. The old sections and 4a–4ac remain as dated lab history; their
+claims should be read in their original measurement context. In particular,
+the generic `StageEntity` constants in `out/nsmb_physics.json` are evidence
+from the clean-room decompilation, while `physics_jump_state_machine.json`
+contains behavioral fits of Mario. These are different evidence classes, not
+contradictory declarations that all player physics are either known or unknown.
+
+**Button mapping correction.** `src/ram_env.py` uses A for the agent's jump
+action and does not emit B. Its earlier comment called B “inert in this
+control scheme,” which overclaimed what the agent mapping proved. The new
+`tools/probe_jump_buttons.py` comparison loads the uniquely identified 1-1
+entrance state before each trial, settles 20 frames, then holds A or B for 60
+frames and records Y/Y-velocity every frame in one DeSmuME process. Both
+trajectories are identical at the recorded 60 Hz samples: **peak rise
+67.40625 px**, with **0.0 px** peak difference. This supports that either
+button triggers the same standing jump in this exact state/protocol. It does
+not establish equivalence for other power-ups or movement/water states.
+The full traces are in
+[`out/dataset/jump_button_equivalence.json`](../out/dataset/jump_button_equivalence.json).
+
+**Savestate label audit.** `data/state_2-1.ds1` identifies uniquely as
+`course/B01_1.bin` (spawn 360, −416 px; 3/3 grounded trace samples match its
+floor rows). `data/state_1-2.ds1` does not currently prove its filename: its
+spawn (40, −416 px) matches both H11_1 and H12_2 entrances, and the 900-cycle
+walk produced zero grounded samples. The audit is recorded in
+[`out/state_identity_audit.json`](../out/state_identity_audit.json); do not use
+that savestate as verified evidence for 1-2 until a better trace or another
+independent course marker resolves it.
+
+**Still open after this pass.** The 2-1 type-54 contact map was not extended:
+from the available B01_1 state, the actor did not enter the link list during
+the attempted approach. No contact JSON was emitted for that attempt, and no
+new rule is justified by it. The 862.7 px trace, wall map, and earlier
+autopsy remain the evidence for the 2-1 frontier.
+
 ## 5. File Index
 
 ```
@@ -1851,6 +1907,8 @@ tools/
                                  (4m); produces the savestate directly
   parity_reflex.py               Legacy arm must equal the published 1-1 eval
   parity_planner.py              Rust sidecar vs Python, 37,281 queries
+  probe_jump_buttons.py          A/B standing-jump comparison; one DeSmuME
+                                 process; writes out/dataset/jump_button_equivalence.json
   record_dashboard.py            The README clip and its measured caption
   check_readme_numbers.py        Gate: every number quoted in README.md
   make_save.py                   Build an NSMB DS .sav with the world row
@@ -1865,8 +1923,15 @@ out/dataset/
   levels.jsonl                   191 levels with full entity tables (0.70 MB)
   entities.csv                   5311 entities with corrected pixel coords (0.28 MB)
   object_ids.json                342 actor profile mappings
-  physics.json                   20.12 fixed-point engine constants and laws
+  physics.json                   Decomp-derived 20.12 generic engine constants;
+                                 player behavior is in separate probe files
+  physics_jump_state_machine.json Four behavioral jump fits; separate from
+                                 decomp-derived constants
+  jump_button_equivalence.json   1-1 standing-jump A/B comparison (4ad)
   meta.json                      Dataset schema specification
+
+out/state_identity_audit.json    Identified B01_1 state and inconclusive
+                                 state_1-2 label trace (4ad)
 
 out/floor_probe/
   A01_1.json / E01_1.json / H01_1.json   measured per-column floors from the

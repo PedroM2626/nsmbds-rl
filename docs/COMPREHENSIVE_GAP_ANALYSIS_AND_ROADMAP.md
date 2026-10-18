@@ -1,17 +1,18 @@
 # Comprehensive Gap Analysis & Scientific Roadmap
 
-> **SUPERSEDED (2026-10-14):** this audit is a September-era snapshot.
-> The living, gate-checked record is `docs/PROJECT_STATUS.md` (sections
-> 4s-4aa). Specific cells here no longer hold: 2-1 moved 613.7 ->
+> **SUPERSEDED (2026-10-18):** this audit is a September-era snapshot.
+> The current inventory is the reconciled summary at the top of
+> `docs/PROJECT_STATUS.md`; the measured history runs through section 4ad.
+> Specific cells here no longer hold: 2-1 moved 613.7 ->
 > 862.7 px on both arms (4x, the largest single transfer gain
 > measured); the sprite-solids map the P2 gaps call "not implemented"
 > exists three times over (probe_surfaces 4m, the wall oracle 4r,
 > `Course.wall_probe_cells` consumed by the reflex 4v, with committed
 > data); the "warm-only swim state" is retracted (4aa -- single cold
 > presses at the stall give the full impulse; the 4r bobs were burst-
-> rhythm protocol artifacts); and the static RE route has a tooling
-> checkpoint (rizin portable + `tools/extract_overlays.py` + the
-> measured physics needles) blocked only on the decompiler install.
+> rhythm protocol artifacts); and the static RE route's scalar scan was
+> closed without recovering Mario's movement routine. A real control-flow /
+> decompiler pass remains open.
 > Read on for the era-correct history, not the current state.
 
 **Project:** *New Super Mario Bros. (DS) Reinforcement Learning & World Model Pipeline*  

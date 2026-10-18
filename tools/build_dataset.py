@@ -70,12 +70,16 @@ def main():
         "id_column": "col0 of the 12-byte record; framing proven by the 0xFFFFFFFF terminator u32 in 189/189 non-empty levels",
         "coordinates": "x_px/y_px are record words 1 and 2 times 16 (tiles -> pixels); z/settings words 3..5 are raw",
         "readme": "levels.jsonl = one level per line (entities + section inventory); "
-                  "entities.csv = flat table; physics.json = engine constants and the "
-                  "integration model; object_ids.json = 342 object-id -> actor class.",
+                  "entities.csv = flat table; physics.json = decomp-derived engine "
+                  "constants and integration model; empirical player trajectories "
+                  "are separate; object_ids.json = 342 object-id -> actor class.",
         "what_is_not_here": [
-            "the player's own gravity and jump velocity: not present in the decompilation",
-            "terrain tile layout: the level files store chunk references; the chunk "
-            "library is BG_chk/*MainUnitChangeData.bin and is not decoded yet",
+            "the player's own gravity and jump velocity in the decompilation; "
+            "empirical 1-1 fits are in physics_jump_state_machine.json and the "
+            "button comparison is in jump_button_equivalence.json",
+            "a validated course-to-solid-class binding for BG_chk: its 48 "
+            "MainUnitChangeData tables were inspected, but their values are not "
+            "a direct solidity mask",
             "the meaning of words 3..5 of the record (z? generator settings?)",
         ],
     }

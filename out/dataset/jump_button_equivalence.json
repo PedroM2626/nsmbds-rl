@@ -1,0 +1,645 @@
+{
+  "rom": "NSMB DS EUR (NTR-A2DP-EUR)",
+  "course": "course/A01_1.bin",
+  "state": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+  "state_identification": {
+    "method": "tools/identify_state.py unique entrance match",
+    "spawn_x_px": 88.0,
+    "spawn_y_px": -480.0,
+    "entrance": "course/A01_1.bin entrance[0] (80, 464)"
+  },
+  "protocol": {
+    "same_emulator_instance": true,
+    "reset_state_between_trials": true,
+    "settle_frames": 20,
+    "held_frames": 60,
+    "sample_rate_hz": 60,
+    "powerup": "as represented by input savestate; not independently verified",
+    "dash": false
+  },
+  "comparison": {
+    "peak_rise_difference_px": 0.0,
+    "trajectories_identical": true,
+    "interpretation": "Both A and B produce the same measured standing-jump trajectory in this state and protocol; this does not establish equivalence for every powerup or movement state."
+  },
+  "trials": [
+    {
+      "button": "A",
+      "settle_frames": 20,
+      "hold_frames": 60,
+      "y0_px": -480.0,
+      "peak_rise_px": 67.40625,
+      "trajectory": [
+        {
+          "frame": 1,
+          "rise_px": 3.59375,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 2,
+          "rise_px": 7.125,
+          "vy_px_per_frame": 3.59375
+        },
+        {
+          "frame": 3,
+          "rise_px": 10.59375,
+          "vy_px_per_frame": 3.53125
+        },
+        {
+          "frame": 4,
+          "rise_px": 14.0,
+          "vy_px_per_frame": 3.46875
+        },
+        {
+          "frame": 5,
+          "rise_px": 17.34375,
+          "vy_px_per_frame": 3.40625
+        },
+        {
+          "frame": 6,
+          "rise_px": 20.625,
+          "vy_px_per_frame": 3.34375
+        },
+        {
+          "frame": 7,
+          "rise_px": 23.84375,
+          "vy_px_per_frame": 3.28125
+        },
+        {
+          "frame": 8,
+          "rise_px": 27.0,
+          "vy_px_per_frame": 3.21875
+        },
+        {
+          "frame": 9,
+          "rise_px": 30.09375,
+          "vy_px_per_frame": 3.15625
+        },
+        {
+          "frame": 10,
+          "rise_px": 33.125,
+          "vy_px_per_frame": 3.09375
+        },
+        {
+          "frame": 11,
+          "rise_px": 36.09375,
+          "vy_px_per_frame": 3.03125
+        },
+        {
+          "frame": 12,
+          "rise_px": 39.0,
+          "vy_px_per_frame": 2.96875
+        },
+        {
+          "frame": 13,
+          "rise_px": 41.84375,
+          "vy_px_per_frame": 2.90625
+        },
+        {
+          "frame": 14,
+          "rise_px": 44.625,
+          "vy_px_per_frame": 2.84375
+        },
+        {
+          "frame": 15,
+          "rise_px": 47.34375,
+          "vy_px_per_frame": 2.78125
+        },
+        {
+          "frame": 16,
+          "rise_px": 50.0,
+          "vy_px_per_frame": 2.71875
+        },
+        {
+          "frame": 17,
+          "rise_px": 52.59375,
+          "vy_px_per_frame": 2.65625
+        },
+        {
+          "frame": 18,
+          "rise_px": 55.125,
+          "vy_px_per_frame": 2.59375
+        },
+        {
+          "frame": 19,
+          "rise_px": 57.59375,
+          "vy_px_per_frame": 2.53125
+        },
+        {
+          "frame": 20,
+          "rise_px": 59.8125,
+          "vy_px_per_frame": 2.46875
+        },
+        {
+          "frame": 21,
+          "rise_px": 61.78125,
+          "vy_px_per_frame": 2.21875
+        },
+        {
+          "frame": 22,
+          "rise_px": 63.5,
+          "vy_px_per_frame": 1.96875
+        },
+        {
+          "frame": 23,
+          "rise_px": 64.96875,
+          "vy_px_per_frame": 1.71875
+        },
+        {
+          "frame": 24,
+          "rise_px": 66.09375,
+          "vy_px_per_frame": 1.46875
+        },
+        {
+          "frame": 25,
+          "rise_px": 66.875,
+          "vy_px_per_frame": 1.125
+        },
+        {
+          "frame": 26,
+          "rise_px": 67.3125,
+          "vy_px_per_frame": 0.78125
+        },
+        {
+          "frame": 27,
+          "rise_px": 67.40625,
+          "vy_px_per_frame": 0.4375
+        },
+        {
+          "frame": 28,
+          "rise_px": 67.15625,
+          "vy_px_per_frame": 0.09375
+        },
+        {
+          "frame": 29,
+          "rise_px": 66.65625,
+          "vy_px_per_frame": -0.25
+        },
+        {
+          "frame": 30,
+          "rise_px": 65.90625,
+          "vy_px_per_frame": -0.5
+        },
+        {
+          "frame": 31,
+          "rise_px": 64.90625,
+          "vy_px_per_frame": -0.75
+        },
+        {
+          "frame": 32,
+          "rise_px": 63.65625,
+          "vy_px_per_frame": -1.0
+        },
+        {
+          "frame": 33,
+          "rise_px": 62.15625,
+          "vy_px_per_frame": -1.25
+        },
+        {
+          "frame": 34,
+          "rise_px": 60.40625,
+          "vy_px_per_frame": -1.5
+        },
+        {
+          "frame": 35,
+          "rise_px": 58.40625,
+          "vy_px_per_frame": -1.75
+        },
+        {
+          "frame": 36,
+          "rise_px": 56.0625,
+          "vy_px_per_frame": -2.0
+        },
+        {
+          "frame": 37,
+          "rise_px": 53.375,
+          "vy_px_per_frame": -2.34375
+        },
+        {
+          "frame": 38,
+          "rise_px": 50.34375,
+          "vy_px_per_frame": -2.6875
+        },
+        {
+          "frame": 39,
+          "rise_px": 46.96875,
+          "vy_px_per_frame": -3.03125
+        },
+        {
+          "frame": 40,
+          "rise_px": 43.25,
+          "vy_px_per_frame": -3.375
+        },
+        {
+          "frame": 41,
+          "rise_px": 39.25,
+          "vy_px_per_frame": -3.71875
+        },
+        {
+          "frame": 42,
+          "rise_px": 35.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 43,
+          "rise_px": 31.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 44,
+          "rise_px": 27.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 45,
+          "rise_px": 23.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 46,
+          "rise_px": 19.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 47,
+          "rise_px": 15.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 48,
+          "rise_px": 11.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 49,
+          "rise_px": 7.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 50,
+          "rise_px": 3.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 51,
+          "rise_px": 0.0,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 52,
+          "rise_px": 0.0,
+          "vy_px_per_frame": -3.25
+        },
+        {
+          "frame": 53,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 54,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 55,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 56,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 57,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 58,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 59,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 60,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        }
+      ]
+    },
+    {
+      "button": "B",
+      "settle_frames": 20,
+      "hold_frames": 60,
+      "y0_px": -480.0,
+      "peak_rise_px": 67.40625,
+      "trajectory": [
+        {
+          "frame": 1,
+          "rise_px": 3.59375,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 2,
+          "rise_px": 7.125,
+          "vy_px_per_frame": 3.59375
+        },
+        {
+          "frame": 3,
+          "rise_px": 10.59375,
+          "vy_px_per_frame": 3.53125
+        },
+        {
+          "frame": 4,
+          "rise_px": 14.0,
+          "vy_px_per_frame": 3.46875
+        },
+        {
+          "frame": 5,
+          "rise_px": 17.34375,
+          "vy_px_per_frame": 3.40625
+        },
+        {
+          "frame": 6,
+          "rise_px": 20.625,
+          "vy_px_per_frame": 3.34375
+        },
+        {
+          "frame": 7,
+          "rise_px": 23.84375,
+          "vy_px_per_frame": 3.28125
+        },
+        {
+          "frame": 8,
+          "rise_px": 27.0,
+          "vy_px_per_frame": 3.21875
+        },
+        {
+          "frame": 9,
+          "rise_px": 30.09375,
+          "vy_px_per_frame": 3.15625
+        },
+        {
+          "frame": 10,
+          "rise_px": 33.125,
+          "vy_px_per_frame": 3.09375
+        },
+        {
+          "frame": 11,
+          "rise_px": 36.09375,
+          "vy_px_per_frame": 3.03125
+        },
+        {
+          "frame": 12,
+          "rise_px": 39.0,
+          "vy_px_per_frame": 2.96875
+        },
+        {
+          "frame": 13,
+          "rise_px": 41.84375,
+          "vy_px_per_frame": 2.90625
+        },
+        {
+          "frame": 14,
+          "rise_px": 44.625,
+          "vy_px_per_frame": 2.84375
+        },
+        {
+          "frame": 15,
+          "rise_px": 47.34375,
+          "vy_px_per_frame": 2.78125
+        },
+        {
+          "frame": 16,
+          "rise_px": 50.0,
+          "vy_px_per_frame": 2.71875
+        },
+        {
+          "frame": 17,
+          "rise_px": 52.59375,
+          "vy_px_per_frame": 2.65625
+        },
+        {
+          "frame": 18,
+          "rise_px": 55.125,
+          "vy_px_per_frame": 2.59375
+        },
+        {
+          "frame": 19,
+          "rise_px": 57.59375,
+          "vy_px_per_frame": 2.53125
+        },
+        {
+          "frame": 20,
+          "rise_px": 59.8125,
+          "vy_px_per_frame": 2.46875
+        },
+        {
+          "frame": 21,
+          "rise_px": 61.78125,
+          "vy_px_per_frame": 2.21875
+        },
+        {
+          "frame": 22,
+          "rise_px": 63.5,
+          "vy_px_per_frame": 1.96875
+        },
+        {
+          "frame": 23,
+          "rise_px": 64.96875,
+          "vy_px_per_frame": 1.71875
+        },
+        {
+          "frame": 24,
+          "rise_px": 66.09375,
+          "vy_px_per_frame": 1.46875
+        },
+        {
+          "frame": 25,
+          "rise_px": 66.875,
+          "vy_px_per_frame": 1.125
+        },
+        {
+          "frame": 26,
+          "rise_px": 67.3125,
+          "vy_px_per_frame": 0.78125
+        },
+        {
+          "frame": 27,
+          "rise_px": 67.40625,
+          "vy_px_per_frame": 0.4375
+        },
+        {
+          "frame": 28,
+          "rise_px": 67.15625,
+          "vy_px_per_frame": 0.09375
+        },
+        {
+          "frame": 29,
+          "rise_px": 66.65625,
+          "vy_px_per_frame": -0.25
+        },
+        {
+          "frame": 30,
+          "rise_px": 65.90625,
+          "vy_px_per_frame": -0.5
+        },
+        {
+          "frame": 31,
+          "rise_px": 64.90625,
+          "vy_px_per_frame": -0.75
+        },
+        {
+          "frame": 32,
+          "rise_px": 63.65625,
+          "vy_px_per_frame": -1.0
+        },
+        {
+          "frame": 33,
+          "rise_px": 62.15625,
+          "vy_px_per_frame": -1.25
+        },
+        {
+          "frame": 34,
+          "rise_px": 60.40625,
+          "vy_px_per_frame": -1.5
+        },
+        {
+          "frame": 35,
+          "rise_px": 58.40625,
+          "vy_px_per_frame": -1.75
+        },
+        {
+          "frame": 36,
+          "rise_px": 56.0625,
+          "vy_px_per_frame": -2.0
+        },
+        {
+          "frame": 37,
+          "rise_px": 53.375,
+          "vy_px_per_frame": -2.34375
+        },
+        {
+          "frame": 38,
+          "rise_px": 50.34375,
+          "vy_px_per_frame": -2.6875
+        },
+        {
+          "frame": 39,
+          "rise_px": 46.96875,
+          "vy_px_per_frame": -3.03125
+        },
+        {
+          "frame": 40,
+          "rise_px": 43.25,
+          "vy_px_per_frame": -3.375
+        },
+        {
+          "frame": 41,
+          "rise_px": 39.25,
+          "vy_px_per_frame": -3.71875
+        },
+        {
+          "frame": 42,
+          "rise_px": 35.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 43,
+          "rise_px": 31.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 44,
+          "rise_px": 27.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 45,
+          "rise_px": 23.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 46,
+          "rise_px": 19.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 47,
+          "rise_px": 15.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 48,
+          "rise_px": 11.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 49,
+          "rise_px": 7.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 50,
+          "rise_px": 3.25,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 51,
+          "rise_px": 0.0,
+          "vy_px_per_frame": -4.0
+        },
+        {
+          "frame": 52,
+          "rise_px": 0.0,
+          "vy_px_per_frame": -3.25
+        },
+        {
+          "frame": 53,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 54,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 55,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 56,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 57,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 58,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 59,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        },
+        {
+          "frame": 60,
+          "rise_px": 0.0,
+          "vy_px_per_frame": 0.0
+        }
+      ]
+    }
+  ]
+}

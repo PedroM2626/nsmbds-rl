@@ -1,14 +1,13 @@
 # Academic Reverse Engineering Report: *New Super Mario Bros.* (Nintendo DS)
 
-> **Continued (2026-10-14):** the ARM9/overlay route this report closed
-> was reopened with better instruments and a different finding --
-> see PROJECT_STATUS 4aa. In brief: the engine is the ARM9 (Thumb; the
-> 190 KB "overlays" are mostly per-level data), the physics constants
-> are COMPUTED not stored (the measured jump v0 0x3980 exists as a u32
-> in zero of the 136 binaries), and the tooling checkpoint (rizin
-> portable, `tools/extract_overlays.py`, `out/re/`, the exact physics
-> needles) waits only on the decompiler pass. The report below remains
-> the September-era record.
+> **Status reconciled (2026-10-18):** this report separates values found in
+> the clean-room decompilation from behavior measured in DeSmuME. Player jump
+> trajectories have empirical fits (section 5.3), but their internal state
+> machine is still missing from the decompilation. Static binary work is not
+> “waiting only on the decompiler”: section 4aa records that the scalar hunt
+> closed without recovering the function, and a real control-flow/decompiler
+> pass remains open. `BG_chk` tables were structurally inspected, but their
+> values do not directly identify solidity or bind themselves to courses.
 
 **Technical Report NTR-A2DP-EUR-RE-01**  
 *Author:* Reinforcement Learning & Reverse Engineering Team  
@@ -20,7 +19,7 @@
 
 ## Abstract
 
-This report documents the reverse engineering of the Nintendo DS title *New Super Mario Bros.* (EUR release NTR-A2DP-EUR) to support physics-informed world models, offline dataset generation, and direct RAM-telemetry reinforcement learning. We report both verified structural truths and negative results (falsified hypotheses). Crucially, we prove the exact binary framing of level entity records (12-byte records terminated by a `0xFFFFFFFF` sentinel across 189/189 non-empty stages), correct a 16× fixed-point scaling error in prior literature by establishing the engine's native 20.12 fixed-point arithmetic ($0x1000 = 1.0\text{ px}$), map 342 actor profile IDs to their C++ execution classes, detail emulator bridge telemetry constraints in DeSmuME, and identify the exact level-clear stage flag at `0x020DCF27`. Finally, we document remaining reverse-engineering gaps, specifically the missing player-specific jump state machine in static disassembly.
+This report documents reverse engineering of the Nintendo DS title *New Super Mario Bros.* (EUR release NTR-A2DP-EUR) for physics-informed world models, offline dataset generation, and direct RAM-telemetry reinforcement learning. It records verified structural results and falsified hypotheses: 12-byte entity records terminated by `0xFFFFFFFF` across 189/189 non-empty stages, native 20.12 fixed-point units (`0x1000 = 1 px`), 342 actor-profile mappings, validated DeSmuME telemetry, and the level-clear flag at `0x020DCF27`. Mario's jump behavior is empirically measured for four input regimes, but the player-specific state machine remains absent from the static decompilation; see section 5.3.
 
 ---
 
@@ -171,6 +170,15 @@ Using high-frequency $60.0\text{ Hz}$ single-frame memory sampling on DeSmuME ([
 2. **Horizontal Boost Coupling:** Running with Dash (`KEY_Y`) increases vertical takeoff velocity from $3.5938$ to $3.7188\text{ px/frame}$ ($+3.48\%$), yielding an extra $7.25\text{ px}$ of vertical clearance and enabling $109.73\text{ px}$ of horizontal coverage.
 3. **Terminal Downward Velocity:** Capped at $v_{y, \text{term}} = -4.0\text{ px/frame}$ ($16,384$ in 20.12 fixed point).
 
+**Button comparison added 2026-10-18.** `tools/probe_jump_buttons.py` used the
+uniquely entrance-identified A01_1 savestate, reset it between trials, settled
+20 frames, and held A or B for 60 frames while sampling Y and Y velocity at
+60 Hz. In this one standing-jump protocol the trajectories were identical:
+peak rise **67.40625 px**, peak difference **0.0 px**. This corrects the
+overbroad code comment that B was inert; the agent simply chooses A. It does
+not prove equivalence for every power-up or movement/water state. Raw samples:
+[`out/dataset/jump_button_equivalence.json`](../out/dataset/jump_button_equivalence.json).
+
 ---
 
 ## 6. Scientific Negative Results & Falsified Methodologies
@@ -190,9 +198,30 @@ Documenting negative results is essential to prevent future research cycles from
 
 ---
 
-## 7. Outstanding Reverse Engineering Gaps
+## 7. Outstanding Reverse Engineering Gaps (current snapshot: 2026-10-18)
 
-1. **Chunk Terrain Collision Decoding (`BG_chk`):**
-   - While `_bgdat.bin` provides bounding boxes for flat ground, composite tiles (slopes, pipes, question blocks) reference indices into `BG_chk/*MainUnitChangeData.bin` which remain undecoded.
+1. **Course-to-collision binding:** the 48 `BG_chk/*MainUnitChangeData.bin`
+   files have been parsed, but the table values are not a solidity bitmask and
+   the course/tileset-to-table binding is unresolved. Keep drop and wall probes
+   as the behavioral authority for unmeasured courses.
+2. **Player physics implementation:** four 1-1 jump regimes and one A/B button
+   comparison have behavioral data, but the player-specific movement routine,
+   power-up dependence, and full water-state transitions are not recovered
+   statically. Generic `StageEntity` gravity must not be presented as Mario's
+   gravity.
+3. **Actor profiles and collision classes:** 342 profile IDs are mapped, but
+   some runtime types in transfer traces remain unnamed. Hostility/contact maps
+   cover only selected types and contexts.
+4. **Course-specific geometry:** all 191 course files parse, but only 29 pass
+   the static coverage guard. Probe maps cover eight courses for floors, three
+   for walls, one for water, and three for contact; this is not a whole-game
+   collision model.
+5. **Unclaimed record fields and format semantics:** words 3–5 of entity records
+   and several section roles remain raw or inferred. The parser intentionally
+   claims only fields supported by independent evidence.
+
+These limits do not prevent reproduction of the published 1-1 legacy clear;
+they do prevent claiming that all relevant values for transfer or all game
+values are known.
 
 

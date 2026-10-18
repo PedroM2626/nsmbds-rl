@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-18",
+  "rom": "NSMB DS EUR (NTR-A2DP-EUR)",
+  "method": "tools/identify_state.py entrance match plus grounded walk-right trace",
+  "results": [
+    {
+      "state": "data/state_1-2.ds1",
+      "spawn_px": {"x": 40.0, "y": -416.0},
+      "entrance_matches": [
+        {"course": "course/H11_1.bin", "entrance": 0},
+        {"course": "course/H12_2.bin", "entrance": 0},
+        {"course": "course/H12_2.bin", "entrance": 2}
+      ],
+      "trace_cycles": 900,
+      "grounded_samples": 0,
+      "course_identified": null,
+      "status": "inconclusive; filename is not verified as the in-game course"
+    },
+    {
+      "state": "data/state_2-1.ds1",
+      "spawn_px": {"x": 360.0, "y": -416.0},
+      "entrance_matches": [
+        {"course": "course/B01_1.bin", "entrance": 0}
+      ],
+      "trace_cycles": 1800,
+      "grounded_samples": 3,
+      "floor_row_agreement": "3/3",
+      "course_identified": "course/B01_1.bin",
+      "status": "identified by unique entrance and confirmed by trace"
+    }
+  ]
+}
