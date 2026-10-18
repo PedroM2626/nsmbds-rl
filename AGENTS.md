@@ -26,6 +26,10 @@
 - **One DeSmuME per process.** A second init in the same process
   access-violates. Parallel envs go through `SubprocVecEnv` (one per
   subprocess) — that is fine; two `MarioRamEnv`s in one process is not.
+  **And DeSmuME must be initialized BEFORE torch is loaded** — a
+  `PPO.load` followed by an env construction access-violates at init
+  (the eval harness has always built the env first for this reason;
+  measured again in 4ac).
 - **Teleporting does not move the camera.** The camera X follows the game's
   own logic (it does not follow `mario_B` writes; reads back 458 px with
   Mario at 2,400 px). Screen sampling of arbitrary positions is unreachable

@@ -1728,6 +1728,52 @@ floor, invisible to every layer the planner reads.
 (crossed, 4x), the 863 floating bar (parser-blind, hold-pinned), and
 the rear pursuit that only a freeze makes lethal.
 
+## 4ac. The asymmetric actor-critic, measured: 88 -> 1,250 px deterministic (2026-10-14)
+
+The A/B the 4s reward unification was built for, run at 200k steps
+each, 12 envs, same seed, same code -- the CRITIC's input is the only
+difference (`src/train_asymmetric_ac.py --value-input {pixels,ram}`).
+The policy is a NatureCNN over the June-pipeline 84x84 grayscale in
+BOTH arms: a pure CV policy. The reward: the unified RAM reward.
+Training: 33.2 min per arm at ~100 steps/s (the SubprocVecEnv
+configuration the June runs used, scaled from 4 to 12 envs on this
+32-thread machine).
+
+| arm (200k steps) | det mean px | stoch mean px | stoch max px | ep_rew_mean (train) |
+|---|---|---|---|---|
+| pixel-critic (baseline) | 88.0 | 782.4 | 1,081.7 | ~294-300 |
+| **ram-critic (asymmetric)** | **1,250.5** | **1,360.0** | **2,610.9** | ~504-515 |
+
+Readings, in order of importance:
+
+1. **The asymmetry is worth 14x deterministic** (88 vs 1,250.5) and
+   +74% on the stochastic mean -- the Pinto et al. mechanism, measured:
+   the pixel-critic drowns the advantage in variance exactly when the
+   CNN is still learning to see, and its deterministic policy collapses
+   to a run-the-clock-at-88px loop (the baseline's det episodes run
+   1,000 steps without moving; the ram arm's die at 89 steps, running).
+2. **The ram arm's deterministic policy dies at 1,250.5 px -- the exact
+   number of the reflex's profile arm** (4b, the known geometry wall at
+   the 1,250 px stairs): a pure pixel policy, 200k steps, no reflex
+   help, converging to the same wall the rule-based controller hits is
+   convergent evidence both are seeing the same level.
+3. **The stoch max 2,610.9 px is the deepest run by any learned policy
+   in the repo's history** -- past the June pixel PPO (120.8), past the
+   reflex-assisted ppo+reflex (1,139), past the CEM-MPC (1,510). At
+   n=3 the max is a sample, not a mean; the honest headline is the
+   deterministic wall and the +70% training-return gap, and the full
+   n=30 benchmark remains future work.
+
+Two operational findings, both now in AGENTS.md and the code comments:
+DeSmuME initialized AFTER torch is loaded access-violates (the eval
+harness has always constructed the env before models for this reason);
+and the training pair ran detached (`Start-Process` + log polling) --
+the 30-minute in-session bash cap is the real ceiling for any run.
+
+Artifacts: `models/ac_pixels_200k.zip` + `models/ac_ram_200k.zip`
+(19-20 MB each), `out/ac_{pixels,ram}_200k.log`, the eval tool
+`src/eval_asymmetric_ac.py`, the env `src/dual_obs_env.py`.
+
 ## 5. File Index
 
 ```
