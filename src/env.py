@@ -17,6 +17,39 @@ except ImportError:
     def keymask(k):
         return k
 
+
+# Action tables. "legacy" is the June-era 6-action mapping, kept verbatim so
+# the committed checkpoints (Discrete(6)) keep loading and the n30 benchmark
+# stays reproducible. It used KEY_B where the code claimed "dash" -- measured
+# on the 1-1 savestate (2026-10-23, tools-style probe, one emulator):
+#   * A and B produce the SAME standing jump (peak 67.40625 px, identical arcs)
+#   * RIGHT+B advances exactly like RIGHT (246.996 px / 180 frames -- no dash)
+#   * RIGHT+X advances 269.957 px (+9.3%; +23.9% over the first 60 frames)
+# So B is a jump button and X/Y are the dash: the legacy visual arm had NO
+# dash action and two identical jump actions. Its n30 rows are not comparable
+# with the RAM arm (8 actions, X dash) -- see docs/BENCHMARK_PROTOCOL.md.
+# "v2" mirrors MarioRamEnv._action_keys exactly (8 actions, X dash, A jump).
+ACTION_KEYS_V2 = {
+    0: [],                                  # noop
+    1: [Keys.KEY_RIGHT],                    # walk right
+    2: [Keys.KEY_RIGHT, Keys.KEY_A],        # walk + jump
+    3: [Keys.KEY_RIGHT, Keys.KEY_X],        # dash (run) right
+    4: [Keys.KEY_RIGHT, Keys.KEY_X, Keys.KEY_A],  # dash + jump -> running leap
+    5: [Keys.KEY_LEFT],                     # walk left
+    6: [Keys.KEY_X, Keys.KEY_A],            # jump in place with dash held
+    7: [Keys.KEY_A],                        # standing jump
+}
+ACTION_KEYS_LEGACY = {
+    0: [],                                  # noop
+    1: [Keys.KEY_RIGHT],                    # walk right
+    2: [Keys.KEY_RIGHT, Keys.KEY_B],        # labeled "dash"; measured: jump
+    3: [Keys.KEY_RIGHT, Keys.KEY_B, Keys.KEY_A],  # labeled "dash+jump": jump
+    4: [Keys.KEY_LEFT],                     # walk left
+    5: [Keys.KEY_A],                        # standing jump
+}
+ACTION_TABLES = {"v2": ACTION_KEYS_V2, "legacy": ACTION_KEYS_LEGACY}
+
+
 class MarioNdsEnv(gym.Env):
     """
     Custom Environment that follows gym interface for playing New Super Mario Bros DS.
@@ -27,7 +60,8 @@ class MarioNdsEnv(gym.Env):
     # Calibrated against optical flow (~1.0 correlation in deltas).
     RAM_PX_PER_UNIT = 1.0 / 4096.0
 
-    def __init__(self, rom_path, state_path, render_mode=None, reward_mode="ram"):
+    def __init__(self, rom_path, state_path, render_mode=None, reward_mode="ram",
+                 actions="v2"):
         super(MarioNdsEnv, self).__init__()
 
         self.rom_path = rom_path
@@ -78,6 +112,13 @@ class MarioNdsEnv(gym.Env):
         
         # Initialize Emulator
         try:
+            # Check the files BEFORE allocating the native emulator: a
+            # DeSmuME() whose open() then fails leaves a native instance
+            # whose __del__ heap-corrupts at GC time (0xc0000374).
+            if not os.path.exists(self.rom_path):
+                raise FileNotFoundError(f"ROM not found: {self.rom_path}")
+            if not os.path.exists(self.state_path):
+                raise FileNotFoundError(f"savestate not found: {self.state_path}")
             self.emu = DeSmuME()
             self.emu.open(self.rom_path)
             self.emu.savestate.load_file(self.state_path)
@@ -85,10 +126,16 @@ class MarioNdsEnv(gym.Env):
         except Exception as e:
             print(f"Failed to initialize emulator: {e}")
             self.has_emulator = False
+            self.emu = None
 
-        # Define action space
-        # Actions: 0: Noop, 1: Right, 2: Right+Dash(B), 3: Right+Dash+Jump(B+A), 4: Left, 5: Jump(A)
-        self.action_space = spaces.Discrete(6)
+        # Action space: "v2" (default) = the corrected 8-action table with the
+        # measured dash (X); "legacy" = the June 6-action table (B as "dash",
+        # which is actually a second jump button) for the committed checkpoints.
+        if actions not in ACTION_TABLES:
+            raise ValueError(f"unknown actions mode {actions!r}: use 'v2' or 'legacy'")
+        self.actions = actions
+        self.action_keys = ACTION_TABLES[actions]
+        self.action_space = spaces.Discrete(len(self.action_keys))
         
         # Define observation space (RGB image of the top screen: 256x192)
         # We will downscale it to 84x84 and convert to grayscale for CNN efficiency
@@ -183,21 +230,8 @@ class MarioNdsEnv(gym.Env):
             self.current_x += 1
             return self._get_obs(), 1.0, self.current_x > 100, False, self._get_info()
 
-        # Map actions to emulator keys
-        keys = []
-        if action == 1:
-            keys.append(Keys.KEY_RIGHT)
-        elif action == 2:
-            keys.append(Keys.KEY_RIGHT)
-            keys.append(Keys.KEY_B)
-        elif action == 3:
-            keys.append(Keys.KEY_RIGHT)
-            keys.append(Keys.KEY_B)
-            keys.append(Keys.KEY_A)
-        elif action == 4:
-            keys.append(Keys.KEY_LEFT)
-        elif action == 5:
-            keys.append(Keys.KEY_A)
+        # Map actions to emulator keys (see ACTION_KEYS_V2 / ACTION_KEYS_LEGACY)
+        keys = list(self.action_keys.get(int(action), []))
 
         # Apply inputs and run frameskip
         for key in keys:

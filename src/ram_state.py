@@ -21,6 +21,8 @@ eval path (PROJECT_STATUS 4o/4q). Enemies are exposed relative to Mario as
 """
 import numpy as np
 
+import course_id
+
 LIVES_ADDR = 0x0209DC00
 CAM_ADDRS = (0x02098240, 0x020DCFA0)
 ODO_ADDR = 0x0209AE9C
@@ -200,6 +202,16 @@ class RamState:
                 "odo": odo, "y": y, "vel": vel, "died": died,
                 "deaths": self.deaths, "mario_A": ma, "mario_B": mb,
                 "cleared": cleared}
+
+    def course_index(self):
+        """The running course's area index (u16 at 0x020980D4; see
+        src/course_id.py for the id<->index mapping and the measurement).
+        One read; the strongest savestate identity oracle this repo has."""
+        try:
+            return self.emu.memory.read(
+                course_id.AREA_ID_ADDR, course_id.AREA_ID_ADDR, 2, False)
+        except Exception:
+            return None
 
     def reset(self):
         self.prev_cam = None

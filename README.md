@@ -1,4 +1,4 @@
-﻿# Nintendo DS Reinforcement Learning Pipeline
+# Nintendo DS Reinforcement Learning Pipeline
 
 This repository implements an academic and experimental Reinforcement Learning (RL) research framework designed for simulated Nintendo DS environments (specifically *New Super Mario Bros.*). The pipeline explores both computer-vision-based spatial tracking (bypassing volatile memory pointers via dense optical flow and differential frame subtraction) and direct emulator memory reverse engineering (extracting RAM telemetry, entity graphs, and ROM tile geometries).
 
@@ -131,6 +131,21 @@ This hybrid visual tracker constructs a synthetic global X coordinate. It preven
 ## 🚀 Training Architectures & Paradigms
 
 All training routines can be invoked via CLI flags.
+
+> **⚠️ Action-mapping correction (2026-10-23) — the visual arm's "dash" was never a dash.**
+> The June visual env (src/env.py) labeled KEY_B as "dash". Measured on the 1-1
+> savestate (one emulator, state reload per trial): **B is a jump button** — it produces
+> the *identical* standing jump as A (peak **67.40625 px**, matching arcs) and adds **no
+> speed** (RIGHT+B advances **246.996 px** in 180 frames, exactly the walk), while
+> **X/Y are the real dash** (RIGHT+X: **269.957 px**, +9.3% over 180 frames, +23.9% over
+> the first 60). So the legacy visual arm had *no dash action and two identical jump
+> actions* — its policies could never reach running speed. `MarioNdsEnv` now defaults to
+> `actions="v2"` (8 actions mirroring `MarioRamEnv`: X dash, A jump); `actions="legacy"`
+> reproduces the old 6-action table byte-for-byte so the committed checkpoints keep
+> loading. Consequences, stated honestly: the **n30 benchmark's visual rows are
+> legacy/no-dash and were measured under the flow reward** (PROJECT_STATUS 4s) — they
+> are **not comparable** with the RAM rows (8 actions, unified reward) or with any `v2`
+> run. Details: PROJECT_STATUS §4af, docs/BENCHMARK_PROTOCOL.md.
 
 ### 1. Base Reinforcement Learning (PPO)
 Standard Actor-Critic optimization where convolutional layers (`NatureCNN`) and policy MLP heads are trained simultaneously from scratch using only extrinsic environmental rewards.
@@ -320,7 +335,7 @@ Direct memory variable extraction via `emu.memory` (`src/ram_state.py`, discover
 
 **Validation (RAM Telemetry vs Optical Flow):** Across identical 39-step rollouts, accumulated progress correlation is **0.91**, verifying the `RAM_PX_PER_UNIT = 1/4096` scaling factor. Death detection via RAM lives occurs **3 frames earlier** than pixel template matching (which triggers on the black game-over screen).
 
-**Usage:** `MarioNdsEnv(..., reward_mode="ram")` uses RAM camera progress and life counters for reward/termination while retaining visual observation tensors. Default remains `"flow"`.
+**Usage:** `MarioNdsEnv(..., reward_mode="ram")` uses RAM camera progress and life counters for reward/termination while retaining visual observation tensors. **The default is `"ram"` since the 4s unification** (both arms score the same reward; only the observation differs); `"flow"` is the legacy opt-in kept for reproducing the June-era runs.
 
 ---
 

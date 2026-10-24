@@ -186,11 +186,12 @@ def _get_env(ekind):
         return _ENVS[ekind]
     _close_others(_ENVS)
     if ekind == "rec":
-        env = MarioNdsEnv(rom_path=ROM, state_path=STATE)
+        # legacy: every benchmarked visual checkpoint is a 6-action June model
+        env = MarioNdsEnv(rom_path=ROM, state_path=STATE, actions="legacy")
         assert env.has_emulator, "Emulator failed to initialize!"
     elif ekind == "vec":
         from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack
-        venv = MarioNdsEnv(rom_path=ROM, state_path=STATE)
+        venv = MarioNdsEnv(rom_path=ROM, state_path=STATE, actions="legacy")
         assert venv.has_emulator, "Emulator failed to initialize!"
         env = VecFrameStack(DummyVecEnv([lambda: venv]), n_stack=4)
     elif ekind in ("ram17", "ram23"):
@@ -356,12 +357,13 @@ def _run_sequential(names, args, kind_of, results, t0, fp, meta):
 
 def _build_once(ekind):
     if ekind == "rec":
-        env = MarioNdsEnv(rom_path=ROM, state_path=STATE)
+        # legacy: every benchmarked visual checkpoint is a 6-action June model
+        env = MarioNdsEnv(rom_path=ROM, state_path=STATE, actions="legacy")
         assert env.has_emulator, "Emulator failed to initialize!"
         return env
     if ekind == "vec":
         from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack
-        venv = MarioNdsEnv(rom_path=ROM, state_path=STATE)
+        venv = MarioNdsEnv(rom_path=ROM, state_path=STATE, actions="legacy")
         assert venv.has_emulator, "Emulator failed to initialize!"
         return VecFrameStack(DummyVecEnv([lambda: venv]), n_stack=4)
     if ekind in ("ram17", "ram23"):

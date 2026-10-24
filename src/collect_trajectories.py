@@ -31,7 +31,8 @@ def main():
     try:
         # Initialize environment
         print("Initializing Mario DS environment...")
-        env = MarioNdsEnv(rom_path=temp_rom, state_path=temp_state)
+        # legacy: trajectory collection mirrors the June 6-action models
+        env = MarioNdsEnv(rom_path=temp_rom, state_path=temp_state, actions="legacy")
 
         # Check if model exists
         model_file = args.model_path if args.model_path.endswith(".zip") else f"{args.model_path}.zip"

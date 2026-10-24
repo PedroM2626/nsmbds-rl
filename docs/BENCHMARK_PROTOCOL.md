@@ -1,5 +1,22 @@
 # Formal Evaluation Protocol: *New Super Mario Bros. DS* (EUR) RL Benchmark
 
+> **⚠️ Status of the n=30 table (2026-10-23).** Three caveats apply to the committed
+> `benchmark_n30_merged.json` and to every number in §7 below:
+> 1. **The visual rows are legacy-action and no-dash.** The June visual env used KEY_B
+>    where the code claimed "dash"; measured, B is a *jump* button (67.40625 px arc,
+>    identical to A) and adds no speed, so the 6-action visual arm had no dash at all
+>    (PROJECT_STATUS §4af). `MarioNdsEnv` now defaults to `actions="v2"` (8 actions);
+>    the benchmark loads its checkpoints with `actions="legacy"` to stay reproducible.
+> 2. **The visual rows were measured under the flow reward** (before the 4s
+>    unification), the RAM rows under the unified RAM reward — the two halves of the
+>    table are not on the same reward scale.
+> 3. **Stochastic n=30 is policy-sampling variance only.** The emulator is
+>    deterministic and every episode starts from the same savestate; there is no
+>    environmental seed or frame jitter (the §5.2 seed blocks were run as three separate
+>    invocations, not in-code). The README already notes deterministic σ = 0.00.
+> Treat cross-arm comparisons accordingly; a v2 re-benchmark under the unified reward
+> is future work.
+
 ## 1. Executive Summary & Objective
 
 This document defines the formal, reproducible evaluation protocol for benchmarking Reinforcement Learning (RL), Model-Based Planning (MBRL), and Physics-Informed Neural Network (PINN) architectures on the Nintendo DS title *New Super Mario Bros.* (EUR release NTR-A2DP-EUR).
@@ -11,10 +28,13 @@ The primary goal is to establish an academically rigorous standard for measuring
 ## 2. Emulation and Hardware Environment
 
 ### 2.1 Emulation Core and ROM Identification
-All evaluations are conducted using `py-desmume` (v0.0.3), exposing C++ bindings directly into the DeSmuME Nintendo DS hardware emulator.
+All evaluations are conducted using `py-desmume` (v0.0.9, DeSmuME core 0.9.12), exposing C++ bindings directly into the DeSmuME Nintendo DS hardware emulator.
 * **ROM Title:** *New Super Mario Bros.* (Europe) (En,Fr,De,Es,It)
 * **Internal Serial:** `NTR-A2DP-EUR`
-* **ROM SHA-1:** `809618B570C46F8C1DFF4A983E368F55EB679E1A`
+* **ROM SHA-1 (measured 2026-10-23):** `B0F7886720E842ED922569E1BB5C39C0FA090331`
+  (the value this document previously carried — `809618B5...` — does not hash-match
+  the ROM every committed eval ran on; use the measured one above, and see
+  `src/eval_provenance.py`, which now records it in every new eval JSON)
 * **Target Stage:** World 1-1 (`course/A01_1.bin`, Course ID `A01_1`)
 * **Standard Level Entrance Savestate:** `data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1` (Mario initialized at absolute entrance tile $X = 88.0\text{ px}$, $Y = 448.0\text{ px}$).
 
@@ -41,12 +61,12 @@ The benchmark evaluates policies across three distinct sensor paradigms:
 
 ### 3.2 Egocentric RAM Telemetry Modality (Low-Dimensional State)
 Extracted directly from DS Main RAM (`0x02000000`–`0x023FFFFF`) via pointer chasing:
-* **State Vector $\mathbf{s}_t \in \mathbb{R}^{16}$ (`ram100k`):**
+* **State Vector $\mathbf{s}_t \in \mathbb{R}^{17}$ (`ram100k`; the "16" this document carried before 2026-10-23 miscounted the Mario block):**
   - Mario kinematics: normalized horizontal velocity $v_x / 4096.0$, vertical velocity $v_y / 4096.0$, grounded flag $\mathbf{1}_{\text{ground}}$, odometer tick delta.
   - Camera differential: $\Delta X_{\text{cam}}$.
   - Local entity tracking: relative offsets $(dx_i, dy_i)$ and type tags $e_i$ for the three nearest active actors in the sprite linked list ($0 \le i < 3$).
-* **Geometry-Augmented Vector $\mathbf{s}_t \in \mathbb{R}^{21}$ (`ramgeo100k`):**
-  - Includes all 16 RAM dimensions plus a 5-step spatial lookahead of forward terrain surface continuity $\{g_{t+1}, \dots, g_{t+5}\}$ indicating upcoming pits and elevation jumps extracted from ROM tilemap slices.
+* **Geometry-Augmented Vector $\mathbf{s}_t \in \mathbb{R}^{23}$ (`ramgeo100k`; the "21" was the same miscount):**
+  - Includes all 17 RAM dimensions plus a 6-column spatial lookahead of forward terrain surface continuity $\{g_{t+1}, \dots, g_{t+6}\}$ indicating upcoming pits and elevation jumps extracted from ROM tilemap slices.
 
 ### 3.3 Graph Entity Modality (`gnn100k`)
 * **Node Features $\mathcal{V}$:** Node 0 represents Mario; nodes $1 \le j \le M$ represent active dynamic entities (Goombas, Koopas, Piranha Plants).
@@ -73,12 +93,22 @@ The agent operates over a discrete 8-element control repertoire mapped to Ninten
 > mapping (KEY_B for jump, KEY_Y for dash, `v_max = 3.6 px/frame`,
 > reach 172.8 px) which matches no current code path -- the RAM env
 > has jumped with KEY_A and dashed with KEY_X since the RAM era.
+>
+> **Measured 2026-10-23 (the visual arm's own table):** the June
+> `MarioNdsEnv` used KEY_B where it claimed "dash" -- B is a *jump*
+> button (identical 67.40625 px standing arc as A; RIGHT+B advances
+> exactly like RIGHT: 246.996 px / 180 frames) while X/Y carry the dash
+> (269.957 px, +9.3%). The legacy visual action space was therefore
+> 6 actions with **no dash** and two identical jumps. `MarioNdsEnv` now
+> defaults to `actions="v2"` = the 8-action table above; every benchmark
+> visual checkpoint is loaded with `actions="legacy"` for reproducibility
+> (see the banner at the top of this document and PROJECT_STATUS §4af).
 
 ---
 
 ## 5. Evaluation Protocol and Trial Regimes
 
-Each baseline model is subjected to two distinct test protocols executed on fresh, unobserved seeds:
+Each baseline model is subjected to two distinct test protocols. **Honest caveat (2026-10-23):** the emulator is deterministic and every episode boots the same savestate, so "seeds" vary only the policy's action sampling -- there is no environmental seed, no frame jitter, and deterministic runs are literally identical (σ = 0.00 in every committed det block). Treat the stochastic spread as policy-sampling variance, not environment variance:
 
 ### 5.1 Deterministic Evaluation Regime ($n = 10$)
 * **Objective:** Measure policy peak asymptotic execution and verify if deterministic state exploitation leads to repetitive failure loops (e.g. wall collisions or periodic enemy death loops).
@@ -88,13 +118,13 @@ Each baseline model is subjected to two distinct test protocols executed on fres
 * **Sample Size:** $n = 10$ independent episodes from the entrance savestate.
 
 ### 5.2 Stochastic Evaluation Regime ($n = 30$)
-* **Objective:** Measure policy robustness under action noise, slight frame jitter, and environmental variance.
+* **Objective:** Measure policy robustness under action sampling.
 * **Sampling Rule:**
   $$a_t \sim \pi_\theta(a \mid s_t)$$
-* **Sample Size & Seed Partition:** $n = 30$ episodes divided into 3 equal blocks of 10 episodes across distinct seed bases:
-  - Block 1: Seeds $[100, 109]$
-  - Block 2: Seeds $[200, 209]$
-  - Block 3: Seeds $[300, 309]$
+* **Sample Size & Seed Partition:** $n = 30$ episodes, run as **three separate
+  invocations** of `evaluate_benchmark.py --seed {100,200,300}` (the blocks are
+  not implemented in code; each invocation seeds torch/numpy once and runs 10
+  stochastic episodes from the same savestate):
 
 ---
 

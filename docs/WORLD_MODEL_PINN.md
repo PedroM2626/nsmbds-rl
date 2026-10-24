@@ -1,5 +1,13 @@
 # Physics-Informed World Model for *New Super Mario Bros.* (DS)
 
+> **⚠️ This document is a historical snapshot (2026-10-12 era), kept for its methodology.**
+> Its result tables predate the 4l re-tune: they say the reflex "does **not yet clear**
+> World 1-1" and peak at **1,889 px / 44%** — the published clear now runs **245 steps to
+> 4,021 px (5/5)** under `--reflex legacy` (`evals/pinn_realtime_eval.json`, gated
+> byte-for-byte by `tools/parity_reflex.py`). Read the numbers below as that era's
+> honest state, not the current one; the current inventory is the reconciled summary at
+> the top of `docs/PROJECT_STATUS.md`.
+
 **A PINN world model that trains in ~1 minute from a handful of emulator frames and
 drives the agent in real time on the console.**
 

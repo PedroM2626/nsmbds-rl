@@ -46,6 +46,8 @@ def make_nedreamer_env(**kwargs):
     state_path = os.path.join(base_dir, "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1")
     
     render_mode = os.getenv("MARIO_RENDER_MODE", None)
-    raw_env = MarioNdsEnv(rom_path=rom_path, state_path=state_path, render_mode=render_mode)
+    # legacy: the vendored NE-Dreamer config assumes the June 6-action env
+    raw_env = MarioNdsEnv(rom_path=rom_path, state_path=state_path, render_mode=render_mode,
+                          actions="legacy")
     
     return MarioNDSNEDreamerWrapper(raw_env)

@@ -117,7 +117,8 @@ def evaluate_online(model, rom_path, state_path, context_len, target_return=300.
     shutil.copyfile(state_path, temp_state)
     
     try:
-        env = MarioNdsEnv(rom_path=temp_rom, state_path=temp_state)
+        # legacy: the DT eval env matches the June 6-action trajectories
+        env = MarioNdsEnv(rom_path=temp_rom, state_path=temp_state, actions="legacy")
         
         obs, _ = env.reset()
         rtg = target_return

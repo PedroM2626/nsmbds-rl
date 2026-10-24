@@ -21,9 +21,10 @@ except ImportError:
     DeSmuME = None
 
 from ram_state import RamState, _s32
+import paths
 
-ROM = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
-STATE = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1"
+ROM = paths.ROM_REL
+STATE = paths.STATE_REL
 TIME_ADDR = 0x020DC968
 YVEL_ADDR = 0x021C1908
 N_ENEMIES = 3
@@ -47,23 +48,36 @@ class MarioRamEnv(gym.Env):
     def __init__(self, rom_path=ROM, state_path=STATE, max_steps=MAX_STEPS, geo=False,
                  course_name="course/A01_1.bin"):
         super().__init__()
-        self.rom_path = rom_path
-        self.state_path = state_path
+        self.rom_path = paths.resolve(rom_path)
+        self.state_path = paths.resolve(state_path)
         self.max_steps = max_steps
         self.geo = geo
         self.action_space = spaces.Discrete(8)
-        dim = OBS_DIM + (GEO_DIM if geo else 0)
-        self.observation_space = spaces.Box(low=-10.0, high=10.0,
-                                            shape=(dim,), dtype=np.float32)
         self.course = None
-        if geo:
+        # Load the course BEFORE fixing the observation space: if the parser
+        # refuses a course, dropping the geometry features must also drop the
+        # six pit dims, or the space says 23 floats while _observe returns 17
+        # (a silent SB3 check failure later, instead of a loud one here).
+        if self.geo:
             try:
                 from course import Course
-                self.course = Course(name=course_name, rom_path=rom_path)
+                self.course = Course(name=course_name, rom_path=self.rom_path)
             except Exception as e:
                 print(f"Geometry disabled (failed to load course: {e})")
                 self.geo = False
+        dim = OBS_DIM + (GEO_DIM if self.geo else 0)
+        self.observation_space = spaces.Box(low=-10.0, high=10.0,
+                                            shape=(dim,), dtype=np.float32)
         try:
+            # Check the files BEFORE allocating the native emulator: a
+            # DeSmuME() whose open() then fails still leaves a native
+            # instance whose __del__ heap-corrupts at GC time (0xc0000374,
+            # measured in the test suite). A missing file must be a clean
+            # Python error, not a crash on exit.
+            if not os.path.exists(self.rom_path):
+                raise FileNotFoundError(f"ROM not found: {self.rom_path}")
+            if not os.path.exists(self.state_path):
+                raise FileNotFoundError(f"savestate not found: {self.state_path}")
             self.emu = DeSmuME()
             self.emu.open(self.rom_path)
             self.emu.savestate.load_file(self.state_path)
@@ -75,12 +89,27 @@ class MarioRamEnv(gym.Env):
         self.ram = RamState(self.emu) if self.has_emulator else None
         self.frameskip = 8
         self._x0 = self._y0 = None
+        self._last_time = 400.0
 
     # -- helpers ------------------------------------------------------
     def _s32read(self, addr):
         return _s32(self.emu.memory.read(addr, addr, 4, False))
 
+    def _dummy_state(self):
+        """A poll-shaped state for the no-emulator stub (unit tests, CI).
+        There is no game behind it: progress 0, timer full, nothing dead."""
+        return {"lives": 5, "cam": 0, "cam_dx": 0, "acc_cam": 0.0,
+                "progress": 0.0, "odo": 0, "y": 0, "vel": 0, "died": False,
+                "deaths": 0, "mario_A": None, "mario_B": None, "cleared": False}
+
     def _observe(self):
+        if not self.has_emulator:
+            # The documented offline fallback, made real: reset()/step() must
+            # work without DeSmuME instead of crashing on self.ram.poll()
+            # (AttributeError on None, measured 2026-10-23).
+            self._last_enemies = []
+            st = self._dummy_state()
+            return np.zeros(self.observation_space.shape, dtype=np.float32), st
         st = self.ram.poll()
         mb, ma = st["mario_B"], st["mario_A"]
         if self._x0 is None:
@@ -163,6 +192,13 @@ class MarioRamEnv(gym.Env):
             cb()
 
     def step(self, action):
+        if not self.has_emulator:
+            self.episode_steps += 1
+            obs, st = self._observe()
+            trunc = self.episode_steps >= self.max_steps
+            info = {"x": 0.0, "mario_px": 0.0, "level_cleared": False,
+                    "enemies": [], "died": False, "timeout": False}
+            return obs, -0.05, False, trunc, info
         keys = self._action_keys(action)
         prev_keys = getattr(self, "_prev_keys", set())
 
@@ -197,7 +233,8 @@ class MarioRamEnv(gym.Env):
         self._last_on_ground = on_ground
         reward = st["progress"] / 4096.0 * 2.0 - 0.05
         done, trunc = False, False
-        
+        died = timeout = False
+
         # Check level completion (RAM flag or flagpole contact)
         mario_px = (st["mario_B"] / 4096.0) if st["mario_B"] is not None else 0.0
         flag_x = getattr(self.course, "flag_x_px", 4032.0) if self.course else 4032.0
@@ -205,18 +242,25 @@ class MarioRamEnv(gym.Env):
 
         if st["died"]:
             done = True
+            died = True
             reward -= 15.0
         elif cleared:
             done = True
             reward += 100.0  # Terminal reward for clearing the stage
         elif getattr(self, "_last_time", 1.0) <= 0:
             done = True
+            timeout = True
             reward -= 50.0
         self.episode_steps += 1
         if self.episode_steps >= self.max_steps:
             trunc = True
+        # died/timeout let the eval harness label terminations from the env's
+        # own decision instead of inferring the cause from the remaining
+        # stage clock (the old obs[6] > 0.02 heuristic mislabeled any death
+        # with under ~8 s left as a timeout).
         info = {"x": float(obs[0]), "mario_px": mario_px, "level_cleared": cleared,
-                "enemies": getattr(self, "_last_enemies", [])}
+                "enemies": getattr(self, "_last_enemies", []),
+                "died": died, "timeout": timeout}
         return obs, reward, done, trunc, info
 
     def close(self):

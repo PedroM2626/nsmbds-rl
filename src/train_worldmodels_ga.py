@@ -322,7 +322,8 @@ def main():
         mlflow.log_param("hidden_dim", HIDDEN_DIM)
 
         # Single environment instance for the entire process (2+ DeSmuMEs = native crash)
-        ga_env = MarioNdsEnv(rom_path=args.rom, state_path=args.state)
+        # legacy: the GA controller dimension (N_ACTIONS=6) matches the June table
+        ga_env = MarioNdsEnv(rom_path=args.rom, state_path=args.state, actions="legacy")
 
         # V
         vision = load_vision(device)

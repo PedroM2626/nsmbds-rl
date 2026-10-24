@@ -48,7 +48,9 @@ def create_mario_dreamer_env(**kwargs):
     # Allow overriding render_mode via environment variable for real-time visualization
     render_mode = os.getenv("MARIO_RENDER_MODE", kwargs.get("render_mode", None))
     print(f"Initializing SheepRLMarioWrapper with render_mode: {render_mode}")
-    raw_env = MarioNdsEnv(rom_path=rom_path, state_path=state_path, render_mode=render_mode)
+    # legacy: the SheepRL configs assume the June 6-action env
+    raw_env = MarioNdsEnv(rom_path=rom_path, state_path=state_path, render_mode=render_mode,
+                          actions="legacy")
     return SheepRLMarioWrapper(raw_env)
 
 # Register the environment with Gymnasium

@@ -29,7 +29,9 @@ def main():
     os.environ["MARIO_RENDER_MODE"] = "human"
     
     # Recurrent PPO uses DummyVecEnv but NO FrameStack
-    env = MarioNdsEnv(rom_path=args.rom, state_path=args.state, render_mode="human")
+    # legacy: the committed recurrent checkpoints are 6-action June models
+    env = MarioNdsEnv(rom_path=args.rom, state_path=args.state, render_mode="human",
+                      actions="legacy")
     env = DummyVecEnv([lambda: env])
 
     print(f"Loading Recurrent PPO model from {args.model}...")

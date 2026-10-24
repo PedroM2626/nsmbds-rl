@@ -35,6 +35,8 @@ from ram_env import MarioRamEnv  # noqa: E402
 from pinn_world_model import MarioPINNWorldModel, CEMMPController, N_ACTIONS, ShapingConfig  # noqa: E402
 from course import Course, TILE  # noqa: E402
 from tilemap_planner import TilemapAStar, dynamic_jump_reach_tiles  # noqa: E402
+from course_id import course_area_index, course_for_area_index  # noqa: E402
+from eval_provenance import collect as collect_provenance  # noqa: E402
 
 ROM = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
 STATE = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1"
@@ -388,7 +390,8 @@ class BaseReflexController:
                         f"g={obs[4]:.0f} a={r} stuck={self._stuck} "
                         f"q={len(self._queue)} "
                         f"en={obs[8]:.3f},{obs[9]:.3f},{obs[10]:.0f};"
-                        f"{obs[11]:.3f},{obs[12]:.3f},{obs[13]:.0f} "
+                        f"{obs[11]:.3f},{obs[12]:.3f},{obs[13]:.0f};"
+                        f"{obs[14]:.3f},{obs[15]:.3f},{obs[16]:.0f} "
                         f"pit={[int(x * 100) for x in obs[17:23]]}\n")
         return r
 
@@ -721,6 +724,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
     agent.reset()
     total_r, steps = 0.0, 0
     max_rel_px = 0.0
+    final_rel_px = 0.0
     # Two coordinate systems coexist in this repo: the controller's
     # SPAWN_ABS_PX + obs[0]*512 (what the agent reasons with) and the env's
     # RAM-derived info["mario_px"] (what the stage actually reports). They
@@ -739,7 +743,8 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
             latencies.append((time.time() - t0) * 1000.0)
             obs, r, term, trunc, info = env.step(action)
             total_r += r
-            max_rel_px = max(max_rel_px, obs[0] * 512.0)
+            final_rel_px = obs[0] * 512.0
+            max_rel_px = max(max_rel_px, final_rel_px)
             last_mario_px = float(info.get("mario_px", last_mario_px))
             max_mario_px = max(max_mario_px, last_mario_px)
             abs_px = spawn_px + obs[0] * 512.0
@@ -750,7 +755,10 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
                 finished, cause = True, "goal"
                 break
             if term:
-                cause = "death" if obs[6] > 0.02 else "timeout"
+                # The env now labels its own terminations (info["died"] /
+                # info["timeout"]); the old obs[6] > 0.02 clock heuristic
+                # mislabeled any death with under ~8 s left as a timeout.
+                cause = "timeout" if info.get("timeout") else "death"
                 if cause == "death":
                     ex = [round(float(obs[8 + 3 * k]) * 256) for k in range(3)]
                     et = [round(float(obs[10 + 3 * k]) * 256) for k in range(3)]
@@ -762,9 +770,14 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
                 cause = "trunc"
                 break
     wall = time.time() - t_wall
+    # final_abs_px is the TRUE last position (the old field of this name was
+    # spawn + max, i.e. the peak, not the final -- identical on every
+    # committed episode only because none of them ends behind its peak).
+    # max_abs_px keeps the old meaning; max_progress_px stays the relative peak.
     return {
         "steps": steps, "total_reward": float(total_r),
-        "max_progress_px": float(max_rel_px), "final_abs_px": float(spawn_px + max_rel_px),
+        "max_progress_px": float(max_rel_px), "final_abs_px": float(spawn_px + final_rel_px),
+        "max_abs_px": float(spawn_px + max_rel_px),
         "final_mario_px": last_mario_px, "max_mario_px": max_mario_px,
         "reached_goal": bool(finished), "termination": cause,
         "mean_control_latency_ms": float(np.mean(latencies)),
@@ -846,6 +859,30 @@ def main():
     print(f"[pinn-eval] controller={args.controller} device={device} goal_abs_px={goal} "
           f"planner={args.planner} reflex={args.reflex}")
 
+    # ONE emulator, constructed BEFORE any model load: the measured constraint
+    # is that a torch.load/PPO.load followed by DeSmuME init access-violates
+    # (AGENTS.md; re-measured in 4ac), so the env comes first here.
+    env = MarioRamEnv(rom_path=args.rom, state_path=args.state, geo=True,
+                      course_name=args.course, max_steps=args.max_steps)
+
+    # Course identity guard: the savestate's own area index (u16 0x020980D4,
+    # src/course_id.py) must equal the course being evaluated, or the goal,
+    # the planner geometry and the profile all describe a DIFFERENT level than
+    # the one on screen. Measured 2026-10-23: every committed state matches
+    # (state_1-2=3=A02_1 ... H01_1=152); a mismatch is refused loudly rather
+    # than evaluated into plausible-looking numbers.
+    expected_area = course_area_index(args.course)
+    state_area = env.ram.course_index() if env.ram else None
+    if state_area is not None and state_area != expected_area:
+        env.close()
+        raise SystemExit(
+            f"course/state mismatch: --course {args.course} is area index "
+            f"{expected_area}, but the savestate is running area index "
+            f"{state_area} ({course_for_area_index(state_area)}). Pass the "
+            f"matching --state or --course; refusing to evaluate.")
+    if state_area is None:
+        print("[pinn-eval] WARNING: course area index unreadable; identity unverified")
+
     if args.controller == "mpc":
         ck = torch.load(args.model, map_location=device, weights_only=False)
         model = MarioPINNWorldModel(hid=ck["hid"]).to(device); model.load_state_dict(ck["state_dict"]); model.eval()
@@ -870,8 +907,6 @@ def main():
     else:
         make_agent = lambda: PPOAgent(args.policy, device)
 
-    env = MarioRamEnv(rom_path=args.rom, state_path=args.state, geo=True,
-                      course_name=args.course, max_steps=args.max_steps)
     writer = None
     if args.record:
         import cv2
@@ -913,10 +948,19 @@ def main():
         "mean_latency_ms": float(np.mean([r["mean_control_latency_ms"] for r in results])),
     }
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
-    out = {"aggregate": agg, "episodes": results}
+    prov = collect_provenance(rom=args.rom, state=args.state, extra={
+        "controller": args.controller, "course": args.course,
+        "course_area_index": expected_area, "state_area_index": state_area,
+        "seed": args.seed, "reflex": args.reflex, "planner": args.planner,
+        "max_steps": args.max_steps, "episodes": args.episodes,
+        "goal_abs_px": goal,
+    })
+    out = {"aggregate": agg, "episodes": results, "provenance": prov}
     with open(args.out, "w") as f:
         json.dump(out, f, indent=2)
     print("[pinn-eval] aggregate:", json.dumps(agg, indent=2))
+    print(f"[pinn-eval] provenance: commit={prov['git']['commit']} "
+          f"dirty={prov['git']['dirty']} rom_sha1={prov['files']['rom']['sha1']}")
 
 
 if __name__ == "__main__":

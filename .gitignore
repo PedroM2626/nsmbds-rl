@@ -43,3 +43,7 @@ out/reflex_legacy.json
 out/reflex_profile.json
 out/reflex_parity.json
 out/dash_full.log
+
+# Test scratch
+.pytest_cache/
+out/_tmp*

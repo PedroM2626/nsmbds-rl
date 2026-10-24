@@ -93,7 +93,7 @@ def _worker_init(wid_counter, wid_lock, rom, state, enc_state, mem_state):
     last_err = None
     for attempt in range(2):
         try:
-            _G["env"] = MarioNdsEnv(rom_path=t_rom, state_path=t_st)
+            _G["env"] = MarioNdsEnv(rom_path=t_rom, state_path=t_st, actions="legacy")
             _G["env"].reset()
             last_err = None
             break
@@ -265,7 +265,8 @@ def main():
         v_time = time.time() - t_v
 
         # M: sequential collection with 1 local env + LSTM training on GPU
-        ga_env = MarioNdsEnv(rom_path=args.rom, state_path=args.state)
+        # legacy: the CMA controller dimension (wm.N_ACTIONS=6) matches the June table
+        ga_env = MarioNdsEnv(rom_path=args.rom, state_path=args.state, actions="legacy")
         frames, actions, dones, collect_time = wm.collect_sequential_data(
             ga_env, args.mem_frames, seed=args.seed)
         memory = wm.MemoryRNN()

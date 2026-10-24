@@ -4,7 +4,7 @@ from env import MarioNdsEnv
 def main():
     env = MarioNdsEnv(rom_path="data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds", 
                       state_path="data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1", 
-                      render_mode=None)
+                      render_mode=None, actions="legacy")
     
     import cv2
     

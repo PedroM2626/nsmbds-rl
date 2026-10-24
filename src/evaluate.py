@@ -23,7 +23,9 @@ def main():
     args = parser.parse_args()
     from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack
     
-    env = MarioNdsEnv(rom_path=args.rom, state_path=args.state, render_mode="human")
+    # legacy: the committed visual checkpoints are 6-action June models
+    env = MarioNdsEnv(rom_path=args.rom, state_path=args.state, render_mode="human",
+                      actions="legacy")
     env = DummyVecEnv([lambda: env])
     env = VecFrameStack(env, n_stack=4)
     

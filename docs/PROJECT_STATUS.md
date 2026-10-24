@@ -1,4 +1,4 @@
-﻿# Project Status & Gap Analysis
+# Project Status & Gap Analysis
 
 *Current snapshot: 2026-10-18. Target: NSMB DS EUR (NTR-A2DP-EUR). Historical experiment notes remain below.*
 
@@ -21,7 +21,7 @@ Not every game value is resolved. The measurements suffice to reproduce the 1-1 
 | Actor identity | ⚠️ Partial | 342 profile slots (~85%) extracted; some runtime types in transfer traces remain unnamed |
 | Player physics | ⚠️ Empirically measured, statically unresolved | Four jump regimes are in `physics_jump_state_machine.json`; the new 1-1 button comparison measures matching A/B traces for one standing-jump protocol. This does not establish behavior for every power-up, water state, or movement regime |
 | Planner | ⚠️ Partial | A* uses a conservative six-tile (96 px) default reach; `dynamic_jump_reach_px` exists but is not wired into the planner default |
-| Learned models | ⚠️ Partial | PINN pool has 3500 transitions; the recorded 44-frame drift is 1738 px. No newer drift eval is recorded. PPO, PPO+Reflex, and MPC saved evals do not clear 1-1 |
+| Learned models | ⚠️ Partial | PINN pool has 3500 transitions; the recorded 44-frame drift is 1,620.12 px (evals/pinn_worldmodel_metrics.json; the 1,738 px quoted here before 4af was an earlier, uncommitted metrics write). PPO, PPO+Reflex, and MPC saved evals do not clear 1-1 |
 | Transfer | ⚠️ Partial | 2-1 reaches 862.7 px on both arms (4x); 4-1 reaches 505 px; the 6-1 ledger records a 1929 px frontier (4p/4x). No outside-World-1 clear is recorded |
 
 The September-era checklist in sections 1–3 below is retained as a historical note, not the current inventory. The experiment ledger in 4a–4ad remains the authoritative history of measurements and retractions.
@@ -78,7 +78,7 @@ The September-era checklist in sections 1–3 below is retained as a historical 
 | Heteroscedastic `head_logvar` | ✅ | Gaussian-NLL loss; uncertainty used by pessimistic planner |
 | Transition pool | ✅ | 3500 real transitions, `models/pinn_pool.npz` |
 | Trained model | ✅ | `models/pinn_nsmb.pt`, 43 440 params, test MSE 0.0558 |
-| Open-loop drift | ⚠️ Moderate | Mean drift 1738 px over 44-frame horizon across 18 episodes → model diverges in extended rollouts |
+| Open-loop drift | ⚠️ Moderate | Mean drift 1,620 px over 44-frame horizon across 18 episodes (committed JSON; see 4af) → model diverges in extended rollouts |
 | Sample efficiency | ✅ | MSE at 500 transitions ≈ MSE at 2000 (plateau early) |
 
 ### 1.5 PINN Policy & Real-Time Eval (`src/train_pinn_policy.py`, `src/eval_pinn_realtime.py`)
@@ -1864,6 +1864,91 @@ per-frame protocol; `--all-courses` compares a trace with all 191 parsed
 courses and reports the top ten floor matches, without treating that score as
 ground truth. Raw candidate lists, coordinates, counts, and scores are recorded in
 [`out/state_identity_audit.json`](../out/state_identity_audit.json).
+
+## 4af. The evaluation-and-reproducibility corrections (2026-10-23)
+
+The external review of this repository measured four claims that did not
+survive contact with the code or the artifacts. Per the retraction protocol
+they are corrected here, as a new section; the sections they correct stay
+as era records.
+
+**1. The visual arm's "dash" was never a dash (measured).** The June visual
+env (`src/env.py`) mapped action 2/3 through `KEY_B`, commenting "Dash(B)".
+A button probe on the verified 1-1 savestate (one emulator, state reload per
+trial, 60- and 180-frame holds) answers: **B is a jump button** — it produces
+the identical standing jump as A (peak **67.40625 px**, matching
+rise/velocity traces) and adds **no horizontal speed** (RIGHT+B advances
+**246.996 px** in 180 frames, byte-identical to RIGHT alone), while **X/Y
+are the dash** (RIGHT+X: **269.957 px**, +9.3%). The legacy visual action
+space was therefore 6 actions with *no dash and two identical jump actions*
+— its policies could never reach running speed. `MarioNdsEnv` now defaults
+to `actions="v2"` (the 8-action table mirroring `MarioRamEnv`); the old
+table is `actions="legacy"`, and every committed visual checkpoint is
+loaded under `legacy` so the n30 rows stay reproducible. Consequence,
+stated honestly: **the n30 visual rows are legacy/no-dash and were measured
+under the flow reward** — they are not comparable with the RAM rows or any
+v2 run. (The 4ad jump-button equivalence probe had already measured the
+A/B arc match; what it did not do -- and this pass did -- is test B's
+*horizontal* effect, which is where the "dash" claim died.)
+
+**2. The drift number rotted.** Sections 1.4/1/P1 and the current-status
+table quote **1,738 px** open-loop drift; the committed
+`evals/pinn_worldmodel_metrics.json` records **1,620.12 px** over 44.83
+frames (18 episodes). The 1,738 figure belongs to an earlier, uncommitted
+metrics write. The JSON is the authority; the tables now carry 1,620.
+
+**3. The protocol's ROM hash does not match the ROM.**
+`docs/BENCHMARK_PROTOCOL.md` declared SHA-1 `809618B5...`; the actual ROM
+file hashes to **`B0F7886720E842ED922569E1BB5C39C0FA090331`** (measured
+twice). Every committed eval ran on the latter. The protocol now carries the
+measured hash, and every new eval JSON records it itself (see 4 below), so
+this class of drift cannot recur silently.
+
+**4. Evaluation artifacts now carry provenance, and evals refuse the wrong
+course.** Two shipped mechanisms:
+
+* `src/eval_provenance.py` -- every new eval JSON gets a `provenance` block:
+  git commit + dirty flag, SHA-1 and byte size of the ROM and savestate
+  actually opened, package versions, Python/platform, UTC timestamp, seed
+  and argv. The 2026-10-23-and-earlier JSONs in `evals/` do not have one;
+  `tools/audit_evals.py` reports them as legacy instead of pretending they
+  were annotated after the fact.
+* `src/course_id.py` + `RamState.course_index()` -- the running course's
+  area index (u16 at `0x020980D4`, copied at `0x0209B59E`) is a direct
+  identity oracle: the index is the course file's position among the 191
+  (manifest-ordered). Measured on every committed savestate this pass:
+  **state_1-2=3=A02_1, state_2-1=21=B01_1, state_3-1=44=C01_1,
+  state_4-1=66=D01_1, state_6-1=107=F01_1, state_7-1=130=G01_1,
+  .ds2=88=E01_1, .ds3=152=H01_1, the shipped .ds1=0=A01_1** -- which also
+  resolves the 4ad/4ae 1-2 ambiguity with one read (the HUD screenshot said
+  A02_1; the index agrees). `eval_pinn_realtime.py` now refuses to run when
+  `--course` and the state's index disagree: evaluating 2-1's geometry
+  against a 4-1 savestate produced plausible-looking fiction, and that is
+  exactly the failure this guard makes loud.
+
+**5. `final_abs_px` was a misnomer (fixed, values unchanged).**
+`run_episode` reported `final_abs_px = spawn + max_rel` -- the *peak*, not
+the final. Measured: all 75 committed episodes have final == max (nobody
+ends behind their peak), so the published numbers are unaffected; the field
+is now the true final, with `max_abs_px` added for the old meaning.
+Termination labels also stopped being inferred: the env now reports
+`info["died"]` / `info["timeout"]`, replacing the `obs[6] > 0.02` clock
+heuristic that mislabeled any death with under ~8 s left as a timeout.
+
+**6. The offline stub was fiction (fixed).** `MarioRamEnv` documented a
+no-emulator fallback but crashed on it
+(`AttributeError: 'NoneType' object has no attribute 'poll'`,
+`ram_env.py` `_observe`). The stub is real now -- reset/step return
+zero observations with a poll-shaped dummy state -- and the `geo=True`
+observation-space bug is closed with it: a course the parser refuses now
+drops its six pit dims from the space *before* the space is built, instead
+of advertising 23 floats and returning 17.
+
+What this pass did **not** change: the parity contract (the legacy arm
+reproduces the published clear byte-for-byte with all of the above in
+place -- `tools/parity_reflex.py` PASS), the n30 artifacts themselves
+(legacy, re-benchmarking under v2 + unified reward is named future work),
+and the model checkpoints (the new default only affects *new* training).
 
 ## 5. File Index
 
