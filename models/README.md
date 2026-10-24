@@ -22,8 +22,24 @@ artifacts are the ones below (the files this README lists are the tracked set).
 the 34-run training ledger (PROJECT_STATUS 4n) lives only on the dev machine;
 the cards in `docs/MODEL_CARDS.md` are the portable record.
 
-**Repo weight (measured 2026-10-23):** 12.09 GB in this directory, of which
-11.47 GB is 311 `*_<n>_steps.zip` intermediates; the git pack is 2.04 GiB from
-historical blobs. Untracking the intermediates stops the growth; shrinking a
-clone requires a history rewrite (filter-repo/BFG) — an owner decision, see
-`docs/PROJECT_STATUS.md` 4af.
+## What a clone contains (post-4ag, 2026-10-23)
+
+The June-era visual binaries (the `ppo_*`, `impala_*`, `mario_impala`,
+`recurrent_ppo`, `autoencoder.pth`, `worldmodels_*_memory.pth`, `test_*.zip`
+set, ~586 MB) were **removed from git history and HEAD** by the 4ag rewrite:
+they are legacy-action/no-dash, flow-reward-era artifacts whose measured
+results are already recorded in `evals/` and the docs. Like the ROM under
+`data/`, they live only on the dev machine. The media files and the AC pair
+are served through **git-lfs** (see `.gitattributes`); a fresh clone needs
+`git lfs pull` for those.
+
+Tracked after the slim: the PINN trio (`pinn_nsmb.pt`, `pinn_policy.zip`,
+`pinn_pool.npz`), the RAM baselines (`ram_ppo_100k`, `ram_geo_100k`,
+`ram_ppo_smoke`), `gnn_100k.zip`, the world-model `*.npz` controllers, and
+`ac_pixels_200k.zip` / `ac_ram_200k.zip` via LFS.
+
+**Measured, before -> after (4ag):** git pack **2.04 GiB -> 4.72 MiB**
+(`git count-objects -vH`; 109 commits preserved, working tree byte-identical,
+all four gates green on the rewritten HEAD). The pre-rewrite history is archived
+at `D:/mario-ds-backup-2026-10-23/mario-ds-full-history.bundle` (0.79 GB,
+verified) alongside the local-only model binaries and `media/`.

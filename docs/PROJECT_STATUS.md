@@ -1950,6 +1950,42 @@ place -- `tools/parity_reflex.py` PASS), the n30 artifacts themselves
 (legacy, re-benchmarking under v2 + unified reward is named future work),
 and the model checkpoints (the new default only affects *new* training).
 
+## 4ag. The repository slimmed: 2.04 GiB -> 4.72 MiB (2026-10-23)
+
+The 4af review measured the clone at **2.04 GiB of git pack** for a project
+whose tracked text is a few MB. The weight was binary history: 437 MB of
+`models/checkpoints/*`, ~586 MB of June-era model zips (visual baselines,
+world-model memories, debug `test_*.zip`), and 184 MB of pre-LFS media
+blobs. The rewrite removed them:
+
+* **Stripped from all history** (git-filter-repo, 109 commits preserved,
+  none pruned): `models/checkpoints/*`, the June visual binaries
+  (`ppo_*`, `impala_*`, `mario_impala`, `recurrent_ppo_mario`,
+  `autoencoder.pth`, `worldmodels_*_memory.pth`, `test_*.zip`) --
+  legacy-action/no-dash, flow-reward-era artifacts whose results are
+  recorded in `evals/` and the docs; they remain on the dev disk only,
+  like the ROM under `data/`.
+* **Migrated to git-lfs**: `*.avi`, `*.mp4`, `*.gif` and the AC pair
+  `models/ac_{pixels,ram}_200k.zip` (~210 MB of LFS objects, within the
+  hosting quota). A clone needs `git lfs pull` for the media and the AC
+  checkpoints; the small current-era models stay as plain blobs.
+* **Measured result**: `git count-objects -vH` -- pack **2.04 GiB ->
+  4.72 MiB**; working tree byte-identical; numbers/parity/planner/tests
+  all green on the rewritten HEAD (the gates read the working tree and
+  `evals/`, which are untouched by a history rewrite).
+* **Safety net**: the full pre-rewrite history is archived in
+  `mario-ds-full-history.bundle` (0.79 GB, `git bundle verify` clean,
+  contains `refs/heads/main` at the 4af commit) plus the local-only
+  binaries and `media/`, under `D:/mario-ds-backup-2026-10-23/`.
+* **Caveats, honestly**: this force-push rewrites every commit hash after
+  `13a41c3`-era -- any other clone must re-clone, and provenance blocks
+  recorded before the rewrite point at pre-rewrite hashes (the bundle
+  resolves them). The hosting provider's server-side gc reclaims the old
+  blobs on its own schedule, so the remote size drops over the next days.
+  A harness-internal ref (`refs/codex/turn-diffs/...`) pointed at a
+  pre-rewrite tree and kept every old blob alive until deleted; it is
+  preserved inside the backup bundle.
+
 ## 5. File Index
 
 ```

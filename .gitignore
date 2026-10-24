@@ -8,6 +8,19 @@ mlflow.db
 tensorboard_logs/
 *tensorboard*
 
+# Models: the tracked set is the small current-era artifacts + the AC pair (LFS).
+# Every other binary under models/ is local-only, like the ROM under data/ --
+# see models/README.md for the measured sizes and the 4af/4ag policy.
+/models/*.pth
+/models/*.zip
+!/models/pinn_policy.zip
+!/models/ram_ppo_100k.zip
+!/models/ram_geo_100k.zip
+!/models/ram_ppo_smoke.zip
+!/models/gnn_100k.zip
+!/models/ac_pixels_200k.zip
+!/models/ac_ram_200k.zip
+
 # Intermediate checkpoints (heavy and redundant; final models are placed in models/)
 models/checkpoints/
 
