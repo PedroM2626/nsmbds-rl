@@ -72,8 +72,10 @@
 4. **Reward**: unified RAM reward on both arms (4s); flow is the legacy
    opt-in (`reward_mode="flow"`) for reproducing June-era numbers.
 5. **Commit protocol**: gates green first, then commit; push to
-  `origin main` (the remote answers as `mario-ds-rl` but lives at
-  `nsmbds-rl` — the redirect works, the URL rename is pending).
+  `origin main` (the remote URL is the canonical
+  `https://github.com/PedroM2626/nsmbds-rl.git` since 4ag; the old
+  `mario-ds-rl` name still redirects). History was rewritten on 2026-10-23
+  (4ag): any pre-existing clone must be re-cloned.
 
 ## Where things live
 
