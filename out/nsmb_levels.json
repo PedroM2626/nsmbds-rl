@@ -409,7 +409,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4032,
      "y_px": 448
     },
@@ -966,7 +968,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 176,
      "y_px": 368
     },
@@ -2262,7 +2266,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 832,
      "y_px": 576
     },
@@ -2646,7 +2652,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 528,
      "y_px": 208
     },
@@ -2659,7 +2667,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1344,
      "y_px": 208
     },
@@ -3766,7 +3776,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3984,
      "y_px": 960
     },
@@ -3944,7 +3956,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 2944,
      "y_px": 880
     },
@@ -4606,7 +4620,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 1536,
      "y_px": 352
     },
@@ -4694,7 +4710,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 2288,
      "y_px": 336
     },
@@ -4707,7 +4725,9 @@
       2,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 3376,
      "y_px": 352
     },
@@ -4750,7 +4770,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3600,
      "y_px": 448
     },
@@ -6020,7 +6042,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 6160,
      "y_px": 720
     },
@@ -6528,7 +6552,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 4160,
      "y_px": 672
     },
@@ -8203,7 +8229,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 528,
      "y_px": 192
     },
@@ -8911,7 +8939,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 304,
      "y_px": 352
     },
@@ -8924,7 +8954,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 176,
      "y_px": 464
     },
@@ -8937,7 +8969,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 384,
      "y_px": 400
     },
@@ -8965,7 +8999,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 1104,
      "y_px": 368
     },
@@ -8978,7 +9014,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 3488,
      "y_px": 352
     },
@@ -8991,7 +9029,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 2704,
      "y_px": 368
     },
@@ -9319,7 +9359,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2176,
      "y_px": 352
     },
@@ -9332,7 +9374,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2432,
      "y_px": 432
     },
@@ -9345,7 +9389,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2416,
      "y_px": 368
     },
@@ -9403,7 +9449,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 0,
      "y_px": 256
     },
@@ -9860,7 +9908,9 @@
       49751,
       91
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 2448
     },
@@ -9873,7 +9923,9 @@
       12583,
       4119
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 208,
      "y_px": 2224
     },
@@ -9886,7 +9938,9 @@
       45351,
       4209
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 2224
     },
@@ -9899,7 +9953,9 @@
       45605,
       4211
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 2128
     },
@@ -9912,7 +9968,9 @@
       12841,
       4151
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 2128
     },
@@ -9925,7 +9983,9 @@
       45592,
       4134
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 2064
     },
@@ -9938,7 +9998,9 @@
       12822,
       4194
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 400,
      "y_px": 2064
     },
@@ -9951,7 +10013,9 @@
       45595,
       4148
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 2000
     },
@@ -9964,7 +10028,9 @@
       12819,
       4148
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 2000
     },
@@ -9977,7 +10043,9 @@
       45588,
       4134
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 1936
     },
@@ -9990,7 +10058,9 @@
       12826,
       4194
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 336,
      "y_px": 1936
     },
@@ -10003,7 +10073,9 @@
       37649,
       16
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 768,
      "y_px": 2528
     },
@@ -10016,7 +10088,9 @@
       4882,
       4098
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 800,
      "y_px": 2528
     },
@@ -10029,7 +10103,9 @@
       37665,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 2512
     },
@@ -10042,7 +10118,9 @@
       37649,
       4128
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 912,
      "y_px": 2544
     },
@@ -10055,7 +10133,9 @@
       4881,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 944,
      "y_px": 2544
     },
@@ -10068,7 +10148,9 @@
       37665,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 992,
      "y_px": 2512
     },
@@ -10081,7 +10163,9 @@
       37665,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 752,
      "y_px": 2432
     },
@@ -10094,7 +10178,9 @@
       4881,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 752,
      "y_px": 2400
     },
@@ -10107,7 +10193,9 @@
       37649,
       16
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 768,
      "y_px": 2352
     },
@@ -10120,7 +10208,9 @@
       4882,
       4097
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 800,
      "y_px": 2368
     },
@@ -10133,7 +10223,9 @@
       4881,
       2
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 2368
     },
@@ -10146,7 +10238,9 @@
       37665,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 896,
      "y_px": 2352
     },
@@ -10159,7 +10253,9 @@
       4881,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 928,
      "y_px": 2368
     },
@@ -10172,7 +10268,9 @@
       4881,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 976,
      "y_px": 2368
     },
@@ -10185,7 +10283,9 @@
       37665,
       16
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1008,
      "y_px": 2352
     },
@@ -10198,7 +10298,9 @@
       37137,
       4128
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1008,
      "y_px": 2448
     },
@@ -10211,7 +10313,9 @@
       4881,
       4128
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 992,
      "y_px": 2480
     },
@@ -10224,7 +10328,9 @@
       37399,
       79
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 1792
     },
@@ -10237,7 +10343,9 @@
       12849,
       210
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 1728
     },
@@ -10250,7 +10358,9 @@
       12849,
       195
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 1728
     },
@@ -10263,7 +10373,9 @@
       12849,
       180
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 384,
      "y_px": 1728
     },
@@ -10276,7 +10388,9 @@
       12849,
       165
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 416,
      "y_px": 1728
     },
@@ -10289,7 +10403,9 @@
       12839,
       15
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 1680
     },
@@ -10302,7 +10418,9 @@
       4885,
       20553
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 1392
     },
@@ -10315,7 +10433,9 @@
       13079,
       20566
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 400,
      "y_px": 1424
     },
@@ -10328,7 +10448,9 @@
       21273,
       20579
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1456
     },
@@ -10341,7 +10463,9 @@
       29467,
       20592
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 336,
      "y_px": 1488
     },
@@ -10369,7 +10493,9 @@
       17173,
       4142
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 896
     },
@@ -10382,7 +10508,9 @@
       49938,
       4322
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 384,
      "y_px": 896
     },
@@ -10395,7 +10523,9 @@
       17173,
       4217
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 928
     },
@@ -10408,7 +10538,9 @@
       49938,
       4247
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 384,
      "y_px": 928
     },
@@ -10421,7 +10553,9 @@
       17173,
       4292
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 960
     },
@@ -10434,7 +10568,9 @@
       49938,
       4172
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 384,
      "y_px": 960
     },
@@ -10447,7 +10583,9 @@
       12835,
       4138
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 1088
     },
@@ -10460,7 +10598,9 @@
       12835,
       4183
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 1136
     },
@@ -10473,7 +10613,9 @@
       12835,
       4228
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 1184
     },
@@ -10486,7 +10628,9 @@
       12835,
       4273
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 1232
     },
@@ -10499,7 +10643,9 @@
       4882,
       5120
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 1088
     },
@@ -10512,7 +10658,9 @@
       37650,
       5120
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1120
     },
@@ -10525,7 +10673,9 @@
       4882,
       5120
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 1152
     },
@@ -10538,7 +10688,9 @@
       37650,
       5120
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1184
     },
@@ -10551,7 +10703,9 @@
       4882,
       5120
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 1216
     },
@@ -10564,7 +10718,9 @@
       37650,
       5120
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1248
     },
@@ -10712,7 +10868,9 @@
       13058,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 288,
      "y_px": 288
     },
@@ -10725,7 +10883,9 @@
       13095,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 208,
      "y_px": 304
     },
@@ -10738,7 +10898,9 @@
       13127,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 208,
      "y_px": 352
     },
@@ -10751,7 +10913,9 @@
       13191,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 208,
      "y_px": 432
     },
@@ -10764,7 +10928,9 @@
       45826,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 288
     },
@@ -10777,7 +10943,9 @@
       45863,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 304
     },
@@ -10790,7 +10958,9 @@
       45895,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 352
     },
@@ -10803,7 +10973,9 @@
       45959,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 432
     },
@@ -10816,7 +10988,9 @@
       45873,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 480,
      "y_px": 240
     },
@@ -10829,7 +11003,9 @@
       13105,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 240
     },
@@ -10842,7 +11018,9 @@
       45873,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 544,
      "y_px": 240
     },
@@ -10855,7 +11033,9 @@
       13105,
       4232
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 192,
      "y_px": 240
     },
@@ -11341,7 +11521,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 784,
      "y_px": 464
     }
@@ -11634,7 +11816,9 @@
       49526,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 400
     },
@@ -11647,7 +11831,9 @@
       49524,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1104,
      "y_px": 400
     },
@@ -11675,7 +11861,9 @@
       16755,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1232,
      "y_px": 464
     },
@@ -11703,7 +11891,9 @@
       49523,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1344,
      "y_px": 400
     },
@@ -11716,7 +11906,9 @@
       57733,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1632,
      "y_px": 192
     },
@@ -11744,7 +11936,9 @@
       57738,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1808,
      "y_px": 192
     },
@@ -11757,7 +11951,9 @@
       57754,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2032,
      "y_px": 192
     },
@@ -11785,7 +11981,9 @@
       53618,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2992,
      "y_px": 384
     },
@@ -11858,7 +12056,9 @@
       49524,
       83
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 3360,
      "y_px": 400
     },
@@ -11886,7 +12086,9 @@
       57749,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2240,
      "y_px": 192
     },
@@ -11899,7 +12101,9 @@
       57715,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 3952,
      "y_px": 368
     },
@@ -11927,7 +12131,9 @@
       49522,
       53
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 4064,
      "y_px": 400
     },
@@ -11955,7 +12161,9 @@
       16753,
       83
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 3456,
      "y_px": 528
     },
@@ -12028,7 +12236,9 @@
       57750,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2384,
      "y_px": 192
     },
@@ -12041,7 +12251,9 @@
       57730,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2336,
      "y_px": 192
     },
@@ -12054,7 +12266,9 @@
       57755,
       595
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2528,
      "y_px": 192
     },
@@ -12232,7 +12446,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 480
     },
@@ -12245,7 +12461,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 480
     }
@@ -12786,7 +13004,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 32,
      "y_px": 288
     },
@@ -12799,7 +13019,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 48,
      "y_px": 288
     }
@@ -13273,7 +13495,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ExpandablePlatformBlock"
+     ],
      "x_px": 928,
      "y_px": 384
     },
@@ -14025,7 +14249,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 800,
      "y_px": 464
     }
@@ -14537,7 +14763,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4832,
      "y_px": 912
     },
@@ -15461,7 +15689,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 720,
      "y_px": 208
     },
@@ -15474,7 +15704,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1456,
      "y_px": 208
     },
@@ -15502,7 +15734,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 544,
      "y_px": 192
     }
@@ -17662,7 +17896,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4480,
      "y_px": 448
     },
@@ -17765,7 +18001,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 1776,
      "y_px": 672
     },
@@ -17853,7 +18091,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1440,
      "y_px": 1472
     },
@@ -18076,7 +18316,9 @@
       256,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 2976,
      "y_px": 416
     },
@@ -18480,7 +18722,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 160,
      "y_px": 160
     },
@@ -18493,7 +18737,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 0,
      "y_px": 240
     },
@@ -19345,7 +19591,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1040,
      "y_px": 448
     },
@@ -19767,7 +20015,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1552,
      "y_px": 464
     },
@@ -21625,7 +21875,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1232,
      "y_px": 448
     },
@@ -21912,7 +22164,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 624,
      "y_px": 464
     }
@@ -22574,7 +22828,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 976,
      "y_px": 608
     },
@@ -22857,7 +23113,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 1216,
      "y_px": 624
     },
@@ -25079,7 +25337,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "MummipokeyBoss"
+     ],
      "x_px": 544,
      "y_px": 448
     },
@@ -25595,7 +25855,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 272,
      "y_px": 192
     },
@@ -25653,7 +25915,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -25666,7 +25930,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 0
     },
@@ -25679,7 +25945,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 768,
      "y_px": 0
     },
@@ -25692,7 +25960,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 784,
      "y_px": 0
     }
@@ -26170,7 +26440,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3024,
      "y_px": 480
     },
@@ -26183,7 +26455,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3120,
      "y_px": 464
     },
@@ -26196,7 +26470,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3296,
      "y_px": 336
     },
@@ -26209,7 +26485,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2208,
      "y_px": 480
     },
@@ -26222,7 +26500,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2736,
      "y_px": 480
     },
@@ -26235,7 +26515,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3344,
      "y_px": 464
     },
@@ -26488,7 +26770,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2000,
      "y_px": 384
     },
@@ -26501,7 +26785,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1872,
      "y_px": 448
     },
@@ -26514,7 +26800,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2208,
      "y_px": 336
     },
@@ -26812,7 +27100,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 656,
      "y_px": 368
     },
@@ -26945,7 +27235,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 2736,
      "y_px": 384
     },
@@ -26988,7 +27280,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 304,
      "y_px": 368
     },
@@ -27001,7 +27295,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 464,
      "y_px": 416
     },
@@ -27014,7 +27310,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 896,
      "y_px": 416
     },
@@ -27027,7 +27325,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 912,
      "y_px": 416
     },
@@ -27040,7 +27340,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1200,
      "y_px": 448
     },
@@ -27053,7 +27355,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 480,
      "y_px": 416
     },
@@ -27066,7 +27370,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1024,
      "y_px": 400
     },
@@ -27094,7 +27400,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 0,
      "y_px": 304
     },
@@ -27122,7 +27430,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 1808,
      "y_px": 768
     },
@@ -27180,7 +27490,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 3504,
      "y_px": 400
     },
@@ -27448,7 +27760,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2176,
      "y_px": 880
     },
@@ -27461,7 +27775,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1952,
      "y_px": 976
     },
@@ -27474,7 +27790,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2000,
      "y_px": 912
     },
@@ -28569,7 +28887,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 3376,
      "y_px": 352
     },
@@ -28627,7 +28947,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 5104,
      "y_px": 448
     },
@@ -28910,7 +29232,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4880,
      "y_px": 1216
     },
@@ -29464,7 +29788,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 416,
      "y_px": 720
     },
@@ -29781,7 +30107,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 544,
      "y_px": 192
     },
@@ -29839,7 +30167,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 256,
      "y_px": 0
     },
@@ -29852,7 +30182,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 272,
      "y_px": 0
     },
@@ -29865,7 +30197,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 1024,
      "y_px": 0
     },
@@ -29878,7 +30212,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 1040,
      "y_px": 0
     }
@@ -30633,7 +30969,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1072,
      "y_px": 128
     },
@@ -30646,7 +30984,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1248,
      "y_px": 144
     },
@@ -30869,7 +31209,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 640,
      "y_px": 112
     },
@@ -30882,7 +31224,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 752,
      "y_px": 144
     },
@@ -30895,7 +31239,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 832,
      "y_px": 96
     },
@@ -30968,7 +31314,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 912,
      "y_px": 176
     },
@@ -30981,7 +31329,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1008,
      "y_px": 64
     },
@@ -30994,7 +31344,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1312,
      "y_px": 96
     },
@@ -31022,7 +31374,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1600,
      "y_px": 400
     },
@@ -31230,7 +31584,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 16,
      "y_px": 0
     },
@@ -31634,7 +31990,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 48,
      "y_px": 0
     },
@@ -32717,7 +33075,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2928,
      "y_px": 992
     },
@@ -32730,7 +33090,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3104,
      "y_px": 976
     },
@@ -32743,7 +33105,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3280,
      "y_px": 992
     },
@@ -32756,7 +33120,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3408,
      "y_px": 976
     },
@@ -32769,7 +33135,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3552,
      "y_px": 992
     },
@@ -32887,7 +33255,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 256
     },
@@ -32900,7 +33270,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 256
     },
@@ -32913,7 +33285,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 2816,
      "y_px": 832
     },
@@ -32926,7 +33300,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 2832,
      "y_px": 832
     },
@@ -32939,7 +33315,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 1024
     },
@@ -32952,7 +33330,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 1024
     },
@@ -32965,7 +33345,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 704,
      "y_px": 480
     },
@@ -33327,7 +33709,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 576,
      "y_px": 192
     },
@@ -33340,7 +33724,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 992,
      "y_px": 512
     },
@@ -33353,7 +33739,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 256,
      "y_px": 0
     },
@@ -33366,7 +33754,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 272,
      "y_px": 0
     },
@@ -33740,7 +34130,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 32,
      "y_px": 0
     },
@@ -34258,7 +34650,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3136,
      "y_px": 448
     },
@@ -35395,7 +35789,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 96,
      "y_px": 336
     },
@@ -35408,7 +35804,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 128,
      "y_px": 336
     },
@@ -35466,7 +35864,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 3456,
      "y_px": 384
     },
@@ -35779,7 +36179,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 832,
      "y_px": 288
     },
@@ -35852,7 +36254,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 400,
      "y_px": 128
     },
@@ -35865,7 +36269,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 432,
      "y_px": 128
     }
@@ -36236,7 +36642,9 @@
       512,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 2064,
      "y_px": 1168
     },
@@ -36279,7 +36687,9 @@
       256,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 2112,
      "y_px": 1200
     },
@@ -36292,7 +36702,9 @@
       769,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 1856,
      "y_px": 1248
     },
@@ -37153,7 +37565,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1456,
      "y_px": 176
     },
@@ -37166,7 +37580,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 528,
      "y_px": 192
     },
@@ -41747,7 +42163,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4176,
      "y_px": 208
     },
@@ -41760,7 +42178,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4368,
      "y_px": 704
     },
@@ -41848,7 +42268,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 16,
      "y_px": 512
     },
@@ -41861,7 +42283,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 32,
      "y_px": 512
     },
@@ -41889,7 +42313,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 3632,
      "y_px": 96
     },
@@ -41902,7 +42328,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 3648,
      "y_px": 96
     },
@@ -42573,7 +43001,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4880,
      "y_px": 704
     },
@@ -42736,7 +43166,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 2720,
      "y_px": 672
     },
@@ -43669,7 +44101,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 464,
      "y_px": 208
     },
@@ -43712,7 +44146,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 16,
      "y_px": 80
     },
@@ -43725,7 +44161,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 32,
      "y_px": 80
     },
@@ -43738,7 +44176,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 1024,
      "y_px": 96
     },
@@ -43751,7 +44191,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 1040,
      "y_px": 96
     }
@@ -44286,7 +44728,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 352,
      "y_px": 352
     },
@@ -44299,7 +44743,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 400,
      "y_px": 464
     },
@@ -44312,7 +44758,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 528,
      "y_px": 432
     },
@@ -44325,7 +44773,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 848,
      "y_px": 416
     },
@@ -44338,7 +44788,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 960,
      "y_px": 384
     },
@@ -44351,7 +44803,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 672,
      "y_px": 416
     },
@@ -44364,7 +44818,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 560,
      "y_px": 368
     },
@@ -44377,7 +44833,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1296,
      "y_px": 368
     },
@@ -44390,7 +44848,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1184,
      "y_px": 336
     },
@@ -44403,7 +44863,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1152,
      "y_px": 416
     },
@@ -44671,7 +45133,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1856,
      "y_px": 480
     },
@@ -44684,7 +45148,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2400,
      "y_px": 384
     },
@@ -44697,7 +45163,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2128,
      "y_px": 384
     },
@@ -44845,7 +45313,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2560,
      "y_px": 400
     },
@@ -44858,7 +45328,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2640,
      "y_px": 480
     },
@@ -44871,7 +45343,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3056,
      "y_px": 480
     },
@@ -44884,7 +45358,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3216,
      "y_px": 336
     },
@@ -44897,7 +45373,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3008,
      "y_px": 448
     },
@@ -44910,7 +45388,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3664,
      "y_px": 464
     },
@@ -44923,7 +45403,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 4016,
      "y_px": 448
     },
@@ -44951,7 +45433,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3472,
      "y_px": 368
     },
@@ -44964,7 +45448,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1344,
      "y_px": 368
     },
@@ -45142,7 +45628,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 16,
      "y_px": 272
     },
@@ -45230,7 +45718,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 2816,
      "y_px": 768
     },
@@ -46183,7 +46673,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4256,
      "y_px": 720
     },
@@ -46226,7 +46718,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 512
     },
@@ -46239,7 +46733,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 512
     },
@@ -46267,7 +46763,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 960,
      "y_px": 656
     },
@@ -46939,7 +47437,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 432,
      "y_px": 704
     },
@@ -47042,7 +47542,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 1024,
      "y_px": 752
     },
@@ -47055,7 +47557,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 752
     },
@@ -47068,7 +47572,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 1040,
      "y_px": 752
     },
@@ -47081,7 +47587,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 752
     }
@@ -47716,7 +48224,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 3680,
      "y_px": 288
     },
@@ -47744,7 +48254,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 672,
      "y_px": 304
     },
@@ -49357,7 +49869,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 2928,
      "y_px": 608
     },
@@ -49475,7 +49989,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1328,
      "y_px": 624
     },
@@ -49916,7 +50432,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1344,
      "y_px": 208
     },
@@ -50034,7 +50552,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -50047,7 +50567,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 0
     },
@@ -50060,7 +50582,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 1024,
      "y_px": 0
     },
@@ -50073,7 +50597,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 1040,
      "y_px": 0
     }
@@ -51122,7 +51648,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4112,
      "y_px": 1232
     },
@@ -51165,7 +51693,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 224,
      "y_px": 640
     },
@@ -51223,7 +51753,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 512
     },
@@ -51236,7 +51768,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 512
     },
@@ -51249,7 +51783,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 3584,
      "y_px": 1088
     },
@@ -51262,7 +51798,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 3600,
      "y_px": 1088
     },
@@ -51685,7 +52223,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 416,
      "y_px": 128
     },
@@ -52095,7 +52635,9 @@
       256,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 2224,
      "y_px": 704
     },
@@ -53249,7 +53791,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1360,
      "y_px": 192
     },
@@ -53262,7 +53806,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 528,
      "y_px": 192
     },
@@ -54068,7 +54614,9 @@
       12569,
       4275
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1184,
      "y_px": 3152
     },
@@ -54081,7 +54629,9 @@
       45337,
       4155
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1024,
      "y_px": 3152
     },
@@ -54094,7 +54644,9 @@
       12569,
       4245
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1184,
      "y_px": 3120
     },
@@ -54107,7 +54659,9 @@
       45337,
       4185
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1024,
      "y_px": 3120
     },
@@ -54120,7 +54674,9 @@
       12569,
       4215
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1184,
      "y_px": 3088
     },
@@ -54133,7 +54689,9 @@
       45337,
       4215
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1024,
      "y_px": 3088
     },
@@ -54146,7 +54704,9 @@
       12569,
       4185
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1184,
      "y_px": 3056
     },
@@ -54159,7 +54719,9 @@
       45337,
       4245
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1024,
      "y_px": 3056
     },
@@ -54172,7 +54734,9 @@
       12569,
       4155
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1184,
      "y_px": 3024
     },
@@ -54185,7 +54749,9 @@
       45337,
       4275
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1024,
      "y_px": 3024
     },
@@ -54198,7 +54764,9 @@
       12585,
       4125
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1184,
      "y_px": 2976
     },
@@ -54211,7 +54779,9 @@
       45353,
       4305
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1024,
      "y_px": 2976
     },
@@ -54464,7 +55034,9 @@
       12840,
       4130
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 656,
      "y_px": 1776
     },
@@ -54477,7 +55049,9 @@
       45608,
       4130
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 512,
      "y_px": 1776
     },
@@ -54490,7 +55064,9 @@
       29463,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 576,
      "y_px": 944
     },
@@ -54503,7 +55079,9 @@
       62247,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 688,
      "y_px": 1024
     },
@@ -54561,7 +55139,9 @@
       29463,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 576,
      "y_px": 1120
     },
@@ -54874,7 +55454,9 @@
       25201,
       529
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 608,
      "y_px": 1424
     },
@@ -54887,7 +55469,9 @@
       12881,
       529
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 688,
      "y_px": 1392
     },
@@ -54900,7 +55484,9 @@
       12579,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 464,
      "y_px": 1200
     },
@@ -54913,7 +55499,9 @@
       12835,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 464,
      "y_px": 1072
     },
@@ -54926,7 +55514,9 @@
       13091,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 464,
      "y_px": 976
     },
@@ -54954,7 +55544,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 528,
      "y_px": 272
     },
@@ -54967,7 +55559,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 544,
      "y_px": 272
     },
@@ -54995,7 +55589,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 1040,
      "y_px": 2816
     },
@@ -55008,7 +55604,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 1056,
      "y_px": 2816
     },
@@ -55246,7 +55844,9 @@
       16946,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 624,
      "y_px": 2096
     },
@@ -55439,7 +56039,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 672,
      "y_px": 752
     },
@@ -56699,7 +57301,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 432
     },
@@ -56712,7 +57316,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 432
     }
@@ -57069,7 +57675,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 32,
      "y_px": 320
     },
@@ -57082,7 +57690,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 48,
      "y_px": 320
     }
@@ -57955,7 +58565,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4576,
      "y_px": 448
     },
@@ -57983,7 +58595,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ExpandablePlatformBlock"
+     ],
      "x_px": 3456,
      "y_px": 416
     },
@@ -58011,7 +58625,9 @@
       0,
       32
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 3056,
      "y_px": 384
     },
@@ -58159,7 +58775,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 560,
      "y_px": 464
     },
@@ -58187,7 +58805,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2768,
      "y_px": 432
     },
@@ -58644,7 +59264,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 416,
      "y_px": 912
     },
@@ -58747,7 +59369,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1440,
      "y_px": 960
     },
@@ -58760,7 +59384,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 176,
      "y_px": 176
     },
@@ -59767,7 +60393,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 1968,
      "y_px": 416
     },
@@ -59975,7 +60603,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2224,
      "y_px": 464
     },
@@ -60298,7 +60928,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3104,
      "y_px": 1984
     },
@@ -60326,7 +60958,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4368,
      "y_px": 976
     },
@@ -60834,7 +61468,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 192,
      "y_px": 96
     },
@@ -60937,7 +61573,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2384,
      "y_px": 752
     },
@@ -61497,7 +62135,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3904,
      "y_px": 448
     },
@@ -62170,7 +62810,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 384,
      "y_px": 432
     },
@@ -62258,7 +62900,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2400,
      "y_px": 320
     },
@@ -62286,7 +62930,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1200,
      "y_px": 368
     },
@@ -62777,7 +63423,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3168,
      "y_px": 448
     },
@@ -63255,7 +63903,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1008,
      "y_px": 400
     },
@@ -63313,7 +63963,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 160,
      "y_px": 336
     },
@@ -63416,7 +64068,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1824,
      "y_px": 448
     },
@@ -63747,7 +64401,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 144,
      "y_px": 384
     },
@@ -64409,7 +65065,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4112,
      "y_px": 416
     },
@@ -64437,7 +65095,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 2848,
      "y_px": 304
     },
@@ -64615,7 +65275,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 272,
      "y_px": 464
     },
@@ -64703,7 +65365,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 784,
      "y_px": 976
     },
@@ -64716,7 +65380,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2384,
      "y_px": 416
     },
@@ -65105,7 +65771,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 976,
      "y_px": 320
     },
@@ -65193,7 +65861,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1168,
      "y_px": 752
     },
@@ -66689,7 +67359,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 208,
      "y_px": 464
     },
@@ -66747,7 +67419,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2672,
      "y_px": 352
     }
@@ -67085,7 +67759,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ActorCoinHakusyu"
+     ],
      "x_px": 304,
      "y_px": 1760
     },
@@ -67158,7 +67834,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 448,
      "y_px": 2944
     },
@@ -67464,7 +68142,9 @@
       8,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ActorCoinHakusyu"
+     ],
      "x_px": 1168,
      "y_px": 1360
     },
@@ -67995,7 +68675,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1776,
      "y_px": 192
     },
@@ -68008,7 +68690,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 480,
      "y_px": 208
     },
@@ -68737,7 +69421,9 @@
       256,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 704,
      "y_px": 2736
     }
@@ -69592,7 +70278,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 2752,
      "y_px": 368
     },
@@ -70783,7 +71471,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4080,
      "y_px": 448
     },
@@ -71051,7 +71741,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 176,
      "y_px": 448
     },
@@ -71109,7 +71801,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2240,
      "y_px": 336
     },
@@ -72136,7 +72830,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 608,
      "y_px": 160
     },
@@ -72299,7 +72995,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 2320,
      "y_px": 176
     },
@@ -72327,7 +73025,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 3136,
      "y_px": 832
     },
@@ -72355,7 +73055,9 @@
       4352,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 784,
      "y_px": 96
     },
@@ -72368,7 +73070,9 @@
       4097,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 896,
      "y_px": 80
     },
@@ -72381,7 +73085,9 @@
       8192,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1024,
      "y_px": 144
     },
@@ -72439,7 +73145,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 640,
      "y_px": 928
     },
@@ -72452,7 +73160,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1136,
      "y_px": 848
     },
@@ -72465,7 +73175,9 @@
       4097,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1312,
      "y_px": 800
     },
@@ -72478,7 +73190,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1440,
      "y_px": 848
     },
@@ -72491,7 +73205,9 @@
       8192,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 800,
      "y_px": 672
     },
@@ -72519,7 +73235,9 @@
       8192,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 752,
      "y_px": 640
     },
@@ -72562,7 +73280,9 @@
       4097,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1616,
      "y_px": 832
     },
@@ -72575,7 +73295,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1536,
      "y_px": 816
     },
@@ -72693,7 +73415,9 @@
       8192,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 864,
      "y_px": 656
     },
@@ -72706,7 +73430,9 @@
       8192,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 928,
      "y_px": 672
     },
@@ -73245,7 +73971,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 512,
      "y_px": 304
     },
@@ -73258,7 +73986,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 528,
      "y_px": 304
     },
@@ -73271,7 +74001,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 544,
      "y_px": 304
     },
@@ -73284,7 +74016,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 560,
      "y_px": 304
     },
@@ -73297,7 +74031,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 576,
      "y_px": 304
     },
@@ -73310,7 +74046,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 592,
      "y_px": 304
     },
@@ -73323,7 +74061,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 608,
      "y_px": 304
     },
@@ -73336,7 +74076,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 624,
      "y_px": 304
     },
@@ -73349,7 +74091,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 640,
      "y_px": 304
     },
@@ -73362,7 +74106,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 656,
      "y_px": 304
     },
@@ -73375,7 +74121,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 672,
      "y_px": 304
     },
@@ -73388,7 +74136,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 688,
      "y_px": 304
     },
@@ -73401,7 +74151,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 704,
      "y_px": 304
     },
@@ -73414,7 +74166,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 720,
      "y_px": 304
     },
@@ -73427,7 +74181,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 736,
      "y_px": 304
     },
@@ -73440,7 +74196,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 752,
      "y_px": 304
     },
@@ -73453,7 +74211,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 768,
      "y_px": 304
     },
@@ -73466,7 +74226,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 784,
      "y_px": 304
     },
@@ -73479,7 +74241,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 800,
      "y_px": 304
     },
@@ -73492,7 +74256,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 816,
      "y_px": 304
     },
@@ -73505,7 +74271,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 832,
      "y_px": 304
     },
@@ -73518,7 +74286,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 848,
      "y_px": 304
     },
@@ -73531,7 +74301,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 864,
      "y_px": 304
     },
@@ -73544,7 +74316,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 880,
      "y_px": 304
     },
@@ -73557,7 +74331,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 896,
      "y_px": 304
     },
@@ -73570,7 +74346,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 912,
      "y_px": 304
     },
@@ -73583,7 +74361,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 928,
      "y_px": 304
     },
@@ -73596,7 +74376,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 944,
      "y_px": 304
     },
@@ -73609,7 +74391,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 960,
      "y_px": 304
     },
@@ -73622,7 +74406,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 976,
      "y_px": 304
     },
@@ -73635,7 +74421,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 992,
      "y_px": 304
     },
@@ -73648,7 +74436,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1008,
      "y_px": 304
     },
@@ -73661,7 +74451,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1024,
      "y_px": 304
     },
@@ -73674,7 +74466,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1040,
      "y_px": 304
     },
@@ -73687,7 +74481,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1056,
      "y_px": 304
     },
@@ -73700,7 +74496,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1072,
      "y_px": 304
     },
@@ -73713,7 +74511,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1088,
      "y_px": 304
     },
@@ -73726,7 +74526,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1104,
      "y_px": 304
     },
@@ -73739,7 +74541,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1120,
      "y_px": 304
     },
@@ -73752,7 +74556,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1136,
      "y_px": 304
     },
@@ -73765,7 +74571,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1152,
      "y_px": 304
     },
@@ -73778,7 +74586,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1168,
      "y_px": 304
     },
@@ -73791,7 +74601,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1184,
      "y_px": 304
     },
@@ -73804,7 +74616,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1200,
      "y_px": 304
     },
@@ -73817,7 +74631,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1216,
      "y_px": 304
     },
@@ -73830,7 +74646,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1232,
      "y_px": 304
     },
@@ -73843,7 +74661,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1248,
      "y_px": 304
     },
@@ -73856,7 +74676,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1264,
      "y_px": 304
     },
@@ -73869,7 +74691,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1280,
      "y_px": 304
     },
@@ -73882,7 +74706,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1296,
      "y_px": 304
     },
@@ -73895,7 +74721,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1312,
      "y_px": 304
     },
@@ -73908,7 +74736,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1328,
      "y_px": 304
     },
@@ -73921,7 +74751,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1344,
      "y_px": 304
     },
@@ -73934,7 +74766,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1360,
      "y_px": 304
     },
@@ -73947,7 +74781,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1376,
      "y_px": 304
     },
@@ -73960,7 +74796,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1392,
      "y_px": 304
     },
@@ -73973,7 +74811,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1408,
      "y_px": 304
     },
@@ -73986,7 +74826,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1424,
      "y_px": 304
     },
@@ -73999,7 +74841,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1440,
      "y_px": 304
     },
@@ -74012,7 +74856,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1456,
      "y_px": 304
     },
@@ -74025,7 +74871,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1472,
      "y_px": 304
     },
@@ -74038,7 +74886,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1488,
      "y_px": 304
     },
@@ -74051,7 +74901,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1504,
      "y_px": 304
     },
@@ -74064,7 +74916,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1520,
      "y_px": 304
     },
@@ -74077,7 +74931,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1536,
      "y_px": 304
     },
@@ -74090,7 +74946,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1552,
      "y_px": 304
     },
@@ -74103,7 +74961,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1568,
      "y_px": 304
     },
@@ -74116,7 +74976,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1584,
      "y_px": 304
     },
@@ -74129,7 +74991,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1600,
      "y_px": 304
     },
@@ -74142,7 +75006,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1616,
      "y_px": 304
     },
@@ -74155,7 +75021,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1632,
      "y_px": 304
     },
@@ -74168,7 +75036,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1648,
      "y_px": 304
     },
@@ -74181,7 +75051,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1664,
      "y_px": 304
     },
@@ -74194,7 +75066,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1680,
      "y_px": 304
     },
@@ -74207,7 +75081,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1696,
      "y_px": 304
     },
@@ -74220,7 +75096,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1712,
      "y_px": 304
     },
@@ -74233,7 +75111,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1728,
      "y_px": 304
     },
@@ -74246,7 +75126,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1744,
      "y_px": 304
     },
@@ -74259,7 +75141,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1760,
      "y_px": 304
     },
@@ -74272,7 +75156,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1776,
      "y_px": 304
     },
@@ -74285,7 +75171,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1792,
      "y_px": 304
     },
@@ -74298,7 +75186,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1808,
      "y_px": 304
     },
@@ -74311,7 +75201,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1824,
      "y_px": 304
     },
@@ -74324,7 +75216,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1840,
      "y_px": 304
     },
@@ -74337,7 +75231,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1856,
      "y_px": 304
     },
@@ -74350,7 +75246,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1872,
      "y_px": 304
     },
@@ -74363,7 +75261,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1888,
      "y_px": 304
     },
@@ -74376,7 +75276,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1904,
      "y_px": 304
     },
@@ -74389,7 +75291,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1920,
      "y_px": 304
     },
@@ -74402,7 +75306,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1936,
      "y_px": 304
     },
@@ -74415,7 +75321,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1952,
      "y_px": 304
     },
@@ -74428,7 +75336,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1968,
      "y_px": 304
     },
@@ -74441,7 +75351,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1984,
      "y_px": 304
     },
@@ -74454,7 +75366,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2000,
      "y_px": 304
     },
@@ -74467,7 +75381,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2016,
      "y_px": 304
     },
@@ -74480,7 +75396,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2032,
      "y_px": 304
     },
@@ -74493,7 +75411,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2048,
      "y_px": 304
     },
@@ -74506,7 +75426,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2064,
      "y_px": 304
     },
@@ -74519,7 +75441,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2080,
      "y_px": 304
     },
@@ -74532,7 +75456,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2096,
      "y_px": 304
     },
@@ -74545,7 +75471,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2112,
      "y_px": 304
     },
@@ -74558,7 +75486,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2128,
      "y_px": 304
     },
@@ -74571,7 +75501,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2144,
      "y_px": 304
     },
@@ -74584,7 +75516,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2160,
      "y_px": 304
     },
@@ -74597,7 +75531,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2176,
      "y_px": 304
     },
@@ -74610,7 +75546,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2192,
      "y_px": 304
     },
@@ -74623,7 +75561,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2208,
      "y_px": 304
     },
@@ -74636,7 +75576,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2224,
      "y_px": 304
     },
@@ -74649,7 +75591,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2240,
      "y_px": 304
     },
@@ -74662,7 +75606,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2256,
      "y_px": 304
     },
@@ -74675,7 +75621,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2272,
      "y_px": 304
     },
@@ -74688,7 +75636,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2288,
      "y_px": 304
     },
@@ -74701,7 +75651,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2304,
      "y_px": 304
     },
@@ -74714,7 +75666,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2320,
      "y_px": 304
     },
@@ -74727,7 +75681,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2336,
      "y_px": 304
     },
@@ -74740,7 +75696,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2352,
      "y_px": 304
     },
@@ -74753,7 +75711,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2368,
      "y_px": 304
     },
@@ -74766,7 +75726,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2384,
      "y_px": 304
     },
@@ -74779,7 +75741,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2400,
      "y_px": 304
     },
@@ -74792,7 +75756,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2416,
      "y_px": 304
     },
@@ -74805,7 +75771,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2432,
      "y_px": 304
     },
@@ -74818,7 +75786,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2448,
      "y_px": 304
     },
@@ -74831,7 +75801,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2464,
      "y_px": 304
     },
@@ -74844,7 +75816,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2480,
      "y_px": 304
     },
@@ -74857,7 +75831,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2496,
      "y_px": 304
     },
@@ -74870,7 +75846,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2512,
      "y_px": 304
     },
@@ -74883,7 +75861,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2528,
      "y_px": 304
     },
@@ -74896,7 +75876,9 @@
       3,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 2544,
      "y_px": 304
     },
@@ -75672,7 +76654,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3056,
      "y_px": 736
     },
@@ -75790,7 +76774,9 @@
       20480,
       33043
      ],
-     "id_class": null,
+     "id_class": [
+      "KinokoLiftSnow"
+     ],
      "x_px": 0,
      "y_px": 752
     },
@@ -75803,7 +76789,9 @@
       40960,
       291
      ],
-     "id_class": null,
+     "id_class": [
+      "GarigariBig"
+     ],
      "x_px": 16,
      "y_px": 752
     },
@@ -75816,7 +76804,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 448,
      "y_px": 720
     },
@@ -75844,7 +76834,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1328,
      "y_px": 688
     }
@@ -76321,7 +77313,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 368,
      "y_px": 640
     },
@@ -76873,7 +77867,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3664,
      "y_px": 448
     },
@@ -77516,7 +78512,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 224,
      "y_px": 672
     },
@@ -77739,7 +78737,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2992,
      "y_px": 336
     },
@@ -78041,7 +79041,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 336,
      "y_px": 208
     },
@@ -78084,7 +79086,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1136,
      "y_px": 144
     },
@@ -78112,7 +79116,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 256,
      "y_px": 224
     },
@@ -78646,7 +79652,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1904,
      "y_px": 368
     },
@@ -78659,7 +79667,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2256,
      "y_px": 368
     },
@@ -78672,7 +79682,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2224,
      "y_px": 448
     },
@@ -78685,7 +79697,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2480,
      "y_px": 432
     },
@@ -78698,7 +79712,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2432,
      "y_px": 352
     },
@@ -78711,7 +79727,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2864,
      "y_px": 384
     },
@@ -78724,7 +79742,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3200,
      "y_px": 400
     },
@@ -78887,7 +79907,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 560,
      "y_px": 352
     },
@@ -78900,7 +79922,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 432,
      "y_px": 400
     },
@@ -78913,7 +79937,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 512,
      "y_px": 464
     },
@@ -78926,7 +79952,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 848,
      "y_px": 336
     },
@@ -78939,7 +79967,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1232,
      "y_px": 432
     },
@@ -79072,7 +80102,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 208,
      "y_px": 368
     },
@@ -79115,7 +80147,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1024,
      "y_px": 464
     },
@@ -79128,7 +80162,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1152,
      "y_px": 400
     },
@@ -79141,7 +80177,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 912,
      "y_px": 432
     },
@@ -79184,7 +80222,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 656,
      "y_px": 480
     },
@@ -79197,7 +80237,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1168,
      "y_px": 336
     },
@@ -79225,7 +80267,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 0,
      "y_px": 272
     },
@@ -79268,7 +80312,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3280,
      "y_px": 848
     },
@@ -79281,7 +80327,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3504,
      "y_px": 976
     },
@@ -79294,7 +80342,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3552,
      "y_px": 848
     },
@@ -79307,7 +80357,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 3264,
      "y_px": 768
     },
@@ -79365,7 +80417,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3408,
      "y_px": 848
     },
@@ -79408,7 +80462,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 4368,
      "y_px": 848
     },
@@ -79880,7 +80936,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1232,
      "y_px": 944
     },
@@ -80043,7 +81101,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 464,
      "y_px": 1744
     },
@@ -80356,7 +81416,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1104,
      "y_px": 608
     },
@@ -80384,7 +81446,9 @@
       257,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 1536,
      "y_px": 1200
     },
@@ -81262,7 +82326,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1488,
      "y_px": 640
     },
@@ -81828,7 +82894,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 576,
      "y_px": 1200
     },
@@ -82081,7 +83149,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 288,
      "y_px": 384
     },
@@ -82169,7 +83239,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2432,
      "y_px": 448
     }
@@ -82742,7 +83814,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3104,
      "y_px": 1984
     },
@@ -82905,7 +83979,9 @@
       2,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 4624,
      "y_px": 720
     },
@@ -83113,7 +84189,9 @@
       2,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 7152,
      "y_px": 720
     },
@@ -83396,7 +84474,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 432,
      "y_px": 208
     },
@@ -83499,7 +84579,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 3136,
      "y_px": 192
     },
@@ -84204,7 +85286,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 368,
      "y_px": 1584
     },
@@ -84397,7 +85481,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 480,
      "y_px": 2880
     },
@@ -84575,7 +85661,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 320,
      "y_px": 2064
     },
@@ -85400,7 +86488,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 704,
      "y_px": 2944
     },
@@ -85443,7 +86533,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 752,
      "y_px": 2048
     }
@@ -85760,7 +86852,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 288,
      "y_px": 320
     },
@@ -85773,7 +86867,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 304,
      "y_px": 320
     }
@@ -86548,7 +87644,9 @@
       2844,
       17
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 288,
      "y_px": 464
     },
@@ -86621,7 +87719,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 256
     },
@@ -86634,7 +87734,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 256
     },
@@ -86647,7 +87749,9 @@
       63,
       512
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 2848,
      "y_px": 320
     },
@@ -88224,7 +89328,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 2848,
      "y_px": 1216
     },
@@ -88387,7 +89493,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1104,
      "y_px": 1056
     },
@@ -88535,7 +89643,9 @@
       259,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 1664,
      "y_px": 576
     },
@@ -88728,7 +89838,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 192,
      "y_px": 592
     },
@@ -89131,7 +90243,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 192,
      "y_px": 1168
     },
@@ -89553,7 +90667,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 384,
      "y_px": 432
     },
@@ -89566,7 +90682,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1040,
      "y_px": 464
     },
@@ -89877,7 +90995,9 @@
       2,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "GroundPoundPanel"
+     ],
      "x_px": 0,
      "y_px": 3040
     },
@@ -90535,7 +91655,9 @@
       2,
       16
      ],
-     "id_class": null,
+     "id_class": [
+      "GroundPoundPanel"
+     ],
      "x_px": 64,
      "y_px": 1968
     },
@@ -90578,7 +91700,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 176,
      "y_px": 1936
     },
@@ -90606,7 +91730,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 32,
      "y_px": 2320
     },
@@ -91092,7 +92218,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1040,
      "y_px": 208
     },
@@ -91135,7 +92263,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 304,
      "y_px": 128
     },
@@ -91148,7 +92278,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 144,
      "y_px": 880
     },
@@ -91176,7 +92308,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PunchBlock"
+     ],
      "x_px": 736,
      "y_px": 240
     },
@@ -91189,7 +92323,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonWarp"
+     ],
      "x_px": 1264,
      "y_px": 240
     }
@@ -91628,7 +92764,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 880,
      "y_px": 288
     },
@@ -91806,7 +92944,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 3600,
      "y_px": 272
     },
@@ -92014,7 +93154,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 1904,
      "y_px": 272
     },
@@ -92480,7 +93622,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1920,
      "y_px": 528
     },
@@ -92913,7 +94057,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1872,
      "y_px": 2256
     },
@@ -92941,7 +94087,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 240,
      "y_px": 2016
     },
@@ -93074,7 +94222,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 448,
      "y_px": 784
     },
@@ -93267,7 +94417,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 2624,
      "y_px": 416
     },
@@ -93325,7 +94477,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 176,
      "y_px": 912
     },
@@ -93398,7 +94552,9 @@
       8192,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 144,
      "y_px": 464
     }
@@ -93695,7 +94851,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4912,
      "y_px": 464
     },
@@ -94128,7 +95286,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 624,
      "y_px": 976
     },
@@ -94216,7 +95376,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 224,
      "y_px": 400
     },
@@ -94244,7 +95406,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2320,
      "y_px": 480
     },
@@ -95207,7 +96371,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4160,
      "y_px": 960
     },
@@ -95805,7 +96971,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 464,
      "y_px": 832
     },
@@ -95923,7 +97091,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 5392,
      "y_px": 960
     },
@@ -95966,7 +97136,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2112,
      "y_px": 848
     },
@@ -97152,7 +98324,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 2160,
      "y_px": 176
     },
@@ -97405,7 +98579,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 1360,
      "y_px": 720
     },
@@ -97568,7 +98744,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 320,
      "y_px": 928
     },
@@ -97761,7 +98939,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1184,
      "y_px": 400
     },
@@ -98087,7 +99267,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 832,
      "y_px": 208
     },
@@ -98115,7 +99297,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 160,
      "y_px": 192
     }
@@ -99810,7 +100994,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ExpandablePlatformBlock"
+     ],
      "x_px": 592,
      "y_px": 480
     },
@@ -99973,7 +101159,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 400,
      "y_px": 928
     }
@@ -100475,7 +101663,9 @@
       8,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 832,
      "y_px": 880
     },
@@ -100503,7 +101693,9 @@
       1,
       4114
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 336,
      "y_px": 896
     },
@@ -100726,7 +101918,9 @@
       4,
       4113
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 240,
      "y_px": 432
     },
@@ -100769,7 +101963,9 @@
       8,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 1776,
      "y_px": 576
     },
@@ -100842,7 +102038,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 960,
      "y_px": 336
     },
@@ -100855,7 +102053,9 @@
       2,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 1008,
      "y_px": 480
     },
@@ -100868,7 +102068,9 @@
       4,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 1040,
      "y_px": 400
     },
@@ -100881,7 +102083,9 @@
       6,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 912,
      "y_px": 480
     },
@@ -100894,7 +102098,9 @@
       7,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "SnowFGEffect"
+     ],
      "x_px": 880,
      "y_px": 400
     },
@@ -100907,7 +102113,9 @@
       0,
       16
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 944,
      "y_px": 432
     },
@@ -100950,7 +102158,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 976,
      "y_px": 416
     },
@@ -101143,7 +102353,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 368,
      "y_px": 480
     },
@@ -101526,7 +102738,9 @@
       256,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 736,
      "y_px": 368
     },
@@ -101787,7 +103001,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 512,
      "y_px": 192
     },
@@ -101800,7 +103016,9 @@
       0,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 1776,
      "y_px": 192
     },
@@ -101813,7 +103031,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 512,
      "y_px": 144
     },
@@ -102348,7 +103568,9 @@
       37395,
       5616
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 464,
      "y_px": 1584
     },
@@ -102361,7 +103583,9 @@
       45590,
       5552
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 1616
     },
@@ -102374,7 +103598,9 @@
       53785,
       5488
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 432,
      "y_px": 1648
     },
@@ -102387,7 +103613,9 @@
       61980,
       5424
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 416,
      "y_px": 1680
     },
@@ -102400,7 +103628,9 @@
       12563,
       5399
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 1728
     },
@@ -102413,7 +103643,9 @@
       21297,
       580
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 816,
      "y_px": 1120
     },
@@ -102426,7 +103658,9 @@
       45601,
       578
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 384,
      "y_px": 2576
     },
@@ -102439,7 +103673,9 @@
       45601,
       514
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 2560
     },
@@ -102452,7 +103688,9 @@
       45617,
       258
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 2512
     },
@@ -102465,7 +103703,9 @@
       45842,
       515
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 2432
     },
@@ -102478,7 +103718,9 @@
       12819,
       4102
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 2528
     },
@@ -102491,7 +103733,9 @@
       12307,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 2560
     },
@@ -102504,7 +103748,9 @@
       49685,
       5427
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 304,
      "y_px": 2384
     },
@@ -102517,7 +103763,9 @@
       20737,
       5649
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 272,
      "y_px": 2336
     },
@@ -102545,7 +103793,9 @@
       49685,
       5171
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 400,
      "y_px": 2384
     },
@@ -102558,7 +103808,9 @@
       21297,
       324
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 816,
      "y_px": 1280
     },
@@ -102571,7 +103823,9 @@
       54065,
       580
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 1040
     },
@@ -102584,7 +103838,9 @@
       54065,
       324
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 1200
     },
@@ -102597,7 +103853,9 @@
       21297,
       580
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 912,
      "y_px": 1120
     },
@@ -102610,7 +103868,9 @@
       21297,
       324
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 912,
      "y_px": 1280
     },
@@ -102623,7 +103883,9 @@
       54033,
       17
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 976,
      "y_px": 1200
     },
@@ -102636,7 +103898,9 @@
       13106,
       722
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 928,
      "y_px": 752
     },
@@ -102649,7 +103913,9 @@
       13091,
       5541
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 816
     },
@@ -102662,7 +103928,9 @@
       45874,
       647
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 816,
      "y_px": 752
     },
@@ -102675,7 +103943,9 @@
       45859,
       5556
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 704
     },
@@ -102688,7 +103958,9 @@
       13091,
       5451
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 816,
      "y_px": 656
     },
@@ -102716,7 +103988,9 @@
       57890,
       435
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 416
     },
@@ -102729,7 +104003,9 @@
       57905,
       89
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 848,
      "y_px": 384
     },
@@ -102742,7 +104018,9 @@
       57889,
       59
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 928,
      "y_px": 416
     },
@@ -102755,7 +104033,9 @@
       25122,
       4245
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 928,
      "y_px": 368
     },
@@ -102768,7 +104048,9 @@
       25091,
       4305
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 896,
      "y_px": 352
     },
@@ -102781,7 +104063,9 @@
       57862,
       4155
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 768,
      "y_px": 368
     },
@@ -102794,7 +104078,9 @@
       57873,
       29
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 816,
      "y_px": 384
     },
@@ -102807,7 +104093,9 @@
       25137,
       149
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 832,
      "y_px": 304
     },
@@ -102820,7 +104108,9 @@
       25105,
       209
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 336
     },
@@ -102833,7 +104123,9 @@
       25121,
       179
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 896,
      "y_px": 304
     },
@@ -102846,7 +104138,9 @@
       16646,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 1904
     },
@@ -102859,7 +104153,9 @@
       16673,
       4403
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 336,
      "y_px": 1856
     },
@@ -102872,7 +104168,9 @@
       16673,
       4403
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 400,
      "y_px": 1856
     },
@@ -102885,7 +104183,9 @@
       57889,
       149
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 816,
      "y_px": 416
     },
@@ -102898,7 +104198,9 @@
       57873,
       4290
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 768,
      "y_px": 432
     },
@@ -102911,7 +104213,9 @@
       57890,
       4215
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 784,
      "y_px": 320
     },
@@ -102924,7 +104228,9 @@
       25137,
       119
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 928,
      "y_px": 288
     },
@@ -102937,7 +104243,9 @@
       25123,
       4245
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 960,
      "y_px": 320
     },
@@ -102950,7 +104258,9 @@
       25122,
       4185
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 976,
      "y_px": 368
     },
@@ -102963,7 +104273,9 @@
       25091,
       4215
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 960,
      "y_px": 416
     },
@@ -102976,7 +104288,9 @@
       25121,
       89
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 288
     },
@@ -103004,7 +104318,9 @@
       57888,
       4275
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 752,
      "y_px": 384
     },
@@ -103032,7 +104348,9 @@
       41250,
       4386
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 336,
      "y_px": 2784
     },
@@ -103045,7 +104363,9 @@
       41252,
       4130
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 384,
      "y_px": 2768
     },
@@ -103058,7 +104378,9 @@
       41251,
       4386
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 464,
      "y_px": 2784
     },
@@ -103071,7 +104393,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1472,
      "y_px": 2704
     },
@@ -103099,7 +104423,9 @@
       21011,
       4403
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 2144
     },
@@ -103112,7 +104438,9 @@
       21011,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 2144
     },
@@ -103125,7 +104453,9 @@
       53795,
       4915
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 352,
      "y_px": 2080
     },
@@ -103138,7 +104468,9 @@
       53797,
       4659
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 448,
      "y_px": 2080
     },
@@ -103151,7 +104483,9 @@
       21026,
       4915
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 400,
      "y_px": 2016
     },
@@ -103164,7 +104498,9 @@
       21010,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 272,
      "y_px": 2016
     },
@@ -103177,7 +104513,9 @@
       21025,
       4659
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 320,
      "y_px": 2016
     },
@@ -103190,7 +104528,9 @@
       45365,
       4642
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1440,
      "y_px": 2432
     },
@@ -103203,7 +104543,9 @@
       45350,
       4642
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1536,
      "y_px": 2432
     },
@@ -103216,7 +104558,9 @@
       4449,
       5184
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1248,
      "y_px": 2656
     },
@@ -103229,7 +104573,9 @@
       4481,
       5380
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1552,
      "y_px": 2608
     },
@@ -103242,7 +104588,9 @@
       45331,
       4642
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 1376,
      "y_px": 2464
     },
@@ -103255,7 +104603,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1440,
      "y_px": 1408
     },
@@ -103283,7 +104633,9 @@
       37633,
       5
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1360
     },
@@ -103296,7 +104648,9 @@
       37633,
       20
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1376
     },
@@ -103309,7 +104663,9 @@
       37633,
       35
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1392
     },
@@ -103322,7 +104678,9 @@
       37633,
       50
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1408
     },
@@ -103335,7 +104693,9 @@
       37633,
       65
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1424
     },
@@ -103348,7 +104708,9 @@
       37633,
       80
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 368,
      "y_px": 1440
     },
@@ -103361,7 +104723,9 @@
       37633,
       5
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 1360
     },
@@ -103374,7 +104738,9 @@
       37633,
       20
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 1376
     },
@@ -103387,7 +104753,9 @@
       37633,
       35
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 1392
     },
@@ -103400,7 +104768,9 @@
       37633,
       50
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 1408
     },
@@ -103413,7 +104783,9 @@
       37633,
       65
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 1424
     },
@@ -103426,7 +104798,9 @@
       37633,
       80
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 880,
      "y_px": 1440
     }
@@ -103668,7 +105042,9 @@
       41227,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 304,
      "y_px": 464
     },
@@ -103681,7 +105057,9 @@
       8481,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 304,
      "y_px": 480
     },
@@ -103694,7 +105072,9 @@
       8483,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 336,
      "y_px": 480
     },
@@ -103707,7 +105087,9 @@
       8481,
       4147
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 400,
      "y_px": 480
     }
@@ -104714,7 +106096,9 @@
       28672,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "LemmyStatueDecoration"
+     ],
      "x_px": 560,
      "y_px": 464
     },
@@ -104802,7 +106186,9 @@
       28704,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "LemmyStatueDecoration"
+     ],
      "x_px": 2688,
      "y_px": 400
     },
@@ -106096,7 +107482,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3920,
      "y_px": 704
     },
@@ -106124,7 +107512,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 208,
      "y_px": 720
     },
@@ -106182,7 +107572,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2672,
      "y_px": 672
     },
@@ -106823,7 +108215,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 320,
      "y_px": 192
     },
@@ -106851,7 +108245,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1184,
      "y_px": 112
     },
@@ -106864,7 +108260,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 128,
      "y_px": 144
     },
@@ -107827,7 +109225,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ExpandablePlatformBlock"
+     ],
      "x_px": 128,
      "y_px": 1920
     },
@@ -107915,7 +109315,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "ExpandablePlatformBlock"
+     ],
      "x_px": 272,
      "y_px": 1920
     },
@@ -108599,7 +110001,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 416,
      "y_px": 208
     },
@@ -108642,7 +110046,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1152,
      "y_px": 400
     },
@@ -108670,7 +110076,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 272,
      "y_px": 224
     }
@@ -109694,7 +111102,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1360,
      "y_px": 400
     },
@@ -109707,7 +111117,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1296,
      "y_px": 336
     },
@@ -109720,7 +111132,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1584,
      "y_px": 384
     },
@@ -109733,7 +111147,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 1920,
      "y_px": 336
     },
@@ -109746,7 +111162,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2048,
      "y_px": 304
     },
@@ -109759,7 +111177,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2736,
      "y_px": 384
     },
@@ -109847,7 +111267,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 4816,
      "y_px": 304
     },
@@ -109860,7 +111282,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 4176,
      "y_px": 448
     },
@@ -109873,7 +111297,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 4544,
      "y_px": 416
     },
@@ -109886,7 +111312,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3792,
      "y_px": 288
     },
@@ -109899,7 +111327,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3616,
      "y_px": 400
     },
@@ -109912,7 +111342,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3312,
      "y_px": 432
     },
@@ -109925,7 +111357,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 3264,
      "y_px": 320
     },
@@ -110088,7 +111522,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CannonPipe"
+     ],
      "x_px": 1520,
      "y_px": 288
     },
@@ -110191,7 +111627,9 @@
       43554,
       45066
      ],
-     "id_class": null,
+     "id_class": [
+      "EnvStarTag"
+     ],
      "x_px": 16,
      "y_px": 256
     },
@@ -110249,7 +111687,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 3472,
      "y_px": 336
     },
@@ -110382,7 +111822,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 2416,
      "y_px": 448
     },
@@ -110395,7 +111837,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 4448,
      "y_px": 320
     },
@@ -110408,7 +111852,9 @@
       4096,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BoomerangBros"
+     ],
      "x_px": 4640,
      "y_px": 304
     },
@@ -110421,7 +111867,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 80,
      "y_px": 1264
     },
@@ -110863,7 +112311,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4256,
      "y_px": 720
     },
@@ -110906,7 +112356,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 256,
      "y_px": 720
     },
@@ -111054,7 +112506,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 1904,
      "y_px": 720
     },
@@ -111202,7 +112656,9 @@
       2567,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 3392,
      "y_px": 752
     },
@@ -111215,7 +112671,9 @@
       1033,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 3648,
      "y_px": 688
     },
@@ -111228,7 +112686,9 @@
       1031,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 3856,
      "y_px": 752
     },
@@ -112917,7 +114377,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 192,
      "y_px": 448
     },
@@ -112960,7 +114422,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 256
     },
@@ -112973,7 +114437,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 256
     }
@@ -113200,7 +114666,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 192,
      "y_px": 464
     }
@@ -113604,7 +115072,9 @@
       2,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "PipeEnemyGenerator"
+     ],
      "x_px": 96,
      "y_px": 1776
     },
@@ -113917,7 +115387,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 224,
      "y_px": 2368
     },
@@ -113975,7 +115447,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 368
     },
@@ -113988,7 +115462,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 368
     },
@@ -114001,7 +115477,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 32,
      "y_px": 1680
     },
@@ -114618,7 +116096,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 576,
      "y_px": 416
     },
@@ -114882,7 +116362,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4880,
      "y_px": 576
     },
@@ -115780,7 +117262,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 112,
      "y_px": 624
     },
@@ -115853,7 +117337,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2288,
      "y_px": 608
     },
@@ -115986,7 +117472,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 3680,
      "y_px": 640
     },
@@ -116609,7 +118097,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 3664,
      "y_px": 432
     },
@@ -116772,7 +118262,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 192,
      "y_px": 448
     },
@@ -116830,7 +118322,9 @@
       34854,
       26902
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 32,
      "y_px": 288
     },
@@ -116843,7 +118337,9 @@
       43608,
       35113
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 48,
      "y_px": 288
     },
@@ -116871,7 +118367,9 @@
       17,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 2256,
      "y_px": 432
     }
@@ -117333,7 +118831,9 @@
       3612,
       17
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 816,
      "y_px": 2992
     },
@@ -117376,7 +118876,9 @@
       3614,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 624,
      "y_px": 2736
     },
@@ -117449,7 +118951,9 @@
       11807,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 752,
      "y_px": 2208
     },
@@ -117462,7 +118966,9 @@
       3615,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 608,
      "y_px": 2096
     },
@@ -117475,7 +118981,9 @@
       2335,
       273
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 480,
      "y_px": 1984
     },
@@ -117533,7 +119041,9 @@
       2079,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 432,
      "y_px": 1840
     },
@@ -117561,7 +119071,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 800,
      "y_px": 1520
     },
@@ -117574,7 +119086,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FlyingQuestionBlock"
+     ],
      "x_px": 896,
      "y_px": 1344
     },
@@ -117587,7 +119101,9 @@
       6431,
       1
      ],
-     "id_class": null,
+     "id_class": [
+      "WireLineSlide"
+     ],
      "x_px": 640,
      "y_px": 1424
     },
@@ -117765,7 +119281,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 848,
      "y_px": 2912
     },
@@ -117793,7 +119311,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 880,
      "y_px": 1792
     },
@@ -117806,7 +119326,9 @@
       16946,
       4098
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 528,
      "y_px": 1664
     },
@@ -117819,7 +119341,9 @@
       49714,
       4128
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 704,
      "y_px": 1616
     }
@@ -119519,7 +121043,9 @@
       20480,
       4096
      ],
-     "id_class": null,
+     "id_class": [
+      "LemmyStatueDecoration"
+     ],
      "x_px": 512,
      "y_px": 3040
     },
@@ -119802,7 +121328,9 @@
       20736,
       4142
      ],
-     "id_class": null,
+     "id_class": [
+      "LemmyStatueDecoration"
+     ],
      "x_px": 608,
      "y_px": 2320
     },
@@ -119875,7 +121403,9 @@
       16,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 640,
      "y_px": 2304
     },
@@ -119948,7 +121478,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "CameraManager"
+     ],
      "x_px": 464,
      "y_px": 3040
     },
@@ -119961,7 +121493,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HimanBros"
+     ],
      "x_px": 640,
      "y_px": 2160
     },
@@ -120109,7 +121643,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 528,
      "y_px": 1024
     },
@@ -120122,7 +121658,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 544,
      "y_px": 1024
     }
@@ -120394,7 +121932,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 272,
      "y_px": 320
     },
@@ -120407,7 +121947,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 288,
      "y_px": 320
     },
@@ -121403,7 +122945,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 464
     },
@@ -121416,7 +122960,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 464
     },
@@ -122477,7 +124023,9 @@
       0,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 256,
      "y_px": 672
     },
@@ -122880,7 +124428,9 @@
       0,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 1696,
      "y_px": 672
     },
@@ -122923,7 +124473,9 @@
       0,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 2032,
      "y_px": 1792
     },
@@ -122981,7 +124533,9 @@
       0,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 256,
      "y_px": 1776
     },
@@ -123024,7 +124578,9 @@
       0,
       4112
      ],
-     "id_class": null,
+     "id_class": [
+      "BrickQuestionSwitch"
+     ],
      "x_px": 2384,
      "y_px": 80
     },
@@ -123067,7 +124623,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 192
     },
@@ -123080,7 +124638,9 @@
       43608,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 192
     }
@@ -123526,7 +125086,9 @@
       34854,
       30998
      ],
-     "id_class": null,
+     "id_class": [
+      "EndingBoss"
+     ],
      "x_px": 16,
      "y_px": 256
     },
@@ -123539,7 +125101,9 @@
       35416,
       39209
      ],
-     "id_class": null,
+     "id_class": [
+      "LiftRail"
+     ],
      "x_px": 32,
      "y_px": 256
     },
@@ -127046,7 +128610,9 @@
       24703,
       8197
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 512,
      "y_px": 96
     },
@@ -127059,7 +128625,9 @@
       24703,
       8197
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 768,
      "y_px": 96
     },
@@ -127072,7 +128640,9 @@
       24703,
       8197
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 256,
      "y_px": 96
     },
@@ -127085,7 +128655,9 @@
       24703,
       8197
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 0,
      "y_px": 96
     },
@@ -127113,7 +128685,9 @@
       24689,
       5
      ],
-     "id_class": null,
+     "id_class": [
+      "ApplauseKun"
+     ],
      "x_px": 864,
      "y_px": 288
     },
@@ -128391,7 +129965,9 @@
       1,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "HammerBros"
+     ],
      "x_px": 496,
      "y_px": 448
     },
@@ -128404,7 +129980,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -128462,7 +130040,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -128490,7 +130070,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -128503,7 +130085,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129773,7 +131357,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129786,7 +131372,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129799,7 +131387,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129932,7 +131522,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129945,7 +131537,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129958,7 +131552,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129971,7 +131567,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129984,7 +131582,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -129997,7 +131597,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130401,7 +132003,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4128,
      "y_px": 320
     },
@@ -130414,7 +132018,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130427,7 +132033,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130440,7 +132048,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130453,7 +132063,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130571,7 +132183,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130584,7 +132198,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130597,7 +132213,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130610,7 +132228,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130623,7 +132243,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130651,7 +132273,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -130709,7 +132333,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     }
@@ -131348,7 +132974,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131361,7 +132989,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "FireBros"
+     ],
      "x_px": 4144,
      "y_px": 1088
     },
@@ -131374,7 +133004,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131387,7 +133019,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131400,7 +133034,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131458,7 +133094,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131471,7 +133109,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131484,7 +133124,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },
@@ -131497,7 +133139,9 @@
       0,
       0
      ],
-     "id_class": null,
+     "id_class": [
+      "BootScene"
+     ],
      "x_px": 0,
      "y_px": 0
     },

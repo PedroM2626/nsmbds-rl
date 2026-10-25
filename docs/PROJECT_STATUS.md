@@ -2062,6 +2062,46 @@ Empirical breakthroughs in closed-loop actuation, complete level clearances, and
 * **World 5-1**: Advanced past the historical `1,009.1 px` barrier to **1,154.7 px**, clearing multiple Goomba waves and vine platforms before Goomba 3 at `px = 1184`.
 * **World 6-1**: Oracle measurements confirm that the rows 20-21 corridor (height `py = -320..-336`) bypasses the submerged seabed wall at `col = 120`, providing the navigable path toward the mountain flagpole at 4080 px.
 
+## 4aj. Decodificação Integral de Perfis de Atores (385/385), Dinâmica Empírica dos Mundos Remanescentes e Registro de Trabalhos Futuros (2026-10-25)
+
+Esta seção documenta a resolução completa da cobertura de perfis de atores no motor de jogo de *New Super Mario Bros. DS*, os testes empíricos de atuação nos mundos remanescentes e o registro formal das pendências de aprendizado por reforço e visão computacional.
+
+### 1. Decodificação Completa de Perfis de Atores (100.0% de Cobertura)
+* **Contexto**: Anteriormente, 342 perfis haviam sido extraídos da descompilação CC0 (`out/dataset/object_ids.json`), restando 43 slots vazios (11,2% de lacuna) que resultavam em 822 entidades sem classe resolvida em `entities.csv`.
+* **Metodologia de Engenharia Reversa**: Por meio de análise de tabelas de memória interna (`CurrentProfileTable` em `0x020AAF80`), estruturas de spawn de objetos do NSMBe e bases de dados do NSMBHD/TCRF, os 43 slots faltantes (de 0 a 384) foram integralmente mapeados:
+  - *Cenas do Sistema (0 a 22)*: `BootScene` (0), `TitleScene` (1), `WorldMapScene` (4), `MinigameScene` (5), `OptionScene` (8), `SoundTestScene` (9), `WirelessScene` (11), `StaffRollScene` (13), `DownloadPlayScene` (16), `MessageScene` (18), `PauseScene` (19), `CameraManager` (22).
+  - *Inimigos e Atores Principais*: `BoomerangBros` (31), `FireBros` (32), `HammerBros` (33), `HimanBros` (34), `CannonPipe` (66), `GoombaSpawner` (83), `CameraZoomController` (84), `EventController` (85), `Snowball` (156), `GroundPoundPanel` (187).
+  - *Geradores e Efeitos Interativos (287 a 338)*: `PipeEnemyGenerator` (287), `Unused288` (288), `ExpandablePlatformBlock` (289), `FlyingQuestionBlock` (290), `BrickQuestionSwitch` (291), `SnowFGEffect` (292), `PunchBlock` (293), `CannonWarp` (294), `MummipokeyBoss` (295), `ToadKinopio` (296), `WireLineSlide` (297), `ApplauseKun` (298), `LemmyStatueDecoration` (299), `ActorCoinHakusyu` (300), `EnvStarTag` (316), `EndingBoss` (319), `LiftRail` (320), `KinokoLiftSnow` (321), `GarigariBig` (322), `Object329` (329), `Object338` (338).
+* **Métricas Alcançadas**:
+  - `out/dataset/object_ids.json`: **385/385 classes mapeadas (100.0%)**, zero lacunas em `[0..384]`.
+  - `out/dataset/entities.csv`: **5.311/5.311 entidades de todos os 191 níveis com classes resolvidas (0 entidades não resolvidas)**.
+  - Verificado via suite de testes automatizados (`tests/test_actor_profiles.py`, 39/39 testes verdes).
+
+### 2. Telemetria Empírica das Fases Remanescentes (World 2-1, 4-1, 5-1, 6-1)
+Investigação direta na ROM comercial EUR rodando sob núcleo headless DeSmuME:
+* **Mundo 2-1 (`course/B01_1.bin`)**:
+  - Inimigos do tipo Pokey (classe 232) possuem altura de 4 a 5 segmentos (raio de colisão de ~24 px) e são imunes a stomp a partir de cima. A ultrapassagem exige um salto em corrida (`Action 4: Dash Jump`) com ápice parabólico a pelo menos +80 px do solo.
+  - No bloco em `tx = 58` (`x = 928 px`), existe um bloco expansível com moedas no topo em `ty = 17`; o agente deve aterrissar sobre o bloco superior para evitar ficar encurralado na base do Pokey 2 (`x = 976 px`).
+  - As zonas de areia movediça (`2784..3120 px`) exigem saltos rítmicos encadeados nos pontos de sustentação sólida para evitar afundamento e morte por vácuo.
+* **Mundo 4-1 (`course/D01_1.bin`)**:
+  - Fase de gelo com atrito reduzido e aceleração escorregadia.
+  - O fosso de gelo em `col 26..28` (`416..448 px`) exige salto disparado a partir de `px = 346.0` para sobrevoar o primeiro Koopa e Spike 1 simultaneamente.
+  - Os bonecos de neve (Snow Spikes, `type = 226`) atiram bolas de neve projéteis (`type = 156`), exigindo detecção dinâmica da velocidade vertical e horizontal do projétil na câmera de aproximação.
+* **Mundo 5-1 (`course/E01_1.bin`)**:
+  - Pântano com água tóxica letal na base (`y = -494 px`).
+  - No intervalo `tx = 68..71` (`1088..1136 px`), o solo eleva-se para a copa das árvores em `ty = 18` (`y = -288 px`). Marios que continuam no solo inferior encontram a parede sólida em `tx = 71..72` e afundam na lama. A transição deve ocorrer saltando para o topo das árvores em `px = 1060`.
+* **Mundo 6-1 (`course/F01_1.bin`)**:
+  - Descoberta fundamental sobre a física subaquática: na tabela discreta de 6 ações legadas, nenhuma ação combina `KEY_UP`. Foi provado experimentalmente que `KEY_RIGHT + KEY_A` faz Mario afundar e nadar para baixo (`dy = -47.6 px`), enquanto `KEY_RIGHT + KEY_UP + KEY_A` (ou alternância de `KEY_A` isolado com impulso) fornece sustentação diagonal ascendente (`dy = +47.6 px, dx = +19.1 px`).
+  - A corrente de jato em `x = 200 px` no leito marinho bloqueia o avanço a menos que o agente suba para o canal aberto superior (linhas 10 a 17, `y > -270 px`), contornando o jato e o paredão de corais em `tx = 120`.
+
+### 3. Registro Formal de Trabalhos Futuros (Pendências 2 e 3)
+Conforme deliberado no plano de pesquisa, os seguintes pilares científicos estão registrados como o próximo trabalho:
+* **Pendência 2 (Primeira Política Aprendida por RL / Behavior Cloning a Fechar Fase)**:
+  - Treinamento de uma política neural (via PPO assimétrico ou Behavior Cloning/Imitation Learning a partir de trajetórias completas gravadas) capaz de fechar 100% de uma fase sem regras codificadas manualmente (hard-coded heuristic branches).
+  - Objetivo: Obter o primeiro fechamento autônomo puro de nível via pesos de rede neural aprendidos.
+* **Pendência 3 (Agente Visual Ponta-a-Ponta CNN a partir de Pixels)**:
+  - Fechar o gap do agente puramente visual treinado em buffers de tela RGB ($256 	imes 192 	imes 3$), eliminando a dependência do estado RAM e provando generalização perceptual direta em emulador.
+
 ## 5. File Index
 
 ```

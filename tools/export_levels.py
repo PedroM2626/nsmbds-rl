@@ -26,7 +26,7 @@ import ndspy.rom
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
-ROM = r"C:/Users/pedro/Downloads/desmume/Roms/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
+ROM = os.path.join(ROOT, "data", "0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds")
 NSEC = 13
 SEC_STRIDE = {0: 24, 1: 20, 2: 20, 3: 20, 4: 20, 6: 16, 7: 12, 8: 8, 9: 8, 10: 16, 11: 16, 12: 16}
 

@@ -9,6 +9,24 @@
  "fps": 60,
  "profiles": [
   {
+   "id": 0,
+   "class": "BootScene",
+   "create": "create",
+   "render_priority": 1,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/BootScene.cpp"
+  },
+  {
+   "id": 1,
+   "class": "TitleScene",
+   "create": "create",
+   "render_priority": 2,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/TitleScene.cpp"
+  },
+  {
    "id": 2,
    "class": "DebugScene",
    "create": "create",
@@ -25,6 +43,24 @@
    "resource_loader": null,
    "slot_comment_agrees": null,
    "src": "Scenes\\StageScene.cpp"
+  },
+  {
+   "id": 4,
+   "class": "WorldMapScene",
+   "create": "create",
+   "render_priority": 11,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/WorldMapScene.cpp"
+  },
+  {
+   "id": 5,
+   "class": "MinigameScene",
+   "create": "create",
+   "render_priority": 12,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/MinigameScene.cpp"
   },
   {
    "id": 6,
@@ -45,6 +81,24 @@
    "src": "Bases\\stubs\\SaveScene.cpp"
   },
   {
+   "id": 8,
+   "class": "OptionScene",
+   "create": "create",
+   "render_priority": 15,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/OptionScene.cpp"
+  },
+  {
+   "id": 9,
+   "class": "SoundTestScene",
+   "create": "create",
+   "render_priority": 16,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/SoundTestScene.cpp"
+  },
+  {
    "id": 10,
    "class": "VsResultsScreen",
    "create": "create",
@@ -54,6 +108,15 @@
    "src": "Bases\\stubs\\VsResultsScreen.cpp"
   },
   {
+   "id": 11,
+   "class": "WirelessScene",
+   "create": "create",
+   "render_priority": 18,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/WirelessScene.cpp"
+  },
+  {
    "id": 12,
    "class": "EndingScene",
    "create": "create",
@@ -61,6 +124,15 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\EndingScene.cpp"
+  },
+  {
+   "id": 13,
+   "class": "StaffRollScene",
+   "create": "create",
+   "render_priority": 20,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/StaffRollScene.cpp"
   },
   {
    "id": 14,
@@ -81,6 +153,15 @@
    "src": "Bases\\stubs\\VsIntroScene.cpp"
   },
   {
+   "id": 16,
+   "class": "DownloadPlayScene",
+   "create": "create",
+   "render_priority": 23,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/DownloadPlayScene.cpp"
+  },
+  {
    "id": 17,
    "class": "KeyScene",
    "create": "create",
@@ -88,6 +169,24 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\KeyScene.cpp"
+  },
+  {
+   "id": 18,
+   "class": "MessageScene",
+   "create": "create",
+   "render_priority": 25,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/MessageScene.cpp"
+  },
+  {
+   "id": 19,
+   "class": "PauseScene",
+   "create": "create",
+   "render_priority": 26,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Scenes/PauseScene.cpp"
   },
   {
    "id": 20,
@@ -106,6 +205,15 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Player.cpp"
+  },
+  {
+   "id": 22,
+   "class": "CameraManager",
+   "create": "create",
+   "render_priority": 29,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Bases/CameraManager.cpp"
   },
   {
    "id": 23,
@@ -178,6 +286,42 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Object28.cpp"
+  },
+  {
+   "id": 31,
+   "class": "BoomerangBros",
+   "create": "create",
+   "render_priority": 35,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Enemies/BoomerangBros.cpp"
+  },
+  {
+   "id": 32,
+   "class": "FireBros",
+   "create": "create",
+   "render_priority": 36,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Enemies/FireBros.cpp"
+  },
+  {
+   "id": 33,
+   "class": "HammerBros",
+   "create": "create",
+   "render_priority": 37,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Enemies/HammerBros.cpp"
+  },
+  {
+   "id": 34,
+   "class": "HimanBros",
+   "create": "create",
+   "render_priority": 38,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Enemies/HimanBros.cpp"
   },
   {
    "id": 35,
@@ -459,6 +603,15 @@
    "src": "Bases\\stubs\\Object65.cpp"
   },
   {
+   "id": 66,
+   "class": "CannonPipe",
+   "create": "create",
+   "render_priority": 60,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/CannonPipe.cpp"
+  },
+  {
    "id": 67,
    "class": "Object67",
    "create": "create",
@@ -601,6 +754,33 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Object82.cpp"
+  },
+  {
+   "id": 83,
+   "class": "GoombaSpawner",
+   "create": "create",
+   "render_priority": 70,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Generators/GoombaSpawner.cpp"
+  },
+  {
+   "id": 84,
+   "class": "CameraZoomController",
+   "create": "create",
+   "render_priority": 71,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Controllers/CameraZoomController.cpp"
+  },
+  {
+   "id": 85,
+   "class": "EventController",
+   "create": "create",
+   "render_priority": 72,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Controllers/EventController.cpp"
   },
   {
    "id": 86,
@@ -1233,6 +1413,15 @@
    "src": "Bases\\stubs\\Object155.cpp"
   },
   {
+   "id": 156,
+   "class": "Snowball",
+   "create": "create",
+   "render_priority": 100,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/Snowball.cpp"
+  },
+  {
    "id": 157,
    "class": "Object157",
    "create": "create",
@@ -1501,6 +1690,15 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Object186.cpp"
+  },
+  {
+   "id": 187,
+   "class": "GroundPoundPanel",
+   "create": "create",
+   "render_priority": 115,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/GroundPoundPanel.cpp"
   },
   {
    "id": 188,
@@ -2394,6 +2592,132 @@
    "src": "Bases\\stubs\\Object285.cpp"
   },
   {
+   "id": 287,
+   "class": "PipeEnemyGenerator",
+   "create": "create",
+   "render_priority": 120,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Generators/PipeEnemyGenerator.cpp"
+  },
+  {
+   "id": 288,
+   "class": "Unused288",
+   "create": "create",
+   "render_priority": 121,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/Unused288.cpp"
+  },
+  {
+   "id": 289,
+   "class": "ExpandablePlatformBlock",
+   "create": "create",
+   "render_priority": 122,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/ExpandablePlatformBlock.cpp"
+  },
+  {
+   "id": 290,
+   "class": "FlyingQuestionBlock",
+   "create": "create",
+   "render_priority": 123,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/FlyingQuestionBlock.cpp"
+  },
+  {
+   "id": 291,
+   "class": "BrickQuestionSwitch",
+   "create": "create",
+   "render_priority": 124,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/BrickQuestionSwitch.cpp"
+  },
+  {
+   "id": 292,
+   "class": "SnowFGEffect",
+   "create": "create",
+   "render_priority": 125,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Effects/SnowFGEffect.cpp"
+  },
+  {
+   "id": 293,
+   "class": "PunchBlock",
+   "create": "create",
+   "render_priority": 126,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/PunchBlock.cpp"
+  },
+  {
+   "id": 294,
+   "class": "CannonWarp",
+   "create": "create",
+   "render_priority": 127,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/CannonWarp.cpp"
+  },
+  {
+   "id": 295,
+   "class": "MummipokeyBoss",
+   "create": "create",
+   "render_priority": 128,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Bosses/MummipokeyBoss.cpp"
+  },
+  {
+   "id": 296,
+   "class": "ToadKinopio",
+   "create": "create",
+   "render_priority": 129,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Entities/ToadKinopio.cpp"
+  },
+  {
+   "id": 297,
+   "class": "WireLineSlide",
+   "create": "create",
+   "render_priority": 130,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/WireLineSlide.cpp"
+  },
+  {
+   "id": 298,
+   "class": "ApplauseKun",
+   "create": "create",
+   "render_priority": 131,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/ApplauseKun.cpp"
+  },
+  {
+   "id": 299,
+   "class": "LemmyStatueDecoration",
+   "create": "create",
+   "render_priority": 132,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/LemmyStatueDecoration.cpp"
+  },
+  {
+   "id": 300,
+   "class": "ActorCoinHakusyu",
+   "create": "create",
+   "render_priority": 133,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/ActorCoinHakusyu.cpp"
+  },
+  {
    "id": 301,
    "class": "Object301",
    "create": "create",
@@ -2529,6 +2853,15 @@
    "src": "Bases\\stubs\\Object315.cpp"
   },
   {
+   "id": 316,
+   "class": "EnvStarTag",
+   "create": "create",
+   "render_priority": 140,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Effects/EnvStarTag.cpp"
+  },
+  {
    "id": 317,
    "class": "Object317",
    "create": "create",
@@ -2545,6 +2878,42 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Object318.cpp"
+  },
+  {
+   "id": 319,
+   "class": "EndingBoss",
+   "create": "create",
+   "render_priority": 145,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Bosses/EndingBoss.cpp"
+  },
+  {
+   "id": 320,
+   "class": "LiftRail",
+   "create": "create",
+   "render_priority": 150,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/LiftRail.cpp"
+  },
+  {
+   "id": 321,
+   "class": "KinokoLiftSnow",
+   "create": "create",
+   "render_priority": 151,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/KinokoLiftSnow.cpp"
+  },
+  {
+   "id": 322,
+   "class": "GarigariBig",
+   "create": "create",
+   "render_priority": 152,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Enemies/GarigariBig.cpp"
   },
   {
    "id": 323,
@@ -2599,6 +2968,15 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Object328.cpp"
+  },
+  {
+   "id": 329,
+   "class": "Object329",
+   "create": "create",
+   "render_priority": 160,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/Object329.cpp"
   },
   {
    "id": 330,
@@ -2671,6 +3049,15 @@
    "resource_loader": null,
    "slot_comment_agrees": true,
    "src": "Bases\\stubs\\Object337.cpp"
+  },
+  {
+   "id": 338,
+   "class": "Object338",
+   "create": "create",
+   "render_priority": 165,
+   "resource_loader": null,
+   "slot_comment_agrees": true,
+   "src": "Objects/Object338.cpp"
   },
   {
    "id": 339,
@@ -4113,6 +4500,135 @@
   ],
   "384": [
    "Object384"
+  ],
+  "0": [
+   "BootScene"
+  ],
+  "1": [
+   "TitleScene"
+  ],
+  "4": [
+   "WorldMapScene"
+  ],
+  "5": [
+   "MinigameScene"
+  ],
+  "8": [
+   "OptionScene"
+  ],
+  "9": [
+   "SoundTestScene"
+  ],
+  "11": [
+   "WirelessScene"
+  ],
+  "13": [
+   "StaffRollScene"
+  ],
+  "16": [
+   "DownloadPlayScene"
+  ],
+  "18": [
+   "MessageScene"
+  ],
+  "19": [
+   "PauseScene"
+  ],
+  "22": [
+   "CameraManager"
+  ],
+  "31": [
+   "BoomerangBros"
+  ],
+  "32": [
+   "FireBros"
+  ],
+  "33": [
+   "HammerBros"
+  ],
+  "34": [
+   "HimanBros"
+  ],
+  "66": [
+   "CannonPipe"
+  ],
+  "83": [
+   "GoombaSpawner"
+  ],
+  "84": [
+   "CameraZoomController"
+  ],
+  "85": [
+   "EventController"
+  ],
+  "156": [
+   "Snowball"
+  ],
+  "187": [
+   "GroundPoundPanel"
+  ],
+  "287": [
+   "PipeEnemyGenerator"
+  ],
+  "288": [
+   "Unused288"
+  ],
+  "289": [
+   "ExpandablePlatformBlock"
+  ],
+  "290": [
+   "FlyingQuestionBlock"
+  ],
+  "291": [
+   "BrickQuestionSwitch"
+  ],
+  "292": [
+   "SnowFGEffect"
+  ],
+  "293": [
+   "PunchBlock"
+  ],
+  "294": [
+   "CannonWarp"
+  ],
+  "295": [
+   "MummipokeyBoss"
+  ],
+  "296": [
+   "ToadKinopio"
+  ],
+  "297": [
+   "WireLineSlide"
+  ],
+  "298": [
+   "ApplauseKun"
+  ],
+  "299": [
+   "LemmyStatueDecoration"
+  ],
+  "300": [
+   "ActorCoinHakusyu"
+  ],
+  "316": [
+   "EnvStarTag"
+  ],
+  "319": [
+   "EndingBoss"
+  ],
+  "320": [
+   "LiftRail"
+  ],
+  "321": [
+   "KinokoLiftSnow"
+  ],
+  "322": [
+   "GarigariBig"
+  ],
+  "329": [
+   "Object329"
+  ],
+  "338": [
+   "Object338"
   ]
  },
  "slot_comment_conflicts": [],

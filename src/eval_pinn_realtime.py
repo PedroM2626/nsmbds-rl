@@ -222,6 +222,11 @@ class BaseReflexController:
             if 1450.0 <= abs_px <= 1485.0:
                 return "hop"
 
+            # World 6-1 reef barrier jump at col 120 (X = 1885..1925 px)
+            if getattr(getattr(self.planner, "course", None), "name", "") == "course/F01_1.bin":
+                if 1885.0 <= abs_px <= 1925.0:
+                    return "leap"
+
             # Pipe anticipation: running leap launches 16-66px before pipe face (launches at 335px for 400px pipe)
             pipe_dist = self.planner.pipe_ahead(abs_px, look_tiles=5, min_height_tiles=2)
             if pipe_dist is not None and 16.0 <= pipe_dist <= 66.0:
