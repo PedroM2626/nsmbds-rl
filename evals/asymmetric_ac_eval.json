@@ -1,0 +1,171 @@
+{
+  "protocol": {
+    "course": "course/A01_1.bin",
+    "episodes_det": 3,
+    "episodes_stoch": 3,
+    "max_steps": 1000,
+    "seed": 0,
+    "action_space": "v2_8_actions",
+    "actor_input": "pixels_4x84x84"
+  },
+  "elapsed_s": 181.13,
+  "results": {
+    "pixel_critic": {
+      "tag": "pixel-critic (baseline)",
+      "value_input": "pixels",
+      "checkpoint": "models/ac_pixels_200k.zip",
+      "checkpoint_sha1": "29069f1de1a31b85aaa6a5f1cb0dc863a8e324b2",
+      "det": {
+        "episodes": 3,
+        "seed": 0,
+        "max_x_px": [
+          88.0,
+          88.0,
+          88.0
+        ],
+        "mean_x_px": 88.0,
+        "std_x_px": 0.0,
+        "best_x_px": 88.0,
+        "steps": [
+          1000,
+          1000,
+          1000
+        ],
+        "mean_steps": 1000.0,
+        "rewards": [
+          -50.0,
+          -50.0,
+          -50.0
+        ],
+        "mean_reward": -50.0,
+        "clear_rate": 0.0
+      },
+      "stoch": {
+        "episodes": 3,
+        "seed": 10,
+        "max_x_px": [
+          930.6,
+          318.96,
+          319.6
+        ],
+        "mean_x_px": 523.05,
+        "std_x_px": 288.18,
+        "best_x_px": 930.6,
+        "steps": [
+          237,
+          51,
+          56
+        ],
+        "mean_steps": 114.67,
+        "rewards": [
+          292.7071,
+          53.5262,
+          53.5364
+        ],
+        "mean_reward": 133.2566,
+        "clear_rate": 0.0
+      }
+    },
+    "ram_critic": {
+      "tag": "ram-critic (asymmetric)",
+      "value_input": "ram",
+      "checkpoint": "models/ac_ram_200k.zip",
+      "checkpoint_sha1": "e7b38944e3166ade83cab888d5d6aba9a2466148",
+      "det": {
+        "episodes": 3,
+        "seed": 100,
+        "max_x_px": [
+          1250.53,
+          1250.53,
+          1250.53
+        ],
+        "mean_x_px": 1250.53,
+        "std_x_px": 0.0,
+        "best_x_px": 1250.53,
+        "steps": [
+          89,
+          89,
+          89
+        ],
+        "mean_steps": 89.0,
+        "rewards": [
+          429.6911,
+          429.6911,
+          429.6911
+        ],
+        "mean_reward": 429.6911,
+        "clear_rate": 0.0
+      },
+      "stoch": {
+        "episodes": 3,
+        "seed": 110,
+        "max_x_px": [
+          1730.2,
+          1138.71,
+          1250.53
+        ],
+        "mean_x_px": 1373.15,
+        "std_x_px": 256.57,
+        "best_x_px": 1730.2,
+        "steps": [
+          111,
+          75,
+          93
+        ],
+        "mean_steps": 93.0,
+        "rewards": [
+          623.4798,
+          385.3511,
+          429.4911
+        ],
+        "mean_reward": 479.4407,
+        "clear_rate": 0.0
+      }
+    }
+  },
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-25T17:39:32+00:00",
+    "git": {
+      "commit": "5f7e04ca7f0908afe0b1d8904f90b52dc6e66864",
+      "dirty": true
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+        "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+        "bytes": 2353702
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": null,
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": null,
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_asymmetric_ac.py"
+    ],
+    "course": "course/A01_1.bin",
+    "verified_course_index": 0,
+    "episodes_det": 3,
+    "episodes_stoch": 3,
+    "max_steps": 1000,
+    "seed": 0
+  }
+}

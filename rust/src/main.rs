@@ -31,6 +31,7 @@ struct Geometry {
     feasible: bool,
     surface: HashMap<i32, i32>,
     obstacle_h: HashMap<i32, i32>,
+    ceilings: HashMap<i32, Vec<i32>>,
 }
 
 fn u32_at(b: &[u8], off: usize) -> Result<u32, String> {
@@ -84,6 +85,33 @@ fn load(path: &str) -> Result<Geometry, String> {
         o += 8;
     }
 
+    // Optional trailing sections: solid, pits, takeoffs, and 2D ceilings
+    let mut ceilings: HashMap<i32, Vec<i32>> = HashMap::new();
+    if o + 4 <= b.len() {
+        let n_solid = u32_at(&b, o)? as usize;
+        o += 4 + n_solid * 4;
+    }
+    if o + 4 <= b.len() {
+        let n_pits = u32_at(&b, o)? as usize;
+        o += 4 + n_pits * 8;
+    }
+    if o + 4 <= b.len() {
+        let n_tk = u32_at(&b, o)? as usize;
+        o += 4 + n_tk * 20;
+    }
+    if o + 4 <= b.len() {
+        let n_ceil = u32_at(&b, o)? as usize;
+        o += 4;
+        for _ in 0..n_ceil {
+            if o + 8 <= b.len() {
+                let c = i32_at(&b, o)?;
+                let r = i32_at(&b, o + 4)?;
+                ceilings.entry(c).or_default().push(r);
+                o += 8;
+            }
+        }
+    }
+
     Ok(Geometry {
         min_col,
         max_col,
@@ -91,6 +119,7 @@ fn load(path: &str) -> Result<Geometry, String> {
         feasible,
         surface,
         obstacle_h,
+        ceilings,
     })
 }
 
@@ -145,6 +174,21 @@ impl Geometry {
     fn is_narrow_corridor(&self, px: f64) -> bool {
         let col = self.col_of(px);
         (91..=97).contains(&col)
+    }
+
+    fn ceiling_ahead(&self, px: f64, mario_row: Option<i32>, look: i32, clearance: i32) -> i32 {
+        let col = self.col_of(px);
+        let base_row = mario_row.or_else(|| self.surface.get(&col).copied()).unwrap_or(FLOOR_DEFAULT);
+        for d in 0..=look {
+            if let Some(rows) = self.ceilings.get(&(col + d)) {
+                for &cr in rows {
+                    if cr >= base_row - clearance && cr < base_row {
+                        return if d == 0 { 1 } else { d };
+                    }
+                }
+            }
+        }
+        0
     }
 
     fn answer(&self, line: &str) -> String {
@@ -212,6 +256,20 @@ impl Geometry {
                     None => return "ERR N needs px".to_string(),
                 };
                 format!("N {}", self.is_narrow_corridor(px) as i32)
+            }
+            "C" => {
+                let px = match num(it.next()) {
+                    Some(v) => v,
+                    None => return "ERR C needs px".to_string(),
+                };
+                let row_tok = it.next();
+                let mrow = match row_tok {
+                    Some("NA") | None => None,
+                    Some(s) => s.parse::<f64>().ok().map(|v| v.round() as i32),
+                };
+                let look = num(it.next()).unwrap_or(4.0) as i32;
+                let clr = num(it.next()).unwrap_or(3.0) as i32;
+                format!("C {}", self.ceiling_ahead(px, mrow, look, clr))
             }
             other => format!("ERR unknown op {other}"),
         }

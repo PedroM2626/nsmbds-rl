@@ -45,7 +45,8 @@ SPRITE_NAMES = _load_extended_sprite_names()
 
 
 class Course:
-    def __init__(self, name="course/A01_1.bin", rom_path=None):
+    def __init__(self, name="course/A01_1.bin", rom_path=None, use_inferred=False):
+        self.use_inferred = bool(use_inferred)
         import ndspy.rom
         self.name = name
         if rom_path is None:
@@ -58,6 +59,8 @@ class Course:
         assert raw is not None, f"{name} not found in ROM"
         blocks = [struct.unpack_from("<II", raw, i * 8) for i in range(14)]
         get = lambda n: raw[blocks[n][0]:blocks[n][0] + blocks[n][1]]
+        b0 = get(0)
+        self.tileset_id = int(b0[12]) if len(b0) > 12 else 0
 
         # sprites: Blocks[6], 12B (type,x,y tiles, data 6B)
         # Structurally proven: 12-byte records from offset 0, ended by 0xFFFFFFFF u32 trailer
@@ -85,7 +88,7 @@ class Course:
             obj, ts, x, y, w, h = struct.unpack_from("<BBHHHH", bg, i)
             if obj == 0xFF:
                 break
-            self.rects.append({"obj": obj, "tx": x, "ty": y, "w": w, "h": h})
+            self.rects.append({"obj": obj, "ts": ts, "tx": x, "ty": y, "w": w, "h": h})
             i += 10
 
         # ground coverage per column (tiles) - filter yy >= 18 to exclude sky/ceiling markers at row 0
@@ -165,6 +168,86 @@ class Course:
         # Koopas -- and 6-1's fish, which are unmapped there entirely)
         # to the ordinary at-level logic.
         self.contact_unstompable = self._load_contact_unstompable()
+        # Inferred tileset solidity & non-flagpole exit metadata (from tools/infer_tileset_solidity.py)
+        (
+            self.inferred_solid_objs,
+            self.inferred_slope_objs,
+            self.inferred_ground_cover,
+            self.inferred_ground_coverage,
+            self.inferred_exit_found,
+            self.inferred_exit_x_px,
+            self.inferred_exit_kind,
+        ) = self._load_inferred_tileset(span)
+        if self.use_inferred:
+            self.ground_cover = self.inferred_ground_cover
+            self.ground_coverage = self.inferred_ground_coverage
+            if not self.exit_found and self.inferred_exit_found:
+                self.exit_found = True
+                self.flag_x_px = float(self.inferred_exit_x_px)
+
+    def _load_inferred_tileset(self, span):
+        cid = os.path.basename(self.name).replace(".bin", "")
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "out", "dataset", "tileset_solidity.json")
+        solid_objs = set(GROUND_OBJS)
+        slope_objs = {0x06, 0x07, 0x08}
+        if cid == "H01_1":
+            slope_objs |= {19, 21, 22, 23}
+        exit_found = self.exit_found
+        exit_px = self.flag_x_px
+        exit_kind = "flagpole_sprite_32" if self.exit_found else "fallback_4032"
+        if os.path.exists(path):
+            try:
+                data = json.load(open(path, encoding="utf-8"))
+                cinfo = data.get("courses", {}).get(cid, {})
+                if cinfo:
+                    solid_objs |= set(cinfo.get("inferred_solid_objs", ()))
+                    slope_objs |= set(cinfo.get("inferred_slope_objs", ()))
+                    exit_found = bool(cinfo.get("inferred_exit_found", exit_found))
+                    exit_px = float(cinfo.get("inferred_exit_x_px", exit_px))
+                    exit_kind = str(cinfo.get("inferred_exit_kind", exit_kind))
+            except Exception:
+                pass
+        inf_cover = {}
+        for r in self.rects:
+            is_inf = (r["obj"] in solid_objs) or (r["ty"] >= 18 and (r["ty"] + r["h"]) >= 26)
+            if is_inf:
+                for xx in range(r["tx"], r["tx"] + r["w"]):
+                    for yy in range(r["ty"], r["ty"] + r["h"]):
+                        if yy >= 18:
+                            inf_cover.setdefault(xx, set()).add(yy)
+        for c, row_val in (self.floor_probe or {}).items():
+            if row_val is None:
+                inf_cover.pop(c, None)
+            else:
+                inf_cover.setdefault(c, set()).add(int(row_val))
+        inf_cov = (len(inf_cover) / span) if span else 0.0
+        return (
+            frozenset(solid_objs),
+            frozenset(slope_objs),
+            inf_cover,
+            inf_cov,
+            exit_found,
+            exit_px,
+            exit_kind,
+        )
+
+    def solid_cells_2d(self):
+        """Return 2D occupancy set of solid `(col, row)` cells across the course."""
+        cells = set()
+        cover_src = self.inferred_ground_cover if self.use_inferred else self.ground_cover
+        for col, rows in cover_src.items():
+            for row in rows:
+                cells.add((int(col), int(row)))
+        for col, row in (self.floor_probe or {}).items():
+            if row is not None:
+                cells.add((int(col), int(row)))
+        for (col, row), is_free in (self.wall_probe_cells or {}).items():
+            if not is_free:
+                cells.add((int(col), int(row)))
+            else:
+                cells.discard((int(col), int(row)))
+        return cells
 
     def _load_contact_unstompable(self):
         cid = os.path.basename(self.name).replace(".bin", "")

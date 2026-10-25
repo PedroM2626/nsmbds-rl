@@ -56,6 +56,12 @@ def main():
         for tk in sorted(p.takeoffs):
             a, b, land, w = p.takeoffs[tk]
             f.write(struct.pack("<iiiii", tk, a, b, land, w))
+        # Append 2D overhead ceiling pairs (col, row) for 2D queries (C op)
+        ceil_pairs = []
+        for cc, rows in sorted(p.ceilings.items()):
+            for rr in rows:
+                ceil_pairs.append((int(cc), int(rr)))
+        write_pairs(f, ceil_pairs)
 
     size = os.path.getsize(args.out)
     print(f"wrote {args.out} ({size} bytes)")

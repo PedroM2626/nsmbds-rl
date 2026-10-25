@@ -16,6 +16,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from env import MarioNdsEnv
+from eval_provenance import collect as collect_provenance
 
 ROM = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds"
 STATE = "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1"
@@ -292,9 +293,13 @@ def _print_res(name, mode, o):
 
 def _save_partial(fp, meta, results, t0):
     os.makedirs("evals", exist_ok=True)
-    with open(fp, "w") as f:
-        json.dump({"protocol": meta, "elapsed_s": time.time() - t0,
-                   "results": results}, f, indent=1)
+    with open(fp, "w", encoding="utf-8") as f:
+        json.dump({
+            "protocol": meta,
+            "elapsed_s": time.time() - t0,
+            "results": results,
+            "provenance": collect_provenance(rom=ROM, state=STATE, extra=meta),
+        }, f, indent=1)
 
 
 def _run_sequential(names, args, kind_of, results, t0, fp, meta):

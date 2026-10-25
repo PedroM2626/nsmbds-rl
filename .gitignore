@@ -60,3 +60,4 @@ out/dash_full.log
 # Test scratch
 .pytest_cache/
 out/_tmp*
+scratch/

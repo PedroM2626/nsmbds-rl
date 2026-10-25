@@ -100,6 +100,12 @@ class RustPlanner:
     def is_narrow_corridor(self, mario_abs_px) -> bool:
         return self._ask(f"N {float(mario_abs_px):.6f}").split()[1] == "1"
 
+    def ceiling_ahead(self, mario_abs_px, mario_row=None, look_tiles=4, clearance_tiles=3) -> int:
+        r_tok = "NA" if mario_row is None else f"{int(round(mario_row))}"
+        return int(self._ask(
+            f"C {float(mario_abs_px):.6f} {r_tok} {int(look_tiles)} {int(clearance_tiles)}"
+        ).split()[1])
+
 
 if __name__ == "__main__":
     import time

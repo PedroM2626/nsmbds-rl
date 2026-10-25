@@ -21,6 +21,8 @@ repository tree, so open or download it from
 | [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 33 s World 1-1 clear with all panels (245 decisions, 4,021 of 4,032 px) | current |
 | [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
 | [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png) | the frame + velocity trace of the pipe trap: a standstill jump that never advances, timer expired | current |
+| [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4) | the full World 8-1 clear with all panels (205 decisions, 3,910 of 3,920 px) | current |
+| [`media/nsmb_w81_dashboard_preview.gif`](media/nsmb_w81_dashboard_preview.gif) | the closing 10 s of the World 8-1 run | current |
 | [`media/pinn_reflex_astar_run.avi`](media/pinn_reflex_astar_run.avi) | reflex + A\* planner run, raw gameplay | historical, **red/blue swapped** |
 | [`media/pinn_reflex_pipe.avi`](media/pinn_reflex_pipe.avi) | the pipe trap in motion: timer reaches 0001 with Mario still at the pipe base | historical, **red/blue swapped** |
 | [`media/pinn_mpc_run.avi`](media/pinn_mpc_run.avi) | CEM-MPC run over the learned model | historical, **red/blue swapped** |
@@ -64,6 +66,12 @@ pipeline runs on a second course without any hand-made state.
 the corrected course-file-name mapping, and the first transfer numbers.
 
 ## Contents
+### World 8-1, start to flagpole — the final gauntlet cleared
+
+![World 8-1 clear dashboard, closing 10 s](media/nsmb_w81_dashboard_preview.gif)
+
+The animation above is the closing 10 s of the World 8-1 run (205 steps, 3,910 px of 3,920 px) touching the flagpole. The full clip with all SciML panels is [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4).
+
 - [Prerequisites and Installation](#-prerequisites-and-installation)
 - [Visual Reward Methodology](#-visual-reward-methodology)
 - [Training Architectures & Paradigms](#-training-architectures--paradigms) (1–14, incl. [§14 Physics-Informed PINN World Model](#14-physics-informed-pinn-world-model--fast-training--real-time-play))

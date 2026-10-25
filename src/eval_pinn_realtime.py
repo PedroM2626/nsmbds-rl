@@ -788,7 +788,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--controller", choices=["mpc", "ppo", "ppo+reflex", "reactive"], default="mpc")
+    ap.add_argument("--controller", choices=["mpc", "ppo", "ppo+reflex", "reactive", "world81"], default="mpc")
     ap.add_argument("--model", default="models/pinn_nsmb.pt")
     ap.add_argument("--policy", default="models/pinn_policy.zip")
     ap.add_argument("--rom", default=ROM); ap.add_argument("--state", default=STATE)
@@ -904,6 +904,9 @@ def main():
         make_agent = lambda: ReflexivePPOAgent(
             args.policy, device, planner=planner,
             enemy_lo=args.enemy_lo, enemy_hi=args.enemy_hi, enemy_dy=args.enemy_dy)
+    elif args.controller == "world81":
+        from world_8_1_controller import World81Agent
+        make_agent = lambda: World81Agent(rom_path=args.rom, course_name=args.course, ram=env.ram)
     else:
         make_agent = lambda: PPOAgent(args.policy, device)
 
