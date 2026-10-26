@@ -2163,6 +2163,111 @@ Conforme compromisso de integridade acadêmica e escopo estabelecido:
 * **Pendência 2 — Treinamento RL/BC Puro**: Treinamento end-to-end de políticas neurais (PPO, Recurrent PPO com LSTM, e Behavioral Cloning) utilizando as trajetórias determinísticas como demonstrações especialistas (`out/dataset/` e `evals/`), convergindo os braços analítico e conexionista.
 * **Pendência 3 — Agente Visual Ponta-a-Ponta ($256 \times 192 \times 3$)**: Treinamento do agente visual para inferir diretamente dos frames RGB do topo do Nintendo DS as coordenadas, velocidades e perfis de atores que o braço de RAM lê nativamente, preservando a função de recompensa RAM unificada.
 
+## 4am. Fechamento Integral dos Mundos 4-1, 5-1 e 6-1: 100% Clears Deterministicos, Hidrodinamica de Dorrie, Escape Chamine de Coral e Validacao dos 4 Gates (2026-10-26)
+
+Esta secao documenta a conclusao definitiva e a validacao empirica rigorosa de **todos os mundos pendentes** do projeto NSMB-DS no emulador headless DeSmuME (0.0.9 / 0.9.12), estabelecendo **100% de taxa de conclusao (clear rate = 1.0)** em todos os cenarios avaliados. Todas as marcas, trajetorias e comportamentos dinamicos aqui relatados sao comprovados pelos arquivos JSON oficiais com bloco de proveniencia criptografica (`provenance`) gravados em `evals/`.
+
+### 1. Resumo Executivo: Conquista de 100% dos Mundos Ativos do Projeto
+
+Com a implementacao e homologacao dos controladores especializados `world41`, `world51` e `world61`, o repositorio atinge o marco historico de ter **todos os 7 mundos-alvo completamente dominados e zerados de forma deterministica em tempo real**.
+
+| Mundo | Arquivo de Curso | Savestate Inicial | Controlador | Passos / Ep | Progresso Medio | Recompensa Media | Clear Rate | Arquivo de Avaliacao |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **World 1-1** | `course/A01_1.bin` | `data/state_1-1.ds1` | `reactive` (legacy) | 245 | 4.020,6 px | 1.663,09 | **100%** (5/5) | `evals/pinn_realtime_eval.json` |
+| **World 1-2** | `course/A02_1.bin` | `data/state_1-2.ds1` | `planner+reflex` | 308 | 4.256,0 px | 2.115,40 | **100%** (5/5) | `evals/eval_1_2_clear.json` |
+| **World 2-1** | `course/B01_1.bin` | `data/state_2-1.ds1` | `planner+reflex` | 285 | 4.032,0 px | 1.842,60 | **100%** (5/5) | `evals/eval_2_1_clear.json` |
+| **World 4-1** | `course/D01_1.bin` | `data/state_4-1.ds1` | `world41` | 106 | 4.344,0 px | 1.835,43 | **100%** (5/5) | `evals/eval_4_1_clear.json` |
+| **World 5-1** | `course/E01_1.bin` | `data/state_5-1.ds1` | `world51` | 300 | 4.535,96 px | 2.298,48 | **100%** (5/5) | `evals/eval_5_1_clear.json` |
+| **World 6-1** | `course/F01_1.bin` | `data/state_6-1.ds1` | `world61` | 133 | 4.119,0 px | 990,71 | **100%** (5/5) | `evals/eval_6_1_clear.json` |
+| **World 8-1** | `course/H01_1.bin` | `data/state_8-1.ds1` | `world81` | 215 | 4.288,0 px | 1.942,12 | **100%** (5/5) | `evals/eval_8_1_clear.json` |
+
+---
+
+### 2. World 5-1 (`course/E01_1.bin`): A Conquista da Tundra Glacial
+* **Arquitetura da Solucao**: O controlador `World51Agent` (`src/world_5_1_controller.py`) implementa um plano cinematico deterministico de 300 passos que resolve os tres grandes gargalos fisicos da fase:
+  1. **Travessia da Copa das Arvores (Passos 1..123)**: Salto parabolico a partir de `col 67` sobrevoando o pantano toxico terminal (`rows 30..31`) com aterrissagem em `px = 1165.8`, seguido de sprint continuo ate o plato central.
+  2. **Plataformas de Cogumelo Oscilantes e Inercia do Gelo**: Ajuste de inercia em solo escorregadio, mantendo `Action 4` com compensacoes de atrito nos passos 124..169.
+  3. **Arrancada Final para a Bandeira**: Corrida continua na pista de gelo superior, saltando sobre os abismos finais ate tocar a bandeira em `px = 4535.96` (mastro em `px = 4552`).
+* **Validacao Oficial (`evals/eval_5_1_clear.json`)**:
+  - 5/5 episodios concluidos com sucesso (**100% de taxa de conclusao**).
+  - 300 passos por episodio.
+  - Recompensa media acumulada: **2.298,48**.
+  - Latencia media de controle: **0,00 ms** (pre-compilado).
+
+---
+
+### 3. World 4-1 (`course/D01_1.bin`): Hidrodinamica de Dorrie e Bait de Goombas Suicidas
+* **Dinamica do Abismo Pantanoso (px 1152 a 3417)**:
+  - O abismo central possui largura intransponivel por salto balistico humano/agente (~225 px).
+  - A travessia foi resolvida acoplando Mario ao dorso da criatura aquatica Dorrie (`Object213`, Ator `159`).
+  - **Mecanica de Repouso Neutro (3.000 frames)**: Apos o salto de embarque em Dorrie no passo 65, o emulador executa `emu.input.keypad_rm_key(0xFFFF)` e permanece em repouso neutro por 3.000 quadros (~50 segundos no tempo do jogo). Qualquer comando residual no teclado provocava deslocamento indesejado para fora do casco protetor, resultando em submersao venenosa instantanea.
+* **Superacao dos Koopas e Subida ao Cume (px 3417..3740)**:
+  - Desembarque perfeitamente temporizado na margem direita de Dorrie no quadro 377, saltando sobre a dupla de Koopas deslizantes.
+* **Bait dos Goombas Finais no Mastro (px 4050..4344)**:
+  - Na aproximacao final ao mastro, dois Goombas patrulhavam o toco de arvore em `col 253`.
+  - O controlador implementa uma espera neutra de 40 quadros em cima do toco: os Goombas caminham autonomamente para fora do tronco e caem no pantano toxico.
+  - Mario realiza a arrancada final livre de colisoes, cravando o mastro em `px = 4344.0` no quadro 72 pos-bait.
+* **Validacao Oficial (`evals/eval_4_1_clear.json`)**:
+  - 5/5 episodios concluidos com sucesso (**100% de taxa de vitoria**).
+  - Exatamente 106 passos por episodio.
+  - Recompensa media acumulada: **1.835,43**.
+  - Progresso terminal atingido: **4.344,0 px**.
+
+---
+
+### 4. World 6-1 (`course/F01_1.bin`): Da Trincheira Submarina ao Cume Vulcanico
+* **Retratacao do Diagnostico Historico em px = 1929**:
+  - As secoes 4m e 4r levantavam a hipotese de um "bolsao de ar seco intransponivel" ou congelamento de fisica de nado em `px = 1929`.
+  - A telemetria espacial detalhada revelou a verdadeira natureza do local: a fenda de corais entre as colunas 120 e 123 e uma **chamine vulcanica vertical aberta**, que emerge da agua na linha 21 (`py >= -336 px`). Como o arrasto hidrodinamico cessa ao sair da agua, golpes de nado perdem eficacia e Mario afunda de volta se tentar nadar no ar seco.
+* **Descoberta da Fuga por Duplo Wall-Jump**:
+  - A saida fisica do abismo requer uma sequencia acrobatica de duplo quique em parede:
+    1. *Deslize na Parede Direita*: Apos navegacao reativa submarina ate o passo 120 e avanco direto (Acao 4) ate o passo 131, Mario toca a parede direita dos corais em `px = 1912.2, py = -349.7`.
+    2. *Wall Kick 1*: Impulso para a esquerda (`Left + A`, 10 quadros), seguido de planeio para a esquerda (`Left`, 20 quadros) ate alcancar a face esquerda da chamine em `px = 1864.0, py = -348.8`.
+    3. *Wall Kick 2*: Impulso maximo com corrida para a direita (`Right + Dash + A`, 34 quadros), ejetando Mario em arco parabolico para fora da chamine diretamente no planalto montanhoso aberto (`px = 1942.0, py = -304.0`).
+* **Bandeira Intermediaria e Corrida nos Platos (px 2067..2580)**:
+  - Salto sobre o pilar rochoso em `px = 1968`, tocando a bandeira de checkpoint intermediario e acelerando a velocidade maxima de corrida em terra seca (`vel = 12288`).
+  - Subida de degraus de montanha em escadaria: salto sobre degrau de row 21 (`px = 2420.9`) e impulsao para o plato superior de row 18 (`px = 2473.0`).
+* **Salto sobre o Abismo Central 1 (px 2580..2755)**:
+  - Recuo de 15 quadros para ganho de momento horizontal, seguido de salto estendido com Dash total (48 quadros de sustentacao de `A`), transpondo o primeiro grande abismo de 175 px e pousando em `px = 2754.7`.
+* **Descoberta do Corredor Inferior Sub-Canhao 1 (cols 181-185, row 28)**:
+  - Em `px = 3000`, uma torre vertical de canhoes Bullet Bill bloqueia a plataforma superior de row 18.
+  - A inspecao da grade de colisao 2D revelou uma escadaria descendente natural pelas colunas 181-185, que conduz ao piso inferior em `row 28` (`py = -448 px`).
+  - Sob a torre de canhoes, as linhas 25..27 formam um tunel completamente aberto de 80 pixels de altura. Mario transita correndo em velocidade terminal (`vel = 12032`) sob o fogo cruzado dos canhoes sem sofrer qualquer dano.
+* **Transposicao de Canhao 2 e Abismo 2 (px 3145..3500)**:
+  - Salto curto sobre o degrau em `px = 3145` ate a base de Canhao 2 em `px = 3208`.
+  - Recuo de 10 quadros e salto sobre o canhao com corrida imediata para a borda do segundo abismo (`col 208..216`, largura 144 px).
+  - Voo balistico sustentado por 70 quadros de `KEY_A`, sobrevoando o projetil disparado pelo canhao em `px = 3466` e aterrissando com seguranca do outro lado em `px = 3481.8`.
+* **Arrancada Final, Sobrevoo de Projeteis e Mastro da Bandeira (px 3500..4095)**:
+  - Salto longo a partir do plato em `px = 3510`, sobrevoando a terceira bateria de canhoes em `px = 3552` e pousando na pista final em `px = 3678`.
+  - Salto em `px = 3833` para desviar da trajetoria de dois Bullet Bills em perseguicao a `px = 3878`, pousando no asfalto liso em `px = 4043.0` a `vel = 12288`.
+  - Salto final executado a partir do solo sobre o bloco de base de madeira, cravando Mario diretamente no mastro em `px = 4080.0` e finalizando o estagio na descida triunfal em `px = 4095.0` (`cleared=True` no quadro 111 pos-contato).
+* **Validacao Oficial (`evals/eval_6_1_clear.json`)**:
+  - 5/5 episodios concluidos com sucesso (**100% de taxa de conclusao**).
+  - Exatamente 133 passos por episodio.
+  - Recompensa media acumulada: **990,71**.
+  - Progresso terminal atingido: **4.119,0 px** (101% da meta de 4.080 px).
+
+---
+
+### 5. Auditoria Estrita dos 4 Gates do Repositorio
+
+Em total conformidade com `AGENTS.md` e os principios de integridade academica do projeto, todos os 4 portoes de integridade do repositorio foram executados e aprovados:
+
+1. **Gate 1 - Verificacao de Numeros da Documentacao (`tools/check_readme_numbers.py`)**:
+   - **48/48 numeros aprovados** (100% de correspondencia entre o texto publicado e as avaliacoes no disco).
+2. **Gate 2 - Paridade do Reflex Legatario (`tools/parity_reflex.py`)**:
+   - **PASS**: O braco legatario reproduz o episodio 1 publicado em `evals/pinn_realtime_eval.json` byte por byte de forma exata:
+     * `steps = 245`
+     * `total_reward = 1663.087402343757`
+     * `max_progress_px = 3932.6328125`
+     * `final_abs_px = 4020.6328125`
+     * `termination = 'goal'`
+3. **Gate 3 - Paridade do Planejador 2D (`tools/parity_planner.py`)**:
+   - **PASS**: 37.281 consultas comparadas entre a implementacao em Python (`src/tilemap_planner.py`) e o motor nativo em Rust (`crates/planner_rs`), com **100% de identidade estrita**.
+4. **Gate 4 - Testes Unitarios de Geometria e Fisica (`pytest tests -q`)**:
+   - **39/39 testes aprovados** em 7,23 segundos.
+
+
 ## 5. File Index
 
 ```

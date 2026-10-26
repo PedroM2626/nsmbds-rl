@@ -58,13 +58,15 @@ class MarioRamEnv(gym.Env):
         # refuses a course, dropping the geometry features must also drop the
         # six pit dims, or the space says 23 floats while _observe returns 17
         # (a silent SB3 check failure later, instead of a loud one here).
-        if self.geo:
-            try:
-                from course import Course
-                self.course = Course(name=course_name, rom_path=self.rom_path)
-            except Exception as e:
+        try:
+            from course import Course
+            self.course = Course(name=course_name, rom_path=self.rom_path)
+        except Exception as e:
+            if self.geo:
                 print(f"Geometry disabled (failed to load course: {e})")
-                self.geo = False
+            self.geo = False
+        if self.course is None:
+            self.geo = False
         dim = OBS_DIM + (GEO_DIM if self.geo else 0)
         self.observation_space = spaces.Box(low=-10.0, high=10.0,
                                             shape=(dim,), dtype=np.float32)
@@ -205,16 +207,19 @@ class MarioRamEnv(gym.Env):
         # If repeating a jump action while grounded or upon touchdown, release KEY_A for 1 cycle to generate a hardware rising edge
         is_jump = (Keys.KEY_A in keys)
         was_jump = (Keys.KEY_A in prev_keys)
-        grounded = getattr(self, "_last_on_ground", False) or getattr(self, "_just_landed", False)
+        is_water = bool(self.course and getattr(self.course, "is_water_course", False))
+        swim_stroke = is_water and (int(action) in (2, 7))
+        grounded = getattr(self, "_last_on_ground", False) or getattr(self, "_just_landed", False) or swim_stroke
         if is_jump and was_jump and grounded:
-            # 1 cycle with directional/dash keys but without KEY_A
+            rel_cycles = 2 if is_water else 1
             for k in [k for k in keys if k != Keys.KEY_A]:
                 self.emu.input.keypad_add_key(keymask(k))
-            self.emu.cycle()
-            self._emit_cycle()
+            for _ in range(rel_cycles):
+                self.emu.cycle()
+                self._emit_cycle()
             for k in [k for k in keys if k != Keys.KEY_A]:
                 self.emu.input.keypad_rm_key(keymask(k))
-            skip = max(1, self.frameskip - 1)
+            skip = max(1, self.frameskip - rel_cycles)
         else:
             skip = self.frameskip
 
@@ -238,7 +243,7 @@ class MarioRamEnv(gym.Env):
         # Check level completion (RAM flag or flagpole contact)
         mario_px = (st["mario_B"] / 4096.0) if st["mario_B"] is not None else 0.0
         flag_x = getattr(self.course, "flag_x_px", 4032.0) if self.course else 4032.0
-        cleared = st.get("cleared", False) or (mario_px >= flag_x - 16.0)
+        cleared = (st.get("cleared", False) and mario_px >= flag_x - 64.0) or (mario_px >= flag_x - 16.0)
 
         if st["died"]:
             done = True

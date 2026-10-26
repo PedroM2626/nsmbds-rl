@@ -1,0 +1,157 @@
+{
+  "aggregate": {
+    "controller": "world61",
+    "episodes": 5,
+    "goal_abs_px": 4080,
+    "goal_source": "course flag sprite",
+    "course": "course/F01_1.bin",
+    "state": "data/state_6-1.ds1",
+    "reflex": "legacy",
+    "spawn_anchor_px": 120.0,
+    "planner": "python",
+    "clear_rate": 1.0,
+    "mean_progress_px": 4119.0,
+    "max_progress_px": 4119.0,
+    "mean_reward": 990.7113281250025,
+    "mean_fps": 7.053927854638978,
+    "mean_latency_ms": 85.44526386978035
+  },
+  "episodes": [
+    {
+      "steps": 133,
+      "total_reward": 990.7113281250026,
+      "max_progress_px": 3999.0,
+      "final_abs_px": 4119.0,
+      "max_abs_px": 4119.0,
+      "final_mario_px": 4119.0,
+      "max_mario_px": 4119.0,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 91.82520378801159,
+      "achieved_env_fps": 6.699362368412668,
+      "death_diag": "",
+      "episode": 1
+    },
+    {
+      "steps": 133,
+      "total_reward": 990.7113281250026,
+      "max_progress_px": 3999.0,
+      "final_abs_px": 4119.0,
+      "max_abs_px": 4119.0,
+      "final_mario_px": 4119.0,
+      "max_mario_px": 4119.0,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 80.1783271301958,
+      "achieved_env_fps": 7.340718067374112,
+      "death_diag": "",
+      "episode": 2
+    },
+    {
+      "steps": 133,
+      "total_reward": 990.7113281250026,
+      "max_progress_px": 3999.0,
+      "final_abs_px": 4119.0,
+      "max_abs_px": 4119.0,
+      "final_mario_px": 4119.0,
+      "max_mario_px": 4119.0,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 77.69796722813656,
+      "achieved_env_fps": 7.565622948703065,
+      "death_diag": "",
+      "episode": 3
+    },
+    {
+      "steps": 133,
+      "total_reward": 990.7113281250026,
+      "max_progress_px": 3999.0,
+      "final_abs_px": 4119.0,
+      "max_abs_px": 4119.0,
+      "final_mario_px": 4119.0,
+      "max_mario_px": 4119.0,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 88.618226517412,
+      "achieved_env_fps": 6.8707011825193245,
+      "death_diag": "",
+      "episode": 4
+    },
+    {
+      "steps": 133,
+      "total_reward": 990.7113281250026,
+      "max_progress_px": 3999.0,
+      "final_abs_px": 4119.0,
+      "max_abs_px": 4119.0,
+      "final_mario_px": 4119.0,
+      "max_mario_px": 4119.0,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 88.90659468514579,
+      "achieved_env_fps": 6.793234706185721,
+      "death_diag": "",
+      "episode": 5
+    }
+  ],
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-26T15:39:08+00:00",
+    "git": {
+      "commit": "e1503187de41b6fe1cce1e09463fe46cde72b1cb",
+      "dirty": true
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/state_6-1.ds1",
+        "sha1": "91905f08aec283ee26e8d66842b0dd88e8241d34",
+        "bytes": 2427811
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_pinn_realtime.py",
+      "--controller",
+      "world61",
+      "--course",
+      "course/F01_1.bin",
+      "--state",
+      "data/state_6-1.ds1",
+      "--max-steps",
+      "300",
+      "--episodes",
+      "5",
+      "--out",
+      "evals/eval_6_1_clear.json"
+    ],
+    "controller": "world61",
+    "course": "course/F01_1.bin",
+    "course_area_index": 107,
+    "state_area_index": 107,
+    "seed": 7,
+    "reflex": "legacy",
+    "planner": "python",
+    "max_steps": 300,
+    "episodes": 5,
+    "goal_abs_px": 4080
+  }
+}

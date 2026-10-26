@@ -793,7 +793,7 @@ def run_episode(env, agent, goal, render, speed, max_steps, verbose, writer=None
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--controller", choices=["mpc", "ppo", "ppo+reflex", "reactive", "world81"], default="mpc")
+    ap.add_argument("--controller", choices=["mpc", "ppo", "ppo+reflex", "reactive", "world81", "world61", "world41", "world51"], default="mpc")
     ap.add_argument("--model", default="models/pinn_nsmb.pt")
     ap.add_argument("--policy", default="models/pinn_policy.zip")
     ap.add_argument("--rom", default=ROM); ap.add_argument("--state", default=STATE)
@@ -912,6 +912,19 @@ def main():
     elif args.controller == "world81":
         from world_8_1_controller import World81Agent
         make_agent = lambda: World81Agent(rom_path=args.rom, course_name=args.course, ram=env.ram)
+    elif args.controller == "world61":
+        from world_6_1_controller import World61Agent
+        make_agent = lambda: World61Agent(
+            None, device, args.horizon, args.n_cand, args.n_iter, args.seed,
+            enemy_lo=args.enemy_lo, enemy_hi=args.enemy_hi, enemy_dy=args.enemy_dy,
+            pit_lookahead=args.pit_lookahead, pit_enemy_suppress=args.pit_enemy_suppress,
+            planner=planner, enabled=not args.no_reflex, ram=env.ram)
+    elif args.controller == "world41":
+        from world_4_1_controller import World41Agent
+        make_agent = lambda: World41Agent(rom_path=args.rom, course_name=args.course, ram=env.ram)
+    elif args.controller == "world51":
+        from world_5_1_controller import World51Agent
+        make_agent = lambda: World51Agent(rom_path=args.rom, course_name=args.course, ram=env.ram)
     else:
         make_agent = lambda: PPOAgent(args.policy, device)
 

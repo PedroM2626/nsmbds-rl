@@ -1,0 +1,157 @@
+{
+  "aggregate": {
+    "controller": "world51",
+    "episodes": 5,
+    "goal_abs_px": 4576,
+    "goal_source": "course flag sprite",
+    "course": "course/E01_1.bin",
+    "state": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+    "reflex": "legacy",
+    "spawn_anchor_px": 56.0,
+    "planner": "python",
+    "clear_rate": 1.0,
+    "mean_progress_px": 4535.95703125,
+    "max_progress_px": 4535.95703125,
+    "mean_reward": 2298.478515625005,
+    "mean_fps": 20.015508523489526,
+    "mean_latency_ms": 0.0
+  },
+  "episodes": [
+    {
+      "steps": 300,
+      "total_reward": 2298.478515625005,
+      "max_progress_px": 4479.95703125,
+      "final_abs_px": 4535.95703125,
+      "max_abs_px": 4535.95703125,
+      "final_mario_px": 4535.956787109375,
+      "max_mario_px": 4535.956787109375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 20.19624732706423,
+      "death_diag": "",
+      "episode": 1
+    },
+    {
+      "steps": 300,
+      "total_reward": 2298.478515625005,
+      "max_progress_px": 4479.95703125,
+      "final_abs_px": 4535.95703125,
+      "max_abs_px": 4535.95703125,
+      "final_mario_px": 4535.956787109375,
+      "max_mario_px": 4535.956787109375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 20.10371756653174,
+      "death_diag": "",
+      "episode": 2
+    },
+    {
+      "steps": 300,
+      "total_reward": 2298.478515625005,
+      "max_progress_px": 4479.95703125,
+      "final_abs_px": 4535.95703125,
+      "max_abs_px": 4535.95703125,
+      "final_mario_px": 4535.956787109375,
+      "max_mario_px": 4535.956787109375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 20.191076993128213,
+      "death_diag": "",
+      "episode": 3
+    },
+    {
+      "steps": 300,
+      "total_reward": 2298.478515625005,
+      "max_progress_px": 4479.95703125,
+      "final_abs_px": 4535.95703125,
+      "max_abs_px": 4535.95703125,
+      "final_mario_px": 4535.956787109375,
+      "max_mario_px": 4535.956787109375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 19.836525581209692,
+      "death_diag": "",
+      "episode": 4
+    },
+    {
+      "steps": 300,
+      "total_reward": 2298.478515625005,
+      "max_progress_px": 4479.95703125,
+      "final_abs_px": 4535.95703125,
+      "max_abs_px": 4535.95703125,
+      "final_mario_px": 4535.956787109375,
+      "max_mario_px": 4535.956787109375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0,
+      "achieved_env_fps": 19.749975149513755,
+      "death_diag": "",
+      "episode": 5
+    }
+  ],
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-26T05:25:52+00:00",
+    "git": {
+      "commit": "e1503187de41b6fe1cce1e09463fe46cde72b1cb",
+      "dirty": true
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+        "sha1": "73882322121431d926ea8d6d2e2e868e66734426",
+        "bytes": 2424826
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_pinn_realtime.py",
+      "--controller",
+      "world51",
+      "--course",
+      "course/E01_1.bin",
+      "--state",
+      "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+      "--max-steps",
+      "350",
+      "--episodes",
+      "5",
+      "--out",
+      "evals/eval_5_1_clear.json"
+    ],
+    "controller": "world51",
+    "course": "course/E01_1.bin",
+    "course_area_index": 88,
+    "state_area_index": 88,
+    "seed": 7,
+    "reflex": "legacy",
+    "planner": "python",
+    "max_steps": 350,
+    "episodes": 5,
+    "goal_abs_px": 4576
+  }
+}
