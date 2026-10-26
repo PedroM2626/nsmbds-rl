@@ -47,6 +47,8 @@ rust/nsmb_planner.exe
 out/dashboard_frames/
 out/dashboard_frame.png
 out/dashboard_run.json
+out/dashboard_*run.json
+out/world_pools/
 out/parity_queries.txt
 out/parity_python.json
 out/parity_rust.json

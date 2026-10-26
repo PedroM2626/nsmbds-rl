@@ -21,6 +21,12 @@ repository tree, so open or download it from
 | [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 33 s World 1-1 clear with all panels (245 decisions, 4,021 of 4,032 px) | current |
 | [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
 | [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png) | the frame + velocity trace of the pipe trap: a standstill jump that never advances, timer expired | current |
+| [`media/nsmb_w41_dashboard_clear.mp4`](media/nsmb_w41_dashboard_clear.mp4) | the full World 4-1 clear with Dorrie swamp navigation and all panels (106 decisions, 4,344 px) | current |
+| [`media/nsmb_w41_dashboard_preview.gif`](media/nsmb_w41_dashboard_preview.gif) | the closing 10 s of the World 4-1 run | current |
+| [`media/nsmb_w51_dashboard_clear.mp4`](media/nsmb_w51_dashboard_clear.mp4) | the full World 5-1 clear on ice/snow with all panels (300 decisions, 4,536 px) | current |
+| [`media/nsmb_w51_dashboard_preview.gif`](media/nsmb_w51_dashboard_preview.gif) | the closing 10 s of the World 5-1 run | current |
+| [`media/nsmb_w61_dashboard_clear.mp4`](media/nsmb_w61_dashboard_clear.mp4) | the full World 6-1 clear with marine trench exit and all panels (133 decisions, 4,119 px) | current |
+| [`media/nsmb_w61_dashboard_preview.gif`](media/nsmb_w61_dashboard_preview.gif) | the closing 10 s of the World 6-1 run | current |
 | [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4) | the full World 8-1 clear with all panels (205 decisions, 3,910 of 3,920 px) | current |
 | [`media/nsmb_w81_dashboard_preview.gif`](media/nsmb_w81_dashboard_preview.gif) | the closing 10 s of the World 8-1 run | current |
 | [`media/pinn_reflex_astar_run.avi`](media/pinn_reflex_astar_run.avi) | reflex + A\* planner run, raw gameplay | historical, **red/blue swapped** |
