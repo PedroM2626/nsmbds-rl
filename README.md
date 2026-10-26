@@ -82,7 +82,7 @@ The animation above is the closing 10 s of the World 8-1 run (205 steps, 3,910 p
 
 - [Prerequisites and Installation](#-prerequisites-and-installation)
 - [Visual Reward Methodology](#-visual-reward-methodology)
-- [Training Architectures & Paradigms](#-training-architectures--paradigms) (1–14, incl. [§14 Physics-Informed PINN World Model](#14-physics-informed-pinn-world-model--fast-training--real-time-play))
+- [Training Architectures & Paradigms](#-training-architectures--paradigms) (1–17, incl. [§14 PINN](#14-physics-informed-pinn-world-model--fast-training--real-time-play), [§15 Neuroevolution](#15-compact-neuroevolution-genetic-algorithm), [§16 IQN](#16-implicit-quantile-networks-iqn), [§17 Rainbow DQN](#17-rainbow-dqn--pure-potential-maximum-reward))
 - [Experiment Management (MLOps)](#-experiment-management-mlops)
 - [Acknowledgments](#-acknowledgments)
 
@@ -404,6 +404,42 @@ python src/tilemap_planner.py                                                   
 ```
 
 **Real-time console results** (World 1-1; the flagpole is at 4,032 px and the last solid tile column ends at 4,256 px — the first is what `level_cleared` fires on): the dash unlock **doubles** reach, and with ROM **wall/pipe perception** the reflex + A\* planner now **clears the stage end to end**: `reactive` reaches **4,021 px of 4,032 px in 5/5 episodes** ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json), and the clip at the top of this file). The learned arms still stop short — CEM-MPC peaks at 1,510 px, PPO+Reflex at 1,139 px, pixel PPO at 120.8 px — and the imagination PPO (2.5 ms/frame, >400 FPS) also runs live. The **tilemap A\*** proves the stage is **geometrically feasible** (4 pits, max 3 tiles, all within a running jump — the true pit census measured against the game's own physics, five slope ramps the static classes miscounted as pits notwithstanding). The barrier that had to be broken sat at the **pipe + dense block-staircase** just after it: a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires — direct in-game evidence (rendered frame + velocity trace) is in [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png). The reflex layer clears it by taking off from the exact edge column with dash speed still on; a *learned* controller clearing it still needs a full solid-tile 2D platformer planner or large-scale direct RL. Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, `media/nsmb_dashboard_clear.mp4`.
+
+---
+
+### 15. Compact Neuroevolution (Genetic Algorithm) — Zero-Gradient 100% Clear in 206 Steps
+Direct policy search via an elitist Genetic Algorithm ($P=24$, top-4 elite, Gaussian mutation $\sigma=0.15$) operating on an ultra-compact MLP (23 inputs $\to$ 32 tanh $\to$ 8 actions, only **1,032 parameters** / 11.6 KB).
+By replacing gradient descent and value-function bootstrapping with pure episodic progress fitness ($f = \max_t x_t$), the policy cleared World 1-1 at Generation 12 (29.9 min) and converged to an all-time speedrun record of **206 steps** (beating the 245-step baseline). Evaluated deterministically ($N=5$), it achieves **100% clear rate (5/5)** with zero catastrophic forgetting:
+
+```bash
+python tools/train_neuroevolution.py --generations 25 --pop-size 24 --elite 4
+python tools/eval_neuroevolution.py --model models/best_genetic_policy.npz --episodes 5
+```
+*Evaluated performance: Deterministic **4,020.0 px (100% clear 5/5, 206 steps)** ([`evals/eval_genetic_w11.json`](evals/eval_genetic_w11.json), clip at [`media/nsmb_w11_genetic_clear.mp4`](media/nsmb_w11_genetic_clear.mp4)).*
+
+---
+
+### 16. Implicit Quantile Networks (IQN) — Quantile Distributional RL
+Implements continuous quantile distributional RL (Dabney et al., 2018) via a 64-frequency cosine embedding $\phi(\tau)$ interacting with an observation encoder $\psi(s) \in \mathbb{R}^{128}$ (45,448 parameters). Trained on live DeSmuME under the simple potential maximum reward ($r_t = \max(0, x_t - x_{\text{max\_so\_far}})/16.0$):
+First level clear achieved at **6.33 minutes** (Episode 82, step 8,388, $4,023.8\text{ px}$), reaching the top of the flagpole ($4,032.0\text{ px}$) during training:
+
+```bash
+python tools/train_iqn.py --total-steps 20000 --batch-size 64
+python tools/eval_iqn.py --model models/iqn_policy.pt --episodes 5
+```
+*Evaluated performance: Peak training progress **4,032.0 px (Clear)**, greedy evaluation peak **2,913.0 px (72.2%)** ([`evals/eval_iqn_w11.json`](evals/eval_iqn_w11.json)).*
+
+---
+
+### 17. Rainbow DQN & Pure Potential Maximum Reward
+Combines all six extensions of Rainbow (Hessel et al., AAAI 2018): Double Q-learning, Prioritized Experience Replay (PER, $\alpha=0.6, \beta_0=0.4 \to 1.0$), Dueling network, multi-step returns ($n=3, \gamma=0.99$), C51 categorical distribution (51 atoms over $[-2, 16]$), and factorized NoisyLinear exploration layers (204,054 parameters).
+Under the pure potential maximum reward, Rainbow achieved **3,850.9 px** (95.8% of stage) in training (16.4 min) and maintains a rock-solid deterministic greedy performance of **2,996.8 px** (74.5%) across all 5 evaluation runs without on-policy policy collapse:
+
+```bash
+python tools/train_rainbow.py --total-steps 20000 --batch-size 64
+python tools/eval_rainbow.py --model models/rainbow_policy.pt --episodes 5
+```
+*Evaluated performance: Peak training progress **3,850.9 px**, greedy evaluation **2,996.8 px** across 5/5 runs ([`evals/eval_rainbow_w11.json`](evals/eval_rainbow_w11.json)). Full comparative study across PPO, Rainbow, IQN, and GA in [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) §4aq.*
 
 ---
 
