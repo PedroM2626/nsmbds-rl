@@ -1,0 +1,105 @@
+{
+  "model": "models/iqn_policy.pt",
+  "n_episodes": 5,
+  "mean_max_x_px": 1911.2404296875,
+  "max_max_x_px": 2912.956787109375,
+  "mean_steps": 122.2,
+  "clear_rate": 0.0,
+  "episodes": [
+    {
+      "episode": 1,
+      "max_x_px": 1245.3359375,
+      "final_x_px": 1245.3359375,
+      "steps": 99,
+      "total_reward": 425.7062499999992,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 2,
+      "max_x_px": 1242.476318359375,
+      "final_x_px": 1221.46875,
+      "steps": 97,
+      "total_reward": 426.60605468749924,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 3,
+      "max_x_px": 2912.956787109375,
+      "final_x_px": 2912.956787109375,
+      "steps": 159,
+      "total_reward": 1101.9386718750034,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 4,
+      "max_x_px": 1242.476318359375,
+      "final_x_px": 1241.375,
+      "steps": 97,
+      "total_reward": 426.60605468749924,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 5,
+      "max_x_px": 2912.956787109375,
+      "final_x_px": 2912.956787109375,
+      "steps": 159,
+      "total_reward": 1101.9386718750034,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    }
+  ],
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-26T21:39:58+00:00",
+    "git": {
+      "commit": "3ffd8f9d1640d9af116b430a77741effbf00e5b7",
+      "dirty": false
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+        "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+        "bytes": 2353702
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_iqn.py",
+      "--model",
+      "models/iqn_policy.pt",
+      "--episodes",
+      "5",
+      "--out",
+      "evals/eval_iqn_w11.json"
+    ]
+  }
+}

@@ -2421,10 +2421,62 @@ O modelo campeao foi avaliado em 5 episodios deterministiscos consecutivos com b
 * **Video de Telemetria SciML**: [`media/nsmb_w11_genetic_clear.mp4`](../media/nsmb_w11_genetic_clear.mp4) (29,5 s de gameplay a 60 fps nativos com HUD em 4 quadrantes).
 * **Preview Animado**: [`media/nsmb_w11_genetic_preview.gif`](../media/nsmb_w11_genetic_preview.gif) (10 segundos finais tocando o topo do mastro).
 
+
+
+## 4ap. Implicit Quantile Networks (IQN): Aprendizado por Reforco Discreto com Potencial Maximo e Comparativo Empirico com Neuroevolucao (2026-10-26)
+
+Esta secao documenta a implementacao do **Implicit Quantile Networks (IQN)** (Dabney et al., 2018) com a funcao de recompensa simples baseada em Diferencial de Maximo Historico ($r_t = \max(0, x_t - x_{\text{max\_so\_far}})/16$), demonstrando como a simplificacao do sinal de recompensa destrava o Aprendizado por Reforco profundo baseado em valor, e apresenta o confronto direto de desempenho contra a Neuroevolucao (Metodo Genetico).
+
+### 1. Formulacao Matematica do IQN com Potencial Maximo
+
+O IQN substitui a aproximacao escalar do valor esperado $Q(s, a)$ pela modelagem da distribuicao quantilica completa de retorno $Z_\tau(s, a)$ para fracoes quantilicas continuas $\tau \sim U(0, 1)$:
+* **Representacao de Estado**: $\psi(s) \in \mathbb{R}^{128}$ gerada por MLP de 2 camadas sobre o vetor de telemetria da RAM de 23 dimensoes.
+* **Embedding Cosseno de Quantis**: $\phi(\tau) \in \mathbb{R}^{128}$ computado via projecao linear sobre 64 frequencias $\cos(i \pi \tau)$:
+  $$\phi_j(\tau) = \text{ReLU}\left( \sum_{i=0}^{63} \cos(i \pi \tau) w_{ij} + b_j \right)$$
+* **Interacao e Cabeca de Valor**: $Z_\tau(s, a) = \text{Head}(\psi(s) \odot \phi(\tau))$ para as 8 acoes discretas ($|\mathcal{A}| = 8$).
+* **Funcao de Perda Huber Quantilica**:
+  $$\mathcal{L}_{\text{IQN}} = \frac{1}{N N'} \sum_{i=1}^N \sum_{j=1}^{N'} |\tau_i - \mathbb{I}(\delta_{ij} < 0)| \frac{\mathcal{L}_\kappa(\delta_{ij})}{\kappa}$$
+  onde $\delta_{ij} = r + \gamma (1 - d) Z_{\tau'_j}(s', a^*) - Z_{\tau_i}(s, a)$ com $N = N' = 32$ amostras quantilicas e $\kappa = 1,0$.
+* **Recompensa de Potencial Maximo**:
+  $$r_t = \frac{\max(0, x_t - x_{\text{max\_so\_far}})}{16.0} + 10.0 \cdot \mathbb{I}(\text{cleared}) - 1.0 \cdot \mathbb{I}(\text{died})$$
+
+---
+
+### 2. Resultados Empiricos do Treinamento do IQN (20.000 Passos)
+
+O treinamento executou 20.000 passos de interacao direta no emulador DeSmuME com aceleracao CUDA em **14,83 minutos** (210 episodios, log em `evals/iqn_training_log.json`):
+* **Primeiro CLEAR Historico de RL**: Atingido em **6,3 minutos** (Episodio 82, passo 8.388, $\epsilon = 0,12$), tocando o mastro em **$4.023,8\text{ px}$** (`Cleared: True`).
+* **Clears Subsequentes**: O agente repetiu a conclusao da fase no Episodio 90 ($4.028,2\text{ px}$, 6,8 min, $\epsilon = 0,05$) e no Episodio 93 ($4.027,4\text{ px}$, 7,2 min), alcancando o topo do mastro em **$4.032,0\text{ px}$**.
+* **Modelo Salvo**: Gravado em `models/iqn_policy.pt` (186 KB).
+
+### 3. Avaliacao Deterministica sem Exploracao (`evals/eval_iqn_w11.json`)
+Quando avaliado em modo puramente ganancioso ($\epsilon = 0$ absoluto, sem ruido amostral de acao) ao longo de 5 episodios com bloco de proveniencia criptografica:
+* **Distancia Maxima Media**: **$1.911,2\text{ px}$**.
+* **Pico Deterministico Maximo**: **$2.913,0\text{ px}$** (superando 72,2% do estagio de forma consistente nos episodios 3 e 5).
+* **Taxa de Clear Deterministica**: **0,0% (0/5)**. A politica gananciosa pura estagna em 2.913 px diante da escadaria final de Koopas, dependendo do pequeno residual estocastico ($\epsilon = 0,05$) para disparar o salto de ultrapassagem que executava durante o treino.
+
+---
+
+### 4. Confronto Comparativo Rigoroso: PPO vs. IQN vs. Neuroevolucao
+
+| Criterio Avaliado | Baseline PPO (Legado) | IQN com Recompensa Simples (4ap) | Neuroevolucao / GA (4ao) |
+| :--- | :---: | :---: | :---: |
+| **Paradigma** | On-Policy Policy Gradient | Distributional Value-Based RL | Neuroevolucao Populacional (Zero Gradiente) |
+| **Espaco de Acao** | Discreto (amostragem Softmax) | Discreto (Q-values quantilicos) | Discreto (argmax deterministico) |
+| **Funcao de Recompensa** | Complexa (Optical Flow + Penalidades) | **Simples ($r_t = \max(0, \Delta x_{\max})/16$)** | **Simples ($f = \max x_t$, elitismo)** |
+| **Tempo Total de Treino** | ~3-4 horas (200.000 passos) | **14,83 minutos** (20.000 passos) | **74,68 minutos** (25 geracoes, 600 eps) |
+| **Tempo ate o 1º Clear** | **NUNCA ZEROU** | **6,3 minutos** (passo 8.388) | **29,9 minutos** (Geracao 12) |
+| **Maximo Progresso no Treino** | 424,0 px | **4.032,0 px (Clear)** | **4.020,0 px (Clear)** |
+| **Desempenho Greedy ($N=5$)** | 347,0 px (Morte no Goomba 365 px) | 1.911,2 px (Pico 2.913,0 px) | **4.020,0 px (100% CLEAR, 5/5)** |
+| **Passos para Zerar** | N/A | ~240 passos | **206 passos** (Recorde absoluto) |
+| **Tamanho do Modelo** | ~1,2 MB | 186 KB (60k params) | **11,6 KB (1.032 params)** |
+| **Sensibilidade a Minimos Locais** | Severa (entropia colapsa) | Moderada (requer $\epsilon > 0$ residual) | **Nenhuma** (elitismo garante monotonicidade) |
+
 ## 5. File Index
 
 ```
 src/
+  iqn.py                 Implicit Quantile Networks (IQN) agent & replay buffer (4ap)
   env.py                 Visual (CNN) environment — pixel-based obs, optical flow reward
   ram_env.py             RAM environment — 17-dim vector obs, no CNN
   ram_state.py           RAM address constants + RamState reader (validated EUR)
