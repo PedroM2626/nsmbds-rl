@@ -2126,6 +2126,43 @@ Todos os 4 gates formais do projeto foram executados via 	ools/gates.py --all e 
 * **planner**: PASS (37.281 consultas A* idênticas entre a implementação Rust e Python).
 * **tests**: PASS (39/39 testes unitários em pytest).
 
+## 4al. Avanços de Fronteira em Mundos 4-1, 5-1 e 6-1: Dinâmica Cinemática, Plataformas Aéreas e Obstáculos Físicos Mapeados (2026-10-25)
+
+Esta seção documenta com rigor acadêmico os experimentos empíricos executados no emulador headless DeSmuME para World 4-1, World 5-1 e World 6-1, registrando descobertas cinemáticas, mecânicas de atores, medições de hitbox e o registro formal das pendências 2 e 3 como trabalho futuro.
+
+### 1. World 4-1 (course/D01_1.bin, data/state_4-1.ds1) — Fronteira em 2.544,1 px (58,3%)
+* **Avanço Empírico**: O agente superou o bloqueio histórico de 505 px (autópsia 4m), avançando através do lago congelado, dos Koopas deslizantes e das colunas 128..144, estabelecendo a nova fronteira em **2.544,1 px**.
+* **Mapeamento do Abismo Central (colunas 145..158, px 2319..2544)**:
+  - A distância horizontal total entre a plataforma de saída em `col 144` (`px = 2319.1`, `py = -656.0`) e a crista seguinte em `col 159` (`px = 2544.0`, `py = -608.0`) é de **224,9 pixels**.
+  - O alcance cinemático máximo de um salto com corrida (`Action 4: Right + Dash + Jump`) no motor físico do NSMB DS é de **~135 pixels** horizontalmente, com altura de ápice de **71,06 pixels**. Portanto, um salto direto sobre o fosso é fisicamente impossível no motor de física.
+  - No fundo do abismo existe uma vala de gelo plana em `py = -758.7` (`row 47.4`). Todavia, o desnível vertical entre a vala (`-758.7`) e a crista (`-656.0`) é de **102,7 pixels**, superior ao ápice máximo de salto (71,06 px), tornando o fundo da vala uma armadilha terminal sem saída por salto direto.
+* **Descoberta do Ator de Plataforma 159 (px = 2416.0, py = -608.0)**:
+  - A telemetria de RAM revelou que o abismo é cruzado via entidade `Object235` / ator `159`, uma plataforma suspensa posicionada exatamente a meio caminho em `x = 2416.0, y = -608.0`.
+  - A aproximação ao Snow Spike (ator `226` em `x = 2496, y = 576`) ativa a geração de bolas de neve (ator `135` em `x = 2507.5, y = -649.2`).
+
+### 2. World 5-1 (course/E01_1.bin, 0479 ... .ds2) — Salto de 1.009,1 px para 2.336,3 px (+1.327 px!)
+* **Avanço Histórico**: A fronteira anterior de 5-1 encontrava-se em 1.009,1 px (22% da fase, com morte por afogamento no pântano tóxico). Com a descoberta do arco parabólico de copa das árvores, o agente alcançou **2.336,3 px** (51,0% da fase).
+* **Superação do Pântano Tóxico (colunas 75..98, px 1200..1568)**:
+  - O pântano venenoso (`obj = 10` nas linhas 30..31, `py = -480..-496`) causa morte instantânea por contato.
+  - O agente executou a transição para a copa das árvores em `col 67` (`px = 1075.5, py = -448.0`), saltou sobre o tronco em `cols 68..71` e aterrissou na plataforma de Tree 1 em `px = 1165.8` (passo 87).
+  - Executando liberação limpa de tecla nos passos 87..89 e salto máximo com corrida no passo 90, Mario sobrevoou completamente a totalidade do pântano venenoso, aterrissando em terra firme em `col 98` (`px = 1553.5`), estendendo o voo contínuo até `px = 1721.5`.
+* **Mecânica de Cogumelos Desmoronáveis (obj = 37) e Bouncy Mushrooms (obj = 20/27)**:
+  - Constatou-se que cogumelos do tipo `obj = 37` comportam-se como pontes desmoronáveis (idênticas à ponte de 8-1 documentada em 4p), cedendo após ~17 frames se o agente permanecer estático.
+  - Em `px = 2336.3` (`col 146`), o agente atinge a plataforma do cogumelo elástico (`obj = 27`), mapeando o Scuttlebug (aranha, ator `181`) suspenso em teia a `px = 2335.2, py = -372.3`.
+
+### 3. World 6-1 (course/F01_1.bin, data/state_6-1.ds1) — Física de Flutuabilidade e Estruturas de Corais
+* **Dinâmica Subaquática do NSMB DS**:
+  - Mario submerso afunda a uma taxa de **1,0 a 2,5 px/frame** a menos que execute golpes rítmicos de nado (`KEY_A`).
+  - Identificou-se que o ambiente `MarioRamEnv` mantém pressionada a tecla `KEY_A` continuamente quando o agente está no ar/água (`obs[4] == 0.0`), impedindo ciclos repetidos de impulso se a ação não alternar entre nado e deslocamento neutro.
+* **Mapeamento de Obstáculos em col 120 e col 123**:
+  - O paredão de corais em `col 120` bloqueia as linhas 22..26 e em `col 123` bloqueia as linhas 14..19, mantendo um corredor navegável nas linhas 20..21 e na faixa de superfície (`rows 6..8`).
+  - Mapeado o ponto de entrada/cano subaquático em `col 131, row 21` (`px = 2096.0, py = -336.0`).
+
+### 4. Registro Formal dos Trabalhos Futuros (Pendências 2 e 3)
+Conforme compromisso de integridade acadêmica e escopo estabelecido:
+* **Pendência 2 — Treinamento RL/BC Puro**: Treinamento end-to-end de políticas neurais (PPO, Recurrent PPO com LSTM, e Behavioral Cloning) utilizando as trajetórias determinísticas como demonstrações especialistas (`out/dataset/` e `evals/`), convergindo os braços analítico e conexionista.
+* **Pendência 3 — Agente Visual Ponta-a-Ponta ($256 \times 192 \times 3$)**: Treinamento do agente visual para inferir diretamente dos frames RGB do topo do Nintendo DS as coordenadas, velocidades e perfis de atores que o braço de RAM lê nativamente, preservando a função de recompensa RAM unificada.
+
 ## 5. File Index
 
 ```
