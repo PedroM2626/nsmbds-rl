@@ -20,6 +20,8 @@ repository tree, so open or download it from
 |---|---|---|
 | [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 33 s World 1-1 clear with all panels (245 decisions, 4,021 of 4,032 px) | current |
 | [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
+| [`media/nsmb_w11_genetic_clear.mp4`](media/nsmb_w11_genetic_clear.mp4) | the 100% World 1-1 clear evolved via pure Neuroevolution (206 decisions, 4,020 px, 1,032 params) | current |
+| [`media/nsmb_w11_genetic_preview.gif`](media/nsmb_w11_genetic_preview.gif) | the closing 10 s of the neuroevolutionary clear | current |
 | [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png) | the frame + velocity trace of the pipe trap: a standstill jump that never advances, timer expired | current |
 | [`media/nsmb_w41_dashboard_clear.mp4`](media/nsmb_w41_dashboard_clear.mp4) | the full World 4-1 clear with Dorrie swamp navigation and all panels (106 decisions, 4,344 px) | current |
 | [`media/nsmb_w41_dashboard_preview.gif`](media/nsmb_w41_dashboard_preview.gif) | the closing 10 s of the World 4-1 run | current |

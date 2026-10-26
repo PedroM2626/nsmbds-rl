@@ -70,6 +70,18 @@ CONFIGS = {
         "meta_out": os.path.join(ROOT, "out", "dashboard_w61_run.json"),
         "max_steps": 1200,
     },
+    "1-1-genetic": {
+        "course": "course/A01_1.bin",
+        "state": os.path.join(ROOT, "data", "0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1"),
+        "goal_px": 4032.0,
+        "spawn_px": 80.0,
+        "controller": "genetic",
+        "title": "World 1-1 (Neuroevolution Genetic Policy)",
+        "out_mp4": os.path.join(ROOT, "media", "nsmb_w11_genetic_clear.mp4"),
+        "out_gif": os.path.join(ROOT, "media", "nsmb_w11_genetic_preview.gif"),
+        "meta_out": os.path.join(ROOT, "out", "dashboard_w11_genetic_run.json"),
+        "max_steps": 450,
+    },
 }
 
 
@@ -83,6 +95,16 @@ def make_agent(ctrl_name: str, course_name: str, planner: TilemapAStar, env: Mar
     elif ctrl_name == "world61":
         from world_6_1_controller import World61Agent
         agent = World61Agent(planner=planner, ram=env.ram)
+    elif ctrl_name == "genetic":
+        from eval_neuroevolution import CompactPolicyEvaluator
+        class GeneticAgentWrapper:
+            def __init__(self, model_path=os.path.join(ROOT, "models", "genetic_policy.npz")):
+                self.policy = CompactPolicyEvaluator(model_path)
+            def reset(self):
+                pass
+            def act(self, obs, ram=None):
+                return self.policy.act(obs)
+        agent = GeneticAgentWrapper()
     else:
         raise ValueError(f"Unknown controller {ctrl_name}")
     agent.reset()
@@ -310,7 +332,7 @@ def record_world(world_id: str, fps: int = 60, gif_len: float = 10.0):
 
 def main():
     ap = argparse.ArgumentParser(description="Multi-world NSMB-DS Telemetry Dashboard Video Recorder")
-    ap.add_argument("--world", choices=["4-1", "5-1", "6-1"], default=None, help="Specific world to record")
+    ap.add_argument("--world", choices=list(CONFIGS.keys()), default=None, help="Specific world to record")
     ap.add_argument("--all", action="store_true", help="Record all cleared worlds (4-1, 5-1, 6-1)")
     ap.add_argument("--fps", type=int, default=60, help="Framerate (60 fps native DS)")
     ap.add_argument("--gif-len", type=float, default=10.0, help="Duration of preview GIF in seconds")
