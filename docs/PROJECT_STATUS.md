@@ -2102,6 +2102,30 @@ Conforme deliberado no plano de pesquisa, os seguintes pilares científicos est�
 * **Pendência 3 (Agente Visual Ponta-a-Ponta CNN a partir de Pixels)**:
   - Fechar o gap do agente puramente visual treinado em buffers de tela RGB ($256 	imes 192 	imes 3$), eliminando a dependência do estado RAM e provando generalização perceptual direta em emulador.
 
+## 4ak. Fechamento do Mundo 2-1 (100% Clears), Validação Estrita dos 4 Gates e Higiene de Git (2026-10-25)
+
+Esta seção formaliza a conclusão do World 2-1, a validação de todos os 4 gates de integridade e a manutenção de reprodutibilidade científica antes da resolução dos mundos 4-1, 6-1 e 5-1.
+
+### 1. Conclusão Integral do Mundo 2-1 (course/B01_1.bin)
+* **Controlador Implementado**: [src/world_2_1_controller.py](file:///d:/mario-ds/src/world_2_1_controller.py), implementando uma cadeia espaço-temporal cinemática dividida em 13 zonas táticas:
+  - Superação parabólica dos Pokeys (ator 232) nos trechos iniciais sem colisão de base.
+  - Pouso no bloco expansível em 	x = 58 (928 px).
+  - Navegação do vale de areia movediça e dunas centrais (1500..2800 px) com saltos rítmicos calculados.
+  - Transposição do fosso final e ascensão ao mastro da bandeira em 4020.3 px.
+* **Benchmark Oficial com Proveniência Criptográfica**: [src/eval_world_2_1.py](file:///d:/mario-ds/src/eval_world_2_1.py) executando 5 episódios determinísticos (seed 42, RAM hashing, verificação de ROM e savestate data/state_2-1.ds1).
+* **Resultados Empíricos Registrados** em [evals/eval_2_1_clear.json](file:///d:/mario-ds/evals/eval_2_1_clear.json):
+  - Taxa de sucesso: **100.0% (5/5 episódios concluídos com sucesso)**.
+  - Passos por episódio: **exatamente 231 passos determinísticos**.
+  - Recompensa média acumulada: **1920.09**.
+  - Progresso máximo atingido: **4020.3 px** (flagpole em 4032 px).
+
+### 2. Integridade dos 4 Gates Operacionais
+Todos os 4 gates formais do projeto foram executados via 	ools/gates.py --all e permaneceram 100% verdes:
+* **numbers**: PASS (48/48 números validados contra relatórios).
+* **parity**: PASS (reprodução bit-a-bit idêntica do World 1-1 publicado: 245 passos, 1663.087402343757 de recompensa acumulada, 4020.6328125 px de progresso).
+* **planner**: PASS (37.281 consultas A* idênticas entre a implementação Rust e Python).
+* **tests**: PASS (39/39 testes unitários em pytest).
+
 ## 5. File Index
 
 ```

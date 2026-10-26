@@ -1,0 +1,129 @@
+{
+  "aggregate": {
+    "controller": "world21",
+    "episodes": 5,
+    "goal_abs_px": 4032.0,
+    "goal_source": "castle entrance trigger",
+    "course": "course/B01_1.bin",
+    "state": "data/state_2-1.ds1",
+    "reflex": "profile",
+    "spawn_anchor_px": 360.0,
+    "planner": "python",
+    "clear_rate": 1.0,
+    "mean_progress_px": 4020.281005859375,
+    "max_progress_px": 4020.281005859375,
+    "mean_reward": 1920.0906250000073,
+    "mean_fps": 23.82809070762086,
+    "mean_latency_ms": 0.003099567226000187
+  },
+  "episodes": [
+    {
+      "steps": 231,
+      "total_reward": 1920.090625000007,
+      "max_abs_px": 4020.281005859375,
+      "final_abs_px": 4020.281005859375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0032155844899503217,
+      "achieved_env_fps": 24.17981389650432,
+      "death_diag": "",
+      "episode": 1
+    },
+    {
+      "steps": 231,
+      "total_reward": 1920.090625000007,
+      "max_abs_px": 4020.281005859375,
+      "final_abs_px": 4020.281005859375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0031974028010532114,
+      "achieved_env_fps": 23.893353956246756,
+      "death_diag": "",
+      "episode": 2
+    },
+    {
+      "steps": 231,
+      "total_reward": 1920.090625000007,
+      "max_abs_px": 4020.281005859375,
+      "final_abs_px": 4020.281005859375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.002911688481609728,
+      "achieved_env_fps": 23.544593442477307,
+      "death_diag": "",
+      "episode": 3
+    },
+    {
+      "steps": 231,
+      "total_reward": 1920.090625000007,
+      "max_abs_px": 4020.281005859375,
+      "final_abs_px": 4020.281005859375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0030181819013142515,
+      "achieved_env_fps": 23.752166026151833,
+      "death_diag": "",
+      "episode": 4
+    },
+    {
+      "steps": 231,
+      "total_reward": 1920.090625000007,
+      "max_abs_px": 4020.281005859375,
+      "final_abs_px": 4020.281005859375,
+      "reached_goal": true,
+      "termination": "goal",
+      "mean_control_latency_ms": 0.0031549784560734205,
+      "achieved_env_fps": 23.770526216724093,
+      "death_diag": "",
+      "episode": 5
+    }
+  ],
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-25T23:58:09+00:00",
+    "git": {
+      "commit": "776791fcb22fb54dcab1f4532c370aec2529c0e2",
+      "dirty": false
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/state_2-1.ds1",
+        "sha1": "dbb6a09994818acc0c0339e89b8269a7146aa917",
+        "bytes": 2437160
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_world_2_1.py"
+    ],
+    "controller": "world21",
+    "course": "course/B01_1.bin",
+    "course_area_index": 21,
+    "state_area_index": 21,
+    "reflex": "profile",
+    "planner": "python",
+    "max_steps": 800,
+    "episodes": 5,
+    "goal_abs_px": 4032.0
+  }
+}
