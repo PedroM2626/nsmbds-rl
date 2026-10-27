@@ -1,0 +1,296 @@
+{
+  "method": "PINN_CEM_MPC",
+  "reflex": false,
+  "worlds": {
+    "1-1": {
+      "file": "evals\\pinn_imagination_multiworld_1_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 224,
+          "max_x_px": 1706.921875,
+          "termination": "death",
+          "one_step_position_rmse_px": 11.013704048070414
+        },
+        {
+          "seed": 43,
+          "steps": 156,
+          "max_x_px": 1093.3095703125,
+          "termination": "death",
+          "one_step_position_rmse_px": 12.449485922492027
+        },
+        {
+          "seed": 44,
+          "steps": 138,
+          "max_x_px": 1091.019287109375,
+          "termination": "death",
+          "one_step_position_rmse_px": 10.070046277696749
+        }
+      ]
+    },
+    "1-2": {
+      "file": "evals\\pinn_imagination_multiworld_1_2.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 163,
+          "max_x_px": 184.999755859375,
+          "termination": "stalled",
+          "one_step_position_rmse_px": 6.869292057797716
+        },
+        {
+          "seed": 43,
+          "steps": 157,
+          "max_x_px": 60.902099609375,
+          "termination": "stalled",
+          "one_step_position_rmse_px": 11.079581341111544
+        },
+        {
+          "seed": 44,
+          "steps": 105,
+          "max_x_px": 56.999755859375,
+          "termination": "stalled",
+          "one_step_position_rmse_px": 8.099120841848361
+        }
+      ]
+    },
+    "2-1": {
+      "file": "evals\\pinn_imagination_multiworld_2_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 35,
+          "max_x_px": 622.422607421875,
+          "termination": "death",
+          "one_step_position_rmse_px": 9.733542445425515
+        },
+        {
+          "seed": 43,
+          "steps": 35,
+          "max_x_px": 622.422607421875,
+          "termination": "death",
+          "one_step_position_rmse_px": 9.523562327270641
+        },
+        {
+          "seed": 44,
+          "steps": 30,
+          "max_x_px": 618.828125,
+          "termination": "death",
+          "one_step_position_rmse_px": 10.47047001444532
+        }
+      ]
+    },
+    "4-1": {
+      "file": "evals\\pinn_imagination_multiworld_4_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 106,
+          "max_x_px": 104.999755859375,
+          "termination": "stalled",
+          "one_step_position_rmse_px": 4.0775333610470765
+        },
+        {
+          "seed": 43,
+          "steps": 48,
+          "max_x_px": 367.550537109375,
+          "termination": "death",
+          "one_step_position_rmse_px": 7.988827141496794
+        },
+        {
+          "seed": 44,
+          "steps": 106,
+          "max_x_px": 104.999755859375,
+          "termination": "stalled",
+          "one_step_position_rmse_px": 4.102387834917658
+        }
+      ]
+    },
+    "5-1": {
+      "file": "evals\\pinn_imagination_multiworld_5_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 213,
+          "max_x_px": 892.86083984375,
+          "termination": "death",
+          "one_step_position_rmse_px": 8.382180404855195
+        },
+        {
+          "seed": 43,
+          "steps": 245,
+          "max_x_px": 860.911376953125,
+          "termination": "stalled",
+          "one_step_position_rmse_px": 6.512465638331514
+        },
+        {
+          "seed": 44,
+          "steps": 134,
+          "max_x_px": 424.999755859375,
+          "termination": "death",
+          "one_step_position_rmse_px": 10.907533732320813
+        }
+      ]
+    },
+    "6-1": {
+      "file": "evals\\pinn_imagination_multiworld_6_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 26,
+          "max_x_px": 289.80859375,
+          "termination": "death",
+          "one_step_position_rmse_px": 9.281328441542312
+        },
+        {
+          "seed": 43,
+          "steps": 31,
+          "max_x_px": 334.125,
+          "termination": "death",
+          "one_step_position_rmse_px": 11.444911375474492
+        },
+        {
+          "seed": 44,
+          "steps": 20,
+          "max_x_px": 163.296875,
+          "termination": "death",
+          "one_step_position_rmse_px": 9.946281506362764
+        }
+      ]
+    },
+    "8-1": {
+      "file": "evals\\pinn_imagination_multiworld_8_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 66,
+          "max_x_px": 466.527099609375,
+          "termination": "death",
+          "one_step_position_rmse_px": 10.593301109630705
+        },
+        {
+          "seed": 43,
+          "steps": 34,
+          "max_x_px": 261.63671875,
+          "termination": "death",
+          "one_step_position_rmse_px": 9.78992535397925
+        },
+        {
+          "seed": 44,
+          "steps": 34,
+          "max_x_px": 265.734375,
+          "termination": "death",
+          "one_step_position_rmse_px": 10.263297088573111
+        }
+      ]
+    },
+    "3-1": {
+      "file": "evals\\pinn_imagination_multiworld_3_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 121,
+          "max_x_px": 181.425537109375,
+          "termination": "death",
+          "one_step_position_rmse_px": 10.745900525092601
+        },
+        {
+          "seed": 43,
+          "steps": 177,
+          "max_x_px": 470.765625,
+          "termination": "death",
+          "one_step_position_rmse_px": 9.566472824509244
+        },
+        {
+          "seed": 44,
+          "steps": 89,
+          "max_x_px": 369.078125,
+          "termination": "death",
+          "one_step_position_rmse_px": 11.980564192643023
+        }
+      ]
+    },
+    "7-1": {
+      "file": "evals\\pinn_imagination_multiworld_7_1.json",
+      "clear_rate": 0.0,
+      "episodes": [
+        {
+          "seed": 42,
+          "steps": 45,
+          "max_x_px": 505.359130859375,
+          "termination": "death",
+          "one_step_position_rmse_px": 16.632183477993127
+        },
+        {
+          "seed": 43,
+          "steps": 42,
+          "max_x_px": 563.20703125,
+          "termination": "death",
+          "one_step_position_rmse_px": 30.076631618599155
+        },
+        {
+          "seed": 44,
+          "steps": 56,
+          "max_x_px": 533.956787109375,
+          "termination": "death",
+          "one_step_position_rmse_px": 23.696923210788288
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-27T19:38:41+00:00",
+    "git": {
+      "commit": "205e29e4ebf29149f7ff77e1166f09bb0102dbd0",
+      "dirty": true
+    },
+    "files": {
+      "rom": {
+        "path": null,
+        "sha1": null,
+        "bytes": null
+      },
+      "state": {
+        "path": null,
+        "sha1": null,
+        "bytes": null
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_pinn_multiworld.py",
+      "--episodes",
+      "3",
+      "--max-steps",
+      "450",
+      "--out",
+      "evals\\pinn_imagination_multiworld.json"
+    ],
+    "seed": 42,
+    "model_sha1": "a4f4e727019a7d2adbeba92d66fe6cdf40203fae"
+  }
+}

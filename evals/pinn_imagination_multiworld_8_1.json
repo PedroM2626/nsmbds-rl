@@ -1,0 +1,1631 @@
+{
+  "world": "8-1",
+  "method": "PINN_CEM_MPC",
+  "reflex": false,
+  "action_count": 8,
+  "observation_dim": 23,
+  "config": {
+    "horizon": 16,
+    "candidates": 96,
+    "elites": 12,
+    "iterations": 3,
+    "max_steps": 450,
+    "stall_steps": 100
+  },
+  "checkpoint_metrics": {
+    "test_mse": 0.04568197950720787,
+    "kinematic_residual_x": 1.171448626990923e-08,
+    "kinematic_residual_y": 1.5211601978037947e-09,
+    "open_loop_drift_px_mean": 431.0678405761719,
+    "open_loop_horizon_frames": 29.37037037037037,
+    "n_drift_episodes": 108,
+    "collect_time_s": 0.0,
+    "train_time_s": 1121.3303911685944,
+    "n_transitions": 13300,
+    "n_params": 43440
+  },
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-27T19:37:37+00:00",
+    "git": {
+      "commit": "205e29e4ebf29149f7ff77e1166f09bb0102dbd0",
+      "dirty": true
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds3",
+        "sha1": "5abb96754f947b26d9ab2f79d8f4a77ff76e97cd",
+        "bytes": 2476606
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_pinn_multiworld.py",
+      "--world",
+      "8-1",
+      "--out",
+      "evals\\pinn_imagination_multiworld_8_1.json",
+      "--model",
+      "D:\\mario-ds\\models\\pinn_nsmb.pt",
+      "--episodes",
+      "3",
+      "--max-steps",
+      "450",
+      "--stall-steps",
+      "100",
+      "--horizon",
+      "16",
+      "--candidates",
+      "96",
+      "--elites",
+      "12",
+      "--iterations",
+      "3",
+      "--seed",
+      "42",
+      "--device",
+      "cpu"
+    ],
+    "sources": {
+      "tools/eval_pinn_multiworld.py": {
+        "sha1": "b73ab2b76c45e2d69eda1dc7e9709041f5f01049",
+        "tracked": false
+      },
+      "src/pinn_world_model.py": {
+        "sha1": "cca6e5b2837404a806d967e54255db1af46f8314",
+        "tracked": true
+      },
+      "src/multi_area_env.py": {
+        "sha1": "2aeab93a38cfd2d3a3293f38a0e859713c38def5",
+        "tracked": true
+      },
+      "src/ram_env.py": {
+        "sha1": "38a696874dcbae0e22618bb1ec8000f5ba5c13a1",
+        "tracked": true
+      }
+    },
+    "seed": 42,
+    "course_index": 152,
+    "model_sha1": "a4f4e727019a7d2adbeba92d66fe6cdf40203fae"
+  },
+  "episodes": [
+    {
+      "seed": 42,
+      "steps": 66,
+      "max_x_px": 466.527099609375,
+      "final": {
+        "x": 0.8018107414245605,
+        "mario_px": 466.527099609375,
+        "level_cleared": false,
+        "enemies": [
+          {
+            "type": 172,
+            "name": "0x00AC",
+            "A": -2927350,
+            "B": 2104866,
+            "dx": 47.356201171875,
+            "dy": 110.56494140625,
+            "vx": 0.0,
+            "vy": 0.0
+          },
+          {
+            "type": 184,
+            "name": "0x00B8",
+            "A": -3014656,
+            "B": 2277376,
+            "dx": 89.472900390625,
+            "dy": 89.25,
+            "vx": 0.0,
+            "vy": 0.0
+          },
+          {
+            "type": 312,
+            "name": "0x0138",
+            "A": -2097152,
+            "B": 1237504,
+            "dx": -164.402099609375,
+            "dy": 313.25,
+            "vx": 0.0,
+            "vy": 0.0
+          }
+        ],
+        "died": true,
+        "timeout": false,
+        "course": "course/H01_1.bin",
+        "area_changed": false,
+        "mario_y_px": -825.25,
+        "raw_clear_flag": false,
+        "flag_contact": false,
+        "terminal_contact_seen": false,
+        "pole_captured": false,
+        "completion_evidence": null
+      },
+      "reward": 158.4890624999996,
+      "cleared": false,
+      "termination": "death",
+      "elapsed_s": 5.64100000000326,
+      "one_step_position_rmse_px": 10.593301109630705,
+      "trajectory": [
+        {
+          "step": 1,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 2,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 3,
+          "action": 2,
+          "reward": -0.05,
+          "mario_px": 56.2109375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 4,
+          "action": 7,
+          "reward": -0.05,
+          "mario_px": 57.65234375,
+          "mario_y_px": -712.15625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 5,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 59.05859375,
+          "mario_y_px": -688.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 6,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 60.46484375,
+          "mario_y_px": -671.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 7,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 63.7578125,
+          "mario_y_px": -671.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 8,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 69.0078125,
+          "mario_y_px": -689.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 9,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 74.2578125,
+          "mario_y_px": -720.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 10,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 80.7109375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 11,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 89.9140625,
+          "mario_y_px": -708.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 12,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 101.796875,
+          "mario_y_px": -684.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 13,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 115.796875,
+          "mario_y_px": -674.125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 14,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 131.796875,
+          "mario_y_px": -683.625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 15,
+          "action": 3,
+          "reward": 5.6921875,
+          "mario_px": 149.75,
+          "mario_y_px": -711.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 16,
+          "action": 4,
+          "reward": 14.653125,
+          "mario_px": 169.28125,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 17,
+          "action": 3,
+          "reward": 15.715625,
+          "mario_px": 190.3125,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 18,
+          "action": 3,
+          "reward": 15.621875,
+          "mario_px": 212.84375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 19,
+          "action": 3,
+          "reward": 11.903125,
+          "mario_px": 236.671875,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 20,
+          "action": 4,
+          "reward": 11.95,
+          "mario_px": 260.671875,
+          "mario_y_px": -706.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 21,
+          "action": 3,
+          "reward": 11.95,
+          "mario_px": 284.671875,
+          "mario_y_px": -711.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 22,
+          "action": 3,
+          "reward": 11.95,
+          "mario_px": 308.671875,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 23,
+          "action": 3,
+          "reward": 11.95,
+          "mario_px": 332.671875,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 24,
+          "action": 3,
+          "reward": 10.45,
+          "mario_px": 356.671875,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 25,
+          "action": 4,
+          "reward": 2.64140625,
+          "mario_px": 361.702880859375,
+          "mario_y_px": -706.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 26,
+          "action": 7,
+          "reward": 1.35625,
+          "mario_px": 364.515380859375,
+          "mario_y_px": -681.5,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 27,
+          "action": 7,
+          "reward": 1.35625,
+          "mario_px": 367.327880859375,
+          "mario_y_px": -660.4375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 28,
+          "action": 7,
+          "reward": 1.35625,
+          "mario_px": 370.140380859375,
+          "mario_y_px": -652.84375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 29,
+          "action": 7,
+          "reward": 1.35625,
+          "mario_px": 372.952880859375,
+          "mario_y_px": -663.59375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 30,
+          "action": 7,
+          "reward": 1.35625,
+          "mario_px": 375.765380859375,
+          "mario_y_px": -691.84375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 31,
+          "action": 7,
+          "reward": 1.35625,
+          "mario_px": 378.577880859375,
+          "mario_y_px": -720.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 32,
+          "action": 7,
+          "reward": 0.7234375,
+          "mario_px": 380.406005859375,
+          "mario_y_px": -720.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 33,
+          "action": 7,
+          "reward": 0.090625,
+          "mario_px": 380.722412109375,
+          "mario_y_px": -696.15625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 34,
+          "action": 7,
+          "reward": 0.090625,
+          "mario_px": 381.003662109375,
+          "mario_y_px": -672.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 35,
+          "action": 7,
+          "reward": 0.090625,
+          "mario_px": 381.284912109375,
+          "mario_y_px": -655.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 36,
+          "action": 7,
+          "reward": 0.090625,
+          "mario_px": 381.566162109375,
+          "mario_y_px": -655.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 37,
+          "action": 7,
+          "reward": 0.090625,
+          "mario_px": 381.847412109375,
+          "mario_y_px": -673.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 38,
+          "action": 7,
+          "reward": 0.090625,
+          "mario_px": 382.128662109375,
+          "mario_y_px": -704.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 39,
+          "action": 4,
+          "reward": 1.057421875,
+          "mario_px": 384.378662109375,
+          "mario_y_px": -720.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 40,
+          "action": 7,
+          "reward": 2.37578125,
+          "mario_px": 388.695068359375,
+          "mario_y_px": -696.15625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 41,
+          "action": 4,
+          "reward": 2.8640625,
+          "mario_px": 394.179443359375,
+          "mario_y_px": -672.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 42,
+          "action": 4,
+          "reward": 4.2390625,
+          "mario_px": 402.413818359375,
+          "mario_y_px": -655.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 43,
+          "action": 2,
+          "reward": 5.471484375,
+          "mario_px": 413.179443359375,
+          "mario_y_px": -655.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 44,
+          "action": 4,
+          "reward": 6.5125,
+          "mario_px": 426.054443359375,
+          "mario_y_px": -673.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 45,
+          "action": 3,
+          "reward": 7.5125,
+          "mario_px": 440.929443359375,
+          "mario_y_px": -704.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 46,
+          "action": 3,
+          "reward": 6.98515625,
+          "mario_px": 456.999755859375,
+          "mario_y_px": -736.40625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 47,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 456.999755859375,
+          "mario_y_px": -757.8125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 48,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 456.999755859375,
+          "mario_y_px": -777.8125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 49,
+          "action": 3,
+          "reward": 1.215625,
+          "mario_px": 458.968505859375,
+          "mario_y_px": -797.8125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 50,
+          "action": 3,
+          "reward": 2.9734375,
+          "mario_px": 464.671630859375,
+          "mario_y_px": -821.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 51,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 52,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 53,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 54,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 55,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 56,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 57,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 58,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 59,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 60,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 61,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 62,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 63,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 64,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 65,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 66,
+          "action": 3,
+          "reward": -15.05,
+          "mario_px": 466.527099609375,
+          "mario_y_px": -825.25,
+          "course": "course/H01_1.bin",
+          "died": true,
+          "cleared": false
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "steps": 34,
+      "max_x_px": 261.63671875,
+      "final": {
+        "x": 0.40163421630859375,
+        "mario_px": 261.63671875,
+        "level_cleared": false,
+        "enemies": [
+          {
+            "type": 184,
+            "name": "0x00B8",
+            "A": -3014656,
+            "B": 1120256,
+            "dx": 11.86328125,
+            "dy": 63.359375,
+            "vx": 0.0,
+            "vy": 0.0
+          },
+          {
+            "type": 172,
+            "name": "0x00AC",
+            "A": -2493384,
+            "B": 746490,
+            "dx": -79.38818359375,
+            "dy": 190.623046875,
+            "vx": 0.0,
+            "vy": 0.0
+          },
+          {
+            "type": 312,
+            "name": "0x0138",
+            "A": -2097152,
+            "B": 83456,
+            "dx": -241.26171875,
+            "dy": 287.359375,
+            "vx": 0.0,
+            "vy": 0.0
+          }
+        ],
+        "died": true,
+        "timeout": false,
+        "course": "course/H01_1.bin",
+        "area_changed": false,
+        "mario_y_px": -799.359375,
+        "raw_clear_flag": false,
+        "flag_contact": false,
+        "terminal_contact_seen": false,
+        "pole_captured": false,
+        "completion_evidence": null
+      },
+      "reward": 58.11835937500004,
+      "cleared": false,
+      "termination": "death",
+      "elapsed_s": 3.0940000000118744,
+      "one_step_position_rmse_px": 9.78992535397925,
+      "trajectory": [
+        {
+          "step": 1,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 2,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 3,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 4,
+          "action": 7,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -712.15625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 5,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 57.96875,
+          "mario_y_px": -688.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 6,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 62.46875,
+          "mario_y_px": -671.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 7,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 66.96875,
+          "mario_y_px": -671.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 8,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 71.46875,
+          "mario_y_px": -689.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 9,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 75.96875,
+          "mario_y_px": -720.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 10,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 81.671875,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 11,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 90.125,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 12,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 101.31640625,
+          "mario_y_px": -708.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 13,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 114.75390625,
+          "mario_y_px": -684.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 14,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 130.19140625,
+          "mario_y_px": -665.125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 15,
+          "action": 4,
+          "reward": 4.037890625,
+          "mario_px": 147.62109375,
+          "mario_y_px": -662.71875,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 16,
+          "action": 4,
+          "reward": 14.278125,
+          "mario_px": 166.71484375,
+          "mario_y_px": -678.28125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 17,
+          "action": 1,
+          "reward": 14.66875,
+          "mario_px": 186.65234375,
+          "mario_y_px": -709.375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 18,
+          "action": 3,
+          "reward": 15.434375,
+          "mario_px": 207.24609375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 19,
+          "action": 3,
+          "reward": 11.434375,
+          "mario_px": 229.33984375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 20,
+          "action": 0,
+          "reward": 10.7859375,
+          "mario_px": 251.29296875,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 21,
+          "action": 7,
+          "reward": 3.82890625,
+          "mario_px": 261.63671875,
+          "mario_y_px": -722.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 22,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -722.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 23,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -722.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 24,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -722.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 25,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -704.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 26,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -683.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 27,
+          "action": 0,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -673.828125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 28,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -671.890625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 29,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -672.953125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 30,
+          "action": 0,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -678.796875,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 31,
+          "action": 0,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -703.359375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 32,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -735.359375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 33,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -767.359375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 34,
+          "action": 3,
+          "reward": -15.05,
+          "mario_px": 261.63671875,
+          "mario_y_px": -799.359375,
+          "course": "course/H01_1.bin",
+          "died": true,
+          "cleared": false
+        }
+      ]
+    },
+    {
+      "seed": 44,
+      "steps": 34,
+      "max_x_px": 265.734375,
+      "final": {
+        "x": 0.409637451171875,
+        "mario_px": 265.734375,
+        "level_cleared": false,
+        "enemies": [
+          {
+            "type": 184,
+            "name": "0x00B8",
+            "A": -3014656,
+            "B": 1128448,
+            "dx": 9.765625,
+            "dy": 90.703125,
+            "vx": 0.0,
+            "vy": 0.0
+          },
+          {
+            "type": 172,
+            "name": "0x00AC",
+            "A": -2498449,
+            "B": 786946,
+            "dx": -73.60888671875,
+            "dy": 216.730224609375,
+            "vx": 0.0,
+            "vy": 0.0
+          },
+          {
+            "type": 312,
+            "name": "0x0138",
+            "A": -2097152,
+            "B": 85504,
+            "dx": -244.859375,
+            "dy": 314.703125,
+            "vx": 0.0,
+            "vy": 0.0
+          }
+        ],
+        "died": true,
+        "timeout": false,
+        "course": "course/H01_1.bin",
+        "area_changed": false,
+        "mario_y_px": -826.703125,
+        "raw_clear_flag": false,
+        "flag_contact": false,
+        "terminal_contact_seen": false,
+        "pole_captured": false,
+        "completion_evidence": null
+      },
+      "reward": 60.16718750000004,
+      "cleared": false,
+      "termination": "death",
+      "elapsed_s": 2.75,
+      "one_step_position_rmse_px": 10.263297088573111,
+      "trajectory": [
+        {
+          "step": 1,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 2,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 56.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 3,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 56.2109375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 4,
+          "action": 7,
+          "reward": -0.05,
+          "mario_px": 57.65234375,
+          "mario_y_px": -712.15625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 5,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 60.9453125,
+          "mario_y_px": -688.65625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 6,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 66.1953125,
+          "mario_y_px": -671.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 7,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 71.4453125,
+          "mario_y_px": -671.09375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 8,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 76.6953125,
+          "mario_y_px": -689.03125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 9,
+          "action": 6,
+          "reward": -0.05,
+          "mario_px": 81.9453125,
+          "mario_y_px": -720.75,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 10,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 88.3984375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 11,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 97.6015625,
+          "mario_y_px": -708.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 12,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 109.484375,
+          "mario_y_px": -684.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 13,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 123.484375,
+          "mario_y_px": -665.125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 14,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 139.484375,
+          "mario_y_px": -662.71875,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 15,
+          "action": 4,
+          "reward": 11.1921875,
+          "mario_px": 157.4375,
+          "mario_y_px": -678.28125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 16,
+          "action": 3,
+          "reward": 14.653125,
+          "mario_px": 176.96875,
+          "mario_y_px": -709.375,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 17,
+          "action": 3,
+          "reward": 15.715625,
+          "mario_px": 198.0,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 18,
+          "action": 3,
+          "reward": 13.965625,
+          "mario_px": 220.53125,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 19,
+          "action": 3,
+          "reward": 11.903125,
+          "mario_px": 244.359375,
+          "mario_y_px": -736.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 20,
+          "action": 5,
+          "reward": 9.1375,
+          "mario_px": 265.734375,
+          "mario_y_px": -734.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 21,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -734.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 22,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -734.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 23,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -734.0,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 24,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -727.5625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 25,
+          "action": 4,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -704.3125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 26,
+          "action": 0,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -687.875,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 27,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -683.828125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 28,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -683.390625,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 29,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -685.953125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 30,
+          "action": 5,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -699.828125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 31,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -730.703125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 32,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -762.703125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 33,
+          "action": 3,
+          "reward": -0.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -794.703125,
+          "course": "course/H01_1.bin",
+          "died": false,
+          "cleared": false
+        },
+        {
+          "step": 34,
+          "action": 3,
+          "reward": -15.05,
+          "mario_px": 265.734375,
+          "mario_y_px": -826.703125,
+          "course": "course/H01_1.bin",
+          "died": true,
+          "cleared": false
+        }
+      ]
+    }
+  ],
+  "clear_rate": 0.0
+}

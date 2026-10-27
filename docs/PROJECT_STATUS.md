@@ -2801,6 +2801,89 @@ be run after its clearance, in the requested order.
 
 ---
 
+## 4aw. World 7-1 cleared; PINN imagination planning measured across courses (2026-10-27)
+
+The outstanding 7-1 qualification in 4av is now resolved.
+`evals/eval_special_71_full_clear.json` records 5/5 deterministic replay
+clears, each in 809 actions, from the original `data/state_7-1.ds1`.
+The committed route `out/special_courses/route_71_full_clear.json` uses ordinary
+DS controls through both ceiling pipes, the rail platforms and the lower route;
+there are no teleport writes. G01_1 remains the course identity through these
+view transitions. The final pole capture is X=2848.0,
+Y=-1191.34375, supported by exact-pole vertical descent in every
+trace and `out/special_courses/71_goal.png`. The raw clear byte remains false
+at capture and is recorded separately; this is the measured pole-slide oracle,
+not a claim that the historical RAM address now works.
+
+Together with 4av, both requested special courses now have full original-entry
+routes. These are emulator-assisted measured action routes, not policies learned
+by the PINN. Repeated replays establish reproducibility for the committed ROM
+and savestates, not generalization to different starts.
+
+Reproduce 7-1 with:
+
+```
+.venv\Scripts\python.exe tools\eval_special_route.py --world 7-1 --route out\special_courses\route_71_full_clear.json --episodes 5 --out out\repeat_71_full.json
+```
+
+After the first verified 7-1 clear, `tools/eval_pinn_multiworld.py` ran the
+requested imagination-planning experiment on the existing `models/pinn_nsmb.pt`
+checkpoint. Each course uses a fresh subprocess, initializes DeSmuME and validates
+savestate identity before loading the model. CEM imagines futures inside the
+learned model, executes one selected action, observes the real emulator, then
+replans with a shifted distribution. There is no reflex fallback or emulator
+branching inside this planner, and no new model training is claimed.
+
+The protocol uses horizon 16, 96 candidates, 12 elites, 3 CEM iterations,
+seeds 42-44, a 450-action cap and termination after 100 actions without
+more than one pixel of forward progress. The nine courses span eight numbered
+worlds; 1-1 and 1-2 share World 1. The eight-action checkpoint cannot represent
+the additional UP/DOWN pipe combinations. For 3-1, this benchmark explicitly
+starts in its underwater C01_2 area (`data/state_3-1_main.ds1`), unlike the
+original-entry route evaluation. 7-1 starts in its original G01_1 state.
+
+`evals/pinn_imagination_multiworld.json` indexes the per-course JSONs, which
+include full trajectories, source/model hashes, ROM/state provenance and seeds.
+The measured result is **0/27 clears**, with 21 deaths and
+6 stalls. Best X is an absolute course coordinate, not distance
+traveled or comparable completion percentage. RMSE below is the arithmetic
+mean of episode one-step Euclidean position RMSEs in pixels; it does not measure
+multi-step imagination accuracy.
+
+| Course | Clears | Best X (px) | Mean one-step position RMSE (px) | Terminations |
+| --- | --- | --- | --- | --- |
+| 1-1 | 0/3 | 1706.9 | 11.18 | 3 death |
+| 1-2 | 0/3 | 185.0 | 8.68 | 3 stalled |
+| 2-1 | 0/3 | 622.4 | 9.91 | 3 death |
+| 4-1 | 0/3 | 367.6 | 5.39 | 2 stalled, 1 death |
+| 5-1 | 0/3 | 892.9 | 8.60 | 2 death, 1 stalled |
+| 6-1 | 0/3 | 334.1 | 10.22 | 3 death |
+| 8-1 | 0/3 | 466.5 | 10.22 | 3 death |
+| 3-1 | 0/3 | 470.8 | 10.76 | 3 death |
+| 7-1 | 0/3 | 563.2 | 23.47 | 3 death |
+
+Reproduce the complete benchmark with:
+
+```
+.venv\Scripts\python.exe tools\eval_pinn_multiworld.py --episodes 3 --max-steps 450 --out out\repeat_pinn_multiworld.json
+```
+
+Before this benchmark, the imagination collision shaping was corrected for RAM's
+upward-positive vertical axis: only known stompable actors below a falling Mario
+receive the stomp exemption. Pokey remains lethal, and measured harmless helpers
+plus the ridden rail actor are excluded from lethal enemy shaping. Regression
+tests cover the sign, Pokey contact, rail contact and seeded sampling isolation.
+These fixes do not establish that the learned rollout is reliable: the live
+benchmark above is the evidence, and it is unsuccessful on all tested courses.
+
+All four pre-commit gates pass: 48 README number checks, exact legacy reflex
+parity, 37,281 Rust/Python planner queries and 55 no-emulator unit tests.
+The next measured research step is to add the pipe-action protocol and moving
+platform/underwater transitions to model data, evaluate held-out multi-step
+rollouts, then rerun this fixed benchmark before claiming planning success.
+
+---
+
 ## 5. File Index
 
 ```

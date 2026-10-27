@@ -29,9 +29,10 @@ class MultiAreaMarioEnv(MarioRamEnv):
     """Pipe actions: 8=DOWN, 9=UP, 10=UP+A, 11=UP+R+A, 12=UP+R+X+A."""
 
     def __init__(self, *args, **kwargs):
-        self.water_overrides = kwargs.pop("water_overrides", {})
+        self.water_overrides = dict(kwargs.pop("water_overrides", {}))
         super().__init__(*args, **kwargs)
-        self.initial_course = kwargs.get("course_name", "course/A01_1.bin")
+        self.initial_course = (self.course.name if self.course is not None else
+                               kwargs.get("course_name", "course/A01_1.bin"))
         self.active_course = self.initial_course
         self.action_space = spaces.Discrete(13)
         self._courses = {self.initial_course: self.course}
@@ -68,8 +69,8 @@ class MultiAreaMarioEnv(MarioRamEnv):
         return obs, info
 
     def step(self, action):
-        # Reuse action 7's measured water rising-edge handling while holding
-        # UP, so swimming into a ceiling pipe needs no RAM writes.
+        # Reuse each base jump's rising-edge handling while also holding UP.
+        # Action 10 uses action 7's swimming impulse for ceiling-pipe entry.
         self._pipe_action = {10: 7, 11: 2, 12: 4}.get(int(action))
         try:
             effective = self._pipe_action if self._pipe_action is not None else action

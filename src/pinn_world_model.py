@@ -115,14 +115,23 @@ def shaped_step(model, s, action, cfg: ShapingConfig):
     ex = ns[:, ENEMY_DX] * 256.0            # px, egocentric
     ey = ns[:, ENEMY_DY] * 256.0
     et = ns[:, ENEMY_T] * 256.0             # raw actor type (0 => empty slot)
-    active = (et.abs() > 1.0).float()
+    actor = et.round().long()
+    # Measured harmless helpers (4k) and the rail lift actually ridden in
+    # G01_1. Unknown actors remain conservative hazards; do not infer
+    # neutrality from the old display-name table (e.g. actor 158).
+    neutral = (actor == 180) | (actor == 221) | (actor == 291) | (actor == 307)
+    active = ((et.abs() > 1.0) & ~neutral).float()
     gx = torch.exp(-((ex.abs() / cfg.ex_s) ** 2))
     gy = torch.exp(-((ey.abs() / cfg.ey_s) ** 2))
     enemy_danger = (active * gx * gy).sum(dim=-1)
     pit_danger = ns[:, 4] * (1.0 - ns[:, 17])  # on ground with a pit in the next column
 
     # Grounded lethal collision check: within hitbox unless falling downward (stomp)
-    stomp = (ns[:, IDX_VY] < -0.1).unsqueeze(-1) & (ey > 0.0)
+    # RAM A grows upwards: an enemy BELOW Mario has negative dy. Only
+    # known stompable actors qualify; the B01_1 contact oracle disproved
+    # a safe top contact for Pokey (232).
+    stompable = (actor == 160) | (actor == 163) | (actor == 164)
+    stomp = (ns[:, IDX_VY] < -0.1).unsqueeze(-1) & (ey < 0.0) & stompable
     lethal = (active * (ex.abs() < 18.0) * (ey.abs() < 18.0) * (~stomp).float()).sum(dim=-1) > 0.0
     p = torch.where(lethal, torch.zeros_like(p), p)
 
