@@ -9,7 +9,7 @@ The codebase is engineered with MLOps best practices and supports diverse learni
 ![World 1-1 clear dashboard, closing 10 s](media/nsmb_dashboard_preview.gif)
 
 The animation above is the closing 10 s of the run — its last frame is the
-stage-clear one. The full clip (33 s, 1280×720) is
+stage-clear one. The full clip (27 s, 1280×720) is
 `media/nsmb_dashboard_clear.mp4` — GitHub does not stream video out of a
 repository tree, so open or download it from
 [`media/nsmb_dashboard_clear.mp4`](https://github.com/PedroM2626/nsmbds-rl/blob/main/media/nsmb_dashboard_clear.mp4).
@@ -18,7 +18,7 @@ repository tree, so open or download it from
 
 | File | What it shows | Status |
 |---|---|---|
-| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 33 s World 1-1 clear with all panels (245 decisions, 4,021 of 4,032 px) | current |
+| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 33 s World 1-1 clear with all panels (206 decisions, 4,020 of 4,032 px) | current |
 | [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
 | [`media/nsmb_w11_genetic_clear.mp4`](media/nsmb_w11_genetic_clear.mp4) | the 100% World 1-1 clear evolved via pure Neuroevolution (206 decisions, 4,020 px, 1,032 params) | current |
 | [`media/nsmb_w11_genetic_preview.gif`](media/nsmb_w11_genetic_preview.gif) | the closing 10 s of the neuroevolutionary clear | current |
@@ -42,8 +42,7 @@ corrected clip reads B≈247/R≈70, and their coins render blue. The runs they
 recorded are real and the trajectories are unaffected — the pixels are the only
 thing inverted — but read them as history, not as the current look.
 
-It records one episode of the `reactive` controller with the **Rust geometry
-planner** in the loop (`--planner rust`, see [rust/](rust)). Every panel is read
+It records one episode of the **learned neural policy** (Neuroevolution champion MLP, 1,032 parameters, `models/genetic_policy.npz`) on the live DeSmuME core. Every panel is read
 from the same step loop that drives the emulator, so the frame is the evidence:
 
 | on screen | where it comes from |
@@ -56,7 +55,7 @@ from the same step loop that drives the emulator, so the frame is the evidence:
 | reward prediction (green) vs actual (grey) | `models/pinn_nsmb.pt` `step_batch()` reward head |
 | SciML panel (reach, units, pits) | `src/tilemap_planner.py` + `out/nsmb_physics.json` |
 
-Measured on this run: **245 steps, 4021 px of 4032 px, stage-clear flag raised** —
+Measured on this run: **206 steps, 4020 px of 4032 px, stage-clear flag raised** —
 the same numbers `evals/pinn_realtime_eval.json` reports, because the recorder
 now stops on the criterion the eval uses. The grey spike at the end is the `+100`
 terminal bonus the PINN does not predict.
@@ -64,7 +63,7 @@ terminal bonus the PINN does not predict.
 ```bash
 python tools/export_geometry.py                      # ROM -> out/nsmb_geometry.bin
 bash rust/build.sh && python tools/parity_planner.py # Rust == tilemap_planner.py
-python tools/record_dashboard.py --planner rust      # -> mp4 + the inline .gif above
+python tools/record_dashboard.py --controller genetic      # -> mp4 + the inline .gif above
 ```
 
 **Not only 1-1.** Clearing a level hands the game back to its World 1 map, and
@@ -78,7 +77,7 @@ the corrected course-file-name mapping, and the first transfer numbers.
 
 ![World 8-1 clear dashboard, closing 10 s](media/nsmb_w81_dashboard_preview.gif)
 
-The animation above is the closing 10 s of the World 8-1 run (205 steps, 3,910 px of 3,920 px) touching the flagpole. The full clip with all SciML panels is [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4).
+The animation above is the closing 10 s of the World 8-1 run (205 steps, 3,910 px of 3,920 px) touching the flagpole, executed at native 60 Hz by the **Learned Neural Policy** (`models/neural_policy_w81.pt`, MLP 64x64). The full clip with all SciML panels and synchronized spatial grid is [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4).
 
 - [Prerequisites and Installation](#-prerequisites-and-installation)
 - [Visual Reward Methodology](#-visual-reward-methodology)

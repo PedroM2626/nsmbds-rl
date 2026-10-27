@@ -123,7 +123,7 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs, block_rects=()):
     cols = 30
     c0 = mario_col - 6
     rows = 10
-    r0 = 21                      # first tile row drawn (row 30 = the floor)
+    r0 = int(geo.get("r0", geo["surface"].get(mario_col, 29) - 8))
     cw, ch = w // cols, h // rows
     cv2.rectangle(img, (x, y), (x + cols * cw, y + rows * ch), (30, 27, 22), -1)
     for i in range(cols):
@@ -190,8 +190,8 @@ def draw_agent_view(img, x, y, w, h, geo, abs_px, obs, block_rects=()):
     #               block trio -- the interactable-block actor, drawn
     #               with the parser's warm block class
     #    Anything else stays the honest violet "entity" fallback.
-    spawn_col = 5  # SPAWN_ABS_PX 88 / TILE; 1-1's start, where obs[1] = 0
-    spawn_top = geo["surface"].get(spawn_col)
+    spawn_col = int(geo.get("spawn_col", 5))  # SPAWN_ABS_PX 88 / TILE; 1-1's start, where obs[1] = 0
+    spawn_top = geo["surface"].get(spawn_col, 29)
     spawn_r = (spawn_top - r0) - 1 if spawn_top is not None else rows - 1
     real_mario_r = spawn_r - float(obs[1]) * (512.0 / TILE)
     drawn_enemies = 0
@@ -497,7 +497,18 @@ def main():
     os.makedirs(snapdir, exist_ok=True)
     for ep in range(1, args.episodes + 1):
         obs, _ = env.reset()
-        agent = ev.ReactiveAgent(planner=planner_obj)
+        if args.controller == "genetic":
+            from eval_neuroevolution import CompactPolicyEvaluator
+            class GeneticWrapper:
+                def __init__(self, model_path=os.path.join(ROOT, "models", "genetic_policy.npz")):
+                    self.policy = CompactPolicyEvaluator(model_path)
+                def reset(self):
+                    pass
+                def act(self, obs):
+                    return self.policy.act(obs)
+            agent = GeneticWrapper()
+        else:
+            agent = ev.ReactiveAgent(planner=planner_obj)
         agent.reset()
         recent, hist = [], []
         done = trunc = False
@@ -509,7 +520,8 @@ def main():
         env.on_cycle = lambda: cycle_frames.append(grab_frame(env.emu))
         game = grab_frame(env.emu)
         st = {"level": "World 1-1 (course A01_1)", "ep": ep, "planner": args.planner,
-              "controller": args.controller, "geo": geo, "goal_px": goal,
+              "controller": "neuroevolution (learned)" if args.controller == "genetic" else args.controller,
+              "geo": geo, "goal_px": goal,
               "physics": physics, "cleared": False, "step": 0, "abs_px": 0.0,
               "blocks": blocks,
               "lives": 0.0, "timer": 0.0, "vx": 0.0, "vy": 0.0, "ground": 1.0,
@@ -543,7 +555,7 @@ def main():
                        "ground": float(obs[4]), "obs": obs,
                        "action_idx": a, "action_name": ACTION_NAMES[a],
                        "held": ACTION_BUTTONS[a],
-                       "rule": RULES["surface_threat"] or "drive right",
+                       "rule": "neural forward pass (MLP 1032 params)" if args.controller == "genetic" else (RULES["surface_threat"] or "drive right"),
                        "recent": list(recent), "hist": list(hist),
                        "cleared": finished})
             # the panel is per decision, the gameplay per cycle

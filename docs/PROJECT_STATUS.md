@@ -2772,6 +2772,7 @@ models/
   genetic_policy_w51.npz World 5-1 neuroevolution policy (2288px det) (4at)
   genetic_policy_w61.npz World 6-1 neuroevolution policy (1929px det) (4at)
   genetic_policy_w81.npz World 8-1 neuroevolution policy (1685px det) (4at)
+  neural_policy_w81.pt   World 8-1 learned neural policy (3910px clear, MLP 64x64) (4at)
   ram_ppo_100k.zip       RAM-PPO 100 k
   ram_geo_100k.zip       RAM + geometry features 100 k
   gnn_100k.zip           GNN 100 k
