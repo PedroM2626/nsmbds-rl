@@ -6,7 +6,10 @@
 > 4,021 px (5/5)** under `--reflex legacy` (`evals/pinn_realtime_eval.json`, gated
 > byte-for-byte by `tools/parity_reflex.py`). Read the numbers below as that era's
 > honest state, not the current one; the current inventory is the reconciled summary at
-> the top of `docs/PROJECT_STATUS.md`.
+> the top of `docs/PROJECT_STATUS.md`. The current PINN checkpoint and pool were
+> replaced by a later multi-world experiment; its split and metrics corrections
+> are recorded in PROJECT_STATUS §4ax. The commands below can overwrite those
+> tracked artifacts and are retained as historical methodology, not a safe replay.
 
 **A PINN world model that trains in ~1 minute from a handful of emulator frames and
 drives the agent in real time on the console.**
@@ -91,7 +94,7 @@ python src/eval_pinn_realtime.py --controller mpc --headless --record media/pinn
 #   -> evals/pinn_realtime_eval.json
 ```
 
-### Stage 1 results — the world model is near-perfect and extremely sample efficient
+### Stage 1 results — historical single-step and sample-efficiency measurements
 
 | Metric | Value |
 |---|---|
@@ -183,7 +186,7 @@ so the old "suppress the pit-jump near an enemy" rule is now off by default.
 
 ## 4. Does the agent finish the level?
 
-**Not fully yet — reported honestly, with the barrier precisely localised by direct
+**At the time of this historical snapshot, not fully — the barrier was localised by direct
 in-game observation (rendered frames + per-step RAM traces).** With the dash, the
 probabilistic head and the tilemap A\* + wall/pipe perception, the agent plays the
 stage live, clears the early Goombas, every pit up to 5 tiles wide, and the first
@@ -202,9 +205,10 @@ advance, so he oscillates until the **stage timer expires** ("Time's up!"). This
 genuine **multi-hop 2D-platforming + runway-timing** problem, compounded by the game
 timer that punishes any stalling — not a perception gap and not the world model.
 
-The physics-informed **world model itself is solved** (kinematic residual = 0, MSE
-0.056, 200-sample training) and all three requested features (dash, probabilistic
-head, tilemap A\* / walkable-surface perception) are implemented, tested and integrated.
+The historical single-step experiment reported MSE 0.056 and a structurally
+constrained kinematic residual. That result did not establish reliable multi-step
+prediction or solve the world model; see the later live planning benchmark and
+the split/metric audit in PROJECT_STATUS §§4aw–4ax.
 
 **Exhaustive control sweep (this session).** With the correct surface model in hand we
 swept the reactive controller across the full geometry/enemy-timing space and each
@@ -237,7 +241,7 @@ first pipe, reaching **~44%** — the furthest any controller in this repository
 | [`src/train_pinn_policy.py`](../src/train_pinn_policy.py) | Stage 2: Dyna-PPO in imagination |
 | [`src/eval_pinn_realtime.py`](../src/eval_pinn_realtime.py) | Stage 3: real-time console eval (`mpc` / `ppo` / `reactive`), rendering + `.avi` recording + finish detection |
 | `media/pinn_mpc_run.avi` | Recorded real-time gameplay clip |
-| `media/nsmb_pipe_top_timesup.png` | Frame at the current barrier: Mario on the cleared pipe-top, killed by the stage timer ("Time's up!") |
+| `media/nsmb_pipe_top_timesup.png` | Historical frame at the then-observed barrier: Mario on the cleared pipe-top, killed by the stage timer ("Time's up!") |
 
 ### Tunable flags (`eval_pinn_realtime.py`)
 

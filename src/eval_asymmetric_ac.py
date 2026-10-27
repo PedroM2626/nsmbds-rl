@@ -139,7 +139,7 @@ def evaluate_asymmetric_ac(
             "max_steps": int(max_steps),
             "seed": int(seed),
             "action_space": "v2_8_actions",
-            "actor_input": "pixels_4x84x84",
+            "actor_input": "pixels_1x84x84",
         },
         "elapsed_s": round(time.time() - t0, 2),
         "results": results,

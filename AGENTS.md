@@ -5,13 +5,13 @@
 - **Python**: use `.venv\Scripts\python.exe` — the system Python lacks
   `gymnasium` and friends. Everything below assumes it.
 - **GPU**: torch +cu124 builds (see `requirements.txt`, pinned and verified;
-  the +cu124 wheels live on the PyTorch index, not PyPI). The local venv has
-  drifted from the pin (torch 2.5.1+cu121 installed, `mlflow` absent) —
-  `tools/check_env.py` reports the delta; mlflow-importing trainers need it.
+  the +cu124 wheels live on the PyTorch index, not PyPI). The local venv
+  can drift from the pin — run `tools/check_env.py` for installed versions; trainers importing `mlflow` require it.
 - **Emulator**: py-desmume 0.0.9 over DeSmuME core 0.9.12, headless.
 - **Actions**: `MarioNdsEnv` defaults to `actions="v2"` (8 actions, X dash, A
-  jump — the corrected table). Every committed visual checkpoint is a June
-  6-action model: load it with `actions="legacy"` (PROJECT_STATUS 4af).
+  jump — the corrected table). June-era visual checkpoints use 6 actions
+  and must be loaded with `actions="legacy"` (PROJECT_STATUS 4af); later visual checkpoints may use
+  different environments and action mappings, so check their evaluation.
 
 ## The three gates (+ tests) — run before every commit
 
@@ -27,8 +27,9 @@
 - The parity gate reproduces the **published 1-1 clear exactly**
   (245 steps, reward 1663.087402343757, final 4020.6328125). Any reflex
   change must keep it passing — the legacy arm is a frozen contract.
-- The numbers gate re-derives every README/PROJECT_STATUS number from the
-  eval JSONs; never type a number, regenerate the eval.
+- The numbers gate checks selected README/PROJECT_STATUS claims against
+  recorded runs, eval JSONs and ROM-derived data; it does not audit every number.
+  Derive new numerical claims from committed evidence rather than guessing.
 - The planner gate proves the Rust port answers identically to the Python
   planner on every query the controller makes.
 
@@ -57,8 +58,8 @@
   index<->course from the committed manifest). The eval harness refuses to
   run when `--course` and the state disagree — never bypass that guard.
 - **Every new eval JSON carries a `provenance` block** (commit, ROM/state
-  SHA-1, versions, seed — `src/eval_provenance.py`). Pre-2026-10-23 JSONs
-  are legacy; `tools/audit_evals.py` reports which.
+  SHA-1, versions, seed — `src/eval_provenance.py`). Some legacy and later outputs lack it; `tools/audit_evals.py` reports
+  block presence but cannot infer dates or validate the fields.
 
 ## How work is done here
 
@@ -66,7 +67,7 @@
    contact, hostility) answer questions by teleporting and watching the
    game. Output JSONs live in `out/<oracle>/` and get committed.
 2. **Every claim carries a number** that a gate or a committed JSON backs.
-3. **Retractions are written down** — PROJECT_STATUS sections 4a..4ab are
+3. **Retractions are written down** — PROJECT_STATUS sections 4a onward are
    the measured history; corrections land as new sections, old sections
    stay as era records. Never silently rewrite a retracted claim.
 4. **Reward**: unified RAM reward on both arms (4s); flow is the legacy
@@ -79,7 +80,7 @@
 
 ## Where things live
 
-- `docs/PROJECT_STATUS.md` — the living lab notebook; sections 4a-4ab.
+- `docs/PROJECT_STATUS.md` — the living lab notebook; sections 4a onward.
 - `src/eval_pinn_realtime.py` — the reflex controller + eval harness.
 - `out/floor_probe|wall_probe|water_probe|contact_probe/` — measured data.
 - `models/`, `evals/` — checkpoints and gated results.

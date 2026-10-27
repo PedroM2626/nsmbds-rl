@@ -24,9 +24,10 @@ python ../tools/parity_planner.py     # every query must match tilemap_planner.p
 ```
 
 Parity is the gate: `--planner rust` in `src/eval_pinn_realtime.py` is only
-meaningful while the closed-loop trajectory stays identical. It is — one episode
-of the `reactive` controller gives the same `total_reward` to the last digit
-(1530.3251953125057, 220 steps, stage cleared) with either backend.
+meaningful while the closed-loop trajectory stays identical. The current legacy reflex contract is 245 steps and total reward
+1663.087402343757 against `evals/pinn_realtime_eval.json`;
+`tools/parity_reflex.py` checks that reproduction separately from the planner
+query parity gate. The earlier 220-step measurement was a historical run.
 
 ## What this is NOT
 

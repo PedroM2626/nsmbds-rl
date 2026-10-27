@@ -14,7 +14,10 @@ This repository documents the model cards for the 14 reinforcement learning, rep
 >    flow reward** (pre-4s unification); the RAM cards' numbers are under the unified
 >    RAM reward. Same ruler as returns, different reward scales -- do not compare
 >    across the two halves of the suite.
-> The 3.15 cards (asymmetric AC) postdate both fixes.
+> The 3.15 cards (asymmetric AC) postdate both fixes. Many historical pixel
+> checkpoints were removed from Git and exist only if retained locally; see
+> [`models/README.md`](../models/README.md). Current results and the PINN split
+> correction are in [`PROJECT_STATUS.md`](PROJECT_STATUS.md) §4ax.
 
 ---
 
@@ -48,7 +51,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ## 3. Individual Model Cards
 
 ### 3.1 `pure` (Vanilla Nature CNN PPO)
-* **Checkpoint:** [`models/ppo_pure_100k.zip`](file:///d:/mario-ds/models/ppo_pure_100k.zip) (39.2 MB)
+* **Checkpoint:** `models/ppo_pure_100k.zip` (39.2 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack $\in [0, 1]^{4 \times 84 \times 84}$.
 * **Action Space:** Discrete(6) — the June legacy table (corrected 2026-10-23: this card said 7; the visual env has always been 6-action, and its "dash" was measured to be a second jump button, see the banner above).
 * **Architecture:** Nature CNN (Mnih et al., 2015):
@@ -65,7 +68,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.2 `drq` (Data-Regularized Q / PPO with Random Shift)
-* **Checkpoint:** [`models/ppo_drq_100k.zip`](file:///d:/mario-ds/models/ppo_drq_100k.zip) (39.2 MB)
+* **Checkpoint:** `models/ppo_drq_100k.zip` (39.2 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack.
 * **Architecture:** Nature CNN + DrQ data augmentation module.
 * **Inductive Bias:** Pad $84 \times 84$ images with 4 pixels of reflection padding to $92 \times 92$, followed by random crop back to $84 \times 84$.
@@ -76,7 +79,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.3 `ae_frozen` (Autoencoder Latent PPO)
-* **Checkpoints:** [`models/ppo_autoencoder_frozen_100k.zip`](file:///d:/mario-ds/models/ppo_autoencoder_frozen_100k.zip) (26.3 MB), [`models/autoencoder.pth`](file:///d:/mario-ds/models/autoencoder.pth) (13.4 MB)
+* **Checkpoints:** `models/ppo_autoencoder_frozen_100k.zip` (26.3 MB), `models/autoencoder.pth` (13.4 MB)
 * **Input Space:** Pretrained latent vector $\mathbf{z} \in \mathbb{R}^{64}$ extracted from $4 \times 84 \times 84$ frames.
 * **Architecture:**
   - Autoencoder: 4-layer convolutional encoder ($32 \to 64 \to 128 \to 256$) with bottleneck $\mathbf{z} \in \mathbb{R}^{64}$, transposed conv decoder.
@@ -87,7 +90,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.4 `hybrid` (AE Reconstruction + CURL Contrastive Latent)
-* **Checkpoint:** [`models/ppo_hybrid_ae_curl_100k.zip`](file:///d:/mario-ds/models/ppo_hybrid_ae_curl_100k.zip) (39.7 MB)
+* **Checkpoint:** `models/ppo_hybrid_ae_curl_100k.zip` (39.7 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack.
 * **Architecture:** Shared convolutional backbone with dual heads: generative decoder + contrastive bilinear projection.
 * **Loss Function:**
@@ -97,7 +100,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.5 `spr` (Self-Predictive Representations)
-* **Checkpoint:** [`models/ppo_spr_100k.zip`](file:///d:/mario-ds/models/ppo_spr_100k.zip) (39.2 MB)
+* **Checkpoint:** `models/ppo_spr_100k.zip` (39.2 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack.
 * **Architecture:** Online encoder $f_\theta$, target momentum encoder $f_\xi$, transition predictor $g_\phi$, projection head $h_\psi$.
 * **Loss Formulation:** Multi-step forward latent predictive cosine similarity loss across $K=5$ future steps:
@@ -107,7 +110,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.6 `curl` (Contrastive Unsupervised Representations)
-* **Checkpoint:** [`models/ppo_curl_online_100k.zip`](file:///d:/mario-ds/models/ppo_curl_online_100k.zip) (39.2 MB)
+* **Checkpoint:** `models/ppo_curl_online_100k.zip` (39.2 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack.
 * **Architecture:** Query encoder $q = f_\theta(\text{crop}_1(s))$ and Momentum Key encoder $k = f_\xi(\text{crop}_2(s))$. Bilinear similarity matrix $W \in \mathbb{R}^{d \times d}$.
 * **Loss Function:** InfoNCE contrastive loss over mini-batch negative samples:
@@ -117,7 +120,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.7 `icm` (Intrinsic Curiosity Module)
-* **Checkpoint:** [`models/ppo_icm_100k.zip`](file:///d:/mario-ds/models/ppo_icm_100k.zip) (39.2 MB)
+* **Checkpoint:** `models/ppo_icm_100k.zip` (39.2 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack.
 * **Architecture:** Inverse dynamics model $g(\phi(s_t), \phi(s_{t+1})) \to \hat{a}_t$ and forward dynamics model $f(\phi(s_t), a_t) \to \hat{\phi}(s_{t+1})$.
 * **Intrinsic Reward Formulation:**
@@ -127,7 +130,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.8 `icm_ae` (ICM over Autoencoder Latents)
-* **Checkpoint:** [`models/ppo_icm_ae_100k.zip`](file:///d:/mario-ds/models/ppo_icm_ae_100k.zip) (26.3 MB)
+* **Checkpoint:** `models/ppo_icm_ae_100k.zip` (26.3 MB)
 * **Input Space:** Latent representation $\mathbf{z}_t \in \mathbb{R}^{64}$.
 * **Objective:** Evaluates inverse and forward dynamics directly inside compact Autoencoder latent manifold.
 * **Benchmark Performance:** Det Mean: 74.77 | Stoch Mean: $230.09 \pm 99.38$.
@@ -135,7 +138,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.9 `impala` (Deep Residual Convolutional Network)
-* **Checkpoint:** [`models/mario_impala.zip`](file:///d:/mario-ds/models/mario_impala.zip) (26.3 MB)
+* **Checkpoint:** `models/mario_impala.zip` (26.3 MB)
 * **Input Space:** $4 \times 84 \times 84$ Grayscale frame stack.
 * **Architecture:** IMPALA CNN (Espeholt et al., 2018):
   - 3 Residual blocks with channel depths $[16, 32, 32]$.
@@ -146,7 +149,7 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.10 `recurrent` (Recurrent PPO with LSTM Memory)
-* **Checkpoint:** [`models/recurrent_ppo_mario.zip`](file:///d:/mario-ds/models/recurrent_ppo_mario.zip) (39.2 MB)
+* **Checkpoint:** `models/recurrent_ppo_mario.zip` (39.2 MB)
 * **Input Space:** $1 \times 84 \times 84$ Grayscale frame + recurrent hidden state $(h_t, c_t) \in \mathbb{R}^{256}$.
 * **Architecture:** Nature CNN encoder feeding into an LSTM cell ($256$ hidden units) to resolve partial observability in horizontally scrolling stages.
 * **Benchmark Performance:** Det Mean: 31.74 | Stoch Mean: $516.80 \pm 131.04$ (Highest stochastic mean among pure vision models).
@@ -154,24 +157,24 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 ---
 
 ### 3.11 `ram100k` (Egocentric RAM MLP Policy)
-* **Checkpoint:** [`models/ram_ppo_100k.zip`](file:///d:/mario-ds/models/ram_ppo_100k.zip) (160 KB)
-* **Input Space:** State vector $\mathbf{s}_t \in \mathbb{R}^{16}$ from DS Main RAM:
-  $[v_x, v_y, \mathbf{1}_{\text{ground}}, \Delta X_{\text{cam}}, \text{odo}, \{dx_i, dy_i, \text{type}_i\}_{i=0}^2]$.
+* **Checkpoint:** [`models/ram_ppo_100k.zip`](../models/ram_ppo_100k.zip) (160 KB)
+* **Input Space:** State vector $\mathbf{s}_t \in \mathbb{R}^{17}$ from DS Main RAM:
+  $[x, y, v_x, v_y, \mathbf{1}_{\text{ground}}, \text{lives}, \text{time}, \text{cam}, \{dx_i, dy_i, \text{type}_i\}_{i=0}^2]$.
 * **Architecture:** 2-layer MLP $[64, 64]$ with Tanh activations. Parameter count: ~4,500 weights ($<0.5\text{ ms}$ inference).
 * **Benchmark Performance:** Det Mean: 61.40 | Stoch Mean: $392.39 \pm 223.91$.
 
 ---
 
 ### 3.12 `ramgeo100k` (Geometry-Augmented RAM Policy)
-* **Checkpoint:** [`models/ram_geo_100k.zip`](file:///d:/mario-ds/models/ram_geo_100k.zip) (170 KB)
-* **Input Space:** State vector $\mathbf{s}_t \in \mathbb{R}^{21}$ (16 RAM dimensions + 5 forward surface continuity flags).
+* **Checkpoint:** [`models/ram_geo_100k.zip`](../models/ram_geo_100k.zip) (170 KB)
+* **Input Space:** State vector $\mathbf{s}_t \in \mathbb{R}^{23}$ (17 RAM dimensions + 6 forward surface continuity flags).
 * **Architecture:** 2-layer MLP $[64, 64]$ with Tanh activations.
 * **Benchmark Performance:** Det Mean: 61.40 | Stoch Mean: $521.95 \pm 425.36$ (Highest stochastic mean overall).
 
 ---
 
 ### 3.13 `gnn100k` (Graph Neural Interaction Network)
-* **Checkpoint:** [`models/gnn_100k.zip`](file:///d:/mario-ds/models/gnn_100k.zip) (1.87 MB)
+* **Checkpoint:** [`models/gnn_100k.zip`](../models/gnn_100k.zip) (1.87 MB)
 * **Input Space:** Graph $\mathcal{G} = (\mathcal{V}, \mathcal{E})$ with Mario and dynamic enemy sprite nodes.
 * **Architecture:** 2-layer Message Passing Neural Network (MPNN):
   $$m_{ij} = \phi_e(v_i, v_j, e_{ij}), \quad v_i' = \phi_v\left(v_i, \sum_{j \in \mathcal{N}(i)} m_{ij}\right)$$
@@ -181,13 +184,13 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 
 ### 3.14 `pinn_wm` & `dyna_ppo` (Physics-Informed World Model + Dyna-PPO)
 * **Checkpoints:**
-  - PINN World Model: [`models/pinn_nsmb.pt`](file:///d:/mario-ds/models/pinn_nsmb.pt) (180 KB)
-  - Dyna-PPO Policy: [`models/pinn_policy.zip`](file:///d:/mario-ds/models/pinn_policy.zip) (173 KB)
-  - Transition Pool: [`models/pinn_pool.npz`](file:///d:/mario-ds/models/pinn_pool.npz) (156 KB, 3,500 real emulator transitions)
+  - PINN World Model: [`models/pinn_nsmb.pt`](../models/pinn_nsmb.pt) (180 KB)
+  - Dyna-PPO Policy: [`models/pinn_policy.zip`](../models/pinn_policy.zip) (173 KB)
+  - Transition Pool: [`models/pinn_pool.npz`](../models/pinn_pool.npz) (13,300 real emulator transitions; see the split audit in PROJECT_STATUS §4ax)
 * **World Model Architecture (Hard-Residual PINN):**
   - Parameter count: 43,440.
   - Kinematic Hard Residual Formulation:
-    $$x_{t+1} = x_t + v_{x, t} \cdot \Delta t, \quad y_{t+1} = y_t + v_{y, t} \cdot \Delta t$$
+    $$x_{t+1} = x_t + v_{x, t+1}/16, \quad y_{t+1} = y_t + v_{y, t+1}/16$$
   - Learned Neural Residual Head: Predicts nonlinear forces, friction, terrain collision normal constraints, and sprite interaction deltas.
   - Classification Head: Class-weighted binary cross-entropy ($w_{\text{death}} = 25.0$) predicting episode termination / lethal hazard contact.
 * **Dyna-PPO Policy:**
@@ -201,21 +204,23 @@ Unless specified otherwise in individual cards, all PPO-based agents share the f
 
 ### 3.15 `ac_pixels_200k` / `ac_ram_200k` (Asymmetric Actor-Critic, Pinto et al. 2017)
 
-* **Checkpoints:** [`models/ac_pixels_200k.zip`](file:///d:/mario-ds/models/ac_pixels_200k.zip) (20.4 MB), [`models/ac_ram_200k.zip`](file:///d:/mario-ds/models/ac_ram_200k.zip) (21.3 MB)
+* **Checkpoints:** [`models/ac_pixels_200k.zip`](../models/ac_pixels_200k.zip) (20.4 MB), [`models/ac_ram_200k.zip`](../models/ac_ram_200k.zip) (21.3 MB)
 * **Trained by:** `src/train_asymmetric_ac.py --value-input {pixels,ram} --total-timesteps 200000 --n-envs 12` (33 min/arm, ~100 steps/s)
 * **Env:** `src/dual_obs_env.py` — one emulator, two views per step: the June 84×84 grayscale pipeline (pixels) and the unified 23-float RAM vector. **Both arms use the corrected 8-action table** (X dash, A jump) and the unified RAM reward.
 * **Architecture:** the A/B isolates the *critic's input only* — the policy head is always a NatureCNN over pixels; the value head reads pixels (baseline) or the RAM vector (asymmetric, via a 2-layer MLP).
-* **Measured (n=3 det / stoch, PROJECT_STATUS §4ac):**
+* **Historical 4ac run (n=3 deterministic / stochastic per arm):**
 
 | arm (200k steps) | det mean px | stoch mean px | stoch max px |
 |---|:---:|:---:|:---:|
 | pixel-critic (baseline) | 88.0 | 782.4 | 1,081.7 |
 | **ram-critic (asymmetric)** | **1,250.5** | **1,360.0** | **2,610.9** |
 
-* **Honest caveats (2026-10-23):** n=3 is a sample, not a mean — the full n=30
-  benchmark remains future work; the committed evidence for these numbers lives in
-  PROJECT_STATUS §4ac and the (gitignored) training logs, **not** in `evals/` — an
-  `evals/ac_*.json` with a provenance block is the named follow-up. The pixel policy
+* **Caveats:** The table above is the historical 4ac run; it contains three
+  episodes per condition and does not establish robustness. A later independent
+  [`evals/asymmetric_ac_eval.json`](../evals/asymmetric_ac_eval.json) records
+  different stochastic results and provenance; the full n=30 benchmark remains
+  future work. Its `actor_input` metadata says four frames, but the environment
+  and policy code use one grayscale frame; see PROJECT_STATUS §4ax. The pixel policy
   sees a *single* frame (N_STACK=1) while the RAM critic observes velocities, so the
   measured 14× deterministic delta conflates critic variance with the policy's
   missing temporal information; a frame-stacked replication is the clean test.

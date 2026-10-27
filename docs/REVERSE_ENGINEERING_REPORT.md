@@ -1,6 +1,6 @@
 # Academic Reverse Engineering Report: *New Super Mario Bros.* (Nintendo DS)
 
-> **Status reconciled (2026-10-18):** this report separates values found in
+> **Historical report; status reconciliation (2026-10-27):** this report separates values found in
 > the clean-room decompilation from behavior measured in DeSmuME. Player jump
 > trajectories have empirical fits (section 5.3), but their internal state
 > machine is still missing from the decompilation. Static binary work is not
@@ -8,6 +8,10 @@
 > closed without recovering the function, and a real control-flow/decompiler
 > pass remains open. `BG_chk` tables were structurally inspected, but their
 > values do not directly identify solidity or bind themselves to courses.
+> The 342-profile figures below describe an earlier extraction; the later
+> 385-slot mapping and its limits are in PROJECT_STATUS §4aj. The raw clear
+> byte is not a universal goal signal: the 3-1 and 7-1 pole captures in §4av
+> and §4aw did not set it at capture.
 
 **Technical Report NTR-A2DP-EUR-RE-01**  
 *Author:* Reinforcement Learning & Reverse Engineering Team  
@@ -19,7 +23,7 @@
 
 ## Abstract
 
-This report documents reverse engineering of the Nintendo DS title *New Super Mario Bros.* (EUR release NTR-A2DP-EUR) for physics-informed world models, offline dataset generation, and direct RAM-telemetry reinforcement learning. It records verified structural results and falsified hypotheses: 12-byte entity records terminated by `0xFFFFFFFF` across 189/189 non-empty stages, native 20.12 fixed-point units (`0x1000 = 1 px`), 342 actor-profile mappings, validated DeSmuME telemetry, and the level-clear flag at `0x020DCF27`. Mario's jump behavior is empirically measured for four input regimes, but the player-specific state machine remains absent from the static decompilation; see section 5.3.
+This report documents reverse engineering of the Nintendo DS title *New Super Mario Bros.* (EUR release NTR-A2DP-EUR) for physics-informed world models, offline dataset generation, and direct RAM-telemetry reinforcement learning. It records verified structural results and falsified hypotheses: 12-byte entity records terminated by `0xFFFFFFFF` across 189/189 non-empty stages, native 20.12 fixed-point units (`0x1000 = 1 px`), the earlier extraction of 342 actor-profile mappings, validated DeSmuME telemetry, and the previously identified clear byte at `0x020DCF27` (not universal across the measured special-course captures). Mario's jump behavior is empirically measured for four input regimes, but the player-specific state machine remains absent from the static decompilation; see section 5.3.
 
 ---
 
@@ -198,7 +202,7 @@ Documenting negative results is essential to prevent future research cycles from
 
 ---
 
-## 7. Outstanding Reverse Engineering Gaps (current snapshot: 2026-10-18)
+## 7. Outstanding Reverse Engineering Gaps (updated 2026-10-27)
 
 1. **Course-to-collision binding:** the 48 `BG_chk/*MainUnitChangeData.bin`
    files have been parsed, but the table values are not a solidity bitmask and
@@ -209,9 +213,9 @@ Documenting negative results is essential to prevent future research cycles from
    power-up dependence, and full water-state transitions are not recovered
    statically. Generic `StageEntity` gravity must not be presented as Mario's
    gravity.
-3. **Actor profiles and collision classes:** 342 profile IDs are mapped, but
-   some runtime types in transfer traces remain unnamed. Hostility/contact maps
-   cover only selected types and contexts.
+3. **Actor profiles and collision classes:** the later §4aj inventory maps
+   385 profile slots, but a mapped class does not establish runtime behavior.
+   Hostility/contact maps cover only selected types and contexts.
 4. **Course-specific geometry:** all 191 course files parse, but only 29 pass
    the static coverage guard. Probe maps cover eight courses for floors, three
    for walls, one for water, and three for contact; this is not a whole-game

@@ -18,7 +18,7 @@ repository tree, so open or download it from
 
 | File | What it shows | Status |
 |---|---|---|
-| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 33 s World 1-1 clear with all panels (206 decisions, 4,020 of 4,032 px) | current |
+| [`media/nsmb_dashboard_clear.mp4`](media/nsmb_dashboard_clear.mp4) | the full 27 s World 1-1 clear with all panels (206 decisions, 4,020 of 4,032 px) | current |
 | [`media/nsmb_dashboard_preview.gif`](media/nsmb_dashboard_preview.gif) | the closing 10 s of the same run, inline above | current |
 | [`media/nsmb_w11_genetic_clear.mp4`](media/nsmb_w11_genetic_clear.mp4) | the 100% World 1-1 clear evolved via pure Neuroevolution (206 decisions, 4,020 px, 1,032 params) | current |
 | [`media/nsmb_w11_genetic_preview.gif`](media/nsmb_w11_genetic_preview.gif) | the closing 10 s of the neuroevolutionary clear | current |
@@ -55,9 +55,10 @@ from the same step loop that drives the emulator, so the frame is the evidence:
 | reward prediction (green) vs actual (grey) | `models/pinn_nsmb.pt` `step_batch()` reward head |
 | SciML panel (reach, units, pits) | `src/tilemap_planner.py` + `out/nsmb_physics.json` |
 
-Measured on this run: **206 steps, 4020 px of 4032 px, stage-clear flag raised** —
-the same numbers `evals/pinn_realtime_eval.json` reports, because the recorder
-now stops on the criterion the eval uses. The grey spike at the end is the `+100`
+Measured on this run: **206 steps, 4020 px of 4032 px, the evaluator's goal condition satisfied**. The corresponding genetic-policy evaluation is
+[`evals/eval_genetic_w11.json`](evals/eval_genetic_w11.json). The separate
+legacy reflex evaluation ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json))
+takes 245 steps; these are different controllers and runs. The grey spike at the end is the `+100`
 terminal bonus the PINN does not predict.
 
 ```bash
@@ -72,12 +73,31 @@ pipeline runs on a second course without any hand-made state.
 [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) §4i and §4j report that route,
 the corrected course-file-name mapping, and the first transfer numbers.
 
+## Current results and limits
+
+The [current project status](docs/PROJECT_STATUS.md) links the source evaluations
+for specialized-controller clears across seven benchmark courses, the measured
+3-1 and 7-1 action routes, and the learned 1-1 genetic policy. Replays use fixed
+savestates and do not establish generalization. The multi-world PINN/CEM
+experiment recorded 0/27 clears over nine courses; its checkpoint lacks the
+additional pipe actions. Details, provenance and commands are in
+[PROJECT_STATUS §4aw](docs/PROJECT_STATUS.md#4aw-world-7-1-cleared-pinn-imagination-planning-measured-across-courses-2026-10-27).
+The corrected audit of the PINN split and earlier result tables is in §4ax.
+
+To replay the measured special-course routes or the imagination benchmark:
+
+```powershell
+.venv\Scripts\python.exe tools\eval_special_route.py --world 3-1 --route out\special_courses\route_31_full_clear.json --episodes 5 --out out\repeat_31_full.json
+.venv\Scripts\python.exe tools\eval_special_route.py --world 7-1 --route out\special_courses\route_71_full_clear.json --episodes 5 --out out\repeat_71_full.json
+.venv\Scripts\python.exe tools\eval_pinn_multiworld.py --episodes 3 --max-steps 450 --out out\repeat_pinn_multiworld.json
+```
+
 ## Contents
 ### World 8-1, start to flagpole — the final gauntlet cleared
 
 ![World 8-1 clear dashboard, closing 10 s](media/nsmb_w81_dashboard_preview.gif)
 
-The animation above is the closing 10 s of the World 8-1 run (205 steps, 3,910 px of 3,920 px) touching the flagpole, executed at native 60 Hz by the **Learned Neural Policy** (`models/neural_policy_w81.pt`, MLP 64x64). The full clip with all SciML panels and synchronized spatial grid is [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4).
+The animation above shows the closing 10 s of the World 8-1 neural-policy recording (205 steps, 3,910 px of 3,920 px; `models/neural_policy_w81.pt`, MLP 64x64). Its recorder uses a horizontal goal threshold. The separately evaluated `world81` controller has its own [evaluation](evals/eval_8_1_clear.json); matching figures do not make it the same policy or run. The full clip with all SciML panels and synchronized spatial grid is [`media/nsmb_w81_dashboard_clear.mp4`](media/nsmb_w81_dashboard_clear.mp4).
 
 - [Prerequisites and Installation](#-prerequisites-and-installation)
 - [Visual Reward Methodology](#-visual-reward-methodology)
@@ -89,11 +109,14 @@ The animation above is the closing 10 s of the World 8-1 run (205 steps, 3,910 p
 
 ## 🛠 Prerequisites and Installation
 
-A dedicated virtual environment (conda or venv) is recommended for dependency isolation:
+Use a dedicated CPython 3.11 virtual environment and install the pinned dependencies from `requirements.txt`, which includes the CUDA wheel index. On the development machine:
 
-```bash
-pip install gymnasium stable-baselines3[extra] sb3-contrib opencv-python py-desmume mlflow torch torchvision tensorboard sheeprl ndspy tqdm numpy
+```powershell
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe tools\check_env.py
 ```
+
+The repository was developed on Windows; `check_env.py` reports actual installed versions. A clean installation and the Linux Docker path have not been validated for every optional trainer.
 
 > **Notice:** The `py-desmume` package provides Python bindings for the DeSmuME Nintendo DS emulation core. Without it, the environment falls back to static dummy stubs for non-emulated unit testing.
 
@@ -117,6 +140,14 @@ mario-ds/
 Place the target ROM binary and initial episode savestate in `data/`:
 - `data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds` (or symlink `data/mario.nds`)
 - `data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1` (or `data/state.dst`)
+
+The full pre-commit checks are `.venv\Scripts\python.exe tools\gates.py --all`.
+On a fresh checkout, the numbers gate also needs the locally generated
+`out/reflex_parity.json` and `out/dashboard_run.json`: run
+`tools/parity_reflex.py`, then `tools/export_geometry.py` and the dashboard
+recorder with `--controller genetic`. Supply `--out` and `--gif` paths under
+`out/` to avoid overwriting the versioned media. The recorder needs the ROM,
+savestate, Rust planner binary (for its default backend) and FFmpeg.
 
 > **NE-Dreamer** lives in-tree at `nedreamer/` (a first-class package, not a git submodule). Run its
 > Mario config via `python src/train_nedreamer_mlflow.py` or from `nedreamer/train.py` with
@@ -393,26 +424,27 @@ python src/train_gnn.py --timesteps 100000 --num-envs 2 --run-id gnn_100k
 ---
 
 ### 14. Physics-Informed (PINN) World Model — Fast Training + Real-Time Play
-Ported in methodology from [`PedroM2626/smw-pinn`](https://github.com/PedroM2626/smw-pinn) (Super Mario World) to **New Super Mario Bros. DS**, built on the RAM-telemetry stack. A **Hard-Residual PINN** world model embeds the engine's exact discrete integration `x_{t+1}=x_t+v_{x,t+1}/16` (verified on real data) into the computation graph, learning only the un-modelled force/contact residual. Result: trained from **~200 real transitions in ≈1 minute** to test MSE **0.056** with a **structurally zero kinematic residual**. Three-stage pipeline (with three upgrades: a discovered **dash action** (`X`), a **probabilistic `logvar` head** the planner can be pessimistic about, and a **tilemap A\* jump-reachability planner**):
+Ported in methodology from [`PedroM2626/smw-pinn`](https://github.com/PedroM2626/smw-pinn) (Super Mario World) to **New Super Mario Bros. DS**, built on the RAM-telemetry stack. A **Hard-Residual PINN** world model embeds the engine's exact discrete integration `x_{t+1}=x_t+v_{x,t+1}/16` (verified on real data) into the computation graph, learning only the un-modelled force/contact residual. The historical single-world study reported sample-efficiency results, but the current metrics JSON belongs to a later checkpoint. Its kinematic residual is structurally constrained; one-step accuracy does not establish accurate multi-step rollouts (see PROJECT_STATUS §4ax). The following commands describe the historical single-world pipeline (with three upgrades: a discovered **dash action** (`X`), a **probabilistic `logvar` head** the planner can be pessimistic about, and a **tilemap A\* jump-reachability planner**):
 
 ```bash
+# Historical retraining overwrites models/pinn_pool.npz and evals/pinn_worldmodel_metrics.json.
 python src/train_pinn_world_model.py --transitions 3500 --epochs 350 --sample-efficiency   # Stage 1: world model
 python src/train_pinn_policy.py --timesteps 200000 --n-envs 8                              # Stage 2: Dyna-PPO in imagination
 python src/eval_pinn_realtime.py --controller reactive --render                            # Stage 3: real-time on console (A*+reflex)
 python src/tilemap_planner.py                                                             # A* feasibility proof (stage is completable)
 ```
 
-**Real-time console results** (World 1-1; the flagpole is at 4,032 px and the last solid tile column ends at 4,256 px — the first is what `level_cleared` fires on): the dash unlock **doubles** reach, and with ROM **wall/pipe perception** the reflex + A\* planner now **clears the stage end to end**: `reactive` reaches **4,021 px of 4,032 px in 5/5 episodes** ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json), and the clip at the top of this file). The learned arms still stop short — CEM-MPC peaks at 1,510 px, PPO+Reflex at 1,139 px, pixel PPO at 120.8 px — and the imagination PPO (2.5 ms/frame, >400 FPS) also runs live. The **tilemap A\*** proves the stage is **geometrically feasible** (4 pits, max 3 tiles, all within a running jump — the true pit census measured against the game's own physics, five slope ramps the static classes miscounted as pits notwithstanding). The barrier that had to be broken sat at the **pipe + dense block-staircase** just after it: a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires — direct in-game evidence (rendered frame + velocity trace) is in [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png). The reflex layer clears it by taking off from the exact edge column with dash speed still on; a *learned* controller clearing it still needs a full solid-tile 2D platformer planner or large-scale direct RL. Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, `media/nsmb_dashboard_clear.mp4`.
+**Real-time console results** (World 1-1; the flagpole is at 4,032 px and the last solid tile column ends at 4,256 px — the first is what `level_cleared` fires on): the dash unlock **doubles** reach, and with ROM **wall/pipe perception** the reflex + A\* planner now **clears the stage end to end**: `reactive` reaches **4,021 px of 4,032 px in 5/5 episodes** ([`evals/pinn_realtime_eval.json`](evals/pinn_realtime_eval.json)); the clip at the top uses a different, genetic controller. The historical PINN learned arms stop short — CEM-MPC peaks at 1,510 px, PPO+Reflex at 1,139 px, pixel PPO at 120.8 px — and the imagination PPO (2.5 ms/frame, >400 FPS) also runs live. The **tilemap A\*** proves the stage is **geometrically feasible** (4 pits, max 3 tiles, all within a running jump — the true pit census measured against the game's own physics, five slope ramps the static classes miscounted as pits notwithstanding). The barrier that had to be broken sat at the **pipe + dense block-staircase** just after it: a standstill jump on a narrow surface goes straight up (`vx=0`) so Mario oscillates until the **stage timer** expires — direct in-game evidence (rendered frame + velocity trace) is in [`media/nsmb_pipe_top_timesup.png`](media/nsmb_pipe_top_timesup.png). The legacy reflex layer clears it by taking off from the edge with dash speed; the later genetic policy also clears 1-1 under its evaluated start (section 15). Full methodology + honest limits: **[`docs/WORLD_MODEL_PINN.md`](docs/WORLD_MODEL_PINN.md)**. Clips: `media/pinn_mpc_run.avi`, `media/nsmb_dashboard_clear.mp4`.
 
 ---
 
 ### 15. Compact Neuroevolution (Genetic Algorithm) — Zero-Gradient 100% Clear in 206 Steps
 Direct policy search via an elitist Genetic Algorithm ($P=24$, top-4 elite, Gaussian mutation $\sigma=0.15$) operating on an ultra-compact MLP (23 inputs $\to$ 32 tanh $\to$ 8 actions, only **1,032 parameters** / 11.6 KB).
-By replacing gradient descent and value-function bootstrapping with pure episodic progress fitness ($f = \max_t x_t$), the policy cleared World 1-1 at Generation 12 (29.9 min) and converged to an all-time speedrun record of **206 steps** (beating the 245-step baseline). Evaluated deterministically ($N=5$), it achieves **100% clear rate (5/5)** with zero catastrophic forgetting:
+By replacing gradient descent and value-function bootstrapping with pure episodic progress fitness ($f = \max_t x_t$), the policy cleared World 1-1 at Generation 12 (29.9 min) and reached **206 steps** in the recorded evaluation (fewer than the 245-step legacy baseline). Evaluated deterministically from the same savestate ($N=5$), it achieves **100% clear rate (5/5)**; these repeated starts do not establish robustness or absence of catastrophic forgetting:
 
 ```bash
-python tools/train_neuroevolution.py --generations 25 --pop-size 24 --elite 4
-python tools/eval_neuroevolution.py --model models/best_genetic_policy.npz --episodes 5
+python tools/train_neuroevolution.py --generations 25 --pop-size 24 --elite 4 --out-model out/genetic_experiment.npz --out-log out/genetic_experiment.json
+python tools/eval_neuroevolution.py --model models/genetic_policy.npz --episodes 5 --out out/repeat_genetic_w11.json
 ```
 *Evaluated performance: Deterministic **4,020.0 px (100% clear 5/5, 206 steps)** ([`evals/eval_genetic_w11.json`](evals/eval_genetic_w11.json), clip at [`media/nsmb_w11_genetic_clear.mp4`](media/nsmb_w11_genetic_clear.mp4)).*
 

@@ -1,14 +1,14 @@
 # models/ — artifact index
 
 `models/checkpoints/` and every `*_<n>_steps.zip` are intermediate training
-snapshots: local scratch, gitignored, never load-bearing. The canonical
-artifacts are the ones below (the files this README lists are the tracked set).
+snapshots: local scratch, gitignored, never load-bearing. The table describes
+major artifacts; some historical visual files below are local-only and were removed from Git, as detailed in the clone inventory.
 
 | Artifact | Role |
 |---|---|
-| `pinn_nsmb.pt` | Hard-residual PINN world model (43,440 params; MSE 0.0555) |
+| `pinn_nsmb.pt` | Enhanced multi-world PINN (43,440 params; test MSE 0.04568 on the 8-1-only partition; see PROJECT_STATUS 4ax) |
 | `pinn_policy.zip` | Dyna-PPO policy trained in PINN imagination (200k steps) |
-| `pinn_pool.npz` | 3,500 real RAM transitions (46 episodes; x max 2,601 px) |
+| `pinn_pool.npz` | 13,300 real RAM transitions with 240 episode IDs across seven courses; the episode split is not stratified (PROJECT_STATUS 4ax) |
 | `ac_ram_200k.zip` | Asymmetric AC, **RAM-critic** arm — det 1,250.5 px, stoch max 2,610.9 (n=3, PROJECT_STATUS 4ac) |
 | `ac_pixels_200k.zip` | Asymmetric AC, pixel-critic baseline — det 88.0 px (the 14x contrast arm) |
 | `ram_ppo_100k.zip` / `ram_geo_100k.zip` / `gnn_100k.zip` | RAM-arm 100k baselines (17/23-dim vector, entity graph) |
@@ -36,7 +36,8 @@ are served through **git-lfs** (see `.gitattributes`); a fresh clone needs
 Tracked after the slim: the PINN trio (`pinn_nsmb.pt`, `pinn_policy.zip`,
 `pinn_pool.npz`), the RAM baselines (`ram_ppo_100k`, `ram_geo_100k`,
 `ram_ppo_smoke`), `gnn_100k.zip`, the world-model `*.npz` controllers, and
-`ac_pixels_200k.zip` / `ac_ram_200k.zip` via LFS.
+`ac_pixels_200k.zip` / `ac_ram_200k.zip` via LFS, plus the later genetic,
+IQN, Rainbow, distilled and visual-genetic checkpoints listed by `git ls-files models`.
 
 **Measured, before -> after (4ag):** git pack **2.04 GiB -> 4.72 MiB**
 (`git count-objects -vH`; 109 commits preserved, working tree byte-identical,

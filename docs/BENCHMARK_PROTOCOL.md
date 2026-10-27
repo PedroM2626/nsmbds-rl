@@ -43,7 +43,7 @@ All evaluations are conducted using `py-desmume` (v0.0.9, DeSmuME core 0.9.12), 
 * **Frame Skipping:** $\Delta t_{\text{skip}} = 8$ frames per agent action step.
 * **Control Frequency:**
   $$\nu_{\text{control}} = \frac{60.0}{8} = 7.5\text{ Hz} \quad (\Delta \tau = 133.\overline{3}\text{ ms})$$
-* **Maximum Episode Horizon:** $T_{\max} = 1,000$ steps ($8,000$ emulated frames $\approx 133.3\text{ seconds}$ game time).
+* **Episode horizon:** `MarioRamEnv` defaults to 1,000 steps. The benchmark loop has a separate 5,000-step safety cap; other environments may terminate earlier. Do not infer every model used a 1,000-step cap.
 * **Concurrency Invariant:** Due to DeSmuME C++ core static variables, instantiating multiple emulator instances within a single operating system process triggers memory access violations. Concurrent evaluations across seeds or models MUST execute as isolated child processes with staggered process spawning ($\ge 2.0\text{ s}$ sleep between worker initializations).
 
 ---
@@ -57,7 +57,7 @@ The benchmark evaluates policies across three distinct sensor paradigms:
 * **Preprocessing Pipeline:**
   1. Alpha channel truncation $\to 256 \times 192 \times 3$ BGR.
   2. Bilinear spatial downsampling $\to 84 \times 84 \times 1$ grayscale.
-  3. Frame Stacking: Temporal concatenation of $k=4$ successive observations, yielding input tensors of shape $(4, 84, 84)$ normalized to $[0.0, 1.0]$.
+  3. Frame Stacking: Most non-recurrent visual rows use $k=4$ observations; the recurrent row uses one grayscale frame and LSTM state. See `evaluate_benchmark.py` environment selection.
 
 ### 3.2 Egocentric RAM Telemetry Modality (Low-Dimensional State)
 Extracted directly from DS Main RAM (`0x02000000`–`0x023FFFFF`) via pointer chasing:
@@ -115,7 +115,7 @@ Each baseline model is subjected to two distinct test protocols. **Honest caveat
 * **Sampling Rule:**
   $$a_t = \arg\max_{a \in \mathcal{A}} \pi_\theta(a \mid s_t)$$
   For actor-critic / PPO models, the mode of the categorical distribution is selected.
-* **Sample Size:** $n = 10$ independent episodes from the entrance savestate.
+* **Sample Size:** $n = 10$ repeated episodes from the same entrance savestate; deterministic repetitions are identical under this protocol.
 
 ### 5.2 Stochastic Evaluation Regime ($n = 30$)
 * **Objective:** Measure policy robustness under action sampling.
@@ -134,10 +134,10 @@ For each episode $i \in \{1, \dots, N\}$:
 
 ### 6.1 Cumulative Episodic Return ($R_i$)
 $$R_i = \sum_{t=0}^{T_i} r_t$$
-where step reward $r_t$ is the unified RAM reward (4s): camera-RAM
+For RAM rows, step reward $r_t$ is the unified RAM reward (4s): camera-RAM
 advancement $\times 2.0$, per-step time penalty ($-0.05$), death via
 RAM lives ($-15.0$), stage-clock timeout ($-50.0$), and terminal goal
-completion ($+100.0$).
+completion ($+100.0$). Historical visual rows instead used the legacy flow reward; their returns are not on the same scale.
 
 > Corrected 2026-10-14: the previous text read "life loss penalty
 > ($-50.0$), time penalty ($-0.01$)" -- both wrong against the code:
@@ -154,17 +154,17 @@ where $X_{\text{spawn}} = 88.0\text{ px}$ and $X_{\text{goal}} = 4,032.0\text{ p
 $$C = \frac{1}{N} \sum_{i=1}^N \mathbf{1}[\text{Flagpole Reached}_i]$$
 
 ### 6.4 Statistical Confidence Bounds
-Because RL evaluation returns often exhibit skewness, we report both parametric and non-parametric bounds:
+The historical table reports a parametric interval and the empirical standard deviation; it does not provide a non-parametric interval. Its dispersion and intervals describe policy sampling from a fixed savestate, not variability across game starts:
 1. **Parametric 95% Confidence Interval ($t$-distribution):**
    $$\text{CI}_{95\%} = \hat{\mu} \pm t_{0.975, N-1} \cdot \frac{s}{\sqrt{N}}$$
-   where $\hat{\mu} = \frac{1}{N} \sum R_i$ and $s = \sqrt{\frac{1}{N-1} \sum (R_i - \hat{\mu})^2}$.
+   where $\hat{\mu} = \frac{1}{N} \sum R_i$. The saved `std` uses `numpy.std` with the default $N$ denominator, not the $N-1$ sample-standard-deviation convention; the table uses that reported standard deviation in its approximate intervals.
 2. **Empirical Standard Deviation ($s$):** Reported directly alongside means.
 
 ---
 
 ## 7. Official Baseline Performance Summary ($n=30$ Stochastic vs. $n=10$ Deterministic)
 
-The following metrics are compiled directly from empirical benchmark logs in [`evals/benchmark_n30_merged.json`](file:///d:/mario-ds/evals/benchmark_n30_merged.json):
+The following metrics are compiled directly from empirical benchmark logs in [`evals/benchmark_n30_merged.json`](../evals/benchmark_n30_merged.json):
 
 | Model Key | Observation Space | Architecture / Algorithm | Det Mean ($n=10$) | Stoch Mean ($n=30$) | Stoch Std ($s$) | Stoch 95% CI |
 |:---|:---|:---|:---:|:---:|:---:|:---:|
@@ -177,7 +177,7 @@ The following metrics are compiled directly from empirical benchmark logs in [`e
 | `icm` | $4 \times 84 \times 84$ Pixels | Intrinsic Curiosity Module PPO | 222.49 | 231.37 | 94.60 | $[196.02, 266.72]$ |
 | `icm_ae` | Latent $\mathbf{z} \in \mathbb{R}^{64}$ | ICM over Autoencoder Latents | 74.77 | 230.09 | 99.38 | $[192.96, 267.22]$ |
 | `impala` | $4 \times 84 \times 84$ Pixels | Deep Residual Network (IMPALA) | 74.74 | 290.16 | 161.17 | $[229.95, 350.37]$ |
-| `recurrent`| $4 \times 84 \times 84$ Pixels | Recurrent PPO (LSTM Memory) | 31.74 | 516.80 | 131.04 | $[467.84, 565.76]$ |
-| `ram100k` | $\mathbf{s} \in \mathbb{R}^{16}$ RAM | MLP-PPO ($[64, 64]$) | 61.40 | 392.39 | 223.91 | $[308.70, 476.08]$ |
-| `ramgeo100k`| $\mathbf{s} \in \mathbb{R}^{21}$ Geo-RAM | MLP-PPO ($[64, 64]$) + Terrain Lookahead | 61.40 | 521.95 | 425.36 | $[362.96, 680.94]$ |
+| `recurrent`| $1 \times 84 \times 84$ Pixels + recurrent state | Recurrent PPO (LSTM Memory) | 31.74 | 516.80 | 131.04 | $[467.84, 565.76]$ |
+| `ram100k` | $\mathbf{s} \in \mathbb{R}^{17}$ RAM | MLP-PPO ($[64, 64]$) | 61.40 | 392.39 | 223.91 | $[308.70, 476.08]$ |
+| `ramgeo100k`| $\mathbf{s} \in \mathbb{R}^{23}$ Geo-RAM | MLP-PPO ($[64, 64]$) + Terrain Lookahead | 61.40 | 521.95 | 425.36 | $[362.96, 680.94]$ |
 | `gnn100k` | Dynamic Graph | Interaction Network GNN | 61.40 | 401.11 | 312.21 | $[284.45, 517.77]$ |

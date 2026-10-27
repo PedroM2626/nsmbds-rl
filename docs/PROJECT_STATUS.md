@@ -1,30 +1,59 @@
 # Project Status & Gap Analysis
 
-*Current snapshot: 2026-10-18. Target: NSMB DS EUR (NTR-A2DP-EUR). Historical experiment notes remain below.*
+*Current snapshot: 2026-10-27. Target: NSMB DS EUR (NTR-A2DP-EUR).*
 
 ---
 
 ## Executive Summary
 
-The published legacy reactive controller clears World 1-1. Its parity contract is **245 steps, reward 1663.087402343757, final Mario X 4020.6328125 px**, against the 4032 px flagpole; `tools/parity_reflex.py` reproduces the saved episode. Learned agents still do not clear: saved 1-1 evals peak at 1510.0 px for CEM-MPC and 1139.5 px for PPO+Reflex; the asymmetric RAM-critic's stochastic maximum is 2610.9 px at n=3. No clear outside World 1 is recorded.
+The legacy reactive 1-1 run remains a frozen parity contract: **245 steps,
+reward 1663.087402343757 and final Mario X 4020.6328125 px**, reproduced by
+`tools/parity_reflex.py` against `evals/pinn_realtime_eval.json`. A separately
+trained neuroevolution policy also clears 1-1 in **206 steps**, 5/5 deterministic
+replays ([evaluation](../evals/eval_genetic_w11.json)).
 
-Not every game value is resolved. The measurements suffice to reproduce the 1-1 clear and explain several local transfer frontiers, but do not establish whole-game collision semantics, all actor identities, all player physics states, or all course geometry.
+Specialized controllers have recorded clears on seven benchmark courses;
+measured action routes also clear 3-1 and 7-1 from their original savestates.
+These results establish replay on the specified starts, not generalization to
+other starts, all stages, or a single universal learned agent. The 3-1/7-1
+routes were searched with the emulator and are not learned PINN policies.
 
-## Current Status (reconciled 2026-10-18)
+The current pure PINN+CEM imagination benchmark records **0/27 clears** over
+nine courses (21 deaths, 6 stalls); its eight-action model lacks the
+extra pipe actions. See [4aw](#4aw-world-7-1-cleared-pinn-imagination-planning-measured-across-courses-2026-10-27) for protocol and limitations.
 
-| Area | Status | Current evidence and boundary |
-|------|--------|-------------------------------|
-| RAM telemetry, origin, clear flag, unified reward | ✅ | EUR addresses validated; origin ambiguity resolved in 4o/4q; legacy parity remains the frozen contract |
-| Course parsing | ✅ structure / ⚠️ geometry | 191 courses and their records parse; static ground classes are tileset-local and only 29/191 courses pass the current coverage guard |
-| Measured geometry | ⚠️ Partial | Floor probes: A01_1, B01_1, C01_1, D01_1, E01_1, F01_1, G01_1, H01_1. Wall probes: B01_1, D01_1, F01_1. Water: F01_1. Contact: A01_1 Goomba, B01_1 Pokey, D01_1 Koopa |
-| `BG_chk` collision tables | ⚠️ Partial | 48 tables are structurally inspected; nonzero entries are not a solidity mask, and course/table/solid-class binding is unresolved (4f/4h) |
-| Actor identity | ⚠️ Partial | 342 profile slots (~85%) extracted; some runtime types in transfer traces remain unnamed |
-| Player physics | ⚠️ Empirically measured, statically unresolved | Four jump regimes are in `physics_jump_state_machine.json`; the new 1-1 button comparison measures matching A/B traces for one standing-jump protocol. This does not establish behavior for every power-up, water state, or movement regime |
-| Planner | ⚠️ Partial | A* uses a conservative six-tile (96 px) default reach; `dynamic_jump_reach_px` exists but is not wired into the planner default |
-| Learned models | ⚠️ Partial | PINN pool has 3500 transitions; the recorded 44-frame drift is 1,620.12 px (evals/pinn_worldmodel_metrics.json; the 1,738 px quoted here before 4af was an earlier, uncommitted metrics write). PPO, PPO+Reflex, and MPC saved evals do not clear 1-1 |
-| Transfer | ⚠️ Partial | 2-1 reaches 862.7 px on both arms (4x); 4-1 reaches 505 px; the 6-1 ledger records a 1929 px frontier (4p/4x). No outside-World-1 clear is recorded |
+## Current results and open boundaries
 
-The September-era checklist in sections 1–3 below is retained as a historical note, not the current inventory. The experiment ledger in 4a–4ad remains the authoritative history of measurements and retractions.
+| Course | Controller / route | Deterministic clears | Steps | Final X (px) | Source |
+| --- | --- | ---: | ---: | ---: | --- |
+| 1-1 | `reactive` | 5/5 | 245 | 4020.6 | [`pinn_realtime_eval.json`](../evals/pinn_realtime_eval.json) |
+| 1-2 | `world12` | 5/5 | 326 | 4038.8 | [`eval_1_2_clear.json`](../evals/eval_1_2_clear.json) |
+| 2-1 | `world21` | 5/5 | 231 | 4020.3 | [`eval_2_1_clear.json`](../evals/eval_2_1_clear.json) |
+| 4-1 | `world41` | 5/5 | 106 | 4344.0 | [`eval_4_1_clear.json`](../evals/eval_4_1_clear.json) |
+| 5-1 | `world51` | 5/5 | 300 | 4536.0 | [`eval_5_1_clear.json`](../evals/eval_5_1_clear.json) |
+| 6-1 | `world61` | 5/5 | 133 | 4119.0 | [`eval_6_1_clear.json`](../evals/eval_6_1_clear.json) |
+| 8-1 | `world81` | 5/5 | 205 | 3910.2 | [`eval_8_1_clear.json`](../evals/eval_8_1_clear.json) |
+| 3-1 | measured action route | 5/5 | 557 | 272.0 | [`eval_special_31_full_clear.json`](../evals/eval_special_31_full_clear.json) |
+| 7-1 | measured action route | 5/5 | 809 | 2848.0 | [`eval_special_71_full_clear.json`](../evals/eval_special_71_full_clear.json) |
+
+The X values refer to the active course at termination and are not a common
+percentage across courses or pipe transitions. The exit-pipe and castle goals
+in 1-2/2-1 have controller-specific completion conditions; the 3-1/7-1
+measurements use the opt-in pole-slide oracle. See 4ax for corrections to
+older summaries, including 4am's inconsistent table.
+
+| Area | Current boundary |
+| --- | --- |
+| PINN data | `models/pinn_pool.npz` contains 13,300 transitions over 240 episode IDs from seven courses; the actual episode split is not stratified by course. Its 8-1 episodes are all in the test partition. See 4ax and the [split audit](../out/documentation_audit/pinn_pool_split.json). |
+| PINN metrics | `evals/pinn_worldmodel_metrics.json` reports 431.07 px average open-loop drift at an average 29.37-frame horizon on the above 8-1 test partition. The 108 drift samples are windows, not 108 independent episodes; earlier and later drift results cannot establish a controlled reduction. |
+| Course geometry and collision | The ROM parser reads course structure, while static solidity, `BG_chk` bindings and some moving surfaces remain incomplete. The legacy planner's coverage guard does not establish whole-game geometry. |
+| Terminal detection | The legacy horizontal fallback is frozen for parity but can misclassify multi-area routes. `MultiAreaMarioEnv` checks area identity and pole contact/slide; the measured 3-1 and 7-1 captures did not set the raw clear byte at capture. |
+| Benchmark comparability | The legacy n=30 pixel/RAM rows differ in action mapping and reward; deterministic replay starts from the same savestate. See [benchmark protocol](BENCHMARK_PROTOCOL.md). |
+| Reproducibility | New evaluations are required to carry provenance; some existing metrics and logs lack it even after the requirement was introduced. `tools/audit_evals.py` checks presence, not dates or field validity. ROM and savestates are local-only; check `tools/check_env.py` for dependency differences. |
+
+Sections 1–3 are historical snapshots. Sections 4a onward are a chronological
+lab notebook: corrections are recorded in later sections and notices, without
+silently changing the original measurements or retracted claims.
 
 ---
 
@@ -2107,13 +2136,13 @@ Conforme deliberado no plano de pesquisa, os seguintes pilares científicos est�
 Esta seção formaliza a conclusão do World 2-1, a validação de todos os 4 gates de integridade e a manutenção de reprodutibilidade científica antes da resolução dos mundos 4-1, 6-1 e 5-1.
 
 ### 1. Conclusão Integral do Mundo 2-1 (course/B01_1.bin)
-* **Controlador Implementado**: [src/world_2_1_controller.py](file:///d:/mario-ds/src/world_2_1_controller.py), implementando uma cadeia espaço-temporal cinemática dividida em 13 zonas táticas:
+* **Controlador Implementado**: [src/world_2_1_controller.py](../src/world_2_1_controller.py), implementando uma cadeia espaço-temporal cinemática dividida em 13 zonas táticas:
   - Superação parabólica dos Pokeys (ator 232) nos trechos iniciais sem colisão de base.
   - Pouso no bloco expansível em 	x = 58 (928 px).
   - Navegação do vale de areia movediça e dunas centrais (1500..2800 px) com saltos rítmicos calculados.
   - Transposição do fosso final e ascensão ao mastro da bandeira em 4020.3 px.
-* **Benchmark Oficial com Proveniência Criptográfica**: [src/eval_world_2_1.py](file:///d:/mario-ds/src/eval_world_2_1.py) executando 5 episódios determinísticos (seed 42, RAM hashing, verificação de ROM e savestate data/state_2-1.ds1).
-* **Resultados Empíricos Registrados** em [evals/eval_2_1_clear.json](file:///d:/mario-ds/evals/eval_2_1_clear.json):
+* **Benchmark Oficial com Proveniência Criptográfica**: [src/eval_world_2_1.py](../src/eval_world_2_1.py) executando 5 episódios determinísticos (seed 42, RAM hashing, verificação de ROM e savestate data/state_2-1.ds1).
+* **Resultados Empíricos Registrados** em [evals/eval_2_1_clear.json](../evals/eval_2_1_clear.json):
   - Taxa de sucesso: **100.0% (5/5 episódios concluídos com sucesso)**.
   - Passos por episódio: **exatamente 231 passos determinísticos**.
   - Recompensa média acumulada: **1920.09**.
@@ -2164,6 +2193,9 @@ Conforme compromisso de integridade acadêmica e escopo estabelecido:
 * **Pendência 3 — Agente Visual Ponta-a-Ponta ($256 \times 192 \times 3$)**: Treinamento do agente visual para inferir diretamente dos frames RGB do topo do Nintendo DS as coordenadas, velocidades e perfis de atores que o braço de RAM lê nativamente, preservando a função de recompensa RAM unificada.
 
 ## 4am. Fechamento Integral dos Mundos 4-1, 5-1 e 6-1: 100% Clears Deterministicos, Hidrodinamica de Dorrie, Escape Chamine de Coral e Validacao dos 4 Gates (2026-10-26)
+
+> **Correction 4ax:** the 1-2, 2-1 and 8-1 rows in this historical table do not match the cited JSONs; use the source-derived table in 4ax. The seven-course statement concerns the then-selected benchmark, not every game stage.
+
 
 Esta secao documenta a conclusao definitiva e a validacao empirica rigorosa de **todos os mundos pendentes** do projeto NSMB-DS no emulador headless DeSmuME (0.0.9 / 0.9.12), estabelecendo **100% de taxa de conclusao (clear rate = 1.0)** em todos os cenarios avaliados. Todas as marcas, trajetorias e comportamentos dinamicos aqui relatados sao comprovados pelos arquivos JSON oficiais com bloco de proveniencia criptografica (`provenance`) gravados em `evals/`.
 
@@ -2271,6 +2303,9 @@ Em total conformidade com `AGENTS.md` e os principios de integridade academica d
 
 
 ## 4an. Expansao do PINN World Model (Multi-World Pool) e Mitigacao do Drift Dinamico (2026-10-26)
+
+> **Correction 4ax:** the split is by globally ordered episode IDs, not stratified by course; 108 counts sampled windows, not independent episodes. The historical drift comparison is not a controlled estimate of improvement. See 4ax.
+
 
 Esta secao documenta a expansao em larga escala do Physics-Informed Neural Network (PINN) World Model do NSMB-DS e a reducao mensurada do drift de simulacao em malha aberta (open-loop simulation drift), bem como a geracao e incorporacao dos videos oficiais com dashboard de telemetria para os Mundos 4-1, 5-1 e 6-1.
 
@@ -2656,6 +2691,9 @@ O progresso visual estocastico medio de $824,3\text{ px}$ e pico de $1.243,0\tex
 
 ## 4at. Visual Neuroevolution (GA), DeepMind IMPALA Residual CNN vs. NatureCNN e Generalizacao Multi-Mundo do Algoritmo Genetico (2026-10-27)
 
+> **Correction 4ax:** the 1-1 row in the historical campaign table reports 246 steps, but the cited `eval_genetic_w11.json` records 206. The cross-course campaign trains separate policies and does not establish one policy generalizes across worlds.
+
+
 Esta secao documenta os resultados experimentais obtidos nas tres novas frentes de pesquisa solicitadas:
 1. **Visual RL via Neuroevolucao Paralela (GA)**: Treinamento evolucionario de uma rede convolucional compacta (`CompactVisualCNN`, ~8.600 parametros) diretamente sobre pixels brutos da tela superior ($84 \times 84 \times 1$) no emulador DeSmuME real com 4 workers paralelos.
 2. **Visual PPO com Backbone DeepMind IMPALA CNN**: Comparativo controlado de arquitetura visual (IMPALA Residual CNN com 3 estágios residuais e conexões de salto vs. NatureCNN) sob a mesma função de recompensa potencial de avanço simples ($r_t = \max(0, x_t - x_{\max})/16$).
@@ -2881,6 +2919,83 @@ parity, 37,281 Rust/Python planner queries and 55 no-emulator unit tests.
 The next measured research step is to add the pipe-action protocol and moving
 platform/underwater transitions to model data, evaluate held-out multi-step
 rollouts, then rerun this fixed benchmark before claiming planning success.
+
+---
+
+## 4ax. Documentation and evidence audit (2026-10-27)
+
+This section corrects earlier statements without modifying their era records.
+The clear table below is generated from the cited evaluations. The results are
+replays of the saved starts; controller-specific and pole-slide completion
+criteria differ, as explained in the current summary.
+
+| Course | Controller / route | Clears | Steps | Final X (px) | Evaluation |
+| --- | --- | ---: | ---: | ---: | --- |
+| 1-1 | `reactive` | 5/5 | 245 | 4020.6 | [`pinn_realtime_eval.json`](../evals/pinn_realtime_eval.json) |
+| 1-2 | `world12` | 5/5 | 326 | 4038.8 | [`eval_1_2_clear.json`](../evals/eval_1_2_clear.json) |
+| 2-1 | `world21` | 5/5 | 231 | 4020.3 | [`eval_2_1_clear.json`](../evals/eval_2_1_clear.json) |
+| 4-1 | `world41` | 5/5 | 106 | 4344.0 | [`eval_4_1_clear.json`](../evals/eval_4_1_clear.json) |
+| 5-1 | `world51` | 5/5 | 300 | 4536.0 | [`eval_5_1_clear.json`](../evals/eval_5_1_clear.json) |
+| 6-1 | `world61` | 5/5 | 133 | 4119.0 | [`eval_6_1_clear.json`](../evals/eval_6_1_clear.json) |
+| 8-1 | `world81` | 5/5 | 205 | 3910.2 | [`eval_8_1_clear.json`](../evals/eval_8_1_clear.json) |
+| 3-1 | measured action route | 5/5 | 557 | 272.0 | [`eval_special_31_full_clear.json`](../evals/eval_special_31_full_clear.json) |
+| 7-1 | measured action route | 5/5 | 809 | 2848.0 | [`eval_special_71_full_clear.json`](../evals/eval_special_71_full_clear.json) |
+
+In particular, 4am's cited 1-2, 2-1 and 8-1 rows differ in steps and/or X
+from those JSONs. The 4at 1-1 campaign row's 246 steps likewise differs from
+its cited evaluation; the latter reports 206. These are documentation
+retractions, not newly run experiments.
+
+**PINN split correction.** `tools/train_enhanced_pinn.py` sorts episode IDs
+and partitions them globally; its claim that the split is stratified by course
+is incorrect. The pool contains no explicit course ID. Based on the collector's
+fixed course order and target counts, the reproducible
+[`out/documentation_audit/pinn_pool_split.json`](../out/documentation_audit/pinn_pool_split.json)
+records 10831 train, 669 validation and 1800 test
+transitions. The test episodes are all 8-1 (36 episode IDs),
+the validation episodes are all 6-1 (24 episode IDs), and the first
+five courses occur only in training. On the audit machine, the individual
+per-course worker arrays were also checked for exact value equality against
+the matching slices of the merged pool. The pool layout assumption and source
+hashes are recorded in the audit JSON.
+
+`evals/pinn_worldmodel_metrics.json` reports 108 sampled drift windows,
+not independent episodes: `eval_metrics` samples up to three windows per test
+episode. The reported mean drift 431.07 px and mean horizon
+29.37 frames describe this test partition and sampling
+procedure. The previous baseline and this result use different evaluation
+settings/data; the percentage reduction in 4an is therefore an arithmetic
+comparison, not evidence of a controlled improvement. Its statements that the
+rollout loss guarantees stability or eliminates sample bias are unsupported.
+The metrics JSON lacks provenance despite the later 4an experiment date; no
+provenance was backfilled and the metrics were not regenerated.
+
+The 1-1 dashboard is the 206-step genetic-policy recording, not the 245-step
+legacy reflex evaluation; the clip's 27-second rounded duration comes from the
+recorder metadata. The 8-1 dashboard is a neural-policy recording; the 205-step
+`eval_8_1_clear.json` cited elsewhere evaluates `world81`, a different
+controller. Matching step and X figures alone do not make them the same run.
+The legacy horizontal goal heuristic and the special-course pole-slide oracle
+are completion evidence under their respective evaluators, not proof that the
+same raw clear byte was raised in every course.
+
+The asymmetric-AC evaluation's `protocol.actor_input` says four stacked frames,
+but `DualObsEnv` and `NatureCNN` in the evaluator's policy path use a single
+84×84 grayscale frame. This metadata inconsistency is not silently backfilled
+in the historical JSON; the recorded per-episode metrics remain intact. The
+evaluator now writes the correct one-frame metadata in future runs. The
+later `evals/asymmetric_ac_eval.json` has different stochastic results from the
+older 4ac run, so comparisons must identify which evaluation they use.
+
+The repository has local-only legacy visual checkpoints and experiment logs.
+See `models/README.md` for what a clone contains and
+`tools/check_env.py` for the local environment's installed-package drift.
+
+Reproduce the split audit (reads the committed pool; does not retrain):
+
+```
+.venv\Scripts\python.exe tools\audit_pinn_pool_split.py --out out\documentation_audit\pinn_pool_split.json
+```
 
 ---
 

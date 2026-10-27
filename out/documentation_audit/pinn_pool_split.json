@@ -1,0 +1,62 @@
+{
+  "pool_sha1": "e3f64282c81145c1767659bdef8473f6a2f8b704",
+  "collector_sha1": "7229183a186c163cd1592133fe26ba3bc101fba5",
+  "trainer_sha1": "632c41a3ec335fbdfc30277f306b590652aeb876",
+  "layout_assumption": "WORLDS order and target_steps; no course column in pool",
+  "transitions": 13300,
+  "episodes": 240,
+  "train_transitions": 10831,
+  "validation_transitions": 669,
+  "test_transitions": 1800,
+  "courses": {
+    "1-1": {
+      "transitions": 2500,
+      "episodes": 27,
+      "train_episodes": 27,
+      "validation_episodes": 0,
+      "test_episodes": 0
+    },
+    "1-2": {
+      "transitions": 1800,
+      "episodes": 15,
+      "train_episodes": 15,
+      "validation_episodes": 0,
+      "test_episodes": 0
+    },
+    "2-1": {
+      "transitions": 1800,
+      "episodes": 50,
+      "train_episodes": 50,
+      "validation_episodes": 0,
+      "test_episodes": 0
+    },
+    "4-1": {
+      "transitions": 1800,
+      "episodes": 35,
+      "train_episodes": 35,
+      "validation_episodes": 0,
+      "test_episodes": 0
+    },
+    "5-1": {
+      "transitions": 1800,
+      "episodes": 25,
+      "train_episodes": 25,
+      "validation_episodes": 0,
+      "test_episodes": 0
+    },
+    "6-1": {
+      "transitions": 1800,
+      "episodes": 52,
+      "train_episodes": 28,
+      "validation_episodes": 24,
+      "test_episodes": 0
+    },
+    "8-1": {
+      "transitions": 1800,
+      "episodes": 36,
+      "train_episodes": 0,
+      "validation_episodes": 0,
+      "test_episodes": 36
+    }
+  }
+}

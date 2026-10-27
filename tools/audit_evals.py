@@ -1,10 +1,10 @@
 """Audit evals/*.json for provenance blocks.
 
-Every eval JSON written since 2026-10-23 carries a "provenance" block
-(git commit, ROM/state SHA-1, package versions, seed). The committed
-artifacts that predate the mechanism are reported as legacy -- not
-annotated after the fact, because a back-filled block would lie about
-what produced them.
+New evaluation artifacts are required to carry provenance (commit, ROM/state
+hashes, versions and seed). Some historical training logs and metrics lack it,
+including files written after the requirement was introduced. This audit only
+checks whether a block exists; it does not infer an artifact's date or verify
+the fields. Missing provenance must not be backfilled after the fact.
 """
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ def main():
     print(f"evals with provenance: {len(modern)}")
     for p in modern:
         print(f"  {p}")
-    print(f"\nlegacy (pre-2026-10-23, no provenance): {len(legacy)}")
+    print(f"\nwithout provenance (date not inferred): {len(legacy)}")
     for p in legacy:
         print(f"  {p}")
 
