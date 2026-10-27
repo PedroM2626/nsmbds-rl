@@ -27,8 +27,8 @@ def main():
         ap.error("episodes must be positive")
     route = json.loads(Path(args.route).read_text(encoding="utf-8"))
     actions = route["actions"]
-    if not actions or any(type(a) is not int or not 0 <= a < 11 for a in actions):
-        ap.error("route must contain integer actions in 0..10")
+    if not actions or any(type(a) is not int or not 0 <= a < 13 for a in actions):
+        ap.error("route must contain integer actions in 0..12")
     cid, state = CONFIG[args.world]
     cid = args.course or route.get("start", {}).get("course", cid)
     state = args.state or route.get("start", {}).get("state", state)

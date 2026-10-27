@@ -118,3 +118,23 @@ def test_falling_near_pole_does_not_count_as_capture(monkeypatch):
     for y in (-160, -168, -176, -184):
         state["mario_A"] = y * 4096
         assert env.step(0)[2] is False
+
+
+def test_pipe_combo_holds_up_only_for_that_action(monkeypatch):
+    from course_id import course_area_index
+    from ram_env import Keys
+    env = object.__new__(MultiAreaMarioEnv)
+    env.active_course = "course/C01_2.bin"
+    env.course = SimpleNamespace(sprites=[])
+    env.ram = SimpleNamespace(course_index=lambda: course_area_index("C01_2"),
+                              poll=lambda: dict(mario_B=64 * 4096,
+                                                mario_A=-480 * 4096, cleared=False))
+    held = []
+    def step(self, action):
+        held.append((action, set(self._action_keys(action))))
+        return None, -0.05, False, False, dict(level_cleared=False, died=False, timeout=False)
+    monkeypatch.setattr(MarioRamEnv, "step", step)
+    env.step(12)
+    assert held[-1] == (4, {Keys.KEY_UP, Keys.KEY_RIGHT, Keys.KEY_X, Keys.KEY_A})
+    env.step(4)
+    assert held[-1] == (4, {Keys.KEY_RIGHT, Keys.KEY_X, Keys.KEY_A})

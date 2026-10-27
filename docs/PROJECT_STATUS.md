@@ -2769,6 +2769,38 @@ generator; a regression test checks isolation from unrelated torch draws.
 
 ---
 
+## 4av. World 3-1 cleared from its original entrance (2026-10-27)
+
+The pending full-route qualification in 4au is now resolved for World 3-1.
+`evals/eval_special_31_full_clear.json` records 5/5
+deterministic replay clears, each in 557 actions, from the original
+`data/state_3-1.ds1`. The route uses ordinary DS controls throughout;
+there are no teleport writes or substituted starting areas.
+
+The actual course sequence is C01_1 -> C01_2 -> C01_1. The observed area
+changes occur at steps 29 and 520; the final pole capture
+is at X=272.0, Y=-157.34375 in C01_1.
+Horizontal coordinates restart between areas, so a maximum X alone is not
+completion evidence. All 5 episodes use the measured pole-slide evidence,
+with the raw clear-byte value retained in the trace for auditing.
+
+Reproduce with:
+
+```
+.venv\Scripts\python.exe tools\eval_special_route.py --world 3-1 --route out\special_courses\route_31_full_clear.json --episodes 5 --out out\repeat_31_full.json
+```
+
+The opt-in environment additionally supports UP with walking/running jumps
+(actions 11 and 12), needed for ordinary ceiling-pipe entry while moving.
+The original eight-action table and legacy reflex remain unchanged.
+
+World 7-1 is still under investigation in this era record: its upper section
+and pipe transition have been traversed, while the lower platform transfers
+are not yet a verified clear. The multi-world PINN planning benchmark will
+be run after its clearance, in the requested order.
+
+---
+
 ## 5. File Index
 
 ```

@@ -26,14 +26,14 @@ def at_terminal_flag(course, x, y):
 
 
 class MultiAreaMarioEnv(MarioRamEnv):
-    """Extra pipe actions: 8=DOWN, 9=UP, 10=UP+swim; 0..7 unchanged."""
+    """Pipe actions: 8=DOWN, 9=UP, 10=UP+A, 11=UP+R+A, 12=UP+R+X+A."""
 
     def __init__(self, *args, **kwargs):
         self.water_overrides = kwargs.pop("water_overrides", {})
         super().__init__(*args, **kwargs)
         self.initial_course = kwargs.get("course_name", "course/A01_1.bin")
         self.active_course = self.initial_course
-        self.action_space = spaces.Discrete(11)
+        self.action_space = spaces.Discrete(13)
         self._courses = {self.initial_course: self.course}
         self._apply_water_override()
 
@@ -42,8 +42,8 @@ class MultiAreaMarioEnv(MarioRamEnv):
             self.course.is_water_course = self.water_overrides[self.active_course]
 
     def _action_keys(self, action):
-        if int(action) == 7 and getattr(self, "_pipe_swim", False):
-            return [Keys.KEY_UP, Keys.KEY_A]
+        if int(action) == getattr(self, "_pipe_action", None):
+            return super()._action_keys(action) + [Keys.KEY_UP]
         if int(action) == 8:
             return [Keys.KEY_DOWN]
         if int(action) == 9:
@@ -70,11 +70,12 @@ class MultiAreaMarioEnv(MarioRamEnv):
     def step(self, action):
         # Reuse action 7's measured water rising-edge handling while holding
         # UP, so swimming into a ceiling pipe needs no RAM writes.
-        self._pipe_swim = int(action) == 10
+        self._pipe_action = {10: 7, 11: 2, 12: 4}.get(int(action))
         try:
-            obs, reward, _, trunc, info = super().step(7 if self._pipe_swim else action)
+            effective = self._pipe_action if self._pipe_action is not None else action
+            obs, reward, _, trunc, info = super().step(effective)
         finally:
-            self._pipe_swim = False
+            self._pipe_action = None
         cid = course_for_area_index(self.ram.course_index())
         if cid is None:
             raise RuntimeError("Unknown course index during area transition")
