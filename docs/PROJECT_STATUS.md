@@ -2654,6 +2654,60 @@ O progresso visual estocastico medio de $824,3\text{ px}$ e pico de $1.243,0\tex
 
 ---
 
+## 4at. Visual Neuroevolution (GA), DeepMind IMPALA Residual CNN vs. NatureCNN e Generalizacao Multi-Mundo do Algoritmo Genetico (2026-10-27)
+
+Esta secao documenta os resultados experimentais obtidos nas tres novas frentes de pesquisa solicitadas:
+1. **Visual RL via Neuroevolucao Paralela (GA)**: Treinamento evolucionario de uma rede convolucional compacta (`CompactVisualCNN`, ~8.600 parametros) diretamente sobre pixels brutos da tela superior ($84 \times 84 \times 1$) no emulador DeSmuME real com 4 workers paralelos.
+2. **Visual PPO com Backbone DeepMind IMPALA CNN**: Comparativo controlado de arquitetura visual (IMPALA Residual CNN com 3 estágios residuais e conexões de salto vs. NatureCNN) sob a mesma função de recompensa potencial de avanço simples ($r_t = \max(0, x_t - x_{\max})/16$).
+3. **Generalizacao do Algoritmo Genetico Multi-Mundo**: Disseminação do método neuroevolutivo paralelo comprovado no World 1-1 para os mundos remanescentes do benchmark (World 2-1, 4-1, 5-1, 6-1 e 8-1).
+
+---
+
+### 1. Visual RL via Neuroevolucao Paralela (GA): 2.566,5 px Deterministico a partir de Pixels
+
+A neuroevolução foi adaptada para percepção visual pura (`tools/train_visual_neuroevolution.py`):
+* **Arquitetura da Politica**: `CompactVisualCNN` contendo 3 camadas convolucionais com pooling ($84 \to 42 \to 21 \to 11 \to 5 \to 3$), totalizando **8.600 parametros**.
+* **Populacao e Workers**: $P=16$ indivíduos por geração, elitismo top-2, mutação gaussiana ($\sigma=0,08$) e crossover uniforme, avaliados em 4 instâncias isoladas de DeSmuME via `SubprocVecEnv(start_method='spawn')`.
+* **Desempenho de Treino**: 15 gerações completadas em apenas **7,61 minutos** (456,5 s). A população evoluiu de $358,0\text{ px}$ (Gen 1) para $1.250,5\text{ px}$ (Gen 2-7), $2.162,1\text{ px}$ (Gen 8-14) e cravou o pico de **$2.566,5\text{ px}$** na Geração 15.
+* **Avaliacao Oficial com Proveniencia** (`evals/eval_visual_genetic_w11.json`):
+  - 5/5 episódios determinísticos idênticos atingindo **$2.566,5\text{ px}$** (146 passos).
+  - **Aumento de 21,2x** sobre o baseline visual legado de junho ($120,8\text{ px}$).
+  - A neuroevolução descobriu autonomamente pesos convolucionais que produzem alternância rítmica de ações, evitando o colapso no spawn observado no PPO determinístico.
+
+---
+
+### 2. Visual PPO: DeepMind IMPALA CNN vs. NatureCNN
+
+Substituímos o extrator padrão NatureCNN pelo **DeepMind IMPALA CNN** (Espeholt et al., 2018), composto por 3 estágios convolucionais residuais com max pooling e blocos ResNet com conexões de identidade (`tools/train_visual_impala.py`, 1,13M parâmetros), treinado pelos mesmos 10.000 passos sob a mesma recompensa potencial:
+
+| Criterio Avaliado | NatureCNN (Mnih et al., 2015) | DeepMind IMPALA CNN (Espeholt et al., 2018) | Impacto / Diferenca |
+| :--- | :---: | :---: | :---: |
+| **Estrutura Visual** | 3 Conv planas (sem residual) | **3 Estágios ResNet (Conv-Pool-2xResBlock)** | Conexões de salto residuais |
+| **Parametros** | ~1,68M | ~1,13M | Mais eficiente e profundo |
+| **Orcamento de Treino** | 10.000 passos (10,96 min) | 10.000 passos (14,91 min) | Mesmo ambiente e recompensa |
+| **Episodio 1 no Treino** | 327,5 px | **939,6 px** | **+2,8x no arranque inicial** |
+| **Episodio para >2.000 px** | Episodio 87 (9.000 passos) | **Episodio 13 (1.520 passos)** | **6,7x mais rapido na convergencia** |
+| **Pico Maximo de Treino** | 2.881,8 px (71,5%) | **3.234,2 px (80,2%)** | **+352,4 px (+12,2%)** |
+| **Media Deterministica ($N=5$)** | 88,0 px (estagnava no spawn) | **1.250,5 px (atinge a escadaria)** | **+14,2x (elimina o colapso do spawn!)** |
+| **Media Estocastica ($N=5$)** | 824,3 px | **1.413,4 px** | **+71,5% de alcance medio** |
+| **Pico Estocastico ($N=5$)** | 1.243,0 px | **2.157,3 px** | **+73,6% de alcance maximo** |
+| **Arquivos de Avaliacao** | `evals/eval_visual_simple_*.json` | `evals/eval_visual_impala_*.json` | Proveniência criptografica completa |
+
+O IMPALA CNN provou ser expressivamente superior para percepção de pixels de baixa resolução, mantendo estabilidade de gradientes e eliminando por completo a estagnação de spawn que acometia a NatureCNN no modo ganancioso.
+
+---
+
+### 3. Campanha de Neuroevolucao Multi-Mundo (World 2-1 a World 8-1)
+
+Expandimos o Algoritmo Genético Paralelo com telemetria unificada (`tools/train_neuroevolution_multiworld.py` e `tools/run_multiworld_campaign.py`) para os mundos remanescentes:
+* **World 2-1 (`course/B01_1.bin`, `data/state_2-1.ds1`)**:
+  - Fronteira histórica anterior: $862,7\text{ px}$ (morte por colisão no Pokey e areia movediça).
+  - Resultado da Neuroevolução: Em 15 gerações paralelas (15,19 min), a melhor política aprendeu a saltar sobre Pokey 1 e Pokey 2, alcançando **$1.297,6\text{ px}$** com **100% de reproducibilidade deterministica** em 5/5 episódios de teste (`evals/eval_genetic_w21.json`). Avanço de **+434,9 px (+50,4%)** sem nenhuma regra manual.
+* **Mundos 4-1, 5-1, 6-1 e 8-1**:
+  - Campanha orquestrada em execução contínua via `tools/run_multiworld_campaign.py`.
+
+---
+
 ## 5. File Index
 
 ```
@@ -2689,6 +2743,9 @@ models/
   ppo_simple_best.zip    PPO simple potential peak checkpoint (4032px clear)
   visual_simple_best.zip Pure visual NatureCNN model (84x84x1 pixels, peak 2881px)
   ppo_distilled_policy.pt Distilled PPO policy via behavioral cloning (4as)
+  visual_genetic_best.pt Visual neuroevolution champion (~8.6k params, 2566px det) (4at)
+  visual_impala_best.zip Pure visual Impala CNN PPO model (peak 3234px, det 1250px) (4at)
+  genetic_policy_w21.npz World 2-1 neuroevolution policy (1297px det) (4at)
   ram_ppo_100k.zip       RAM-PPO 100 k
   ram_geo_100k.zip       RAM + geometry features 100 k
   gnn_100k.zip           GNN 100 k
@@ -2718,6 +2775,10 @@ evals/
   eval_ppo_distilled_w11.json    World 1-1 distilled PPO policy evaluation (4as)
   eval_visual_simple_w11.json    World 1-1 visual PPO deterministic evaluation (4as)
   eval_visual_simple_stochastic_w11.json World 1-1 visual PPO stochastic evaluation (4as)
+  eval_visual_genetic_w11.json World 1-1 visual GA deterministic eval with provenance (4at)
+  eval_visual_impala_w11.json World 1-1 visual Impala deterministic eval (1250px) (4at)
+  eval_visual_impala_stochastic_w11.json World 1-1 visual Impala stochastic eval (2157px peak) (4at)
+  eval_genetic_w21.json          World 2-1 GA deterministic eval with provenance (4at)
   transfer_2_1_profile.json      2-1 (B01_1), the headless-entered desert (4m)
   transfer_2_1_legacy.json       2-1 control arm (4m)
   transfer_4_1_profile.json      4-1 (D01_1), unlocked by its 142 probe floors (4m)
@@ -2836,6 +2897,12 @@ tools/
   train_visual_simple.py Pure visual NatureCNN PPO trainer on raw pixels (4as)
   eval_visual_simple.py  Pure visual NatureCNN evaluator with provenance (4as)
   distill_ppo.py         PPO policy distillation via behavioral cloning (4as)
+  train_visual_neuroevolution.py Visual GA trainer with parallel DeSmuME workers (4at)
+  eval_visual_genetic.py Visual GA evaluator with provenance (4at)
+  train_visual_impala.py Visual Impala Residual CNN PPO trainer (4at)
+  eval_visual_impala.py  Visual Impala Residual CNN PPO evaluator (4at)
+  train_neuroevolution_multiworld.py Multi-world neuroevolution trainer (4at)
+  run_multiworld_campaign.py Multi-world neuroevolution campaign runner (4at)
   probe_water.py                 the water oracle: teleport per cell,
                                   float phase + one clean A press, drag
                                   and stroke response measured (4t)
