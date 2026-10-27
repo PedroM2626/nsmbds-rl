@@ -46,3 +46,14 @@ def test_missing_files_hash_to_none_but_do_not_raise():
     block = eval_provenance.collect(rom="missing.nds", state="missing.ds1")
     assert block["files"]["rom"]["sha1"] is None
     assert block["files"]["rom"]["bytes"] is None
+
+
+def test_explicit_untracked_source_cannot_claim_clean_head(tmp_path):
+    import subprocess
+    subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    source = tmp_path / "new_evaluator.py"
+    source.write_text("print('measurement')\n", encoding="utf-8")
+    block = eval_provenance.collect(root=str(tmp_path), sources=[source])
+    assert block["git"]["dirty"] is True
+    assert block["sources"]["new_evaluator.py"] == {
+        "sha1": eval_provenance.sha1_file(source), "tracked": False}

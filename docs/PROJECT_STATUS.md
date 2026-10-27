@@ -2730,6 +2730,45 @@ Tempo total da campanha orquestrada: **67,62 minutos** somando todos os 5 mundos
 
 ---
 
+## 4au. Special-course evaluation resumed from the Antigravity history (2026-10-27)
+
+The outstanding request was to clear 3-1 and 7-1, then evaluate multi-world
+PINN imagination planning. This section records an intermediate result;
+completion from the original 3-1 entrance and clearance of 7-1 remain pending.
+
+`MultiAreaMarioEnv` is opt-in. The legacy `MarioRamEnv` finish heuristic is
+unchanged. C01_1 starts at X=808, already right of its X=272 flag; G01_1 has
+its flag on a different vertical route. Neither circumstance is sufficient
+to claim a clear. The new evaluator follows actual pipe transitions, checks
+the starting savestate's course index, and verifies both flag coordinates.
+It supports DOWN, UP, and UP with a swimming/jumping impulse as extra actions.
+
+The existing clear byte did not activate on the observed C01_1 finish. The
+additional measured completion evidence is capture at the exact ROM pole X
+(within 0.25 px), followed by at least three samples and at least 8 px of
+vertical descent. Ordinary falling near a pole does not qualify. The trace
+also exposes the raw clear byte and which completion evidence was used.
+
+**Measured result, main-area start only:** `data/state_3-1_main.ds1`
+(C01_2), 5/5 deterministic replay clears,
+497 actions in each episode. The route traverses the underwater
+area and returns through the real exit pipe to C01_1. All episodes terminate
+with `pole_slide`. Data:
+`evals/eval_special_31_main_clear.json`; actions:
+`out/special_courses/route_31_main_clear.json`. This is emulator-assisted
+route search and measured control, not a newly trained neural policy.
+
+Source hashes are now optional provenance fields. Explicit untracked
+implementation files mark a run dirty, so newly written evaluators cannot
+incorrectly claim clean HEAD simply because generated files are excluded
+from the ordinary dirty check.
+
+The seeded CEM planner previously constructed a local generator but sampled
+through `Categorical.sample()`, which ignored it. Sampling now uses that
+generator; a regression test checks isolation from unrelated torch draws.
+
+---
+
 ## 5. File Index
 
 ```

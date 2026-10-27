@@ -251,8 +251,10 @@ class CEMMPController:
             # warm start: bias toward the previous plan
             probs = 0.6 * probs + 0.4 * best_prev
         for _ in range(self.iters):
-            dist = torch.distributions.Categorical(probs=probs.expand(self.N, self.H, N_ACTIONS).reshape(-1, N_ACTIONS))
-            seq = dist.sample().reshape(self.N, self.H)
+            # Categorical.sample() ignores self.g; use the controller-local
+            # generator so unrelated torch sampling cannot change an eval.
+            weights = probs.expand(self.N, self.H, N_ACTIONS).reshape(-1, N_ACTIONS)
+            seq = torch.multinomial(weights, 1, generator=self.g).reshape(self.N, self.H)
             returns, _ = self.roll.discounted_return(s0.expand(self.N, -1), seq)
             elite = torch.topk(returns, self.Kel).indices
             eseq = seq[elite]

@@ -64,7 +64,7 @@ def package_versions(names=PACKAGES):
     return out
 
 
-def collect(rom=None, state=None, extra=None, root=None):
+def collect(rom=None, state=None, extra=None, root=None, sources=None):
     """A JSON-serializable provenance block for one eval invocation."""
     root = root or paths.ROOT
     files = {}
@@ -86,6 +86,25 @@ def collect(rom=None, state=None, extra=None, root=None):
         "packages": package_versions(),
         "argv": [os.path.basename(sys.argv[0])] + sys.argv[1:],
     }
+    if sources:
+        # A new, untracked evaluator is invisible to git_state's deliberate
+        # exclusion of generated files. Hash explicit implementation sources
+        # and mark such an invocation dirty rather than claiming clean HEAD.
+        block["sources"] = {}
+        for source in sources:
+            source = os.path.abspath(source)
+            rel = os.path.relpath(source, root)
+            try:
+                tracked = subprocess.run(
+                    ["git", "ls-files", "--error-unmatch", "--", rel],
+                    cwd=root, capture_output=True, timeout=10,
+                    check=False).returncode == 0
+            except Exception:
+                tracked = None
+            block["sources"][rel.replace(os.sep, "/")] = {
+                "sha1": sha1_file(source), "tracked": tracked}
+            if tracked is False:
+                block["git"]["dirty"] = True
     if extra:
         block.update(extra)
     return block
