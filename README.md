@@ -82,7 +82,7 @@ savestates and do not establish generalization. The multi-world PINN/CEM
 experiment recorded 0/27 clears over nine courses; its checkpoint lacks the
 additional pipe actions. Details, provenance and commands are in
 [PROJECT_STATUS §4aw](docs/PROJECT_STATUS.md#4aw-world-7-1-cleared-pinn-imagination-planning-measured-across-courses-2026-10-27).
-The corrected audit of the PINN split and earlier result tables is in §4ax.
+The audit of the old PINN split is in §4ax; the corrected episode-stratified training split is in §4ay.
 
 To replay the measured special-course routes or the imagination benchmark:
 

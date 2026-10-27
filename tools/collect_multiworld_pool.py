@@ -116,15 +116,18 @@ def main():
     print("  CONCATENATING MULTI-WORLD TRANSITION POOL")
     print("===============================================================", flush=True)
 
-    all_S, all_A, all_S2, all_R, all_D, all_EP = [], [], [], [], [], []
-    for f in worker_files:
+    all_S, all_A, all_S2, all_R, all_D, all_EP, all_WORLD = [], [], [], [], [], [], []
+    for cfg, f in zip(WORLDS, worker_files):
         p = np.load(f)
+        if len(p["S"]) != cfg["target_steps"]:
+            raise ValueError(f"Unexpected transition count for {cfg['name']}")
         all_S.append(p["S"])
         all_A.append(p["A"])
         all_S2.append(p["S2"])
         all_R.append(p["R"])
         all_D.append(p["D"])
         all_EP.append(p["EP"])
+        all_WORLD.append(np.full(len(p["EP"]), cfg["name"]))
 
     S_cat = np.concatenate(all_S, axis=0)
     A_cat = np.concatenate(all_A, axis=0)
@@ -132,6 +135,7 @@ def main():
     R_cat = np.concatenate(all_R, axis=0)
     D_cat = np.concatenate(all_D, axis=0)
     EP_cat = np.concatenate(all_EP, axis=0)
+    WORLD_cat = np.concatenate(all_WORLD, axis=0)
 
     total_time = time.time() - t_start
     print(f"Total transitions collected: {len(S_cat)} across {curr_ep} episodes in {total_time:.1f}s")
@@ -139,7 +143,8 @@ def main():
     print(f"Saving merged pool to: {args.out}")
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
-    np.savez_compressed(args.out, S=S_cat, A=A_cat, S2=S2_cat, R=R_cat, D=D_cat, EP=EP_cat)
+    np.savez_compressed(args.out, S=S_cat, A=A_cat, S2=S2_cat, R=R_cat, D=D_cat,
+                        EP=EP_cat, WORLD=WORLD_cat)
     print("Successfully committed multi-world pool to disk.", flush=True)
 
 

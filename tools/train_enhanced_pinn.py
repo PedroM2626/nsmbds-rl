@@ -1,14 +1,14 @@
 """Train Enhanced Multi-World Physics-Informed Neural Network (PINN) World Model.
 
-Solves the open-loop dynamic drift through:
+Attempts to reduce open-loop dynamic drift through:
 1. Multi-world real transition dataset (1-1, 1-2, 2-1, 4-1, 5-1, 6-1, 8-1).
 2. Stratified multi-world train/val/test splitting.
 3. Multi-step autoregressive rollout loss to prevent error accumulation.
 4. Hard-residual exact discrete Euler integration (+ K*v, zero structural residual).
 
 Outputs:
-    models/pinn_nsmb.pt
-    evals/pinn_worldmodel_metrics.json
+    models/pinn_nsmb_stratified.pt
+    evals/pinn_worldmodel_metrics_stratified.json
 """
 from __future__ import annotations
 
@@ -29,32 +29,83 @@ sys.path.insert(0, os.path.join(ROOT, "src"))
 from pinn_world_model import (
     MarioPINNWorldModel, OBS_DIM, N_ACTIONS, IDX_X, IDX_Y, IDX_VX, IDX_VY, EULER_K
 )
+from eval_provenance import collect, sha1_file
 
 
-def split_multiworld(data, val_frac=0.10, test_frac=0.15):
-    """Stratified temporal split across distinct episodes.
-    Guarantees every world is represented in train, val, and test.
+LEGACY_AUDIT = os.path.join(ROOT, "out", "documentation_audit", "pinn_pool_split.json")
+
+
+def load_pool(path, legacy_audit=LEGACY_AUDIT):
+    """Read transitions and their course labels, refusing unknown legacy pools.
+
+    The committed pool predates WORLD labels. Its hash-bound audit records the
+    historical collection order and sizes, verified against the worker arrays.
+    New pools carry WORLD explicitly and need no inferred layout.
     """
-    S, A, S2, R, D, EP = data
-    unique_eps = np.unique(EP)
-    n_eps = len(unique_eps)
+    with np.load(path, allow_pickle=False) as p:
+        data = tuple(p[k] for k in ("S", "A", "S2", "R", "D", "EP"))
+        if "WORLD" in p:
+            world = p["WORLD"]
+        else:
+            with open(legacy_audit, encoding="utf-8") as f:
+                audit = json.load(f)
+            if sha1_file(path) != audit["pool_sha1"]:
+                raise ValueError("Pool has no WORLD labels and does not match the audited legacy pool")
+            world = np.concatenate([
+                np.full(entry["transitions"], name)
+                for name, entry in audit["courses"].items()
+            ])
+    return data + (world,)
 
-    # Deterministic split by episode contiguous blocks
-    n_tr = int(n_eps * (1.0 - val_frac - test_frac))
-    n_va = int(n_eps * (1.0 - test_frac))
 
-    tr_eps = set(unique_eps[:n_tr])
-    va_eps = set(unique_eps[n_tr:n_va])
-    te_eps = set(unique_eps[n_va:])
+def split_multiworld(data, val_frac=0.10, test_frac=0.15, seed=42):
+    """Split entire episodes within each course, reproducibly and without overlap."""
+    if len(data) != 7:
+        raise ValueError("Expected S, A, S2, R, D, EP and WORLD")
+    if not (0 < val_frac < 1 and 0 < test_frac < 1 and val_frac + test_frac < 1):
+        raise ValueError("Validation and test fractions must be positive and sum to less than one")
+    n = len(data[0])
+    if n == 0 or any(len(a) != n for a in data):
+        raise ValueError("Pool arrays must be nonempty and have equal lengths")
+    ep, world = np.asarray(data[5]), np.asarray(data[6])
+    if ep.ndim != 1 or world.ndim != 1:
+        raise ValueError("EP and WORLD must be one-dimensional")
+    # Rollout training relies on episode records being contiguous in the pool.
+    starts = np.r_[True, ep[1:] != ep[:-1]]
+    ids, counts = np.unique(ep[starts], return_counts=True)
+    if np.any(counts != 1):
+        raise ValueError("An episode occurs in multiple non-contiguous blocks")
+    if any(len(np.unique(world[ep == episode])) != 1 for episode in ids):
+        raise ValueError("An episode cannot span multiple courses")
+    rng = np.random.default_rng(seed)
+    groups = [[], [], []]
+    for name in np.unique(world):
+        ids = np.unique(ep[world == name])
+        if len(ids) < 3:
+            raise ValueError(f"Course {name} needs at least three episodes for train/val/test")
+        ids = rng.permutation(ids)
+        n_val = max(1, round(len(ids) * val_frac))
+        n_test = max(1, round(len(ids) * test_frac))
+        while n_val + n_test >= len(ids):
+            if n_test >= n_val and n_test > 1:
+                n_test -= 1
+            else:
+                n_val -= 1
+        groups[0].extend(ids[n_val + n_test:])
+        groups[1].extend(ids[:n_val])
+        groups[2].extend(ids[n_val:n_val + n_test])
+    return tuple(tuple(arr[np.isin(ep, group)] for arr in data) for group in groups)
 
-    tr_idx = np.isin(EP, list(tr_eps))
-    va_idx = np.isin(EP, list(va_eps))
-    te_idx = np.isin(EP, list(te_eps))
 
-    def sl(mask):
-        return tuple(arr[mask] for arr in data)
-
-    return sl(tr_idx), sl(va_idx), sl(te_idx)
+def split_summary(parts):
+    result = {}
+    for name, part in zip(("train", "validation", "test"), parts):
+        ep, world = part[5], part[6]
+        result[name] = {"transitions": len(ep), "episodes": len(np.unique(ep)),
+                        "courses": {str(w): {"transitions": int(np.sum(world == w)),
+                                             "episodes": len(np.unique(ep[world == w]))}
+                                    for w in np.unique(world)}}
+    return result
 
 
 def make_tensors(data, device):
@@ -181,7 +232,7 @@ def eval_metrics(model, data, device, rollout_len=120):
         ep_starts.setdefault(int(e), []).append(i)
 
     rng = np.random.default_rng(0)
-    drift, horizons = [], []
+    drift, horizons, measured_episodes = [], [], set()
 
     for e, idxs in list(ep_starts.items()):
         if len(idxs) < 10:
@@ -201,6 +252,7 @@ def eval_metrics(model, data, device, rollout_len=120):
             d_px = np.hypot(s[0, IDX_X].item() - gt_x, s[0, IDX_Y].item() - gt_y) * 512.0
             drift.append(d_px)
             horizons.append(span)
+            measured_episodes.add(e)
 
     return {
         "test_mse": mse,
@@ -208,14 +260,16 @@ def eval_metrics(model, data, device, rollout_len=120):
         "kinematic_residual_y": ry,
         "open_loop_drift_px_mean": float(np.mean(drift)) if drift else float("nan"),
         "open_loop_horizon_frames": float(np.mean(horizons)) if horizons else 0.0,
-        "n_drift_episodes": len(drift)
+        "n_drift_episodes": len(measured_episodes),
+        "n_drift_windows": len(drift)
     }
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pool-in", default="models/pinn_pool.npz")
-    ap.add_argument("--out", default="models/pinn_nsmb.pt")
+    ap.add_argument("--out", default="models/pinn_nsmb_stratified.pt")
+    ap.add_argument("--metrics-out", default="evals/pinn_worldmodel_metrics_stratified.json")
     ap.add_argument("--epochs", type=int, default=350)
     ap.add_argument("--hid", type=int, default=128)
     ap.add_argument("--lambda-rollout", type=float, default=0.5)
@@ -228,12 +282,11 @@ def main():
     device = args.device
 
     print(f"[pinn-wm] Loading pool from {args.pool_in} on device={device}...")
-    p = np.load(args.pool_in)
-    data = (p["S"], p["A"], p["S2"], p["R"], p["D"], p["EP"])
+    data = load_pool(args.pool_in)
     n_trans = len(data[0])
-    print(f"[pinn-wm] Pool loaded: {n_trans} transitions across {len(np.unique(p['EP']))} episodes.")
+    print(f"[pinn-wm] Pool loaded: {n_trans} transitions across {len(np.unique(data[5]))} episodes.")
 
-    splits = split_multiworld(data)
+    splits = split_multiworld(data, seed=args.seed)
     print(f"[pinn-wm] Train: {len(splits[0][0])} | Val: {len(splits[1][0])} | Test: {len(splits[2][0])}")
 
     model = MarioPINNWorldModel(hid=args.hid).to(device)
@@ -252,7 +305,11 @@ def main():
         "collect_time_s": 0.0,
         "train_time_s": train_time,
         "n_transitions": n_trans,
-        "n_params": int(n_params)
+        "n_params": int(n_params),
+        "split": split_summary(splits),
+        "provenance": collect(sources=[__file__, os.path.join(ROOT, "src", "pinn_world_model.py")],
+                              extra={"seed": args.seed, "pool_sha1": sha1_file(args.pool_in),
+                                     "data_note": "offline pool; original ROM/state provenance not available"})
     })
     print("\n=======================================================")
     print("  PINN WORLD MODEL METRICS EVALUATION")
@@ -270,11 +327,11 @@ def main():
         "metrics": metrics
     }, args.out)
 
-    os.makedirs("evals", exist_ok=True)
-    with open("evals/pinn_worldmodel_metrics.json", "w") as f:
+    os.makedirs(os.path.dirname(args.metrics_out) or ".", exist_ok=True)
+    with open(args.metrics_out, "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
 
-    print(f"[pinn-wm] Successfully saved model to {args.out} and metrics to evals/pinn_worldmodel_metrics.json")
+    print(f"[pinn-wm] Successfully saved model to {args.out} and metrics to {args.metrics_out}")
 
 
 if __name__ == "__main__":

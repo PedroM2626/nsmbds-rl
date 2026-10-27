@@ -8,7 +8,7 @@ major artifacts; some historical visual files below are local-only and were remo
 |---|---|
 | `pinn_nsmb.pt` | Enhanced multi-world PINN (43,440 params; test MSE 0.04568 on the 8-1-only partition; see PROJECT_STATUS 4ax) |
 | `pinn_policy.zip` | Dyna-PPO policy trained in PINN imagination (200k steps) |
-| `pinn_pool.npz` | 13,300 real RAM transitions with 240 episode IDs across seven courses; the episode split is not stratified (PROJECT_STATUS 4ax) |
+| `pinn_pool.npz` | 13,300 real RAM transitions with 240 episode IDs across seven courses; the existing checkpoint used a non-stratified split (4ax); the trainer now supports a corrected split (4ay) |
 | `ac_ram_200k.zip` | Asymmetric AC, **RAM-critic** arm — det 1,250.5 px, stoch max 2,610.9 (n=3, PROJECT_STATUS 4ac) |
 | `ac_pixels_200k.zip` | Asymmetric AC, pixel-critic baseline — det 88.0 px (the 14x contrast arm) |
 | `ram_ppo_100k.zip` / `ram_geo_100k.zip` / `gnn_100k.zip` | RAM-arm 100k baselines (17/23-dim vector, entity graph) |

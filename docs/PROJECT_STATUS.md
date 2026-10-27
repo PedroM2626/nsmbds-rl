@@ -44,7 +44,7 @@ older summaries, including 4am's inconsistent table.
 
 | Area | Current boundary |
 | --- | --- |
-| PINN data | `models/pinn_pool.npz` contains 13,300 transitions over 240 episode IDs from seven courses; the actual episode split is not stratified by course. Its 8-1 episodes are all in the test partition. See 4ax and the [split audit](../out/documentation_audit/pinn_pool_split.json). |
+| PINN data | `models/pinn_pool.npz` contains 13,300 transitions over 240 episode IDs from seven courses. The existing checkpoint used the old non-stratified split (4ax); the corrected trainer now splits episodes per course (4ay). |
 | PINN metrics | `evals/pinn_worldmodel_metrics.json` reports 431.07 px average open-loop drift at an average 29.37-frame horizon on the above 8-1 test partition. The 108 drift samples are windows, not 108 independent episodes; earlier and later drift results cannot establish a controlled reduction. |
 | Course geometry and collision | The ROM parser reads course structure, while static solidity, `BG_chk` bindings and some moving surfaces remain incomplete. The legacy planner's coverage guard does not establish whole-game geometry. |
 | Terminal detection | The legacy horizontal fallback is frozen for parity but can misclassify multi-area routes. `MultiAreaMarioEnv` checks area identity and pole contact/slide; the measured 3-1 and 7-1 captures did not set the raw clear byte at capture. |
@@ -2991,10 +2991,64 @@ The repository has local-only legacy visual checkpoints and experiment logs.
 See `models/README.md` for what a clone contains and
 `tools/check_env.py` for the local environment's installed-package drift.
 
-Reproduce the split audit (reads the committed pool; does not retrain):
+The historical audit JSON remains the immutable record and supplies the hash-bound
+legacy course layout. The former audit implementation is in commit `a130bc6`;
+the current tool audits the corrected split described in 4ay and refuses to
+overwrite the historical JSON.
+
+---
+
+## 4ay. Course-stratified PINN data split (2026-10-27)
+
+The training split identified in 4ax has been corrected in
+`tools/train_enhanced_pinn.py`. The seeded shuffle assigns whole episode IDs
+within each course to train, validation and test; no episode is shared across
+partitions. Every course must have at least three episodes. Invalid fractions,
+misaligned arrays, non-contiguous episodes and episodes spanning courses are
+rejected. Array order is retained within each subset so two-step rollouts do
+not cross episodes. A seed fixes the assignments; the fractions apply to
+numbers of episodes, not numbers of transitions.
+
+New `tools/collect_multiworld_pool.py` outputs include a `WORLD` label per
+transition. The existing `models/pinn_pool.npz` lacks labels: its course layout
+is recovered only when its SHA-1 matches the historical 4ax audit. Unknown
+unlabelled pools are rejected. The original pool, its historical audit and the
+published checkpoint are unchanged; the old test metrics remain an 8-1-only
+result, not the result of this new split.
+
+The [new split audit](../out/documentation_audit/pinn_pool_stratified_seed42.json)
+records the following episode counts for seed 42:
+
+| Course | Train | Validation | Test |
+| --- | ---: | ---: | ---: |
+| 1-1 | 20 | 3 | 4 |
+| 1-2 | 11 | 2 | 2 |
+| 2-1 | 37 | 5 | 8 |
+| 4-1 | 26 | 4 | 5 |
+| 5-1 | 19 | 2 | 4 |
+| 6-1 | 39 | 5 | 8 |
+| 8-1 | 27 | 4 | 5 |
+
+This corresponds to 10014 training, 1180 validation and
+2106 test transitions. Different episode lengths explain why the
+transition ratios do not exactly match the episode fractions. Each course is
+present in every partition; this measures held-out episodes from known courses,
+not generalization to unseen courses or randomized initial game states.
+
+The offline one-epoch smoke test ran through model training, evaluation and
+saving using temporary paths. It verifies the pipeline, not model quality.
+Future training defaults to separate `models/pinn_nsmb_stratified.pt` and
+`evals/pinn_worldmodel_metrics_stratified.json` outputs with seed, pool hash,
+split summary and source provenance. Since this is offline training, ROM and
+savestate hashes are not asserted for the legacy pool. New drift metrics report
+episode count and sampled-window count separately.
+
+Reproduce the split audit or run a small smoke training without overwriting
+published artifacts:
 
 ```
-.venv\Scripts\python.exe tools\audit_pinn_pool_split.py --out out\documentation_audit\pinn_pool_split.json
+.venv\Scripts\python.exe tools\audit_pinn_pool_split.py --seed 42 --out out\documentation_audit\pinn_pool_stratified_seed42.json
+.venv\Scripts\python.exe tools\train_enhanced_pinn.py --epochs 1 --device cpu --out scratch\pinn_split_smoke.pt --metrics-out scratch\pinn_split_smoke.json
 ```
 
 ---

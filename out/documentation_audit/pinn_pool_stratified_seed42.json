@@ -1,0 +1,110 @@
+{
+  "pool_sha1": "e3f64282c81145c1767659bdef8473f6a2f8b704",
+  "seed": 42,
+  "split_source_sha1": "1b383b4381f98ae90179ec853c05e8edd89b7dae",
+  "course_labels": "WORLD array, or hash-bound historical audit for legacy pool",
+  "split": {
+    "train": {
+      "transitions": 10014,
+      "episodes": 179,
+      "courses": {
+        "1-1": {
+          "transitions": 1998,
+          "episodes": 20
+        },
+        "1-2": {
+          "transitions": 1284,
+          "episodes": 11
+        },
+        "2-1": {
+          "transitions": 1344,
+          "episodes": 37
+        },
+        "4-1": {
+          "transitions": 1252,
+          "episodes": 26
+        },
+        "5-1": {
+          "transitions": 1506,
+          "episodes": 19
+        },
+        "6-1": {
+          "transitions": 1310,
+          "episodes": 39
+        },
+        "8-1": {
+          "transitions": 1320,
+          "episodes": 27
+        }
+      }
+    },
+    "validation": {
+      "transitions": 1180,
+      "episodes": 25,
+      "courses": {
+        "1-1": {
+          "transitions": 226,
+          "episodes": 3
+        },
+        "1-2": {
+          "transitions": 174,
+          "episodes": 2
+        },
+        "2-1": {
+          "transitions": 177,
+          "episodes": 5
+        },
+        "4-1": {
+          "transitions": 147,
+          "episodes": 4
+        },
+        "5-1": {
+          "transitions": 74,
+          "episodes": 2
+        },
+        "6-1": {
+          "transitions": 172,
+          "episodes": 5
+        },
+        "8-1": {
+          "transitions": 210,
+          "episodes": 4
+        }
+      }
+    },
+    "test": {
+      "transitions": 2106,
+      "episodes": 36,
+      "courses": {
+        "1-1": {
+          "transitions": 276,
+          "episodes": 4
+        },
+        "1-2": {
+          "transitions": 342,
+          "episodes": 2
+        },
+        "2-1": {
+          "transitions": 279,
+          "episodes": 8
+        },
+        "4-1": {
+          "transitions": 401,
+          "episodes": 5
+        },
+        "5-1": {
+          "transitions": 220,
+          "episodes": 4
+        },
+        "6-1": {
+          "transitions": 318,
+          "episodes": 8
+        },
+        "8-1": {
+          "transitions": 270,
+          "episodes": 5
+        }
+      }
+    }
+  }
+}
