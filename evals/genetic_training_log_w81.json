@@ -1,0 +1,147 @@
+{
+  "world": "8-1",
+  "course": "course/H01_1.bin",
+  "state": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds3",
+  "generations": 15,
+  "pop_size": 20,
+  "elite": 4,
+  "best_fitness": 1685.495849609375,
+  "total_time_s": 591.577561378479,
+  "history": [
+    {
+      "generation": 1,
+      "max_fitness": 733.628662109375,
+      "mean_fitness": 241.1652099609375,
+      "best_max_x_px": 733.628662109375,
+      "best_steps": 87,
+      "best_cleared": false,
+      "time_s": 31.454882860183716
+    },
+    {
+      "generation": 2,
+      "max_fitness": 733.628662109375,
+      "mean_fitness": 281.85035400390626,
+      "best_max_x_px": 733.628662109375,
+      "best_steps": 87,
+      "best_cleared": false,
+      "time_s": 28.12225079536438
+    },
+    {
+      "generation": 3,
+      "max_fitness": 733.628662109375,
+      "mean_fitness": 414.3526977539062,
+      "best_max_x_px": 733.628662109375,
+      "best_steps": 87,
+      "best_cleared": false,
+      "time_s": 44.075846910476685
+    },
+    {
+      "generation": 4,
+      "max_fitness": 733.628662109375,
+      "mean_fitness": 427.49114990234375,
+      "best_max_x_px": 733.628662109375,
+      "best_steps": 87,
+      "best_cleared": false,
+      "time_s": 34.16821241378784
+    },
+    {
+      "generation": 5,
+      "max_fitness": 738.175537109375,
+      "mean_fitness": 498.24993896484375,
+      "best_max_x_px": 738.175537109375,
+      "best_steps": 78,
+      "best_cleared": false,
+      "time_s": 39.850539207458496
+    },
+    {
+      "generation": 6,
+      "max_fitness": 738.175537109375,
+      "mean_fitness": 422.784521484375,
+      "best_max_x_px": 738.175537109375,
+      "best_steps": 78,
+      "best_cleared": false,
+      "time_s": 41.209826946258545
+    },
+    {
+      "generation": 7,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 547.7704223632812,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 45.29086256027222
+    },
+    {
+      "generation": 8,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 509.3081420898437,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 34.9479603767395
+    },
+    {
+      "generation": 9,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 587.6314575195313,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 33.669336795806885
+    },
+    {
+      "generation": 10,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 523.648974609375,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 44.102516412734985
+    },
+    {
+      "generation": 11,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 520.506201171875,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 38.46605634689331
+    },
+    {
+      "generation": 12,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 600.1829467773438,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 40.54588508605957
+    },
+    {
+      "generation": 13,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 544.264599609375,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 40.316582679748535
+    },
+    {
+      "generation": 14,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 574.060107421875,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 36.81019878387451
+    },
+    {
+      "generation": 15,
+      "max_fitness": 1685.495849609375,
+      "mean_fitness": 529.5081665039063,
+      "best_max_x_px": 1685.495849609375,
+      "best_steps": 140,
+      "best_cleared": false,
+      "time_s": 57.76929330825806
+    }
+  ]
+}

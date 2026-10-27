@@ -2699,12 +2699,34 @@ O IMPALA CNN provou ser expressivamente superior para percepção de pixels de b
 
 ### 3. Campanha de Neuroevolucao Multi-Mundo (World 2-1 a World 8-1)
 
-Expandimos o Algoritmo Genético Paralelo com telemetria unificada (`tools/train_neuroevolution_multiworld.py` e `tools/run_multiworld_campaign.py`) para os mundos remanescentes:
+Expandimos o Algoritmo Genético Paralelo com telemetria unificada (`tools/train_neuroevolution_multiworld.py` e `tools/run_multiworld_campaign.py`) para todos os mundos com savestates funcionais de nível horizontal (1-1, 2-1, 4-1, 5-1, 6-1 e 8-1), utilizando exatamente a mesma arquitetura MLP de 1.032 parâmetros sobre o vetor de observação RAM uniforme de 23 dimensões (`geo=True`):
+
+| Mundo | Bioma / Desafios Dominantes | Modelo Campeao | Distancia Max ($N=5$) | Passos | Tempo Treino | Taxa Clear | Avaliacao |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **World 1-1** | Planicie de Grama, Goombas, Buracos | `genetic_policy_best.npz` | **4.020,6 px** | 246 | 0,42 min | **100% (5/5)** | `eval_genetic_w11.json` |
+| **World 2-1** | Deserto, Pokeys, Areia Movedica | `genetic_policy_w21.npz` | **1.297,6 px** | 64 | 15,19 min | 0% (857+976 superados) | `eval_genetic_w21.json` |
+| **World 4-1** | Selva Toxica, Dorrie, Cascos Duplos | `genetic_policy_w41.npz` | **1.321,0 px** | 85 | 14,69 min | 0% (alcance profundo) | `eval_genetic_w41.json` |
+| **World 5-1** | Gelo, Inercia Reduzida, Encostas | `genetic_policy_w51.npz` | **2.288,0 px** | 170 | 12,58 min | 0% (>55% da fase) | `eval_genetic_w51.json` |
+| **World 6-1** | Montanha, Canhoes Bullet Bill | `genetic_policy_w61.npz` | **1.929,0 px** | 161 | 15,30 min | 0% (planalto 1.929 px) | `eval_genetic_w61.json` |
+| **World 8-1** | Terras Sombrias de Bowser, Corvos | `genetic_policy_w81.npz` | **1.685,5 px** | 140 | 9,86 min | 0% (avanco solido) | `eval_genetic_w81.json` |
+
 * **World 2-1 (`course/B01_1.bin`, `data/state_2-1.ds1`)**:
   - Fronteira histórica anterior: $862,7\text{ px}$ (morte por colisão no Pokey e areia movediça).
-  - Resultado da Neuroevolução: Em 15 gerações paralelas (15,19 min), a melhor política aprendeu a saltar sobre Pokey 1 e Pokey 2, alcançando **$1.297,6\text{ px}$** com **100% de reproducibilidade deterministica** em 5/5 episódios de teste (`evals/eval_genetic_w21.json`). Avanço de **+434,9 px (+50,4%)** sem nenhuma regra manual.
-* **Mundos 4-1, 5-1, 6-1 e 8-1**:
-  - Campanha orquestrada em execução contínua via `tools/run_multiworld_campaign.py`.
+  - Resultado: Em 15 gerações paralelas (15,19 min), a melhor política aprendeu a saltar sobre Pokey 1 e Pokey 2, alcançando **$1.297,6\text{ px}$** com **100% de reproducibilidade deterministica** em 5/5 episódios de teste (`evals/eval_genetic_w21.json`). Avanço de **+434,9 px (+50,4%)** sem nenhuma regra manual.
+* **World 4-1 (`course/D01_1.bin`, `data/state_4-1.ds1`)**:
+  - Desafios: Pântano tóxico de morte instantânea, plataforma móvel aquática (Dorrie) e patrulhas densas de Koopas.
+  - Resultado: Alcançou **$1.321,0\text{ px}$** (85 passos, 14,69 min), aprendendo a cronometrar o salto sobre a água mortal e progredindo pela selva fechada (`evals/eval_genetic_w41.json`).
+* **World 5-1 (`course/E01_1.bin`, `data/...ds2`)**:
+  - Desafios: Superfície congelada com coeficiente de atrito reduzido (escorregamento de inércia contínua) e relevo acidentado.
+  - Resultado: Atingiu impressionantes **$2.288,0\text{ px}$** (170 passos, 12,58 min), superando mais da metade do percurso ao dominar o momentum sobre o gelo (`evals/eval_genetic_w51.json`).
+* **World 6-1 (`course/F01_1.bin`, `data/state_6-1.ds1`)**:
+  - Desafios: Canhões pesados de Bullet Bill disparando em linha reta, exigindo esquivas verticais e transições rápidas de altitude.
+  - Resultado: Alcançou **$1.929,0\text{ px}$** (161 passos, 15,30 min), sobrevivendo às barragens de mísseis até estabilizar com segurança no platô elevado de montanha (`evals/eval_genetic_w61.json`).
+* **World 8-1 (`course/H01_1.bin`, `data/...ds3`)**:
+  - Desafios: O mundo final de Bowser, com armadilhas explosivas, Bony Beetles e corvos de perseguição em alta velocidade.
+  - Resultado: Atingiu **$1.685,5\text{ px}$** (140 passos, 9,86 min) de avanço determinístico (`evals/eval_genetic_w81.json`).
+
+Tempo total da campanha orquestrada: **67,62 minutos** somando todos os 5 mundos novos (ou 56,71 min no batch 4-1/5-1/6-1/8-1), com proveniência criptográfica completa e modelos salvos.
 
 ---
 
@@ -2746,6 +2768,10 @@ models/
   visual_genetic_best.pt Visual neuroevolution champion (~8.6k params, 2566px det) (4at)
   visual_impala_best.zip Pure visual Impala CNN PPO model (peak 3234px, det 1250px) (4at)
   genetic_policy_w21.npz World 2-1 neuroevolution policy (1297px det) (4at)
+  genetic_policy_w41.npz World 4-1 neuroevolution policy (1321px det) (4at)
+  genetic_policy_w51.npz World 5-1 neuroevolution policy (2288px det) (4at)
+  genetic_policy_w61.npz World 6-1 neuroevolution policy (1929px det) (4at)
+  genetic_policy_w81.npz World 8-1 neuroevolution policy (1685px det) (4at)
   ram_ppo_100k.zip       RAM-PPO 100 k
   ram_geo_100k.zip       RAM + geometry features 100 k
   gnn_100k.zip           GNN 100 k
@@ -2779,6 +2805,10 @@ evals/
   eval_visual_impala_w11.json World 1-1 visual Impala deterministic eval (1250px) (4at)
   eval_visual_impala_stochastic_w11.json World 1-1 visual Impala stochastic eval (2157px peak) (4at)
   eval_genetic_w21.json          World 2-1 GA deterministic eval with provenance (4at)
+  eval_genetic_w41.json          World 4-1 GA deterministic eval with provenance (4at)
+  eval_genetic_w51.json          World 5-1 GA deterministic eval with provenance (4at)
+  eval_genetic_w61.json          World 6-1 GA deterministic eval with provenance (4at)
+  eval_genetic_w81.json          World 8-1 GA deterministic eval with provenance (4at)
   transfer_2_1_profile.json      2-1 (B01_1), the headless-entered desert (4m)
   transfer_2_1_legacy.json       2-1 control arm (4m)
   transfer_4_1_profile.json      4-1 (D01_1), unlocked by its 142 probe floors (4m)

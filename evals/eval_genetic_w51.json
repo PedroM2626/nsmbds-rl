@@ -1,0 +1,109 @@
+{
+  "n_episodes": 5,
+  "mean_max_x_px": 2288.002685546875,
+  "max_max_x_px": 2288.002685546875,
+  "mean_steps": 170.0,
+  "clear_rate": 0.0,
+  "episodes": [
+    {
+      "episode": 1,
+      "max_x_px": 2288.002685546875,
+      "final_x_px": 2288.002685546875,
+      "steps": 170,
+      "total_reward": 1064.501464843754,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 2,
+      "max_x_px": 2288.002685546875,
+      "final_x_px": 2288.002685546875,
+      "steps": 170,
+      "total_reward": 1064.501464843754,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 3,
+      "max_x_px": 2288.002685546875,
+      "final_x_px": 2288.002685546875,
+      "steps": 170,
+      "total_reward": 1064.501464843754,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 4,
+      "max_x_px": 2288.002685546875,
+      "final_x_px": 2288.002685546875,
+      "steps": 170,
+      "total_reward": 1064.501464843754,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    },
+    {
+      "episode": 5,
+      "max_x_px": 2288.002685546875,
+      "final_x_px": 2288.002685546875,
+      "steps": 170,
+      "total_reward": 1064.501464843754,
+      "cleared": false,
+      "died": true,
+      "termination": "death"
+    }
+  ],
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-27T02:41:28+00:00",
+    "git": {
+      "commit": "b3523f8a73794fd13359f5057a9368e1ca23bd28",
+      "dirty": false
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+        "sha1": "73882322121431d926ea8d6d2e2e868e66734426",
+        "bytes": 2424826
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "train_neuroevolution_multiworld.py",
+      "--world",
+      "5-1",
+      "--generations",
+      "15",
+      "--pop-size",
+      "20",
+      "--workers",
+      "4"
+    ],
+    "seed": 42
+  },
+  "world": "5-1",
+  "model": "models/genetic_policy_w51.npz"
+}

@@ -1,0 +1,147 @@
+{
+  "world": "5-1",
+  "course": "course/E01_1.bin",
+  "state": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds2",
+  "generations": 15,
+  "pop_size": 20,
+  "elite": 4,
+  "best_fitness": 2288.002685546875,
+  "total_time_s": 754.6406509876251,
+  "history": [
+    {
+      "generation": 1,
+      "max_fitness": 1090.573486328125,
+      "mean_fitness": 263.841552734375,
+      "best_max_x_px": 1090.573486328125,
+      "best_steps": 93,
+      "best_cleared": false,
+      "time_s": 25.197651863098145
+    },
+    {
+      "generation": 2,
+      "max_fitness": 1090.573486328125,
+      "mean_fitness": 383.55455322265624,
+      "best_max_x_px": 1090.573486328125,
+      "best_steps": 93,
+      "best_cleared": false,
+      "time_s": 37.13147735595703
+    },
+    {
+      "generation": 3,
+      "max_fitness": 1090.573486328125,
+      "mean_fitness": 358.56519775390626,
+      "best_max_x_px": 1090.573486328125,
+      "best_steps": 93,
+      "best_cleared": false,
+      "time_s": 31.497421741485596
+    },
+    {
+      "generation": 4,
+      "max_fitness": 1154.47998046875,
+      "mean_fitness": 455.5564208984375,
+      "best_max_x_px": 1154.47998046875,
+      "best_steps": 90,
+      "best_cleared": false,
+      "time_s": 88.85249018669128
+    },
+    {
+      "generation": 5,
+      "max_fitness": 1667.956787109375,
+      "mean_fitness": 506.67388916015625,
+      "best_max_x_px": 1667.956787109375,
+      "best_steps": 121,
+      "best_cleared": false,
+      "time_s": 41.67214822769165
+    },
+    {
+      "generation": 6,
+      "max_fitness": 1667.956787109375,
+      "mean_fitness": 675.3635498046875,
+      "best_max_x_px": 1667.956787109375,
+      "best_steps": 121,
+      "best_cleared": false,
+      "time_s": 49.348416328430176
+    },
+    {
+      "generation": 7,
+      "max_fitness": 1673.956787109375,
+      "mean_fitness": 744.0673217773438,
+      "best_max_x_px": 1673.956787109375,
+      "best_steps": 130,
+      "best_cleared": false,
+      "time_s": 44.3653347492218
+    },
+    {
+      "generation": 8,
+      "max_fitness": 1673.956787109375,
+      "mean_fitness": 725.57548828125,
+      "best_max_x_px": 1673.956787109375,
+      "best_steps": 130,
+      "best_cleared": false,
+      "time_s": 45.683995485305786
+    },
+    {
+      "generation": 9,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 974.4147094726562,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 55.148488998413086
+    },
+    {
+      "generation": 10,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 907.603857421875,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 58.474942207336426
+    },
+    {
+      "generation": 11,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 809.5382080078125,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 43.51964330673218
+    },
+    {
+      "generation": 12,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 940.2599731445313,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 62.94192171096802
+    },
+    {
+      "generation": 13,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 836.5741577148438,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 58.372804403305054
+    },
+    {
+      "generation": 14,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 887.0658569335938,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 56.02492594718933
+    },
+    {
+      "generation": 15,
+      "max_fitness": 2288.002685546875,
+      "mean_fitness": 818.1419677734375,
+      "best_max_x_px": 2288.002685546875,
+      "best_steps": 170,
+      "best_cleared": false,
+      "time_s": 55.63752794265747
+    }
+  ]
+}
