@@ -213,12 +213,141 @@ class GeneticTrainer:
         self.history.append(gen_stat)
         return gen_stat
 
+    def evolve_generation_parallel(self, venv, n_workers: int, max_steps: int = 350, stall_limit: int = 25) -> dict:
+        """Evaluates population in parallel using SubprocVecEnv across isolated DeSmuME processes."""
+        self.generation += 1
+        eval_results = []
+        gen_start = time.time()
+
+        for chunk_start in range(0, self.pop_size, n_workers):
+            chunk_end = min(chunk_start + n_workers, self.pop_size)
+            active_inds = self.population[chunk_start:chunk_end]
+            n_active = len(active_inds)
+
+            obs = venv.reset()
+            dones_tracked = [False] * n_workers
+            max_xs = [0.0] * n_workers
+            recent_xs = [[] for _ in range(n_workers)]
+            cleared_flags = [False] * n_workers
+            stalled_flags = [False] * n_workers
+            died_flags = [False] * n_workers
+            steps_taken = [0] * n_workers
+
+            for step in range(max_steps):
+                actions = []
+                for i in range(n_workers):
+                    if i < n_active and not dones_tracked[i]:
+                        actions.append(active_inds[i].act(obs[i]))
+                    else:
+                        actions.append(0)
+
+                obs, rewards, dones, infos = venv.step(actions)
+
+                for i in range(n_active):
+                    if not dones_tracked[i]:
+                        steps_taken[i] = step + 1
+                        mario_px = float(infos[i].get("mario_px", 0.0))
+                        if mario_px > max_xs[i]:
+                            max_xs[i] = mario_px
+
+                        recent_xs[i].append(mario_px)
+                        if len(recent_xs[i]) > stall_limit:
+                            recent_xs[i].pop(0)
+                            if max(recent_xs[i]) - min(recent_xs[i]) < 2.5:
+                                stalled_flags[i] = True
+                                dones_tracked[i] = True
+
+                        if infos[i].get("level_cleared", False) or infos[i].get("cleared", False):
+                            cleared_flags[i] = True
+                            dones_tracked[i] = True
+                        elif infos[i].get("died", False) or dones[i]:
+                            died_flags[i] = True
+                            dones_tracked[i] = True
+
+                if all(dones_tracked[:n_active]):
+                    break
+
+            for i in range(n_active):
+                fit = max_xs[i]
+                if cleared_flags[i]:
+                    fit += 1000.0 + (max_steps - steps_taken[i]) * 2.0
+
+                res = {
+                    "ind_idx": chunk_start + i,
+                    "fitness": float(fit),
+                    "max_x": float(max_xs[i]),
+                    "steps": steps_taken[i],
+                    "cleared": cleared_flags[i],
+                    "stalled": stalled_flags[i],
+                    "died": died_flags[i]
+                }
+                eval_results.append(res)
+
+        eval_results.sort(key=lambda r: r["fitness"], reverse=True)
+        best_res = eval_results[0]
+        mean_fit = float(np.mean([r["fitness"] for r in eval_results]))
+        max_fit = float(best_res["fitness"])
+        max_x = float(best_res["max_x"])
+
+        if max_fit > self.best_overall_fitness:
+            self.best_overall_fitness = max_fit
+            self.best_overall_policy = CompactPolicy(weights=self.population[best_res["ind_idx"]].theta.copy())
+
+        # Select elites
+        new_population = []
+        for i in range(self.elite_count):
+            elite_idx = eval_results[i]["ind_idx"]
+            new_population.append(CompactPolicy(weights=self.population[elite_idx].theta.copy()))
+
+        # Parent selection pool (top 50%)
+        top_indices = [r["ind_idx"] for r in eval_results[:self.pop_size // 2]]
+
+        # Generate offspring
+        while len(new_population) < self.pop_size - 1:
+            p1_idx = self.rng.choice(top_indices)
+            p2_idx = self.rng.choice(top_indices)
+            p1 = self.population[p1_idx]
+            p2 = self.population[p2_idx]
+
+            mask = self.rng.binomial(1, 0.5, size=PARAM_DIM).astype(bool)
+            child_theta = np.where(mask, p1.theta, p2.theta)
+
+            mut_mask = self.rng.binomial(1, self.mutation_rate, size=PARAM_DIM).astype(bool)
+            mut_noise = self.rng.normal(0, self.mutation_scale, size=PARAM_DIM).astype(np.float32)
+            child_theta = child_theta + mut_mask * mut_noise
+
+            new_population.append(CompactPolicy(weights=child_theta))
+
+        # Immigrant
+        new_population.append(CompactPolicy(seed=self.rng.integers(0, 1000000)))
+
+        self.population = new_population
+        elapsed = time.time() - gen_start
+
+        gen_stat = {
+            "generation": self.generation,
+            "max_fitness": max_fit,
+            "mean_fitness": mean_fit,
+            "best_max_x_px": max_x,
+            "best_steps": best_res["steps"],
+            "best_cleared": best_res["cleared"],
+            "time_s": elapsed
+        }
+        self.history.append(gen_stat)
+        return gen_stat
+
+
+def make_env_fn():
+    from ram_env import MarioRamEnv
+    return lambda: MarioRamEnv(geo=True)
+
 
 def main():
     parser = argparse.ArgumentParser(description="Neuroevolution for NSMB DS")
     parser.add_argument("--generations", type=int, default=15, help="Number of evolutionary generations")
     parser.add_argument("--pop-size", type=int, default=24, help="Population size")
     parser.add_argument("--elite", type=int, default=4, help="Elites count")
+    parser.add_argument("--workers", type=int, default=1, help="Parallel DeSmuME workers (1 = sequential)")
     parser.add_argument("--max-steps", type=int, default=350, help="Max steps per individual")
     parser.add_argument("--seed", type=int, default=42, help="RNG seed")
     parser.add_argument("--out-model", default="models/genetic_policy.npz", help="Output model path")
@@ -228,10 +357,9 @@ def main():
     print("=================================================================")
     print("  NEUROEVOLUTION AGENT TRAINING (Live DeSmuME Emulator)")
     print("=================================================================")
-    print(f"Pop size: {args.pop_size} | Elites: {args.elite} | Generations: {args.generations}")
+    print(f"Pop size: {args.pop_size} | Elites: {args.elite} | Generations: {args.generations} | Workers: {args.workers}")
     print(f"Fitness function: f = max(mario_px) | Model: Compact MLP (1,032 params)")
 
-    env = MarioRamEnv(geo=True)
     trainer = GeneticTrainer(
         pop_size=args.pop_size,
         elite_count=args.elite,
@@ -241,17 +369,37 @@ def main():
     )
 
     t0 = time.time()
-    for g in range(args.generations):
-        stat = trainer.evolve_generation(env, max_steps=args.max_steps)
-        print(
-            f"Gen {stat['generation']:02d}/{args.generations:02d} | "
-            f"Best Max X: {stat['best_max_x_px']:7.1f} px | "
-            f"Mean Fit: {stat['mean_fitness']:7.1f} | "
-            f"Steps: {stat['best_steps']:3d} | "
-            f"Cleared: {stat['best_cleared']} | "
-            f"Time: {stat['time_s']:.1f}s",
-            flush=True
-        )
+    if args.workers > 1:
+        from stable_baselines3.common.vec_env import SubprocVecEnv
+        print(f"Launching {args.workers} isolated DeSmuME processes via SubprocVecEnv...")
+        venv = SubprocVecEnv([make_env_fn() for _ in range(args.workers)], start_method="spawn")
+        try:
+            for g in range(args.generations):
+                stat = trainer.evolve_generation_parallel(venv, n_workers=args.workers, max_steps=args.max_steps)
+                print(
+                    f"Gen {stat['generation']:02d}/{args.generations:02d} | "
+                    f"Best Max X: {stat['best_max_x_px']:7.1f} px | "
+                    f"Mean Fit: {stat['mean_fitness']:7.1f} | "
+                    f"Steps: {stat['best_steps']:3d} | "
+                    f"Cleared: {stat['best_cleared']} | "
+                    f"Time: {stat['time_s']:.1f}s",
+                    flush=True
+                )
+        finally:
+            venv.close()
+    else:
+        env = MarioRamEnv(geo=True)
+        for g in range(args.generations):
+            stat = trainer.evolve_generation(env, max_steps=args.max_steps)
+            print(
+                f"Gen {stat['generation']:02d}/{args.generations:02d} | "
+                f"Best Max X: {stat['best_max_x_px']:7.1f} px | "
+                f"Mean Fit: {stat['mean_fitness']:7.1f} | "
+                f"Steps: {stat['best_steps']:3d} | "
+                f"Cleared: {stat['best_cleared']} | "
+                f"Time: {stat['time_s']:.1f}s",
+                flush=True
+            )
 
     total_time = time.time() - t0
     print("=================================================================")

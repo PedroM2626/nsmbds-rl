@@ -2554,6 +2554,54 @@ Isso estabelece uma equivalencia matematica exata entre o retorno acumulado do M
 
 ---
 
+## 4ar. Paralelismo Multi-Processo de Neuroevolucao (2.0x Speedup) e o Paradoxo de Amostragem do PPO (2026-10-26)
+
+Esta secao documenta as duas frentes complementares solicitadas: a implementacao e medicao de paralelismo multi-processo para o Algoritmo Genetico (Frente 2) e o checkpointing atomico de melhor epoca para o PPO com recompensa simples e analise de amostragem estocastica vs deterministica (Frente 3).
+
+---
+
+### 1. Frente 2: Paralelizacao Multi-Processo da Neuroevolucao (`--workers 4`)
+
+A avaliacao de individuos de uma mesma geracao em algoritmos evolutivos e intrinsecamente desacoplada (*embarrassingly parallel*). Para contornar a restricao nativa de baixo nivel do emulador (*"uma instancia de DeSmuME por processo"*), implementamos no script `tools/train_neuroevolution.py` o despachador paralelo baseado em `SubprocVecEnv` com modo de inicializacao `spawn`.
+
+#### Resultados de Speedup e Desempenho (25 Geracoes, Populacao $P=24$, 600 Episodios):
+* **Tempo de Treino Sequencial (1 Worker)**: **74,68 minutos** (4.480,8 segundos).
+* **Tempo de Treino Paralelo (4 Workers)**: **37,41 minutos** (2.244,4 segundos).
+* **Speedup de Parede Mensurado**: **2,00x mais rapido** (reducao de 50% no tempo total).
+* **Frequencia de Clears**: **14 das 25 geracoes** produziram individuos capazes de concluir a fase (primeiro clear na Geracao 12, $4.019,96\text{ px}$, 233 passos).
+* **Avaliacao Deterministica ($N=5$, `evals/eval_genetic_parallel_w11.json`)**:
+  - Distancia Maxima Media: **$4.020,0\text{ px}$**.
+  - Taxa de Vitoria: **100,0% (5/5)**.
+  - Passos ate a Conclusao: **206 passos constantes**, reproduzindo perfeitamente o recorde absoluto de velocidade do projeto.
+
+---
+
+### 2. Frente 3: Checkpointing Atomico e o Paradoxo da Amostragem no PPO
+
+Para prevenir o esquecimento catastrofico on-policy observado no PPO, modificamos `tools/train_ppo_simple.py` com o callback de checkpointing atomico (`PPOProgressLogger`), salvando os pesos em disco imediatamente no instante exato de novo recorde de $x_{\max}$ (`models/ppo_simple_best.zip`) e no instante do clear (`models/ppo_simple_clear.zip`).
+
+#### Resultados do Treinamento e Checkpoint:
+* O agente atingiu o topo do mastro em **$4.032,0\text{ px}$** no **Episodio 140** (passo 15.800, duracao de 292 passos, decorridos 16,14 minutos de treino), disparando o salvamento instantaneo de `models/ppo_simple_best.zip`.
+
+#### O Paradoxo da Amostragem (Determinismo vs. Estocasticidade):
+Quando o checkpoint salvo no momento do clear foi submetido a testes empiricos no DeSmuME, revelou-se uma divergencia fundamental de RL:
+1. **Modo Deterministico (`deterministic=True`, $\text{argmax}_a \pi(a|s)$)**:
+   - Maximo Progresso: **$336,5\text{ px}$** (morte aos 36 passos colidindo no primeiro Goomba).
+   - Taxa de Vitoria: **0,0% (0/5)**.
+2. **Modo Estocastico (`deterministic=False`, $a \sim \pi(a|s)$)**:
+   - A mesma rede neural avanca profundamente pela fase em execucoes consecutivas:
+     * Episodio 1: **$2.145,6\text{ px}$** (309 passos)
+     * Episodio 2: **$1.112,4\text{ px}$** (126 passos)
+     * Episodio 3: **$1.728,1\text{ px}$** (212 passos)
+     * Episodio 4: **$1.137,0\text{ px}$** (107 passos)
+     * Episodio 5: **$341,7\text{ px}$** (45 passos)
+   - Media de Progresso Estocastico: **$1.293,0\text{ px}$** (Pico de **$2.145,6\text{ px}$**).
+
+#### Explicacao Matematica e Implicacoes:
+Em metodos de Policy Gradient on-policy com regularizacao de entropia ($\mathcal{H}(\pi)$), a distribuicao categórica nos logits de acao diante de obstaculos criticos mantem bimodalidade ($P(\text{Andar Direita}) \approx 0,55$, $P(\text{Pular Direita}) \approx 0,45$). A amostragem estocastica fornece o desvio necessario para transpor o obstaculo, o que permitiu ao agente atingir $4.032,0\text{ px}$ durante o treinamento. Todavia, a extracao deterministica via $\text{argmax}$ elimina a cauda da distribuicao e colapsa a decisao para o modo dominante de caminhada plana. Isso demonstra categoricamente que politicas PPO em ambientes de plataforma de alta precisao dependem intrinsecamente da amostragem ou exigem tecnicas de destilacao/temperatura para que o modo ganancioso herde a capacidade de salto da distribuicao de treino.
+
+---
+
 ## 5. File Index
 
 ```

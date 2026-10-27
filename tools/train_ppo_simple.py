@@ -81,9 +81,12 @@ class SimpleRewardEnv(gym.Wrapper):
 class PPOProgressLogger(BaseCallback):
     """Logs episode progress and tracks peak max_x in real time."""
 
-    def __init__(self, out_log: str, verbose: int = 1):
+    def __init__(self, out_log: str, best_model_path: str = "", clear_model_path: str = "", verbose: int = 1):
         super().__init__(verbose)
         self.out_log = out_log
+        self.best_model_path = best_model_path
+        self.clear_model_path = clear_model_path
+        self.saved_clear = False
         self.best_max_x = 0.0
         self.history = []
         self.episode_count = 0
@@ -101,8 +104,17 @@ class PPOProgressLogger(BaseCallback):
                 ep_s = int(info.get("ep_steps", 0))
                 cleared = bool(info.get("level_cleared", False) or info.get("cleared", False))
 
-                if max_x > self.best_max_x:
+                is_new_best = max_x > self.best_max_x
+                if is_new_best:
                     self.best_max_x = max_x
+                    if self.best_model_path:
+                        os.makedirs(os.path.dirname(self.best_model_path) or ".", exist_ok=True)
+                        self.model.save(self.best_model_path)
+
+                if cleared and self.clear_model_path and not self.saved_clear:
+                    os.makedirs(os.path.dirname(self.clear_model_path) or ".", exist_ok=True)
+                    self.model.save(self.clear_model_path)
+                    self.saved_clear = True
 
                 elapsed_min = (time.time() - self.t0) / 60.0
                 record = {
@@ -117,10 +129,12 @@ class PPOProgressLogger(BaseCallback):
                 }
                 self.history.append(record)
 
+                ckpt_tag = " [NEW BEST]" if is_new_best else ""
+                clear_tag = " [100% CLEAR]" if cleared else ""
                 print(
                     f"Ep {self.episode_count:03d} | Steps: {self.num_timesteps:5d} | "
                     f"Max X: {max_x:7.1f} px (Best: {self.best_max_x:7.1f} px) | "
-                    f"Reward: {ep_r:6.2f} | Cleared: {cleared} | Time: {elapsed_min:.1f}m",
+                    f"Reward: {ep_r:6.2f} | Cleared: {cleared}{ckpt_tag}{clear_tag} | Time: {elapsed_min:.1f}m",
                     flush=True
                 )
 
@@ -145,7 +159,9 @@ def main():
     parser.add_argument("--n-epochs", type=int, default=4, help="Epochs per update")
     parser.add_argument("--lr", type=float, default=3e-4, help="Learning rate")
     parser.add_argument("--ent-coef", type=float, default=0.01, help="Entropy coefficient")
-    parser.add_argument("--out-model", default="models/ppo_simple_policy.zip", help="Path to save PPO policy")
+    parser.add_argument("--out-model", default="models/ppo_simple_policy.zip", help="Path to save final PPO policy")
+    parser.add_argument("--out-best-model", default="models/ppo_simple_best.zip", help="Path to save best max_x policy")
+    parser.add_argument("--out-clear-model", default="models/ppo_simple_clear.zip", help="Path to save first 100% clear policy")
     parser.add_argument("--out-log", default="evals/ppo_simple_training_log.json", help="Path to save training history")
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     args = parser.parse_args()
@@ -155,6 +171,7 @@ def main():
     print("=================================================================")
     print(f"Device: {args.device} | Total steps: {args.total_steps} | Rollout n_steps: {args.n_steps}")
     print(f"Reward: r_t = max(0, x_t - max_x_so_far) / 16.0 (Pure Potential Maximum)")
+    print(f"Checkpoints: Best -> {args.out_best_model} | Clear -> {args.out_clear_model}")
 
     # 1. Initialize environment FIRST (satisfies DeSmuME process constraint)
     raw_env = MarioRamEnv(geo=True)
@@ -176,7 +193,11 @@ def main():
         device=args.device
     )
 
-    callback = PPOProgressLogger(out_log=args.out_log)
+    callback = PPOProgressLogger(
+        out_log=args.out_log,
+        best_model_path=args.out_best_model,
+        clear_model_path=args.out_clear_model
+    )
 
     t0 = time.time()
     model.learn(total_timesteps=args.total_steps, callback=callback)
