@@ -1,0 +1,106 @@
+{
+  "model": "models/visual_simple_best.zip",
+  "n_episodes": 5,
+  "deterministic": true,
+  "mean_max_x_px": 88.0,
+  "max_max_x_px": 88.0,
+  "mean_steps": 450.0,
+  "clear_rate": 0.0,
+  "episodes": [
+    {
+      "episode": 1,
+      "max_x_px": 88.0,
+      "final_x_px": 88.0,
+      "steps": 450,
+      "total_reward": -22.500000000000185,
+      "cleared": false,
+      "died": false,
+      "termination": "timeout"
+    },
+    {
+      "episode": 2,
+      "max_x_px": 88.0,
+      "final_x_px": 88.0,
+      "steps": 450,
+      "total_reward": -22.500000000000185,
+      "cleared": false,
+      "died": false,
+      "termination": "timeout"
+    },
+    {
+      "episode": 3,
+      "max_x_px": 88.0,
+      "final_x_px": 88.0,
+      "steps": 450,
+      "total_reward": -22.500000000000185,
+      "cleared": false,
+      "died": false,
+      "termination": "timeout"
+    },
+    {
+      "episode": 4,
+      "max_x_px": 88.0,
+      "final_x_px": 88.0,
+      "steps": 450,
+      "total_reward": -22.500000000000185,
+      "cleared": false,
+      "died": false,
+      "termination": "timeout"
+    },
+    {
+      "episode": 5,
+      "max_x_px": 88.0,
+      "final_x_px": 88.0,
+      "steps": 450,
+      "total_reward": -22.500000000000185,
+      "cleared": false,
+      "died": false,
+      "termination": "timeout"
+    }
+  ],
+  "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-10-27T01:19:52+00:00",
+    "git": {
+      "commit": "cdad360fcbad4c579ba70ecd801ee35077dbe706",
+      "dirty": false
+    },
+    "files": {
+      "rom": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+        "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+        "bytes": 33554432
+      },
+      "state": {
+        "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+        "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+        "bytes": 2353702
+      }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.4.6",
+      "torch": "2.5.1+cu121",
+      "torchvision": null,
+      "py-desmume": "0.0.9",
+      "gymnasium": "0.29.1",
+      "stable-baselines3": "2.2.1",
+      "sb3-contrib": "2.2.1",
+      "opencv-python": "5.0.0.93",
+      "ndspy": "4.2.0",
+      "mlflow": "2.11.1",
+      "tensorboard": "2.21.0",
+      "sheeprl": null
+    },
+    "argv": [
+      "eval_visual_simple.py",
+      "--model",
+      "models/visual_simple_best.zip",
+      "--episodes",
+      "5",
+      "--out",
+      "evals/eval_visual_simple_w11.json"
+    ]
+  }
+}
