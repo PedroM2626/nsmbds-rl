@@ -6,6 +6,7 @@ import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_PATH = os.path.join(ROOT, "out", "dataset", "object_ids.json")
+RAW_JSON_PATH = os.path.join(ROOT, "out", "nsmb_object_ids.json")
 ENTITIES_PATH = os.path.join(ROOT, "out", "dataset", "entities.csv")
 
 
@@ -31,3 +32,18 @@ def test_all_placed_entities_resolved():
         unresolved = [row for row in reader if not row["class"]]
 
     assert len(unresolved) == 0, f"Found {len(unresolved)} unresolved entities in entities.csv"
+
+
+def test_profile_json_copies_are_in_sync():
+    """course.py reads one copy; this suite reads the other, so both must match."""
+    assert os.path.exists(RAW_JSON_PATH), f"Missing {RAW_JSON_PATH}"
+    assert os.path.exists(JSON_PATH), f"Missing {JSON_PATH}"
+    with open(RAW_JSON_PATH, "r", encoding="utf-8") as f:
+        raw = json.load(f)
+    with open(JSON_PATH, "r", encoding="utf-8") as f:
+        dataset = json.load(f)
+
+    assert raw == dataset, (
+        "out/nsmb_object_ids.json and out/dataset/object_ids.json diverged; "
+        "update both copies together"
+    )

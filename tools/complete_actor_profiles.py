@@ -4,13 +4,7 @@ This script integrates the remaining 43 actor profiles decoded from NSMB DS engi
 structures, NSMBe / NSMBHD databases, and binary disassembly, advancing actor profile
 coverage from 342/385 (88.8%) to 385/385 (100.0%).
 """
-import json
-import os
-import shutil
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC_JSON = os.path.join(ROOT, "out", "nsmb_object_ids.json")
-DST_DATASET = os.path.join(ROOT, "out", "dataset", "object_ids.json")
+from actor_profile_io import CANONICAL, DATASET_COPY, load_profiles, write_profiles
 
 DECODED_PROFILES = {
     0: ("BootScene", 1, "Scenes/BootScene.cpp"),
@@ -60,8 +54,7 @@ DECODED_PROFILES = {
 
 
 def main():
-    with open(SRC_JSON, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    data = load_profiles()
 
     existing_ids = set(int(k) for k in data["id_to_classes"].keys())
     print(f"Pre-completion: {len(existing_ids)} distinct IDs mapped.")
@@ -87,13 +80,9 @@ def main():
 
     print(f"Added {added} missing profiles. Total IDs: {total_ids} (coverage: {total_ids/385*100:.1f}%).")
 
-    with open(SRC_JSON, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=1, ensure_ascii=False)
+    write_profiles(data)
 
-    with open(DST_DATASET, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=1, ensure_ascii=False)
-
-    print(f"Updated {SRC_JSON} and {DST_DATASET}.")
+    print(f"Updated {CANONICAL} and {DATASET_COPY}.")
 
 
 if __name__ == "__main__":

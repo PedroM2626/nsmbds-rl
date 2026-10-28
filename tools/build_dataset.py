@@ -15,6 +15,8 @@ Design decisions that matter for a consumer:
 import json
 import os
 
+from actor_profile_io import load_profiles, sync_dataset_copy
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
 LEVELS = os.path.join(ROOT, "out", "nsmb_levels.json")
@@ -26,9 +28,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     d = json.load(open(LEVELS))
     phys = json.load(open(PHYS))
-    known = {int(k): v for k, v in
-             json.load(open(os.path.join(ROOT, "out", "nsmb_object_ids.json")))
-             ["id_to_classes"].items()}
+    known = {int(k): v for k, v in load_profiles()["id_to_classes"].items()}
 
     n_ent = 0
     with open(os.path.join(OUT, "levels.jsonl"), "w", encoding="utf-8") as fh:
@@ -72,7 +72,8 @@ def main():
         "readme": "levels.jsonl = one level per line (entities + section inventory); "
                   "entities.csv = flat table; physics.json = decomp-derived engine "
                   "constants and integration model; empirical player trajectories "
-                  "are separate; object_ids.json = 342 object-id -> actor class.",
+                  "are separate; object_ids.json = generated copy of "
+                  "out/nsmb_object_ids.json (the canonical table).",
         "what_is_not_here": [
             "the player's own gravity and jump velocity in the decompilation; "
             "empirical 1-1 fits are in physics_jump_state_machine.json and the "
@@ -87,8 +88,7 @@ def main():
               indent=1, ensure_ascii=False)
     import shutil
     shutil.copyfile(PHYS, os.path.join(OUT, "physics.json"))
-    shutil.copyfile(os.path.join(ROOT, "out", "nsmb_object_ids.json"),
-                    os.path.join(OUT, "object_ids.json"))
+    sync_dataset_copy()
 
     for f in sorted(os.listdir(OUT)):
         print(f"  {f:<18} {os.path.getsize(os.path.join(OUT, f)) / 1e6:>7.2f} MB")

@@ -17,13 +17,13 @@ missing rather than filled in from memory or from external tables.
 The two fields are cross-checked: when the comment's slot and the struct's second
 field disagree, the row is flagged instead of silently preferred.
 """
-import json
 import os
 import re
 import sys
 
+from actor_profile_io import CANONICAL, DATASET_COPY, write_profiles
+
 DECOMP = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "ref", "nsmb-decomp", "src")
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out", "nsmb_object_ids.json")
 
 # "// MainProfileTable slot 254  |  ov000  |  profile @ 0x020da9a8"
 SLOT_RE = re.compile(
@@ -104,7 +104,7 @@ def main():
         "slot_comment_conflicts": conflicts,
         "max_id": max((r["id"] for r in rows), default=0),
     }
-    json.dump(out, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    write_profiles(out)
 
     print(f"{len(rows)} profile rows, {len(ids)} distinct ids, max id {out['max_id']}")
     print(f"slot-comment cross-check: {sum(1 for r in rows if r['slot_comment_agrees'])} agree, "
@@ -112,7 +112,8 @@ def main():
           f"{sum(1 for r in rows if r['slot_comment_agrees'] is None)} with no comment")
     dup = {k: v for k, v in ids.items() if len(v) > 1}
     print(f"ids claimed by more than one class: {len(dup)}", list(dup.items())[:5])
-    print(f"saved to {os.path.relpath(OUT, os.getcwd())}")
+    print(f"saved to {os.path.relpath(CANONICAL, os.getcwd())} and "
+          f"{os.path.relpath(DATASET_COPY, os.getcwd())}")
 
 
 if __name__ == "__main__":
