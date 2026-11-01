@@ -17,6 +17,7 @@ major artifacts; some historical visual files below are local-only and were remo
 | `impala_*_1m.zip`, `impala_transformer_spr_1m.zip` | 1M-step IMPALA runs (same legacy caveat) |
 | `autoencoder.pth` | Conv-AE used for frozen-latent PPO and the world-models V tier |
 | `worldmodels_ga/cma_100k*` | Ha&Schmidhuber-style world models (GA / sep-CMA-ES controllers) |
+| `rebench/<arm>_best.zip`, `rebench/<arm>_final.zip`, `rebench/wm_*` | v2 re-benchmark checkpoints (8 actions, potential reward, 100k steps, PROJECT_STATUS 4az). **Local-only, gitignored (~0.8 GB).** The committed record is `evals/rebench/*.json`; `tools/run_rebench.py` regenerates the checkpoints |
 
 **Not reproducible from a clone:** `mlflow.db` and `mlruns/` are gitignored, so
 the 34-run training ledger (PROJECT_STATUS 4n) lives only on the dev machine;

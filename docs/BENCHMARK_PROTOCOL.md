@@ -14,8 +14,11 @@
 >    deterministic and every episode starts from the same savestate; there is no
 >    environmental seed or frame jitter (the §5.2 seed blocks were run as three separate
 >    invocations, not in-code). The README already notes deterministic σ = 0.00.
-> Treat cross-arm comparisons accordingly; a v2 re-benchmark under the unified reward
-> is future work.
+> Treat cross-arm comparisons accordingly. The v2 re-benchmark (2026-11-01) re-trains
+> every architecture under the 8-action table and the simple potential reward, and
+> measures max X instead of return: see README §18 and PROJECT_STATUS §4az
+> (`tools/eval_rebench.py`, `evals/benchmark_v2_unified.json`). This document
+> remains the protocol of the historical n=30 table.
 
 ## 1. Executive Summary & Objective
 

@@ -1,0 +1,2999 @@
+C:\Users\Acer\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\transformer.py:379: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(
+[rtrf_impala_spr] RecurrentPPO policy=RecurrentTransformerActorCriticPolicy params=3964265 device=cuda envs=4 steps=100000
+[SPR] Initialized on cuda. Trainable parameters: 2968608
+[rtrf_impala_spr] ep    1 step    244 max_x   280.6 best   280.6 R  16.54 *
+[rtrf_impala_spr] ep    2 step    244 max_x   298.8 best   298.8 R  17.68 *
+[rtrf_impala_spr] ep    3 step    476 max_x   300.4 best   300.4 R  17.78 *
+[rtrf_impala_spr] ep    4 step    500 max_x  1131.5 best  1131.5 R  69.72 *
+[rtrf_impala_spr] ep    5 step    568 max_x  1248.3 best  1248.3 R  77.02 *
+[rtrf_impala_spr] ep    6 step    640 max_x   930.2 best  1248.3 R  57.14
+[rtrf_impala_spr] ep    7 step    672 max_x   327.8 best  1248.3 R  19.49
+[rtrf_impala_spr] ep    8 step    836 max_x   337.0 best  1248.3 R  20.06
+[rtrf_impala_spr] ep    9 step   1064 max_x   274.6 best  1248.3 R  16.16
+[rtrf_impala_spr] ep   10 step   1200 max_x  1090.4 best  1248.3 R  67.15
+[rtrf_impala_spr] ep   11 step   1324 max_x  1240.3 best  1248.3 R  76.52
+[rtrf_impala_spr] ep   12 step   1356 max_x  1509.5 best  1509.5 R  93.34 *
+[rtrf_impala_spr] ep   13 step   1476 max_x   920.7 best  1509.5 R  56.55
+[rtrf_impala_spr] ep   14 step   1760 max_x  1245.6 best  1509.5 R  76.85
+[rtrf_impala_spr] ep   15 step   1824 max_x   898.3 best  1509.5 R  55.14
+[rtrf_impala_spr] ep   16 step   1848 max_x   952.7 best  1509.5 R  58.54
+[rtrf_impala_spr] ep   17 step   2572 max_x   912.9 best  1509.5 R  56.06
+[rtrf_impala_spr] ep   18 step   2664 max_x  1721.0 best  1721.0 R 106.56 *
+[rtrf_impala_spr] ep   19 step   2724 max_x  4025.7 best  4025.7 R 261.60 CLEAR *
+[rtrf_impala_spr] ep   20 step   2772 max_x  2135.6 best  4025.7 R 132.47
+[rtrf_impala_spr] ep   21 step   2916 max_x   342.3 best  4025.7 R  20.40
+[rtrf_impala_spr] ep   22 step   2920 max_x   330.0 best  4025.7 R  19.63
+[rtrf_impala_spr] ep   23 step   2996 max_x  1091.8 best  4025.7 R  67.24
+[rtrf_impala_spr] ep   24 step   3076 max_x  1099.7 best  4025.7 R  67.73
+[rtrf_impala_spr] ep   25 step   3152 max_x   281.7 best  4025.7 R  16.61
+[rtrf_impala_spr] ep   26 step   3328 max_x   318.3 best  4025.7 R  18.89
+[rtrf_impala_spr] ep   27 step   3400 max_x  1093.2 best  4025.7 R  67.32
+[rtrf_impala_spr] ep   28 step   3528 max_x   933.8 best  4025.7 R  57.36
+[rtrf_impala_spr] ep   29 step   3552 max_x  1130.6 best  4025.7 R  69.66
+[rtrf_impala_spr] ep   30 step   3764 max_x   925.6 best  4025.7 R  56.85
+[rtrf_impala_spr] ep   31 step   3856 max_x   946.5 best  4025.7 R  58.16
+[rtrf_impala_spr] ep   32 step   4004 max_x  1135.0 best  4025.7 R  69.94
+[rtrf_impala_spr] ep   33 step   4224 max_x  1123.4 best  4025.7 R  69.21
+[rtrf_impala_spr] ep   34 step   4228 max_x  1244.6 best  4025.7 R  76.78
+[rtrf_impala_spr] ep   35 step   4632 max_x  1243.5 best  4025.7 R  76.72
+Microphone successfully inited.
+DeSmuME 0.9.12 git#0 x64-JIT SSE2
+SoftRasterizer: Running using 32 additional threads. (Multithreading enabled.)
+
+ROM game code: A2DP
+ROM crc: F443F9BF
+ROM serial: NTR-A2DP-EUR
+ROM chipID: 00001FC2
+ROM internal name: NEW MARIO
+ROM developer: Nintendo
+
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+BackupDevice: DeSmuME .dsv save file not found. Trying to load a .sav file.
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot 2: None
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save crea[rtrf_impala_spr] ep   36 step   4652 max_x  1136.4 best  4025.7 R  70.03
+[rtrf_impala_spr] ep   37 step   4700 max_x   949.2 best  4025.7 R  58.32
+[rtrf_impala_spr] ep   38 step   4736 max_x  1730.5 best  4025.7 R 107.16
+[rtrf_impala_spr] ep   39 step   5080 max_x   939.2 best  4025.7 R  57.70
+[rtrf_impala_spr] ep   40 step   5204 max_x   943.9 best  4025.7 R  58.00
+Microphone successfully inited.
+DeSmuME 0.9.12 git#0 x64-JIT SSE2
+SoftRasterizer: Running using 32 additional threads. (Multithreading enabled.)
+
+ROM game code: A2DP
+ROM crc: F443F9BF
+ROM serial: NTR-A2DP-EUR
+ROM chipID: 00001FC2
+ROM internal name: NEW MARIO
+ROM developer: Nintendo
+
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+BackupDevice: DeSmuME .dsv save file not found. Trying to load a .sav file.
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot 2: None
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save crea[rtrf_impala_spr] ep   41 step   5208 max_x  1241.0 best  4025.7 R  76.56
+[rtrf_impala_spr] ep   42 step   5208 max_x  1084.6 best  4025.7 R  66.79
+Microphone successfully inited.
+DeSmuME 0.9.12 git#0 x64-JIT SSE2
+SoftRasterizer: Running using 32 additional threads. (Multithreading enabled.)
+
+ROM game code: A2DP
+ROM crc: F443F9BF
+ROM serial: NTR-A2DP-EUR
+ROM chipID: 00001FC2
+ROM internal name: NEW MARIO
+ROM developer: Nintendo
+
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+BackupDevice: DeSmuME .dsv save file not found. Trying to load a .sav file.
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot 2: None
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save crea[rtrf_impala_spr] ep   43 step   5600 max_x  1239.8 best  4025.7 R  76.49
+[rtrf_impala_spr] ep   44 step   5604 max_x  1135.1 best  4025.7 R  69.94
+[rtrf_impala_spr] ep   45 step   5604 max_x  1107.0 best  4025.7 R  68.19
+[rtrf_impala_spr] ep   46 step   5684 max_x  1133.9 best  4025.7 R  69.87
+Microphone successfully inited.
+DeSmuME 0.9.12 git#0 x64-JIT SSE2
+SoftRasterizer: Running using 32 additional threads. (Multithreading enabled.)
+
+ROM game code: A2DP
+ROM crc: F443F9BF
+ROM serial: NTR-A2DP-EUR
+ROM chipID: 00001FC2
+ROM internal name: NEW MARIO
+ROM developer: Nintendo
+
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+BackupDevice: DeSmuME .dsv save file not found. Trying to load a .sav file.
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot1 auto-selected device type: Retail MC+ROM
+Slot2 auto-selected device type: None (0xFF)
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Slot 2: None
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save crea[rtrf_impala_spr] ep   47 step   5764 max_x   331.2 best  4025.7 R  19.70
+[rtrf_impala_spr] ep   48 step   5840 max_x   333.9 best  4025.7 R  19.87
+[rtrf_impala_spr] ep   49 step   6148 max_x  2026.3 best  4025.7 R 125.65
+[rtrf_impala_spr] ep   50 step   6232 max_x  1242.8 best  4025.7 R  76.68
+[rtrf_impala_spr] ep   51 step   6324 max_x  1722.7 best  4025.7 R 106.67
+[rtrf_impala_spr] ep   52 step   6340 max_x  1243.6 best  4025.7 R  76.72
+[rtrf_impala_spr] ep   53 step   6468 max_x   350.3 best  4025.7 R  20.89
+[rtrf_impala_spr] ep   54 step   6616 max_x  1127.7 best  4025.7 R  69.48
+[rtrf_impala_spr] ep   55 step   6808 max_x  1241.0 best  4025.7 R  76.56
+[rtrf_impala_spr] ep   56 step   6932 max_x  1519.0 best  4025.7 R  93.94
+[rtrf_impala_spr] ep   57 step   6960 max_x   342.2 best  4025.7 R  20.39
+[rtrf_impala_spr] ep   58 step   7136 max_x  2585.8 best  4025.7 R 160.62
+[rtrf_impala_spr] ep   59 step   7168 max_x   281.4 best  4025.7 R  16.59
+[rtrf_impala_spr] ep   60 step   7188 max_x  2021.5 best  4025.7 R 125.34
+[rtrf_impala_spr] ep   61 step   7324 max_x   343.1 best  4025.7 R  20.44
+[rtrf_impala_spr] ep   62 step   7400 max_x   283.5 best  4025.7 R  16.72
+[rtrf_impala_spr] ep   63 step   7516 max_x  1132.3 best  4025.7 R  69.77
+[rtrf_impala_spr] ep   64 step   7672 max_x  2159.6 best  4025.7 R 133.98
+[rtrf_impala_spr] ep   65 step   7780 max_x  1241.0 best  4025.7 R  76.56
+[rtrf_impala_spr] ep   66 step   7808 max_x  1105.9 best  4025.7 R  68.12
+[rtrf_impala_spr] ep   67 step   7960 max_x  1115.8 best  4025.7 R  68.74
+[rtrf_impala_spr] ep   68 step   8032 max_x  1134.6 best  4025.7 R  69.91
+[rtrf_impala_spr] ep   69 step   8120 max_x   350.9 best  4025.7 R  20.93
+[rtrf_impala_spr] ep   70 step   8260 max_x   340.7 best  4025.7 R  20.29
+[rtrf_impala_spr] ep   71 step   8268 max_x  1493.2 best  4025.7 R  92.33
+[rtrf_impala_spr] ep   72 step   8388 max_x   348.5 best  4025.7 R  20.78
+[rtrf_impala_spr] ep   73 step   8564 max_x   958.3 best  4025.7 R  58.89
+[rtrf_impala_spr] ep   74 step   8688 max_x   353.8 best  4025.7 R  21.11
+[rtrf_impala_spr] ep   75 step   8776 max_x  2568.3 best  4025.7 R 159.52
+[rtrf_impala_spr] ep   76 step   8936 max_x  1520.7 best  4025.7 R  94.05
+[rtrf_impala_spr] ep   77 step   9016 max_x  2570.4 best  4025.7 R 159.65
+[rtrf_impala_spr] ep   78 step   9068 max_x   954.2 best  4025.7 R  58.64
+[rtrf_impala_spr] ep   79 step   9256 max_x  1725.1 best  4025.7 R 106.82
+[rtrf_impala_spr] ep   80 step   9296 max_x   959.3 best  4025.7 R  58.96
+[rtrf_impala_spr] ep   81 step   9388 max_x   350.1 best  4025.7 R  20.88
+[rtrf_impala_spr] ep   82 step   9484 max_x  1138.2 best  4025.7 R  70.14
+[rtrf_impala_spr] ep   83 step   9668 max_x  2609.3 best  4025.7 R 162.08
+[rtrf_impala_spr] ep   84 step   9716 max_x   942.6 best  4025.7 R  57.91
+[rtrf_impala_spr] ep   85 step   9864 max_x  1246.4 best  4025.7 R  76.90
+[rtrf_impala_spr] ep   86 step  10048 max_x  1106.4 best  4025.7 R  68.15
+[rtrf_impala_spr] ep   87 step  10056 max_x  1132.9 best  4025.7 R  69.81
+[rtrf_impala_spr] ep   88 step  10332 max_x   960.1 best  4025.7 R  59.01
+[rtrf_impala_spr] ep   89 step  10444 max_x  3464.4 best  4025.7 R 215.53
+[rtrf_impala_spr] ep   90 step  10476 max_x   340.9 best  4025.7 R  20.30
+[rtrf_impala_spr] ep   91 step  10544 max_x  1725.0 best  4025.7 R 106.81
+[rtrf_impala_spr] ep   92 step  10612 max_x   345.6 best  4025.7 R  20.60
+[rtrf_impala_spr] ep   93 step  10724 max_x  1726.2 best  4025.7 R 106.89
+[rtrf_impala_spr] ep   94 step  10768 max_x   338.7 best  4025.7 R  20.17
+[rtrf_impala_spr] ep   95 step  11144 max_x  2242.1 best  4025.7 R 139.13
+[rtrf_impala_spr] ep   96 step  11240 max_x  1244.0 best  4025.7 R  76.75
+ted: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28[rtrf_impala_spr] ep   97 step  11252 max_x  2237.3 best  4025.7 R 138.83
+[rtrf_impala_spr] ep   98 step  11384 max_x   353.3 best  4025.7 R  21.08
+[rtrf_impala_spr] ep   99 step  11620 max_x   935.3 best  4025.7 R  57.45
+[rtrf_impala_spr] ep  100 step  11640 max_x  1246.2 best  4025.7 R  76.89
+[rtrf_impala_spr] ep  101 step  11684 max_x  2681.2 best  4025.7 R 166.58
+ted: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28[rtrf_impala_spr] ep  102 step  11824 max_x   352.4 best  4025.7 R  21.03
+[rtrf_impala_spr] ep  103 step  11840 max_x  1091.0 best  4025.7 R  67.19
+ted: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28[rtrf_impala_spr] ep  104 step  12076 max_x  1139.0 best  4025.7 R  70.19
+[rtrf_impala_spr] ep  105 step  12444 max_x  2589.0 best  4025.7 R 160.81
+[rtrf_impala_spr] ep  106 step  12448 max_x  2156.9 best  4025.7 R 133.81
+[rtrf_impala_spr] ep  107 step  12572 max_x  1242.1 best  4025.7 R  76.63
+ted: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28[rtrf_impala_spr] ep  108 step  12588 max_x   348.0 best  4025.7 R  20.75
+[rtrf_impala_spr] ep  109 step  12744 max_x   326.3 best  4025.7 R  19.39
+[rtrf_impala_spr] ep  110 step  12788 max_x  1114.0 best  4025.7 R  68.62
+[rtrf_impala_spr] ep  111 step  12804 max_x  2914.6 best  4025.7 R 181.16
+[rtrf_impala_spr] ep  112 step  12916 max_x   348.6 best  4025.7 R  20.79
+[rtrf_impala_spr] ep  113 step  12940 max_x   955.8 best  4025.7 R  58.74
+[rtrf_impala_spr] ep  114 step  12956 max_x   334.3 best  4025.7 R  19.89
+[rtrf_impala_spr] ep  115 step  13064 max_x   354.1 best  4025.7 R  21.13
+[rtrf_impala_spr] ep  116 step  13088 max_x   345.0 best  4025.7 R  20.56
+[rtrf_impala_spr] ep  117 step  13148 max_x  1519.4 best  4025.7 R  93.96
+[rtrf_impala_spr] ep  118 step  13440 max_x  1244.4 best  4025.7 R  76.78
+[rtrf_impala_spr] ep  119 step  13528 max_x  1520.1 best  4025.7 R  94.01
+[rtrf_impala_spr] ep  120 step  13620 max_x  1801.0 best  4025.7 R 111.56
+[rtrf_impala_spr] ep  121 step  13728 max_x  2154.5 best  4025.7 R 133.66
+[rtrf_impala_spr] ep  122 step  13772 max_x   348.0 best  4025.7 R  20.75
+[rtrf_impala_spr] ep  123 step  13908 max_x  1250.0 best  4025.7 R  77.13
+[rtrf_impala_spr] ep  124 step  13992 max_x  1730.9 best  4025.7 R 107.18
+[rtrf_impala_spr] ep  125 step  14156 max_x  1083.2 best  4025.7 R  66.70
+[rtrf_impala_spr] ep  126 step  14216 max_x   950.0 best  4025.7 R  58.37
+[rtrf_impala_spr] ep  127 step  14308 max_x  2161.2 best  4025.7 R 134.07
+[rtrf_impala_spr] ep  128 step  14528 max_x  1517.0 best  4025.7 R  93.81
+[rtrf_impala_spr] ep  129 step  14572 max_x  1242.2 best  4025.7 R  76.64
+[rtrf_impala_spr] ep  130 step  14696 max_x  1241.0 best  4025.7 R  76.56
+[rtrf_impala_spr] ep  131 step  14708 max_x   338.2 best  4025.7 R  20.14
+[rtrf_impala_spr] ep  132 step  14856 max_x   334.6 best  4025.7 R  19.91
+[rtrf_impala_spr] ep  133 step  14864 max_x  1134.8 best  4025.7 R  69.92
+[rtrf_impala_spr] ep  134 step  15008 max_x   345.7 best  4025.7 R  20.61
+[rtrf_impala_spr] ep  135 step  15080 max_x   960.8 best  4025.7 R  59.05
+[rtrf_impala_spr] ep  136 step  15196 max_x  1099.2 best  4025.7 R  67.70
+[rtrf_impala_spr] ep  137 step  15220 max_x  3244.1 best  4025.7 R 201.76
+[rtrf_impala_spr] ep  138 step  15328 max_x  1105.0 best  4025.7 R  68.06
+[rtrf_impala_spr] ep  139 step  15448 max_x   354.6 best  4025.7 R  21.16
+[rtrf_impala_spr] ep  140 step  15500 max_x  1138.9 best  4025.7 R  70.18
+[rtrf_impala_spr] ep  141 step  15548 max_x  1520.1 best  4025.7 R  94.01
+[rtrf_impala_spr] ep  142 step  15568 max_x   354.9 best  4025.7 R  21.18
+[rtrf_impala_spr] ep  143 step  15712 max_x   334.4 best  4025.7 R  19.90
+[rtrf_impala_spr] ep  144 step  15752 max_x  2037.6 best  4025.7 R 126.35
+[rtrf_impala_spr] ep  145 step  15784 max_x  1136.2 best  4025.7 R  70.01
+[rtrf_impala_spr] ep  146 step  15840 max_x   353.9 best  4025.7 R  21.12
+[rtrf_impala_spr] ep  147 step  15844 max_x   958.0 best  4025.7 R  58.88
+[rtrf_impala_spr] ep  148 step  15908 max_x   332.7 best  4025.7 R  19.80
+[rtrf_impala_spr] ep  149 step  15964 max_x   349.5 best  4025.7 R  20.84
+[rtrf_impala_spr] ep  150 step  16124 max_x  1139.1 best  4025.7 R  70.19
+[rtrf_impala_spr] ep  151 step  16192 max_x   962.4 best  4025.7 R  59.15
+[rtrf_impala_spr] ep  152 step  16244 max_x   353.1 best  4025.7 R  21.07
+[rtrf_impala_spr] ep  153 step  16320 max_x  1137.8 best  4025.7 R  70.12
+[rtrf_impala_spr] ep  154 step  16364 max_x  2235.9 best  4025.7 R 138.74
+[rtrf_impala_spr] ep  155 step  16496 max_x  1135.1 best  4025.7 R  69.94
+ Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Sl[rtrf_impala_spr] ep  156 step  16504 max_x   336.6 best  4025.7 R  20.04
+[rtrf_impala_spr] ep  157 step  16600 max_x  1137.3 best  4025.7 R  70.08
+[rtrf_impala_spr] ep  158 step  16632 max_x   350.9 best  4025.7 R  20.93
+[rtrf_impala_spr] ep  159 step  16808 max_x  1131.8 best  4025.7 R  69.73
+[rtrf_impala_spr] ep  160 step  16904 max_x   962.3 best  4025.7 R  59.14
+[rtrf_impala_spr] ep  161 step  16932 max_x   954.6 best  4025.7 R  58.66
+ Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Sl[rtrf_impala_spr] ep  162 step  16980 max_x  2585.9 best  4025.7 R 160.62
+[rtrf_impala_spr] ep  163 step  17236 max_x  1137.7 best  4025.7 R  70.11
+[rtrf_impala_spr] ep  164 step  17348 max_x  2236.3 best  4025.7 R 138.77
+[rtrf_impala_spr] ep  165 step  17452 max_x  1520.9 best  4025.7 R  94.05
+[rtrf_impala_spr] ep  166 step  17640 max_x  2236.3 best  4025.7 R 138.77
+[rtrf_impala_spr] ep  167 step  17696 max_x   945.0 best  4025.7 R  58.06
+[rtrf_impala_spr] ep  168 step  17796 max_x  1729.0 best  4025.7 R 107.06
+[rtrf_impala_spr] ep  169 step  17824 max_x   353.2 best  4025.7 R  21.07
+[rtrf_impala_spr] ep  170 step  17904 max_x  1510.3 best  4025.7 R  93.39
+ Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Sl[rtrf_impala_spr] ep  171 step  17920 max_x   354.9 best  4025.7 R  21.18
+[rtrf_impala_spr] ep  172 step  17940 max_x   962.0 best  4025.7 R  59.13
+[rtrf_impala_spr] ep  173 step  18064 max_x   315.1 best  4025.7 R  18.70
+[rtrf_impala_spr] ep  174 step  18212 max_x   962.8 best  4025.7 R  59.18
+[rtrf_impala_spr] ep  175 step  18276 max_x  1138.5 best  4025.7 R  70.16
+[rtrf_impala_spr] ep  176 step  18324 max_x  1241.1 best  4025.7 R  76.57
+[rtrf_impala_spr] ep  177 step  18340 max_x   356.0 best  4025.7 R  21.25
+[rtrf_impala_spr] ep  178 step  18400 max_x  1138.7 best  4025.7 R  70.17
+[rtrf_impala_spr] ep  179 step  18728 max_x   962.0 best  4025.7 R  59.13
+[rtrf_impala_spr] ep  180 step  18752 max_x  1724.1 best  4025.7 R 106.76
+ Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Sl[rtrf_impala_spr] ep  181 step  18756 max_x  1718.5 best  4025.7 R 106.41
+[rtrf_impala_spr] ep  182 step  18796 max_x  1504.9 best  4025.7 R  93.05
+[rtrf_impala_spr] ep  183 step  18848 max_x   354.9 best  4025.7 R  21.18
+[rtrf_impala_spr] ep  184 step  18872 max_x   354.9 best  4025.7 R  21.18
+[rtrf_impala_spr] ep  185 step  18920 max_x   351.5 best  4025.7 R  20.97
+[rtrf_impala_spr] ep  186 step  19188 max_x  1138.6 best  4025.7 R  70.16
+[rtrf_impala_spr] ep  187 step  19200 max_x  1246.2 best  4025.7 R  76.89
+[rtrf_impala_spr] ep  188 step  19284 max_x  1502.3 best  4025.7 R  92.89
+[rtrf_impala_spr] ep  189 step  19336 max_x   355.9 best  4025.7 R  21.24
+[rtrf_impala_spr] ep  190 step  19404 max_x  1139.4 best  4025.7 R  70.21
+[rtrf_impala_spr] ep  191 step  19408 max_x   353.1 best  4025.7 R  21.07
+[rtrf_impala_spr] ep  192 step  19532 max_x   355.2 best  4025.7 R  21.20
+[rtrf_impala_spr] ep  193 step  19540 max_x   351.9 best  4025.7 R  21.00
+[rtrf_impala_spr] ep  194 step  19560 max_x   949.9 best  4025.7 R  58.37
+[rtrf_impala_spr] ep  195 step  19632 max_x   961.3 best  4025.7 R  59.08
+[rtrf_impala_spr] ep  196 step  19688 max_x   337.2 best  4025.7 R  20.07
+[rtrf_impala_spr] ep  197 step  19892 max_x   963.3 best  4025.7 R  59.21
+[rtrf_impala_spr] ep  198 step  19908 max_x  1137.8 best  4025.7 R  70.12
+[rtrf_impala_spr] ep  199 step  19980 max_x   963.7 best  4025.7 R  59.23
+[rtrf_impala_spr] ep  200 step  20312 max_x  1244.1 best  4025.7 R  76.76
+[rtrf_impala_spr] ep  201 step  20368 max_x  3618.4 best  4025.7 R 225.15
+[rtrf_impala_spr] ep  202 step  20380 max_x  1241.0 best  4025.7 R  76.56
+[rtrf_impala_spr] ep  203 step  20448 max_x   339.9 best  4025.7 R  20.24
+[rtrf_impala_spr] ep  204 step  20768 max_x  1245.3 best  4025.7 R  76.83
+[rtrf_impala_spr] ep  205 step  20816 max_x  2609.4 best  4025.7 R 162.09
+[rtrf_impala_spr] ep  206 step  21016 max_x   951.2 best  4025.7 R  58.45
+[rtrf_impala_spr] ep  207 step  21020 max_x  2157.3 best  4025.7 R 133.83
+ot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selecte[rtrf_impala_spr] ep  208 step  21100 max_x   956.0 best  4025.7 R  58.75
+[rtrf_impala_spr] ep  209 step  21192 max_x  2683.5 best  4025.7 R 166.72
+[rtrf_impala_spr] ep  210 step  21300 max_x  1137.0 best  4025.7 R  70.06
+[rtrf_impala_spr] ep  211 step  21328 max_x   356.0 best  4025.7 R  21.25
+[rtrf_impala_spr] ep  212 step  21348 max_x  1241.7 best  4025.7 R  76.61
+[rtrf_impala_spr] ep  213 step  21568 max_x   961.7 best  4025.7 R  59.11
+[rtrf_impala_spr] ep  214 step  21648 max_x  1115.3 best  4025.7 R  68.71
+ot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selecte[rtrf_impala_spr] ep  215 step  21688 max_x   354.8 best  4025.7 R  21.17
+[rtrf_impala_spr] ep  216 step  21700 max_x  2558.5 best  4025.7 R 158.91
+[rtrf_impala_spr] ep  217 step  21800 max_x   324.0 best  4025.7 R  19.25
+[rtrf_impala_spr] ep  218 step  21844 max_x   345.7 best  4025.7 R  20.61
+[rtrf_impala_spr] ep  219 step  21864 max_x  1250.5 best  4025.7 R  77.16
+[rtrf_impala_spr] ep  220 step  21936 max_x   354.2 best  4025.7 R  21.14
+[rtrf_impala_spr] ep  221 step  22184 max_x  1116.4 best  4025.7 R  68.78
+[rtrf_impala_spr] ep  222 step  22276 max_x  1504.3 best  4025.7 R  93.02
+[rtrf_impala_spr] ep  223 step  22400 max_x   352.3 best  4025.7 R  21.02
+[rtrf_impala_spr] ep  224 step  22484 max_x  2892.5 best  4025.7 R 179.78
+[rtrf_impala_spr] ep  225 step  22604 max_x  1250.7 best  4025.7 R  77.17
+[rtrf_impala_spr] ep  226 step  22608 max_x  2160.3 best  4025.7 R 134.02
+[rtrf_impala_spr] ep  227 step  22612 max_x   352.5 best  4025.7 R  21.03
+[rtrf_impala_spr] ep  228 step  22896 max_x  1724.8 best  4025.7 R 106.80
+[rtrf_impala_spr] ep  229 step  22924 max_x  1137.1 best  4025.7 R  70.07
+[rtrf_impala_spr] ep  230 step  23008 max_x  1250.4 best  4025.7 R  77.15
+[rtrf_impala_spr] ep  231 step  23028 max_x  1244.6 best  4025.7 R  76.79
+[rtrf_impala_spr] ep  232 step  23064 max_x   347.0 best  4025.7 R  20.69
+[rtrf_impala_spr] ep  233 step  23132 max_x   356.5 best  4025.7 R  21.28
+[rtrf_impala_spr] ep  234 step  23212 max_x   337.7 best  4025.7 R  20.10
+[rtrf_impala_spr] ep  235 step  23260 max_x  1136.3 best  4025.7 R  70.02
+[rtrf_impala_spr] ep  236 step  23460 max_x  1726.4 best  4025.7 R 106.90
+[rtrf_impala_spr] ep  237 step  23504 max_x  1122.1 best  4025.7 R  69.13
+[rtrf_impala_spr] ep  238 step  23516 max_x  1135.4 best  4025.7 R  69.96
+ot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selecte[rtrf_impala_spr] ep  239 step  23528 max_x  1138.1 best  4025.7 R  70.13
+[rtrf_impala_spr] ep  240 step  23624 max_x   356.3 best  4025.7 R  21.27
+[rtrf_impala_spr] ep  241 step  23640 max_x   356.5 best  4025.7 R  21.28
+ot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selecte[rtrf_impala_spr] ep  242 step  23796 max_x  1246.2 best  4025.7 R  76.89
+[rtrf_impala_spr] ep  243 step  23896 max_x  1250.5 best  4025.7 R  77.16
+[rtrf_impala_spr] ep  244 step  23944 max_x  1122.4 best  4025.7 R  69.15
+[rtrf_impala_spr] ep  245 step  23960 max_x  1138.6 best  4025.7 R  70.16
+[rtrf_impala_spr] ep  246 step  24164 max_x  1244.8 best  4025.7 R  76.80
+[rtrf_impala_spr] ep  247 step  24308 max_x  1246.2 best  4025.7 R  76.89
+[rtrf_impala_spr] ep  248 step  24404 max_x  1138.9 best  4025.7 R  70.18
+[rtrf_impala_spr] ep  249 step  24452 max_x  2029.3 best  4025.7 R 125.83
+[rtrf_impala_spr] ep  250 step  24508 max_x  1245.3 best  4025.7 R  76.83
+[rtrf_impala_spr] ep  251 step  24936 max_x  1250.5 best  4025.7 R  77.16
+[rtrf_impala_spr] ep  252 step  24976 max_x  3248.4 best  4025.7 R 202.02
+[rtrf_impala_spr] ep  253 step  25072 max_x  2571.6 best  4025.7 R 159.72
+[rtrf_impala_spr] ep  254 step  25108 max_x   345.7 best  4025.7 R  20.60
+[rtrf_impala_spr] ep  255 step  25116 max_x  1728.8 best  4025.7 R 107.05
+[rtrf_impala_spr] ep  256 step  25244 max_x   355.1 best  4025.7 R  21.20
+[rtrf_impala_spr] ep  257 step  25284 max_x  1117.7 best  4025.7 R  68.86
+[rtrf_impala_spr] ep  258 step  25608 max_x  1113.6 best  4025.7 R  68.60
+[rtrf_impala_spr] ep  259 step  25696 max_x  2592.1 best  4025.7 R 161.01
+[rtrf_impala_spr] ep  260 step  25824 max_x   347.3 best  4025.7 R  20.71
+[rtrf_impala_spr] ep  261 step  25924 max_x  2038.8 best  4025.7 R 126.43
+[rtrf_impala_spr] ep  262 step  25988 max_x  4022.1 best  4025.7 R 261.38 CLEAR
+[rtrf_impala_spr] ep  263 step  26188 max_x  1241.4 best  4025.7 R  76.59
+[rtrf_impala_spr] ep  264 step  26188 max_x  2237.7 best  4025.7 R 138.85
+[rtrf_impala_spr] ep  265 step  26324 max_x   337.6 best  4025.7 R  20.10
+[rtrf_impala_spr] ep  266 step  26392 max_x  1724.6 best  4025.7 R 106.79
+[rtrf_impala_spr] ep  267 step  26464 max_x  1801.0 best  4025.7 R 111.56
+d device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: R[rtrf_impala_spr] ep  268 step  26488 max_x   958.6 best  4025.7 R  58.91
+[rtrf_impala_spr] ep  269 step  26524 max_x   356.4 best  4025.7 R  21.27
+[rtrf_impala_spr] ep  270 step  26644 max_x   354.3 best  4025.7 R  21.14
+[rtrf_impala_spr] ep  271 step  26804 max_x  1721.0 best  4025.7 R 106.56
+[rtrf_impala_spr] ep  272 step  26820 max_x  1522.1 best  4025.7 R  94.13
+[rtrf_impala_spr] ep  273 step  26908 max_x  1137.2 best  4025.7 R  70.08
+[rtrf_impala_spr] ep  274 step  26920 max_x   354.9 best  4025.7 R  21.18
+[rtrf_impala_spr] ep  275 step  27036 max_x  1522.3 best  4025.7 R  94.15
+[rtrf_impala_spr] ep  276 step  27276 max_x  1730.5 best  4025.7 R 107.16
+[rtrf_impala_spr] ep  277 step  27280 max_x  1521.7 best  4025.7 R  94.11
+[rtrf_impala_spr] ep  278 step  27332 max_x   957.3 best  4025.7 R  58.83
+[rtrf_impala_spr] ep  279 step  27496 max_x  1801.0 best  4025.7 R 111.56
+[rtrf_impala_spr] ep  280 step  27612 max_x   962.0 best  4025.7 R  59.12
+[rtrf_impala_spr] ep  281 step  27624 max_x  1250.5 best  4025.7 R  77.16
+d device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: R[rtrf_impala_spr] ep  282 step  27828 max_x  2048.3 best  4025.7 R 127.02
+[rtrf_impala_spr] ep  283 step  27892 max_x   963.1 best  4025.7 R  59.20
+[rtrf_impala_spr] ep  284 step  27980 max_x   336.2 best  4025.7 R  20.01
+[rtrf_impala_spr] ep  285 step  28040 max_x  1136.9 best  4025.7 R  70.05
+[rtrf_impala_spr] ep  286 step  28104 max_x   355.1 best  4025.7 R  21.20
+[rtrf_impala_spr] ep  287 step  28324 max_x   954.9 best  4025.7 R  58.68
+[rtrf_impala_spr] ep  288 step  28508 max_x  3657.0 best  4025.7 R 227.56
+[rtrf_impala_spr] ep  289 step  28692 max_x  2239.8 best  4025.7 R 138.99
+[rtrf_impala_spr] ep  290 step  28736 max_x  3246.4 best  4025.7 R 201.90
+[rtrf_impala_spr] ep  291 step  28748 max_x  1522.4 best  4025.7 R  94.15
+[rtrf_impala_spr] ep  292 step  28884 max_x  1119.5 best  4025.7 R  68.97
+[rtrf_impala_spr] ep  293 step  29020 max_x  1139.3 best  4025.7 R  70.20
+d device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: Retail MC+ROM
+BackupDevice: size = 64 Kbit
+CPU mode: Interpreter
+Already decrypted.
+WIFI: MAC Address = 00:09:BF:12:34:56
+WIFI: Emulation level is OFF.
+Savestate info:
+	DeSmuME version: 0.9.13 svn 0
+	Save created: 2026-MAY-28 Thu 15:32:47
+Slot1 auto-selected device type: R[rtrf_impala_spr] ep  294 step  29076 max_x  1250.3 best  4025.7 R  77.14
+[rtrf_impala_spr] ep  295 step  29196 max_x   353.8 best  4025.7 R  21.11
+[rtrf_impala_spr] ep  296 step  29288 max_x  2610.8 best  4025.7 R 162.17
+[rtrf_impala_spr] ep  297 step  29336 max_x  1505.9 best  4025.7 R  93.12
+[rtrf_impala_spr] ep  298 step  29348 max_x   962.8 best  4025.7 R  59.18
+[rtrf_impala_spr] ep  299 step  29472 max_x   352.1 best  4025.7 R  21.01
+[rtrf_impala_spr] ep  300 step  29584 max_x  1137.3 best  4025.7 R  70.08
+[rtrf_impala_spr] ep  301 step  29688 max_x  1246.2 best  4025.7 R  76.89
+Traceback (most recent call last):
+  File "D:\mario-ds\tools\train_rebench.py", line 92, in <module>
+    main()
+  File "D:\mario-ds\tools\train_rebench.py", line 73, in main
+    model.learn(total_timesteps=args.timesteps, callback=callbacks)
+  File "D:\mario-ds\.venv\Lib\site-packages\sb3_contrib\ppo_recurrent\ppo_recurrent.py", line 490, in learn
+    self.train()
+  File "D:\mario-ds\.venv\Lib\site-packages\sb3_contrib\ppo_recurrent\ppo_recurrent.py", line 351, in train
+    values, log_prob, entropy = self.policy.evaluate_actions(
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\.venv\Lib\site-packages\sb3_contrib\common\recurrent\policies.py", line 342, in evaluate_actions
+    distribution = self._get_action_dist_from_latent(latent_pi)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\.venv\Lib\site-packages\stable_baselines3\common\policies.py", line 695, in _get_action_dist_from_latent
+    return self.action_dist.proba_distribution(action_logits=mean_actions)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\.venv\Lib\site-packages\stable_baselines3\common\distributions.py", line 288, in proba_distribution
+    self.distribution = Categorical(logits=action_logits)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Acer\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\distributions\categorical.py", line 72, in __init__
+    super().__init__(batch_shape, validate_args=validate_args)
+  File "C:\Users\Acer\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\distributions\distribution.py", line 71, in __init__
+    raise ValueError(
+ValueError: Expected parameter logits (Tensor of shape (100, 8)) of distribution Categorical(logits: torch.Size([100, 8])) to satisfy the constraint IndependentConstraint(Real(), 1), but found invalid values:
+tensor([[nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan],
+        [nan, nan, nan, nan, nan, nan, nan, nan]], device='cuda:0',
+       grad_fn=<SubBackward0>)

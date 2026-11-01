@@ -1,0 +1,96 @@
+{"event": "runner_start", "arms": ["rtrf_impala_spr", "rppo_impala_curl", "rppo_hybrid", "rppo_curl", "rppo_spr", "rppo_icm_ae", "rppo_icm", "rppo_drq", "rppo_ae", "rppo_pure", "ppo_impala", "ppo_naturecnn", "ppo_gnn", "ppo_ram23", "ppo_ram17", "wm_ga", "wm_cma"], "timesteps": 100000, "num_envs": 4, "parallel": 6, "t": 1793500427.9041257}
+{"arm": "rtrf_impala_spr", "stage": "train", "event": "start", "t": 1793500427.906667}
+{"arm": "rppo_impala_curl", "stage": "train", "event": "start", "t": 1793500447.9069633}
+{"arm": "rppo_hybrid", "stage": "train", "event": "start", "t": 1793500467.9074135}
+{"arm": "rppo_curl", "stage": "train", "event": "start", "t": 1793500487.9093618}
+{"arm": "rppo_spr", "stage": "train", "event": "start", "t": 1793500507.9097743}
+{"arm": "rppo_icm_ae", "stage": "train", "event": "start", "t": 1793500527.911387}
+{"arm": "rtrf_impala_spr", "stage": "train", "event": "end", "exit": 1, "min": 48.77958042621613, "t": 1793503354.6814926}
+{"arm": "rppo_icm", "stage": "train", "event": "start", "t": 1793503354.6834912}
+{"arm": "rppo_hybrid", "stage": "train", "event": "end", "exit": 0, "min": 97.34513080120087, "t": 1793506308.6152616}
+{"arm": "rppo_hybrid", "stage": "eval_best", "event": "start", "t": 1793506308.6152616}
+{"arm": "rppo_icm_ae", "stage": "train", "event": "end", "exit": 0, "min": 98.04895431598028, "t": 1793506410.848646}
+{"arm": "rppo_icm_ae", "stage": "eval_best", "event": "start", "t": 1793506410.8496368}
+{"arm": "rppo_curl", "stage": "train", "event": "end", "exit": 0, "min": 98.77455325126648, "t": 1793506414.382557}
+{"arm": "rppo_curl", "stage": "eval_best", "event": "start", "t": 1793506414.382557}
+{"arm": "rppo_impala_curl", "stage": "train", "event": "end", "exit": 0, "min": 101.52233984470368, "t": 1793506539.247354}
+{"arm": "rppo_impala_curl", "stage": "eval_best", "event": "start", "t": 1793506539.2483547}
+{"arm": "rppo_spr", "stage": "train", "event": "end", "exit": 0, "min": 100.5829629500707, "t": 1793506542.8875513}
+{"arm": "rppo_spr", "stage": "eval_best", "event": "start", "t": 1793506542.8885503}
+{"arm": "rppo_hybrid", "stage": "eval_best", "event": "end", "exit": 0, "min": 6.184318415323893, "t": 1793506679.6743665}
+{"arm": "rppo_hybrid", "stage": "eval_final", "event": "start", "t": 1793506679.675371}
+{"arm": "rppo_curl", "stage": "eval_best", "event": "end", "exit": 0, "min": 5.9097593307495115, "t": 1793506768.9681168}
+{"arm": "rppo_curl", "stage": "eval_final", "event": "start", "t": 1793506768.9691377}
+{"arm": "rppo_icm_ae", "stage": "eval_best", "event": "end", "exit": 0, "min": 7.0717081467310585, "t": 1793506835.1521256}
+{"arm": "rppo_icm_ae", "stage": "eval_final", "event": "start", "t": 1793506835.1531472}
+{"arm": "rppo_spr", "stage": "eval_best", "event": "end", "exit": 0, "min": 5.043145680427552, "t": 1793506845.477291}
+{"arm": "rppo_spr", "stage": "eval_final", "event": "start", "t": 1793506845.4782917}
+{"arm": "rppo_impala_curl", "stage": "eval_best", "event": "end", "exit": 0, "min": 6.352890209356944, "t": 1793506920.4217672}
+{"arm": "rppo_impala_curl", "stage": "eval_final", "event": "start", "t": 1793506920.4233568}
+{"arm": "rppo_hybrid", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.33178901274999, "t": 1793506999.5827117}
+{"arm": "rppo_drq", "stage": "train", "event": "start", "t": 1793506999.5857687}
+{"arm": "rppo_icm_ae", "stage": "eval_final", "event": "end", "exit": 0, "min": 4.6009934425354, "t": 1793507111.2127538}
+{"arm": "rppo_ae", "stage": "train", "event": "start", "t": 1793507111.3510215}
+{"arm": "rppo_curl", "stage": "eval_final", "event": "end", "exit": 0, "min": 6.302836763858795, "t": 1793507147.1393435}
+{"arm": "rppo_pure", "stage": "train", "event": "start", "t": 1793507147.1419373}
+{"arm": "rppo_spr", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.108625153700511, "t": 1793507151.995801}
+{"arm": "ppo_impala", "stage": "train", "event": "start", "t": 1793507152.459022}
+{"arm": "rppo_impala_curl", "stage": "eval_final", "event": "end", "exit": 0, "min": 10.091615434487661, "t": 1793507525.9202828}
+{"arm": "ppo_naturecnn", "stage": "train", "event": "start", "t": 1793507525.9601164}
+{"arm": "rppo_icm", "stage": "train", "event": "end", "exit": 0, "min": 94.1696053067843, "t": 1793509004.8598096}
+{"arm": "rppo_icm", "stage": "eval_best", "event": "start", "t": 1793509004.860346}
+{"arm": "rppo_icm", "stage": "eval_best", "event": "end", "exit": 0, "min": 7.3330386479695635, "t": 1793509444.842665}
+{"arm": "rppo_icm", "stage": "eval_final", "event": "start", "t": 1793509444.843665}
+{"arm": "rppo_icm", "stage": "eval_final", "event": "end", "exit": 0, "min": 7.858152902126312, "t": 1793509916.332839}
+{"arm": "ppo_gnn", "stage": "train", "event": "start", "t": 1793509916.3345878}
+{"arm": "ppo_impala", "stage": "train", "event": "end", "exit": 0, "min": 79.81474728981654, "t": 1793511941.3438594}
+{"arm": "ppo_impala", "stage": "eval_best", "event": "start", "t": 1793511941.3438594}
+{"arm": "ppo_naturecnn", "stage": "train", "event": "end", "exit": 0, "min": 76.2728585322698, "t": 1793512102.3316283}
+{"arm": "ppo_naturecnn", "stage": "eval_best", "event": "start", "t": 1793512102.3326273}
+{"arm": "ppo_impala", "stage": "eval_best", "event": "end", "exit": 0, "min": 7.501708940664927, "t": 1793512391.4463959}
+{"arm": "ppo_impala", "stage": "eval_final", "event": "start", "t": 1793512391.4474046}
+{"arm": "ppo_naturecnn", "stage": "eval_best", "event": "end", "exit": 0, "min": 5.943678025404612, "t": 1793512458.9533088}
+{"arm": "ppo_naturecnn", "stage": "eval_final", "event": "start", "t": 1793512458.954821}
+{"arm": "ppo_impala", "stage": "eval_final", "event": "end", "exit": 0, "min": 8.517109215259552, "t": 1793512902.4739575}
+{"arm": "ppo_ram23", "stage": "train", "event": "start", "t": 1793512902.4760032}
+{"arm": "rppo_ae", "stage": "train", "event": "end", "exit": 0, "min": 96.60699379841486, "t": 1793512907.7706494}
+{"arm": "rppo_ae", "stage": "eval_best", "event": "start", "t": 1793512907.7716677}
+{"arm": "ppo_naturecnn", "stage": "eval_final", "event": "end", "exit": 0, "min": 7.926528867085775, "t": 1793512934.5465531}
+{"arm": "ppo_ram17", "stage": "train", "event": "start", "t": 1793512934.5481048}
+{"arm": "rppo_pure", "stage": "train", "event": "end", "exit": 0, "min": 98.37799310684204, "t": 1793513049.8215237}
+{"arm": "rppo_pure", "stage": "eval_best", "event": "start", "t": 1793513049.822521}
+{"arm": "rppo_drq", "stage": "train", "event": "end", "exit": 0, "min": 102.35346728563309, "t": 1793513140.7938058}
+{"arm": "rppo_drq", "stage": "eval_best", "event": "start", "t": 1793513140.7948043}
+{"arm": "rppo_ae", "stage": "eval_best", "event": "end", "exit": 0, "min": 6.022175494829813, "t": 1793513269.1021974}
+{"arm": "rppo_ae", "stage": "eval_final", "event": "start", "t": 1793513269.1041973}
+{"arm": "rppo_pure", "stage": "eval_best", "event": "end", "exit": 0, "min": 7.595304373900095, "t": 1793513505.5407834}
+{"arm": "rppo_pure", "stage": "eval_final", "event": "start", "t": 1793513505.5417848}
+{"arm": "rppo_drq", "stage": "eval_best", "event": "end", "exit": 0, "min": 6.797850362459818, "t": 1793513548.665826}
+{"arm": "rppo_drq", "stage": "eval_final", "event": "start", "t": 1793513548.6663384}
+{"arm": "rppo_ae", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.811382985115051, "t": 1793513617.7871764}
+{"arm": "wm_ga", "stage": "train", "event": "start", "t": 1793513617.7891803}
+{"arm": "rppo_pure", "stage": "eval_final", "event": "end", "exit": 0, "min": 6.16404238541921, "t": 1793513875.384328}
+{"arm": "wm_cma", "stage": "train", "event": "start", "t": 1793513875.386858}
+{"arm": "rppo_drq", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.88524036804835, "t": 1793513901.7807605}
+{"arm": "ppo_gnn", "stage": "train", "event": "end", "exit": 0, "min": 68.069071718057, "t": 1793514000.478891}
+{"arm": "ppo_gnn", "stage": "eval_best", "event": "start", "t": 1793514000.4798918}
+{"arm": "ppo_gnn", "stage": "eval_best", "event": "end", "exit": 0, "min": 6.478098257382711, "t": 1793514389.1657872}
+{"arm": "ppo_gnn", "stage": "eval_final", "event": "start", "t": 1793514389.1673133}
+{"arm": "ppo_gnn", "stage": "eval_final", "event": "end", "exit": 0, "min": 6.746926482518514, "t": 1793514793.9829023}
+{"arm": "ppo_ram23", "stage": "train", "event": "end", "exit": 0, "min": 55.29245568116506, "t": 1793516220.023344}
+{"arm": "ppo_ram23", "stage": "eval_best", "event": "start", "t": 1793516220.02434}
+{"arm": "ppo_ram17", "stage": "train", "event": "end", "exit": 0, "min": 55.21431922515233, "t": 1793516247.4072583}
+{"arm": "ppo_ram17", "stage": "eval_best", "event": "start", "t": 1793516247.4082572}
+{"arm": "ppo_ram17", "stage": "eval_best", "event": "end", "exit": 0, "min": 4.3278319636980696, "t": 1793516507.078175}
+{"arm": "ppo_ram17", "stage": "eval_final", "event": "start", "t": 1793516507.0791707}
+{"arm": "ppo_ram23", "stage": "eval_best", "event": "end", "exit": 0, "min": 5.5627691070238745, "t": 1793516553.7904863}
+{"arm": "ppo_ram23", "stage": "eval_final", "event": "start", "t": 1793516553.7904863}
+{"arm": "ppo_ram17", "stage": "eval_final", "event": "end", "exit": 0, "min": 4.061918191115061, "t": 1793516750.7942622}
+{"arm": "ppo_ram23", "stage": "eval_final", "event": "end", "exit": 0, "min": 4.719592638810476, "t": 1793516836.9660447}
+{"arm": "wm_cma", "stage": "train", "event": "end", "exit": 0, "min": 55.21022958358129, "t": 1793517188.000633}
+{"arm": "wm_cma", "stage": "eval_best", "event": "start", "t": 1793517188.000633}
+{"arm": "wm_cma", "stage": "eval_best", "event": "end", "exit": 0, "min": 0.9461541215578715, "t": 1793517244.7698803}
+{"arm": "wm_ga", "stage": "train", "event": "end", "exit": 0, "min": 61.86912775039673, "t": 1793517329.9368453}
+{"arm": "wm_ga", "stage": "eval_best", "event": "start", "t": 1793517329.9384034}
+{"arm": "wm_ga", "stage": "eval_best", "event": "end", "exit": 0, "min": 0.831469980875651, "t": 1793517379.8266022}
+{"event": "runner_end", "t": 1793517379.8266022}

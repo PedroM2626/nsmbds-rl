@@ -1,0 +1,405 @@
+{
+ "arm": "wm_ga",
+ "variant": "ga",
+ "total_steps": 100069,
+ "mem_frames": 10000,
+ "mem_loss": 1.9686401552624173,
+ "params": 6152,
+ "best_fitness": 261.74729919433594,
+ "best_max_x_px": 4027.956787109375,
+ "first_clear_step": 66775,
+ "wall_min": 61.58388905525207,
+ "stall_limit": 30,
+ "workers": 4,
+ "seed": 0,
+ "history": [
+  {
+   "gen": 1,
+   "env_steps": 11376,
+   "gen_best_fit": 70.082275390625,
+   "gen_mean_fit": 22.65806706746419,
+   "gen_best_max_x_px": 1137.31640625,
+   "gen_clears": 0,
+   "best_fit": 70.082275390625,
+   "best_max_x_px": 1137.31640625,
+   "elapsed_min": 19.425303848584495
+  },
+  {
+   "gen": 2,
+   "env_steps": 13063,
+   "gen_best_fit": 213.23704528808594,
+   "gen_mean_fit": 38.0725949605306,
+   "gen_best_max_x_px": 3427.792724609375,
+   "gen_clears": 0,
+   "best_fit": 213.23704528808594,
+   "best_max_x_px": 3427.792724609375,
+   "elapsed_min": 20.293250469366708
+  },
+  {
+   "gen": 3,
+   "env_steps": 14885,
+   "gen_best_fit": 213.23704528808594,
+   "gen_mean_fit": 51.43488629659017,
+   "gen_best_max_x_px": 3427.792724609375,
+   "gen_clears": 0,
+   "best_fit": 213.23704528808594,
+   "best_max_x_px": 3427.792724609375,
+   "elapsed_min": 21.30211024681727
+  },
+  {
+   "gen": 4,
+   "env_steps": 17086,
+   "gen_best_fit": 213.23704528808594,
+   "gen_mean_fit": 67.80791346232097,
+   "gen_best_max_x_px": 3427.792724609375,
+   "gen_clears": 0,
+   "best_fit": 213.23704528808594,
+   "best_max_x_px": 3427.792724609375,
+   "elapsed_min": 22.575109450022378
+  },
+  {
+   "gen": 5,
+   "env_steps": 19459,
+   "gen_best_fit": 213.23704528808594,
+   "gen_mean_fit": 73.63645299275716,
+   "gen_best_max_x_px": 3427.792724609375,
+   "gen_clears": 0,
+   "best_fit": 213.23704528808594,
+   "best_max_x_px": 3427.792724609375,
+   "elapsed_min": 23.819815774758656
+  },
+  {
+   "gen": 6,
+   "env_steps": 21496,
+   "gen_best_fit": 213.23704528808594,
+   "gen_mean_fit": 68.84451293945312,
+   "gen_best_max_x_px": 3427.792724609375,
+   "gen_clears": 0,
+   "best_fit": 213.23704528808594,
+   "best_max_x_px": 3427.792724609375,
+   "elapsed_min": 24.90306882460912
+  },
+  {
+   "gen": 7,
+   "env_steps": 24267,
+   "gen_best_fit": 216.02879333496094,
+   "gen_mean_fit": 84.07560157775879,
+   "gen_best_max_x_px": 3472.460693359375,
+   "gen_clears": 0,
+   "best_fit": 216.02879333496094,
+   "best_max_x_px": 3472.460693359375,
+   "elapsed_min": 26.264997160434724
+  },
+  {
+   "gen": 8,
+   "env_steps": 27355,
+   "gen_best_fit": 216.02879333496094,
+   "gen_mean_fit": 86.59335327148438,
+   "gen_best_max_x_px": 3472.460693359375,
+   "gen_clears": 0,
+   "best_fit": 216.02879333496094,
+   "best_max_x_px": 3472.460693359375,
+   "elapsed_min": 27.99987519979477
+  },
+  {
+   "gen": 9,
+   "env_steps": 31405,
+   "gen_best_fit": 216.02879333496094,
+   "gen_mean_fit": 81.59558741251628,
+   "gen_best_max_x_px": 3472.460693359375,
+   "gen_clears": 0,
+   "best_fit": 216.02879333496094,
+   "best_max_x_px": 3472.460693359375,
+   "elapsed_min": 30.873246030012766
+  },
+  {
+   "gen": 10,
+   "env_steps": 34574,
+   "gen_best_fit": 216.02879333496094,
+   "gen_mean_fit": 77.17551867167155,
+   "gen_best_max_x_px": 3472.460693359375,
+   "gen_clears": 0,
+   "best_fit": 216.02879333496094,
+   "best_max_x_px": 3472.460693359375,
+   "elapsed_min": 32.388664134343465
+  },
+  {
+   "gen": 11,
+   "env_steps": 38036,
+   "gen_best_fit": 216.02879333496094,
+   "gen_mean_fit": 94.34572537740071,
+   "gen_best_max_x_px": 3472.460693359375,
+   "gen_clears": 0,
+   "best_fit": 216.02879333496094,
+   "best_max_x_px": 3472.460693359375,
+   "elapsed_min": 34.20891933043798
+  },
+  {
+   "gen": 12,
+   "env_steps": 41964,
+   "gen_best_fit": 216.02879333496094,
+   "gen_mean_fit": 75.9011344909668,
+   "gen_best_max_x_px": 3472.460693359375,
+   "gen_clears": 0,
+   "best_fit": 216.02879333496094,
+   "best_max_x_px": 3472.460693359375,
+   "elapsed_min": 36.46730703115463
+  },
+  {
+   "gen": 13,
+   "env_steps": 46443,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 75.19091542561848,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 38.804688203334806
+  },
+  {
+   "gen": 14,
+   "env_steps": 49308,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 82.5461196899414,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 40.131650507450104
+  },
+  {
+   "gen": 15,
+   "env_steps": 52290,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 88.05200068155925,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 41.55628683169683
+  },
+  {
+   "gen": 16,
+   "env_steps": 54746,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 72.38343620300293,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 42.817635305722554
+  },
+  {
+   "gen": 17,
+   "env_steps": 58381,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 98.3960412343343,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 44.49492509365082
+  },
+  {
+   "gen": 18,
+   "env_steps": 61944,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 72.83681233723958,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 46.719462092717485
+  },
+  {
+   "gen": 19,
+   "env_steps": 63920,
+   "gen_best_fit": 227.56248474121094,
+   "gen_mean_fit": 60.85088030497233,
+   "gen_best_max_x_px": 3656.999755859375,
+   "gen_clears": 0,
+   "best_fit": 227.56248474121094,
+   "best_max_x_px": 3656.999755859375,
+   "elapsed_min": 47.60460433959961
+  },
+  {
+   "gen": 20,
+   "env_steps": 66775,
+   "gen_best_fit": 261.38255310058594,
+   "gen_mean_fit": 98.36964225769043,
+   "gen_best_max_x_px": 4022.120849609375,
+   "gen_clears": 1,
+   "best_fit": 261.38255310058594,
+   "best_max_x_px": 4022.120849609375,
+   "elapsed_min": 48.938733013470966
+  },
+  {
+   "gen": 21,
+   "env_steps": 69233,
+   "gen_best_fit": 261.38255310058594,
+   "gen_mean_fit": 87.37137794494629,
+   "gen_best_max_x_px": 4022.120849609375,
+   "gen_clears": 1,
+   "best_fit": 261.38255310058594,
+   "best_max_x_px": 4022.120849609375,
+   "elapsed_min": 50.02684316237767
+  },
+  {
+   "gen": 22,
+   "env_steps": 72869,
+   "gen_best_fit": 261.38255310058594,
+   "gen_mean_fit": 124.32729276021321,
+   "gen_best_max_x_px": 4022.120849609375,
+   "gen_clears": 2,
+   "best_fit": 261.38255310058594,
+   "best_max_x_px": 4022.120849609375,
+   "elapsed_min": 51.583753542105356
+  },
+  {
+   "gen": 23,
+   "env_steps": 76016,
+   "gen_best_fit": 261.38255310058594,
+   "gen_mean_fit": 105.78263346354167,
+   "gen_best_max_x_px": 4022.120849609375,
+   "gen_clears": 2,
+   "best_fit": 261.38255310058594,
+   "best_max_x_px": 4022.120849609375,
+   "elapsed_min": 52.77675524155299
+  },
+  {
+   "gen": 24,
+   "env_steps": 79016,
+   "gen_best_fit": 261.38255310058594,
+   "gen_mean_fit": 104.72545305887859,
+   "gen_best_max_x_px": 4022.120849609375,
+   "gen_clears": 1,
+   "best_fit": 261.38255310058594,
+   "best_max_x_px": 4022.120849609375,
+   "elapsed_min": 53.932882996400195
+  },
+  {
+   "gen": 25,
+   "env_steps": 82005,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 101.75413958231609,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 2,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 55.02966523170471
+  },
+  {
+   "gen": 26,
+   "env_steps": 84807,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 102.71095403035481,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 2,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 56.09022467931111
+  },
+  {
+   "gen": 27,
+   "env_steps": 87633,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 93.35429954528809,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 1,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 57.14430993795395
+  },
+  {
+   "gen": 28,
+   "env_steps": 90619,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 105.22422663370769,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 2,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 58.28895704746246
+  },
+  {
+   "gen": 29,
+   "env_steps": 93396,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 105.52644157409668,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 2,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 59.33748828967412
+  },
+  {
+   "gen": 30,
+   "env_steps": 96244,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 107.61565335591634,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 2,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 60.30127717256546
+  },
+  {
+   "gen": 31,
+   "env_steps": 100069,
+   "gen_best_fit": 261.74729919433594,
+   "gen_mean_fit": 144.19530741373697,
+   "gen_best_max_x_px": 4027.956787109375,
+   "gen_clears": 4,
+   "best_fit": 261.74729919433594,
+   "best_max_x_px": 4027.956787109375,
+   "elapsed_min": 61.58280027310054
+  }
+ ],
+ "provenance": {
+  "schema": 1,
+  "recorded_at_utc": "2026-11-01T07:15:28+00:00",
+  "git": {
+   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "dirty": true
+  },
+  "files": {
+   "rom": {
+    "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+    "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+    "bytes": 33554432
+   },
+   "state": {
+    "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+    "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+    "bytes": 2353702
+   }
+  },
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+   "numpy": "2.4.6",
+   "torch": "2.5.1+cu121",
+   "torchvision": null,
+   "py-desmume": "0.0.9",
+   "gymnasium": "0.29.1",
+   "stable-baselines3": "2.2.1",
+   "sb3-contrib": "2.2.1",
+   "opencv-python": "5.0.0.93",
+   "ndspy": "4.2.0",
+   "mlflow": "2.11.1",
+   "tensorboard": "2.21.0",
+   "sheeprl": null
+  },
+  "argv": [
+   "train_rebench_worldmodels.py",
+   "--variant",
+   "ga",
+   "--timesteps",
+   "100000",
+   "--workers",
+   "4"
+  ],
+  "seed": 0,
+  "arm": "wm_ga"
+ }
+}

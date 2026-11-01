@@ -3,7 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 from stable_baselines3.common.callbacks import BaseCallback
-import mlflow
+try:
+    import mlflow
+except ImportError:  # optional: the losses still train without tracking
+    mlflow = None
 from curl import random_crop
 
 def safe_cosine_similarity(x1, x2, dim=-1, eps=1e-6):
@@ -68,14 +71,15 @@ class SPR(nn.Module):
     """
     Self-Supervised Policy Representations (SPR) container module.
     """
-    def __init__(self, z_dim: int, encoder: nn.Module, target_encoder: nn.Module, proj_dim: int = 256):
+    def __init__(self, z_dim: int, encoder: nn.Module, target_encoder: nn.Module, proj_dim: int = 256,
+                 num_actions: int = 6):
         super().__init__()
         self.encoder = encoder
         self.target_encoder = target_encoder
         self.projector = ProjectionHead(z_dim, proj_dim)
         self.target_projector = ProjectionHead(z_dim, proj_dim)
         self.predictor = PredictionHead(proj_dim)
-        self.transition_model = TransitionModel(z_dim)
+        self.transition_model = TransitionModel(z_dim, num_actions=num_actions)
 
 class SPRCallback(BaseCallback):
     """
@@ -117,7 +121,9 @@ class SPRCallback(BaseCallback):
             
         # Initialize SPR container
         z_dim = query_encoder.features_dim
-        self.spr = SPR(z_dim, query_encoder, self.target_encoder).to(self.model.device)
+        # The action embedding must cover the env's table (6 legacy, 8 for v2).
+        self.spr = SPR(z_dim, query_encoder, self.target_encoder,
+                       num_actions=int(self.model.action_space.n)).to(self.model.device)
         
         # Freeze target projector
         for p in self.spr.target_projector.parameters():
@@ -248,7 +254,7 @@ class SPRCallback(BaseCallback):
         mean_loss = np.mean(losses)
         
         # Log to MLflow
-        if mlflow.active_run():
+        if mlflow is not None and mlflow.active_run():
             mlflow.log_metric("spr_loss", mean_loss, step=self.num_timesteps)
             
         if self.verbose > 0:

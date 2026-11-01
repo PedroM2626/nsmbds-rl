@@ -1,6 +1,6 @@
 # Project Status & Gap Analysis
 
-*Current snapshot: 2026-10-27. Target: NSMB DS EUR (NTR-A2DP-EUR).*
+*Current snapshot: 2026-11-01. Target: NSMB DS EUR (NTR-A2DP-EUR).*
 
 ---
 
@@ -48,7 +48,7 @@ older summaries, including 4am's inconsistent table.
 | PINN metrics | `evals/pinn_worldmodel_metrics.json` reports 431.07 px average open-loop drift at an average 29.37-frame horizon on the above 8-1 test partition. The 108 drift samples are windows, not 108 independent episodes; earlier and later drift results cannot establish a controlled reduction. |
 | Course geometry and collision | The ROM parser reads course structure, while static solidity, `BG_chk` bindings and some moving surfaces remain incomplete. The legacy planner's coverage guard does not establish whole-game geometry. |
 | Terminal detection | The legacy horizontal fallback is frozen for parity but can misclassify multi-area routes. `MultiAreaMarioEnv` checks area identity and pole contact/slide; the measured 3-1 and 7-1 captures did not set the raw clear byte at capture. |
-| Benchmark comparability | The legacy n=30 pixel/RAM rows differ in action mapping and reward; deterministic replay starts from the same savestate. See [benchmark protocol](BENCHMARK_PROTOCOL.md). |
+| Benchmark comparability | The legacy n=30 pixel/RAM rows differ in action mapping and reward. The v2 re-benchmark ([4az](#4az-v2-unified-re-benchmark-every-historical-architecture-under-one-ruler-2026-11-01)) re-trains every historical architecture under v2 actions and the potential reward, single seed. No PPO-family arm samples a 1-1 clear in more than 3/30 episodes, and most arms are not separable within one seed. NE-Dreamer and SheepRL DreamerV3 were not re-run because of dependency conflicts. |
 | Reproducibility | New evaluations are required to carry provenance; some existing metrics and logs lack it even after the requirement was introduced. `tools/audit_evals.py` checks presence, not dates or field validity. ROM and savestates are local-only; check `tools/check_env.py` for dependency differences. |
 
 Sections 1–3 are historical snapshots. Sections 4a onward are a chronological
@@ -3053,6 +3053,174 @@ published artifacts:
 
 ---
 
+## 4az. v2 unified re-benchmark: every historical architecture under one ruler (2026-11-01)
+
+**Question.** 4af and BENCHMARK_PROTOCOL named the gap: the architecture tables
+(README §6 Det-10, §9 n=30) mix the legacy 6-action table (no dash) with the v2
+table, mix the flow, step-delta RAM and potential rewards, and report returns.
+They cannot rank architectures. This section re-trains every historical
+architecture that had not been trained under the simple potential reward and
+measures all of them with one evaluator.
+
+**Protocol.** World 1-1 from the committed savestate. v2 actions (8, X dash),
+frameskip 8, reward $\max(0,x_t-\max_{s<t}x_s)/16+10\cdot\text{clear}-1\cdot\text{death}$
+(`SimpleRewardPixelEnv`, also used for the RAM and graph observations), stall
+truncation after 30 steps with less than 2.5 px progress, 1,000-step cap.
+Each arm gets 100,000 env steps, seed 0 and 4 `SubprocVecEnv` emulators. All
+PPO-family arms share one hyper-parameter set (lr 2.5e-4, n_steps 256,
+batch 64, 4 epochs, γ 0.99, GAE 0.95, clip 0.2, entropy 0.01; `tools/train_rebench.py`).
+Two checkpoints are kept: `best`, the weights at the training max-x record
+(atomic save), and `final`. `tools/eval_rebench.py` runs 3 argmax episodes,
+then 30 sampled episodes in seed blocks 100/200/300 (torch and numpy seeded).
+It records max X, final X, steps, potential return and termination per
+episode; summaries use ddof-1 sd and a Student-t 95% CI (t = 2.045). The env
+is constructed before the model is loaded (AGENTS.md). Every JSON carries
+provenance.
+
+**Arms.** The June visual checkpoints were all `RecurrentPPO` with
+`CnnLstmPolicy` (LSTM 256, critic LSTM), read from each checkpoint's
+`policy_class`. The visual arms are therefore RecurrentPPO plus the respective
+extractor or auxiliary loss:
+
+- pure, frozen AE, CURL, hybrid AE+CURL (unfrozen AE encoder + CURL), SPR
+  (k=3; the transition model now embeds all 8 actions, previously hard-coded
+  to 6), DrQ random shifts, ICM (`update_freq` 8), ICM+AE, IMPALA+CURL, and the
+  causal transformer with IMPALA+SPR;
+- feed-forward PPO with ImpalaCNN (as `mario_impala` was) and with NatureCNN;
+- PPO MLPs on RAM-17 and RAM-23 observations, and PPO on the GNN MeanMPNN
+  entity graph;
+- World Models GA and sep-CMA-ES with the June V encoders
+  (`models/autoencoder.pth`; the hybrid encoder of
+  `models/ppo_hybrid_ae_curl_100k.zip`), new M (LSTM 512+8→256) and new
+  linear C (6,152 parameters). The 10k / 5k memory-collection frames count
+  against the budget.
+
+The earlier potential-reward policies (4ao genetic, 4ap IQN, 4aq Rainbow,
+4ar PPO RAM, 4as/4at visual PPO and visual GA) are re-measured, not re-trained.
+
+**Engineering fixes found on the way.** `src/curl.py` and `src/spr.py`
+imported `mlflow` unconditionally. Under this venv that import fails on a
+protobuf leak from the system site-packages, so it is now optional. SPR's
+action embedding raised `IndexError` for actions 6–7 under v2. Rapid
+back-to-back `best` saves hit `OSError [Errno 22]` on Windows; saves now go
+to a temporary file followed by `os.replace` with retries.
+
+**Results.** Generated from `evals/rebench/` by `tools/rebench_table.py`
+(merged into `evals/benchmark_v2_unified.json`). The README §18 table is
+the same block, checked by `tests/test_rebench.py`. Headline numbers:
+
+| Measurement | Value | Source |
+| --- | --- | --- |
+| PPO-family arms that touched the flagpole in training | 14/14 (first clear between step 8,808 and step 51,700) | `*_training_log.json` |
+| Stochastic clears, 28 PPO-family checkpoints | 14 / 840 episodes; max 3/30 (IMPALA+CURL `final`) | `eval_*.json` |
+| Argmax outcomes, same 28 checkpoints | 21 die at 1,250.5 px (step 89), 5 at 336.5 px (step 36), 1 stalls at 88.0 px, 1 clears | `eval_*.json` |
+| Gradient-trained deterministic clear | RecurrentPPO IMPALA+CURL `final`, 4,028.0 px, 209 steps | `eval_rppo_impala_curl_final.json` |
+| Stochastic mean range | 991.6 (DrQ `best`) – 1,854.3 px (PPO NatureCNN `final`) | `eval_*.json` |
+| Checkpoint CIs containing the grand mean 1,312.9 px | 23 of 28 | `eval_*.json` |
+| `final` stochastic mean > `best` | 12 of 14 arms | `eval_*.json` |
+| World Models argmax | GA 4,028.0 px clear (248 steps); sep-CMA-ES 4,032.0 px clear (233 steps) | `eval_wm_ga.json`, `eval_wm_cma.json` |
+| References, argmax | genetic 4,020.0 clear; IQN 2,913.0; Rainbow 2,996.8; visual GA 2,566.5 | `eval_ref_*.json` |
+
+**Reading.**
+
+1. **Touching the flagpole once is not learning to clear it.** The training
+   max X is an exploratory maximum. Every arm's "Train best" column is ≈ 4,032 px,
+   yet no PPO-family policy samples a clear more than 3 times in 30 episodes.
+2. **The argmax policies collapse onto two failure points** (1,250.5 px and
+   336.5 px). 4ar attributed the 336.5 px / 36-step argmax death of
+   `ppo_simple_best` to the first Goomba. The same 1,250.5 px argmax death
+   appears in 4ac and 4at. This section did not re-measure either cause with
+   the contact oracle.
+3. **One seed does not separate the architectures.** 23 of 28 intervals
+   contain the grand mean. This is the evaluation CI only. Training-seed
+   variance was not measured (one seed per arm), so even the apparently
+   separated extremes are not established as architecture effects.
+   The historical claims are not reproduced as separations:
+   - §6 note 3: SPR (254.34) beats CURL (105.00) and DrQ (74.92);
+   - §9 note 3: RAM+Geometry leads.
+   Those are era records under different actions and rewards (retained,
+   superseded).
+4. **The `best` checkpoint is optimistic only by name.** It is the parameter
+   set that produced one lucky episode. `final` is the better stochastic
+   policy in 12 of 14 arms, so both are reported.
+5. **Evolution with a deterministic fitness on a deterministic start yields
+   argmax clears.** Both World Models controllers clear deterministically. In
+   the Det-10 era they recorded 425.58 and 242.69 (returns, different reward).
+   As with 4ao, the fitness is measured on the very savestate the evaluation
+   replays, so this measures trajectory search, not robustness. An argmax
+   controller has no sampled test, and no other start was measured.
+6. **The evaluator reproduces the published references** under the same
+   protocol (4ao 4,020.0 px, 4ap 2,913.0, 4aq 2,996.8, 4at 2,566.5), so the
+   reference rows are continuous with their sections. IQN's three argmax
+   replays differ (sampled quantile fractions), and the first is tabulated.
+
+**The causal transformer arm did not complete 100k steps, on two seeds.**
+`rtrf_impala_spr` diverged at a similar point with unchanged code on both
+seeds. In each case the policy logits became NaN inside `Categorical` during
+PPO's update (`evaluate_actions`), not during collection.
+
+| Seed | Diverged after | First training clear | `best` saved at | `best` argmax | `best` stochastic n=30 |
+| --- | ---: | ---: | ---: | --- | --- |
+| 0 | 29,584 steps logged | step 2,724 | step 2,724 | 336.5 px, death | 1,017.6 ± 574.9 px, 0/30 clears |
+| 1 | 26,916 steps logged | step 2,484 | step 20,048 | 1,250.5 px, death | 1,057.9 ± 659.8 px, 0/30 clears |
+
+The logs are `out/rebench/logs/rtrf_impala_spr_seed{0,1}_nan.log`. The partial
+training logs are `evals/rebench/rtrf_impala_spr_seed{0,1}_training_log.json`.
+The `best` evaluations are `eval_rtrf_impala_spr_seed{0,1}_best.json`, and
+the table shows them as "best (seed 0/1)". No `final` checkpoint exists.
+
+A code fact that may contribute, not established as the cause:
+`CausalTransformerWrapper` attends over a sliding 16-step window during
+rollout collection. When SB3 replays a sequence without episode starts at
+training time, it attends over the whole padded sequence instead, so the
+log-probabilities PPO re-computes are not those of the policy that acted.
+Localising the NaN (anomaly detection, logit and gradient norms per update)
+and making train-time attention match the rollout window are open. Either
+change alters the arm, so it would be a new measurement, not a correction of
+this one.
+
+**Not re-run.**
+- NE-Dreamer: the vendored `nedreamer/requirements.txt` pins torch 2.8.0,
+  torchrl 0.9.2, tensordict 0.9.1 and hydra-core 1.3.2. None is installed in
+  `.venv`, and installing them would replace the gated torch 2.5.1. Its
+  `configs/env/marionds.yaml` uses `action_repeat: 4`, but the env wrapper
+  does not repeat actions, so `trainer.py` counts 4 steps per real env step:
+  the historical "100k steps" row was 25k real env steps. `src/nedreamer_env_wrapper.py`
+  now has an opt-in v2 env (`NEDREAMER_MARIO_V2=1`) and an episode side
+  channel (`NEDREAMER_EPLOG=<file>` writes max X / clear / death per episode),
+  for a run in a separate venv with `env.action_repeat=1`.
+- DreamerV3 / SheepRL: `import sheeprl` fails in `.venv`.
+
+**Caveats.**
+- 1 training seed per arm.
+- Shared, untuned hyper-parameters.
+- One start state.
+- 100k budget: the historical 1M IMPALA rows are compared at a tenth of their
+  budget.
+- Stall 30 for every arm; the historical RAM arms used 25.
+- The World Models V encoders are the June checkpoints. They were trained on
+  legacy-action frames; this matters for the frames they were fit to, not
+  for their interface.
+- Training is not bit-reproducible: GPU kernels and subprocess timing vary.
+  The evaluation is deterministic per seed block.
+
+**Reproduce.**
+
+```
+.venv\Scripts\python.exe tools\run_rebench.py --parallel 6 --timesteps 100000 --num-envs 4
+.venv\Scripts\python.exe tools\eval_rebench.py --arm ref_genetic
+.venv\Scripts\python.exe tools\eval_rebench.py --model models\ppo_simple_best.zip --obs ram23 --algo ppo --name ref_ppo_simple
+.venv\Scripts\python.exe tools\rebench_table.py
+.venv\Scripts\python.exe tools\rebench_table.py --check
+```
+
+Measured cost on this machine (i9-14900HX, RTX 4070 Laptop 8 GB, 32 GB):
+6 arms × 4 emulators in parallel saturate the CPU. Per 100k steps (wall
+clock under that load): visual RecurrentPPO arms 93–102 min, feed-forward
+visual PPO 75–79 min, GNN 67 min, RAM MLPs 54–55 min, and World Models 55–62 min.
+
+---
+
 ## 5. File Index
 
 ```
@@ -3141,8 +3309,16 @@ evals/
                                  step cap outside world 1 (4m)
   transfer_6_1_legacy.json       6-1 control arm: 50%, alive at the cap (4m)
   benchmark_n30_merged.json      n=30 stochastic + n=10 det, 14 models
+  benchmark_v2_unified.json      v2 re-benchmark, every architecture, one protocol (4az)
+  rebench/                       per-arm eval_*.json + *_training_log.json (4az)
 
 tools/
+  rebench_common.py              4az arm registry, v2 potential-reward envs, extractors
+  train_rebench.py               4az PPO/RecurrentPPO trainer (one arm, best+final)
+  train_rebench_worldmodels.py   4az World Models V+M+C trainer (GA / sep-CMA-ES)
+  eval_rebench.py                4az evaluator: 3 argmax + 30 sampled episodes, max X
+  run_rebench.py                 4az runner: train + eval every arm in parallel
+  rebench_table.py               4az merged JSON + README table (--check)
   export_levels.py               Batch parser for all 191 levels
   build_dataset.py               Emits entities.csv and levels.jsonl
   extract_profiles.py            Scrapes 342 actor profiles from CC0 decomp

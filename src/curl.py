@@ -3,7 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 from stable_baselines3.common.callbacks import BaseCallback
-import mlflow
+try:
+    import mlflow
+except ImportError:  # optional: the losses still train without tracking
+    mlflow = None
 
 def random_crop(x, out_size=84, padding=4):
     """
@@ -156,7 +159,7 @@ class CURLCallback(BaseCallback):
         mean_loss = np.mean(losses)
         
         # Log contrastive loss to MLflow
-        if mlflow.active_run():
+        if mlflow is not None and mlflow.active_run():
             mlflow.log_metric("curl_loss", mean_loss, step=self.num_timesteps)
             
         if self.verbose > 0:
