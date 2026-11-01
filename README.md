@@ -538,8 +538,12 @@ was feed-forward PPO and stays so. The two World Models arms reuse the June V
 encoders (`models/autoencoder.pth` for GA, the hybrid AE+CURL encoder of
 `models/ppo_hybrid_ae_curl_100k.zip` for CMA) and re-train M and C; their
 memory-collection frames count against the 100k budget. These encoders, like the
-other June visual binaries, are local-only (removed from Git in 4ag), so a clone cannot
-re-run the World Models arms without them. Earlier potential-reward
+other June visual binaries, were removed from Git in 4ag. Without them a clone cannot
+re-run the World Models arms, nor the three arms built on `models/autoencoder.pth`
+(`rppo_ae`, `rppo_icm_ae` frozen; `rppo_hybrid` fine-tuned). Both files are published,
+with SHA-256 checksums, in the [`encoders-v1` release](https://github.com/PedroM2626/nsmbds-rl/releases/tag/encoders-v1):
+`gh release download encoders-v1 -R PedroM2626/nsmbds-rl -D models`, then
+`sha256sum -c SHA256SUMS` inside `models/`. Earlier potential-reward
 policies (4ao–4at) are re-measured with the same evaluator as references,
 not re-trained.
 

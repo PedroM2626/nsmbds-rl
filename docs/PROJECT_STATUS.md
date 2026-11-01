@@ -3203,8 +3203,12 @@ this one.
   (4ao–4ar: `train_ppo_simple`, `train_iqn`, `train_neuroevolution`) used 25.
 - The World Models V encoders are the June checkpoints. They were trained on
   legacy-action frames; this matters for the frames they were fit to, not
-  for their interface. They are local-only (removed from Git in 4ag), so a
-  clone cannot re-run the World Models arms without them.
+  for their interface. They are local-only (removed from Git in 4ag).
+  Without them a clone cannot re-run the World Models arms, nor `rppo_ae`,
+  `rppo_icm_ae` and `rppo_hybrid`, which load `models/autoencoder.pth`.
+  Both files were published the same day in the
+  [`encoders-v1` release](https://github.com/PedroM2626/nsmbds-rl/releases/tag/encoders-v1) (assets' SHA-256: `463b1d51…` and
+  `eab41024…`, also in its `SHA256SUMS`).
 - Bit-exact reproduction of training was not tested; GPU kernels and
   subprocess timing may vary. The recorded argmax replays were identical
   (except IQN), and the sampled blocks are seeded.

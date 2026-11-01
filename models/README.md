@@ -15,7 +15,7 @@ major artifacts; some historical visual files below are local-only and were remo
 | `ppo_*_100k.zip` (8 files) | June visual baselines — **legacy 6-action, no dash** (PROJECT_STATUS 4af); flow-reward era |
 | `recurrent_ppo_mario.zip`, `mario_impala.zip` | Long-run visual baselines (same legacy caveat) |
 | `impala_*_1m.zip`, `impala_transformer_spr_1m.zip` | 1M-step IMPALA runs (same legacy caveat) |
-| `autoencoder.pth` | Conv-AE used for frozen-latent PPO and the world-models V tier |
+| `autoencoder.pth` | Conv-AE used for frozen-latent PPO and the world-models V tier. Not in Git; downloadable with `ppo_hybrid_ae_curl_100k.zip` from the [`encoders-v1` release](https://github.com/PedroM2626/nsmbds-rl/releases/tag/encoders-v1) (SHA-256 in its `SHA256SUMS`) |
 | `worldmodels_ga/cma_100k*` | Ha&Schmidhuber-style world models (GA / sep-CMA-ES controllers) |
 | `rebench/<arm>_best.zip`, `rebench/<arm>_final.zip`, `rebench/wm_*` | v2 re-benchmark checkpoints (8 actions, potential reward, 100k steps, PROJECT_STATUS 4az). **Local-only, gitignored (~0.8 GB).** The committed record is `evals/rebench/*.json`; `tools/run_rebench.py` regenerates the checkpoints |
 
