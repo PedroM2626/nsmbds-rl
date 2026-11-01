@@ -3184,8 +3184,10 @@ this one.
   torchrl 0.9.2, tensordict 0.9.1 and hydra-core 1.3.2. None is installed in
   `.venv`, and installing them would replace the gated torch 2.5.1. Its
   `configs/env/marionds.yaml` uses `action_repeat: 4`, but the env wrapper
-  does not repeat actions, so `trainer.py` counts 4 steps per real env step:
-  the historical "100k steps" row was 25k real env steps. `src/nedreamer_env_wrapper.py`
+  does not repeat actions, so `trainer.py` counts 4 steps per real env step.
+  A run with `env.steps=1e5` under that config takes 25k real env steps. The
+  historical row's launch command is not recorded (no `nedreamer/logdir`
+  survives), so its real budget is unknown. `src/nedreamer_env_wrapper.py`
   now has an opt-in v2 env (`NEDREAMER_MARIO_V2=1`) and an episode side
   channel (`NEDREAMER_EPLOG=<file>` writes max X / clear / death per episode),
   for a run in a separate venv with `env.action_repeat=1`.
@@ -3197,12 +3199,15 @@ this one.
 - One start state.
 - 100k budget: the historical 1M IMPALA rows are compared at a tenth of their
   budget.
-- Stall 30 for every arm; the historical RAM arms used 25.
+- Stall 30 for every arm; the earlier potential-reward RAM scripts
+  (4ao–4ar: `train_ppo_simple`, `train_iqn`, `train_neuroevolution`) used 25.
 - The World Models V encoders are the June checkpoints. They were trained on
   legacy-action frames; this matters for the frames they were fit to, not
-  for their interface.
-- Training is not bit-reproducible: GPU kernels and subprocess timing vary.
-  The evaluation is deterministic per seed block.
+  for their interface. They are local-only (removed from Git in 4ag), so a
+  clone cannot re-run the World Models arms without them.
+- Bit-exact reproduction of training was not tested; GPU kernels and
+  subprocess timing may vary. The recorded argmax replays were identical
+  (except IQN), and the sampled blocks are seeded.
 
 **Reproduce.**
 

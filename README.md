@@ -123,7 +123,7 @@ Use a dedicated CPython 3.11 virtual environment and install the pinned dependen
 .venv\Scripts\python.exe tools\check_env.py
 ```
 
-The repository was developed on Windows; `check_env.py` reports actual installed versions. A clean installation and the Linux Docker path have not been validated for every optional trainer.
+The ROM and savestates are not distributed: place your own dump of *New Super Mario Bros.* (EUR) and its savestate in `data/` under the default names in `src/paths.py`. The repository was developed on Windows; `check_env.py` reports actual installed versions. A clean installation and the Linux Docker path have not been validated for every optional trainer.
 
 > **Notice:** The `py-desmume` package provides Python bindings for the DeSmuME Nintendo DS emulation core. Without it, the environment falls back to static dummy stubs for non-emulated unit testing.
 
@@ -209,7 +209,7 @@ All training routines can be invoked via CLI flags.
 Standard Actor-Critic optimization where convolutional layers (`NatureCNN`) and policy MLP heads are trained simultaneously from scratch using only extrinsic environmental rewards.
 
 ```bash
-python src/train.py --rom "data/mario.nds" --state "data/state.dst" --timesteps 1000000 --num-envs 4
+python src/train.py --timesteps 1000000 --num-envs 4
 ```
 *(The `--num-envs 4` flag launches parallel emulator sub-processes via `SubprocVecEnv`, decorrelating rollouts and maximizing sampling throughput).*
 
@@ -278,6 +278,9 @@ For sample efficiency via latent imagination rollouts, the project integrates **
 python src/train_dreamer.py
 ```
 
+> **Not runnable in the pinned venv (checked 2026-11-01):** `import sheeprl` fails in
+> `.venv`, so this trainer was not part of the §18 re-benchmark.
+
 ---
 
 ### 6. Recurrent PPO, Causal Transformers, and Auxiliary Representation Learning (CURL / SPR)
@@ -325,6 +328,12 @@ Initial baseline evaluation across 10 deterministic episodes per model (`num_epi
 > 2. **IMPALA CURL (1M):** Highest stability among model-free architectures (324.79 mean with zero catastrophic drops).
 > 3. **SPR vs CURL vs DrQ-v2 (100k):** SPR (254.34) outperformed CURL (105.00) and DrQ-v2 (74.92), as temporal transition prediction accelerated dynamics learning faster than static pixel augmentations.
 > 4. **World Models GA (100k):** Reached 425.58 mean with zero standard deviation, reflecting consistent survival up to the 1000-step evaluation cap.
+>
+> *Later corrections (§18, PROJECT_STATUS 4az):*
+> - The NE-Dreamer "100k" budget is unverified: its config counts 4 steps per real env
+>   step, and the launch command was not recorded.
+> - Note 1's causal explanation was not tested.
+> - None of these single-run differences was re-established under the unified protocol.
 
 ---
 
@@ -528,7 +537,9 @@ RecurrentPPO with the respective extractor or auxiliary loss; `mario_impala`
 was feed-forward PPO and stays so. The two World Models arms reuse the June V
 encoders (`models/autoencoder.pth` for GA, the hybrid AE+CURL encoder of
 `models/ppo_hybrid_ae_curl_100k.zip` for CMA) and re-train M and C; their
-memory-collection frames count against the 100k budget. Earlier potential-reward
+memory-collection frames count against the 100k budget. These encoders, like the
+other June visual binaries, are local-only (removed from Git in 4ag), so a clone cannot
+re-run the World Models arms without them. Earlier potential-reward
 policies (4ao–4at) are re-measured with the same evaluator as references,
 not re-trained.
 
@@ -628,8 +639,10 @@ the GA, and the Q-learners); they are reported deterministically only.
 2.8.0, torchrl 0.9.2, tensordict 0.9.1 and hydra-core 1.3.2. None of these is
 installed in this venv, and installing them would replace the pinned
 torch 2.5.1 that the gates are verified on. Its vendored env config also uses
-`action_repeat: 4`, which only scales the step counter (the wrapper does not
-repeat actions), so `env.steps=1e5` means 25k real env steps. An opt-in v2 env
+`action_repeat: 4`, but the wrapper does not repeat actions, so the trainer counts 4 steps
+per real env step. A run with `env.steps=1e5` and that config therefore takes 25k real
+env steps. How the historical row was launched is not recorded, so its real budget
+is unknown. An opt-in v2 env
 (`NEDREAMER_MARIO_V2=1`, episode log `NEDREAMER_EPLOG=<file>`) is in
 `src/nedreamer_env_wrapper.py` for a run in a separate venv with
 `env.action_repeat=1`. DreamerV3 via SheepRL (§5) is likewise not installed
@@ -637,10 +650,11 @@ repeat actions), so `env.steps=1e5` means 25k real env steps. An opt-in v2 env
 
 **Limits.** These are single-seed results under shared, untuned
 hyper-parameters on a single start state, at a 100k budget. The RAM arms use
-the 30-step stall rule instead of their historical 25. Training seeds were
-fixed, but GPU kernels and subprocess scheduling make the training
-trajectories non-bit-reproducible. The evaluation itself is deterministic per
-seed block.
+the 30-step stall rule, while the earlier potential-reward RAM scripts
+(4ao–4ar) used 25. Training seeds were fixed, but bit-exact reproduction of
+training was not tested, and GPU kernels and subprocess timing may vary. The
+recorded argmax replays were identical (except IQN); the sampled blocks are
+seeded.
 
 ```powershell
 # one arm: train, then evaluate both checkpoints
