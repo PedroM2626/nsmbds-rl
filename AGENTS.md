@@ -48,7 +48,13 @@
   Mario at 2,400 px). Screen sampling of arbitrary positions is unreachable
   with the current RAM map.
 - **Savestates restore RAM, not the on-disk save.** A `.sav` only matters at
-  title-screen boot, which never advances headless.
+  title-screen boot. That boot DOES advance headless (4ba retracts 4g): release
+  every key first (DeSmuME starts with keys held -> Luigi), tap "Mario Game"
+  (not "Mario Vs. Luigi", which waits forever on "Searching for Luigi...").
+- **Savestates are built from the ROM**: `tools/make_states.py [--verify]`
+  (`src/cold_boot.py`); envs build a missing canonical state on first use.
+  Never overwrite the reference states in `data/` -- they define the published
+  numbers; `make_states.py` refuses to without `--force`.
 - **REFLEX_LOG=filename** env var enables per-call action logging in the
   eval harness (the source of truth for autopsies; trace tools that don't
   pass `ram=` to the agent diverge from the eval trajectory). As of 4af the

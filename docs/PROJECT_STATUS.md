@@ -49,7 +49,7 @@ older summaries, including 4am's inconsistent table.
 | Course geometry and collision | The ROM parser reads course structure, while static solidity, `BG_chk` bindings and some moving surfaces remain incomplete. The legacy planner's coverage guard does not establish whole-game geometry. |
 | Terminal detection | The legacy horizontal fallback is frozen for parity but can misclassify multi-area routes. `MultiAreaMarioEnv` checks area identity and pole contact/slide; the measured 3-1 and 7-1 captures did not set the raw clear byte at capture. |
 | Benchmark comparability | The legacy n=30 pixel/RAM rows differ in action mapping and reward. The v2 re-benchmark ([4az](#4az-v2-unified-re-benchmark-every-historical-architecture-under-one-ruler-2026-11-01)) re-trains every historical architecture under v2 actions and the potential reward, single seed. No PPO-family arm samples a 1-1 clear in more than 3/30 episodes, and most arms are not separable within one seed. NE-Dreamer and SheepRL DreamerV3 were not re-run because of dependency conflicts. |
-| Reproducibility | New evaluations are required to carry provenance; some existing metrics and logs lack it even after the requirement was introduced. `tools/audit_evals.py` checks presence, not dates or field validity. ROM and savestates are local-only; check `tools/check_env.py` for dependency differences. |
+| Reproducibility | New evaluations are required to carry provenance; some existing metrics and logs lack it even after the requirement was introduced. `tools/audit_evals.py` checks presence, not dates or field validity. Only the ROM is needed: savestates are rebuilt from it (`tools/make_states.py`, [4ba](#4ba-savestates-rebuilt-from-the-rom-alone-4gs-headless-boot-stall-retracted-2026-11-01)). On the rebuilt states, 1-1, 2-1, 4-1, 5-1, 6-1 and 8-1 replay their published runs exactly. 1-2 and 7-1 keep the same clears with small differences, and the 3-1 routes fail. 30/39 re-benchmark evaluations are identical; 9 pixel ones differ through the reference state's stale first frame. Check `tools/check_env.py` for dependency differences. |
 
 Sections 1–3 are historical snapshots. Sections 4a onward are a chronological
 lab notebook: corrections are recorded in later sections and notices, without
@@ -345,6 +345,9 @@ at 4,144 px over 1,376 px of ground) from "plannable" to refused, which is where
 the count of 30 became 29.
 
 ## 4g. Reaching another course headless: the two routes tried on 2026-10-11 both failed (4i supersedes this)
+
+> **Retracted in part by 4ba (2026-11-01):** the "Searching for Luigi..." stall below is the
+> Mario Vs. Luigi wireless mode, not a headless limit; selecting "Mario Game" boots to the map.
 
 Tried 2026-10-11 on a **copy** of the ROM and the game save (the user's
 `data/…sav` was verified unchanged by MD5 afterwards).
@@ -3230,6 +3233,152 @@ visual PPO 75–79 min, GNN 67 min, RAM MLPs 54–55 min, and World Models 55–
 
 ---
 
+## 4ba. Savestates rebuilt from the ROM alone; 4g's headless-boot stall retracted (2026-11-01)
+
+**Question.** Can a clone reproduce the study without the hand-made savestates,
+which cannot be distributed, given only a ROM dump?
+
+**4g retracted.** 4g reported that the title-screen boot "sits on the
+'Searching for Luigi...' card forever" under headless rendering. That card is
+the *Mario Vs. Luigi* wireless mode, the second item of "Select a Game"; it
+waits for a second DS. Booting the bare ROM headless, with no savestate and no
+battery save, and tapping **"Mario Game"** (bottom screen 130, 55) reaches
+the following, recorded as screenshots:
+- "Select a file" (three "New" files);
+- File 1 and the opening cutscene;
+- the World 1 map, about 4,860 frames after power-on;
+- World 1-1, after RIGHT then A.
+
+A second trap: DeSmuME starts with keys held. Without releasing every key,
+File 1 starts as **Luigi** (the L+R gesture). The AGENTS.md line "title-screen
+boot never advances headless" is corrected accordingly.
+
+**Method.** `src/cold_boot.py` replays one input script per state from a
+fresh copy of the ROM. There is no `.sav` beside it, so every boot sees a
+fresh cartridge. Courses other than 1-1 are entered from the cold-boot map with
+`tools/enter_course.py`'s technique: the course-id writes are held through
+the transition (4m). `tools/calibrate_state.py`, which only the maintainer
+runs because it needs the reference states:
+1. saves every frame of a window after entry;
+2. reports the frames whose reset observation (`MarioRamEnv`, 23-d)
+   equals the reference's exactly, stage timer included;
+3. lists the static globals that still differ.
+
+Two kinds of reference values are written back before saving:
+- **The global frame counter**, kept at three addresses (0x0209AE9C, 0x0209AF40,
+  0x0209DF00). The references read 11,856 (1-1) to 20,338 (1-2), a cold boot
+  about 5,000–7,000, because the references come from longer boot histories.
+  The policies read it: on the 1-1 build without it, the genetic policy dies
+  at 1,522.9 px in 91 steps; with it, the policy clears in 206 steps as
+  published.
+- **Player progress**: coins, score, and lives where they differ. The map-made
+  references inherited a 1-1 clear (19 coins, 21,000 points). The 5-1/8-1 GUI
+  states carry a completed save (99 coins, 99 lives).
+
+These are a few integers per course, published in `cold_boot.py`. No
+reference RAM, graphics or code is copied.
+
+Calibrated save frames, counted from the A press:
+
+| State | Frame |
+| --- | ---: |
+| 1-1 | 342 (after the 1-1 node's A) |
+| 2-1, 3-1, 3-1_main, 4-1, 6-1, 7-1 | 1,489 |
+| 1-2 | 2,409 |
+| 5-1 | 280 |
+| 8-1 | 287 |
+
+The 5-1 and 8-1 references were saved during the intro plate, where 75
+consecutive frames share one observation. A one-episode sweep of all of them
+found the frames that match the published run: 280 and 297 for 5-1, 287 for
+8-1. Two builds of one state differ in roughly 550–670 of 11.2 M
+decompressed bytes, presumably the host-clock RTC, which py-desmume does not
+expose (not isolated). In the twice-built 1-1 tests, replayed outcomes
+were identical across builds.
+
+**Verification: published runs replayed on the built states**
+(`tools/make_states.py --verify`). Each published evaluation's own provenance
+argv is re-run with `--state` swapped, and every episode is compared, timing
+fields excluded.
+
+| Course | Result on the ROM-built state |
+| --- | --- |
+| 1-1 | exact: parity contract (245 steps, reward 1663.087402343757, final 4020.6328125) and the genetic 206-step clear, 5/5 identical |
+| 2-1, 4-1, 5-1, 6-1, 8-1 | exact: every episode of `eval_*_clear.json` identical |
+| 1-2 | same 326-step clear and final X 4,038.77 px; total reward 4,029.47 vs 4,026.47 |
+| 7-1 | same 809-step clear and reward; enemy type 221 1 px off from step 27 |
+| 3-1 full / main | the fixed searched routes die (step 183, 731.4 px / step 90) instead of clearing at 557 / 497 |
+
+**Why four cannot be exact.** For 1-2, writing *every* differing word of
+main RAM (10,041) and DTCM (54) from the reference into the built state left
+the first divergence at step 17. So the cause is not in the game's RAM.
+Transplanting whole savestate chunks from the reference moved it to step 42
+for chunk 4 (memory), 51 or 60. No single chunk removed it, so the remaining
+state is emulator-internal; its exact nature was not identified. Every
+map-made reference descends (via `reach_map.py`) from the GUI-made 1-1 state:
+- 2-1, 4-1 and 6-1: that inherited state does not reach the published runs;
+- 1-2, 3-1 and 7-1: it does.
+
+Copying those chunks would redistribute the reference states, which is what
+this section avoids. The 3-1 routes are open-loop
+action lists searched on the reference state, so they are sensitive to the
+divergence. Re-searching them on the built states (`tools/search_special_courses.py`)
+is open.
+
+**The v2 re-benchmark on the built 1-1 state** (`evals/rebench_rom/`,
+summary `evals/rom_state_equivalence.json`). **30 of 39** evaluations are
+identical in all 33 episodes (3 for argmax-only controllers). These are all 10
+RAM and graph evaluations and 20 of the 29 pixel-observation evaluations.
+Nine pixel evaluations differ:
+
+| Evaluation | Reference state | ROM-built state |
+| --- | --- | --- |
+| PPO NatureCNN `best` | stoch 1,132.4 px, 0/30 | 1,533.4 px, 1/30 |
+| PPO NatureCNN `final` | 1,854.3 px, 0/30 | 1,989.3 px, 1/30 |
+| PPO NatureCNN (4as, ref.) | 985.5 px | 1,002.7 px |
+| RecurrentPPO + AE `best` | 1,068.9 px | 1,075.3 px |
+| RecurrentPPO + CURL `best` | 1,261.3 px, 1/30 | 1,208.3 px, 1/30 |
+| RecurrentPPO IMPALA+CURL `best` | 1 of 33 episodes differs; same mean 1,478.0 px | |
+| RecurrentPPO IMPALA+CURL `final` | argmax clear (209 steps); stoch 1,827.0 px, 3/30 | same argmax clear; 1,617.2 px, 1/30 |
+| World Models sep-CMA-ES | argmax clear in 233 steps | clear in 221 steps |
+| World Models GA | argmax clear in 248 steps | **death at 2,913.5 px (200 steps)** |
+
+**The cause is the reference state's first frame, not the dynamics.** The
+1-1 reference was written by DeSmuME 0.9.13's GUI (its header), and the
+framebuffer it stores renders the background layers with a wrong palette
+(pink sky, green castle; top-screen mean 142.0 vs 154.8 for a real render).
+Pixel environments return that stored framebuffer as the reset observation
+without emulating a frame. After one emulated frame, the reference and the
+built state show identical screens (100% of pixels). Over 40 steps of fixed
+actions, every later pixel observation was identical once the frame counter
+was written back. The differing evaluations are those whose first
+action or recurrent state depends on that artifact frame. The World Models
+GA result shows how sensitive an evolved argmax trajectory is to it. The
+published §18 numbers therefore remain measurements on the reference state;
+`evals/rebench_rom/` holds the ROM-built measurements. Within one seed, the
+§18 conclusions do not depend on which of the two is used:
+- stochastic clears stay at most 3/30;
+- the argmax failure points are unchanged;
+- the mean shifts (−210 to +401 px) are smaller than one standard deviation
+  of the sampled distributions.
+
+Two shifts are not negligible:
+- PPO NatureCNN `best` moves by more than its 95% CI half-width (±196 px);
+- the GA World Models argmax clear does not survive on the built state.
+
+**Reproduce (fresh clone, ROM only).** A copy of the tracked files with
+`data/` holding only the ROM ran `tools/parity_reflex.py`. The 1-1 state was
+built on first use (`cold_boot.ensure_state`, in a subprocess, under a lock
+file) and the parity contract passed, in 2 min 23 s of wall time.
+
+```
+.venv\Scripts\python.exe tools\make_states.py --verify
+.venv\Scripts\python.exe tools\calibrate_state.py --course-id B01_1 --reference data\state_2-1.ds1 --lo 1350 --n 300
+.venv\Scripts\python.exe tools\rom_equivalence_report.py
+```
+
+---
+
 ## 5. File Index
 
 ```
@@ -3320,6 +3469,8 @@ evals/
   benchmark_n30_merged.json      n=30 stochastic + n=10 det, 14 models
   benchmark_v2_unified.json      v2 re-benchmark, every architecture, one protocol (4az)
   rebench/                       per-arm eval_*.json + *_training_log.json (4az)
+  rebench_rom/                   the same evaluations on the ROM-built 1-1 state (4ba)
+  rom_state_equivalence.json     built-vs-reference comparison, per course and per eval (4ba)
 
 tools/
   rebench_common.py              4az arm registry, v2 potential-reward envs, extractors
@@ -3328,6 +3479,9 @@ tools/
   eval_rebench.py                4az evaluator: 3 argmax + 30 sampled episodes, max X
   run_rebench.py                 4az runner: train + eval every arm in parallel
   rebench_table.py               4az merged JSON + README table (--check)
+  make_states.py                 4ba build every savestate from the ROM (--verify)
+  calibrate_state.py             4ba maintainer-only: match a built state to its reference
+  rom_equivalence_report.py      4ba re-benchmark on built vs reference 1-1 state
   export_levels.py               Batch parser for all 191 levels
   build_dataset.py               Emits entities.csv and levels.jsonl
   extract_profiles.py            Scrapes 342 actor profiles from CC0 decomp

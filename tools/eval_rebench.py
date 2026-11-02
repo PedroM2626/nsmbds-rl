@@ -172,6 +172,7 @@ def main():
     ap.add_argument("--det-eps", type=int, default=3)
     ap.add_argument("--stoch-per-seed", type=int, default=10)
     ap.add_argument("--out")
+    ap.add_argument("--state", default=rc.paths.STATE_REL)
     args = ap.parse_args()
 
     if args.arm in ("wm_ga", "wm_cma"):
@@ -190,7 +191,7 @@ def main():
     out = args.out or os.path.join(rc.EVAL_DIR, f"eval_{name}.json")
 
     # Env first, then the model (AGENTS.md: DeSmuME before torch.load).
-    env = rc.make_env(obs_kind)
+    env = rc.make_env(obs_kind, state=args.state)
     import torch
     torch.set_num_threads(2)
     t0 = time.time()
@@ -242,7 +243,7 @@ def main():
         "det": {"episodes": det, "identical": det_identical, **summarize(det)},
         "stoch": {"episodes": stoch, **summarize(stoch)} if stoch else None,
         "wall_s": time.time() - t0,
-        "provenance": collect(rom=rc.paths.ROM_REL, state=rc.paths.STATE_REL,
+        "provenance": collect(rom=rc.paths.ROM_REL, state=args.state,
                               extra={"seed": list(STOCH_SEEDS), "checkpoint": model_path}),
     }
     os.makedirs(os.path.dirname(out) or ".", exist_ok=True)

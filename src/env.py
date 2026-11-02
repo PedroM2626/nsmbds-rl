@@ -118,6 +118,11 @@ class MarioNdsEnv(gym.Env):
             if not os.path.exists(self.rom_path):
                 raise FileNotFoundError(f"ROM not found: {self.rom_path}")
             if not os.path.exists(self.state_path):
+                # A canonical state that is missing is rebuilt from the ROM by
+                # a scripted cold boot in a subprocess (src/cold_boot.py, 4ba).
+                import cold_boot
+                cold_boot.ensure_state(self.state_path, self.rom_path)
+            if not os.path.exists(self.state_path):
                 raise FileNotFoundError(f"savestate not found: {self.state_path}")
             self.emu = DeSmuME()
             self.emu.open(self.rom_path)

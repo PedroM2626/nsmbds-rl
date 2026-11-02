@@ -123,7 +123,7 @@ Use a dedicated CPython 3.11 virtual environment and install the pinned dependen
 .venv\Scripts\python.exe tools\check_env.py
 ```
 
-The ROM and savestates are not distributed: place your own dump of *New Super Mario Bros.* (EUR) and its savestate in `data/` under the default names in `src/paths.py`. The repository was developed on Windows; `check_env.py` reports actual installed versions. A clean installation and the Linux Docker path have not been validated for every optional trainer.
+The ROM is not distributed; savestates are not needed (see *Game data* below). The repository was developed on Windows; `check_env.py` reports actual installed versions. A clean installation and the Linux Docker path have not been validated for every optional trainer.
 
 > **Notice:** The `py-desmume` package provides Python bindings for the DeSmuME Nintendo DS emulation core. Without it, the environment falls back to static dummy stubs for non-emulated unit testing.
 
@@ -131,7 +131,7 @@ The ROM and savestates are not distributed: place your own dump of *New Super Ma
 
 ```
 mario-ds/
-├── data/         # NSMB (EUR) ROM, savestate (.ds1), collected dataset (.npz), test trajectories
+├── data/         # your NSMB (EUR) ROM; savestates built from it (tools/make_states.py); datasets
 ├── src/          # all environments, models, training + evaluation scripts (flat, import each other)
 │   ├── env.py / course.py / ram_env.py / ram_state.py   # DeSmuME env, ROM tile parser, RAM env/state
 │   ├── dual_obs_env.py / graph_env.py / multi_area_env.py # pixel+RAM view, entity graph, multi-area courses
@@ -149,9 +149,36 @@ mario-ds/
 └── tensorboard_logs/ mlruns/ mlflow.db   # experiment tracking
 ```
 
-Place the target ROM binary and initial episode savestate in `data/`:
-- `data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds` (or symlink `data/mario.nds`)
-- `data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1` (or `data/state.dst`)
+### Game data: only the ROM
+
+The one file you supply is your own dump of *New Super Mario Bros.* (Europe),
+SHA-1 `b0f7886720e842ed922569e1bb5c39c0fa090331`, at
+`data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds`. Every
+savestate the evaluations start from is **built from that ROM** by a scripted
+headless boot (`src/cold_boot.py`, PROJECT_STATUS §4ba). The boot goes through
+"Mario Game", File 1 and the opening cutscene to the World 1 map, enters the
+course, and writes back a few values read from the original states (the global
+frame counter, coins and score). Environments build a missing state
+automatically on first use; to build them all up front and check each against
+its published run:
+
+```powershell
+.venv\Scripts\python.exe tools\make_states.py --verify
+```
+
+Existing states are never overwritten. Replayed on the built states, the
+published runs of courses 1-1, 2-1, 4-1, 5-1, 6-1 and 8-1 come out identical
+episode by episode, and 1-1's frozen parity contract passes. Four
+references cannot be rebuilt exactly, because the differing state is not in
+RAM; `--verify` reports them as known differences:
+
+| Course | Published run replayed on the built state |
+| --- | --- |
+| 1-2 | Same 326-step clear and position; total reward +3.0 |
+| 7-1 | Same 809-step clear; one enemy is offset by 1 px |
+| 3-1 (both starts) | The fixed searched routes die early instead of clearing |
+
+The v2 re-benchmark's pixel arms also see a different first frame (§4ba).
 
 The full pre-commit checks are `.venv\Scripts\python.exe tools\gates.py --all`.
 On a fresh checkout, the numbers gate also needs the locally generated
@@ -159,7 +186,7 @@ On a fresh checkout, the numbers gate also needs the locally generated
 `tools/parity_reflex.py`, then `tools/export_geometry.py` and the dashboard
 recorder with `--controller genetic`. Supply `--out` and `--gif` paths under
 `out/` to avoid overwriting the versioned media. The recorder needs the ROM,
-savestate, Rust planner binary (for its default backend) and FFmpeg.
+the (built) savestate, Rust planner binary (for its default backend) and FFmpeg.
 
 > **NE-Dreamer** lives in-tree at `nedreamer/` (a first-class package, not a git submodule). Run its
 > Mario config via `python src/train_nedreamer_mlflow.py` or from `nedreamer/train.py` with
@@ -519,7 +546,7 @@ protocol and measures it with one evaluator (2026-11-01, PROJECT_STATUS §4az).
 
 | Item | Setting |
 | :--- | :--- |
-| Course / start | World 1-1, the committed savestate (flagpole at 4,032 px) |
+| Course / start | World 1-1, the reference savestate (rebuildable from the ROM, §4ba; flagpole at 4,032 px) |
 | Actions | v2, 8 actions (X dash, A jump), frameskip 8 |
 | Reward | simple potential: $r_t=\max(0,x_t-\max_{s<t}x_s)/16 + 10\cdot\text{clear} - 1\cdot\text{death}$ |
 | Episode end | clear, death, timer, 1,000-step cap, or stall (< 2.5 px progress over 30 steps) |
@@ -651,6 +678,14 @@ is unknown. An opt-in v2 env
 `src/nedreamer_env_wrapper.py` for a run in a separate venv with
 `env.action_repeat=1`. DreamerV3 via SheepRL (§5) is likewise not installed
 (`import sheeprl` fails). Both remain historical-only rows.
+
+**Reference state vs ROM-built state.** The table was measured on the
+reference 1-1 savestate. On the state rebuilt from the ROM (§4ba), 30 of these
+39 evaluations are identical episode by episode, including every RAM and graph
+arm. Nine pixel evaluations differ because the reference file stores a stale,
+miscoloured first frame. The largest difference: World Models GA dies at
+2,913.5 px instead of clearing. The ROM-built measurements are in
+`evals/rebench_rom/` and `evals/rom_state_equivalence.json`.
 
 **Limits.** These are single-seed results under shared, untuned
 hyper-parameters on a single start state, at a 100k budget. The RAM arms use

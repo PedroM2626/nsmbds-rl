@@ -125,6 +125,8 @@ class _EnvFactory:
         torch.set_num_threads(1)
         time.sleep(self.rank * 1.5)
         rom, state = paths.resolve(paths.ROM_REL), paths.resolve(paths.STATE_REL)
+        import cold_boot
+        cold_boot.ensure_state(state, rom)   # built from the ROM if missing (4ba)
         tmp = tempfile.gettempdir()
         tag = f"rebench_{self.obs_kind}_{self.rank}_{os.getpid()}"
         t_rom = os.path.join(tmp, tag + os.path.splitext(rom)[1])

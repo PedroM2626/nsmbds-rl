@@ -1,0 +1,117 @@
+{
+ "name": "ref_iqn",
+ "arm": "ref_iqn",
+ "checkpoint": "models/iqn_policy.pt",
+ "obs": "ram23",
+ "algo": "ref",
+ "protocol": {
+  "actions": "v2 (8)",
+  "reward": "potential max-x /16, +10 clear, -1 death",
+  "stall_limit": 30,
+  "step_cap": 1000,
+  "det_eps": 3,
+  "stoch_seeds": [
+   100,
+   200,
+   300
+  ],
+  "stoch_per_seed": 10,
+  "ci": "Student-t 95%, sd ddof=1"
+ },
+ "det": {
+  "episodes": [
+   {
+    "max_x_px": 2912.956787109375,
+    "final_x_px": 2912.956787109375,
+    "steps": 159,
+    "return": 181.05979919433594,
+    "cleared": false,
+    "termination": "death"
+   },
+   {
+    "max_x_px": 1242.476318359375,
+    "final_x_px": 1221.46875,
+    "steps": 97,
+    "return": 76.65476989746094,
+    "cleared": false,
+    "termination": "death"
+   },
+   {
+    "max_x_px": 2912.956787109375,
+    "final_x_px": 2912.956787109375,
+    "steps": 159,
+    "return": 181.05979919433594,
+    "cleared": false,
+    "termination": "death"
+   }
+  ],
+  "identical": false,
+  "n": 3,
+  "mean_max_x_px": 2356.1299641927085,
+  "sd_max_x_px": 964.4523483088248,
+  "ci95_halfwidth_px": null,
+  "median_max_x_px": 2912.956787109375,
+  "max_max_x_px": 2912.956787109375,
+  "min_max_x_px": 1242.476318359375,
+  "clears": 0,
+  "clear_rate": 0.0,
+  "mean_return": 146.25812276204428,
+  "mean_steps": 138.33333333333334,
+  "terminations": {
+   "death": 3
+  }
+ },
+ "stoch": null,
+ "wall_s": 41.195231676101685,
+ "provenance": {
+  "schema": 1,
+  "recorded_at_utc": "2026-11-02T01:08:57+00:00",
+  "git": {
+   "commit": "542644af417ceec67a879d3ca879e3f23b5ad832",
+   "dirty": true
+  },
+  "files": {
+   "rom": {
+    "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+    "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+    "bytes": 33554432
+   },
+   "state": {
+    "path": "scratch/rom_11.ds1",
+    "sha1": "88adcc239725edc78644a32df6ebf442843cd0eb",
+    "bytes": 2353607
+   }
+  },
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+   "numpy": "2.4.6",
+   "torch": "2.5.1+cu121",
+   "torchvision": null,
+   "py-desmume": "0.0.9",
+   "gymnasium": "0.29.1",
+   "stable-baselines3": "2.2.1",
+   "sb3-contrib": "2.2.1",
+   "opencv-python": "5.0.0.93",
+   "ndspy": "4.2.0",
+   "mlflow": "2.11.1",
+   "tensorboard": "2.21.0",
+   "sheeprl": null
+  },
+  "argv": [
+   "eval_rebench.py",
+   "--arm",
+   "ref_iqn",
+   "--state",
+   "D:\\mario-ds\\scratch\\rom_11.ds1",
+   "--out",
+   "D:\\mario-ds\\scratch\\verify_rom\\eval_ref_iqn.json"
+  ],
+  "seed": [
+   100,
+   200,
+   300
+  ],
+  "checkpoint": "models/iqn_policy.pt"
+ }
+}

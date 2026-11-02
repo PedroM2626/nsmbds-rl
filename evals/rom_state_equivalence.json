@@ -1,0 +1,467 @@
+{
+ "schema": 1,
+ "courses": {
+  "1-1": {
+   "status": "exact",
+   "detail": "pinn_realtime_eval.json parity + eval_genetic_w11.json, 5/5 episodes identical"
+  },
+  "2-1": {
+   "status": "exact",
+   "detail": "eval_2_1_clear.json, 5/5 identical"
+  },
+  "4-1": {
+   "status": "exact",
+   "detail": "eval_4_1_clear.json, 5/5 identical"
+  },
+  "5-1": {
+   "status": "exact",
+   "detail": "eval_5_1_clear.json, 5/5 identical"
+  },
+  "6-1": {
+   "status": "exact",
+   "detail": "eval_6_1_clear.json, 5/5 identical"
+  },
+  "8-1": {
+   "status": "exact",
+   "detail": "eval_8_1_clear.json, 5/5 identical"
+  },
+  "1-2": {
+   "status": "outcome",
+   "detail": "eval_1_2_clear.json: same 326 steps, goal, final X 4038.77; total reward 4029.47 vs 4026.47"
+  },
+  "7-1": {
+   "status": "outcome",
+   "detail": "eval_special_71_full_clear.json: same 809-step clear, reward 2259.55; enemy 221 1 px off from step 27"
+  },
+  "3-1": {
+   "status": "differs",
+   "detail": "eval_special_31_full_clear.json: route dies at step 183 (731.4 px) vs clear at 557"
+  },
+  "3-1_main": {
+   "status": "differs",
+   "detail": "eval_special_31_main_clear.json: route dies at step 90 vs clear at 497"
+  }
+ },
+ "rebench_1_1": {
+  "ppo_gnn_best": {
+   "obs": "graph",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_gnn_final": {
+   "obs": "graph",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_impala_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_impala_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_naturecnn_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 21,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1132.413240559896,
+    "stoch_sd_max_x_px": 524.9384266592054,
+    "stoch_clears": 0
+   },
+   "rom_built_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1533.4311442057292,
+    "stoch_sd_max_x_px": 995.8925281793195,
+    "stoch_clears": 1
+   }
+  },
+  "ppo_naturecnn_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 7,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1854.2781005859374,
+    "stoch_sd_max_x_px": 924.2977058269096,
+    "stoch_clears": 0
+   },
+   "rom_built_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1989.3392903645833,
+    "stoch_sd_max_x_px": 1003.5254653942835,
+    "stoch_clears": 1
+   }
+  },
+  "ppo_ram17_best": {
+   "obs": "ram17",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_ram17_final": {
+   "obs": "ram17",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_ram23_best": {
+   "obs": "ram23",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ppo_ram23_final": {
+   "obs": "ram23",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_genetic": {
+   "obs": "ram23",
+   "episodes": 3,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_iqn": {
+   "obs": "ram23",
+   "episodes": 3,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_ppo_simple": {
+   "obs": "ram23",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_rainbow": {
+   "obs": "ram23",
+   "episodes": 3,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_visual_genetic": {
+   "obs": "pixels",
+   "episodes": 3,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_visual_impala": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "ref_visual_simple": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 12,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 88.0,
+    "det_termination": "stall",
+    "det_steps": 31,
+    "stoch_mean_max_x_px": 985.4981119791667,
+    "stoch_sd_max_x_px": 534.9543392778315,
+    "stoch_clears": 0
+   },
+   "rom_built_state": {
+    "det_max_x_px": 88.0,
+    "det_termination": "stall",
+    "det_steps": 31,
+    "stoch_mean_max_x_px": 1002.6687255859375,
+    "stoch_sd_max_x_px": 561.9927897579786,
+    "stoch_clears": 0
+   }
+  },
+  "rppo_ae_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 11,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1068.8627848307292,
+    "stoch_sd_max_x_px": 790.5664703601941,
+    "stoch_clears": 0
+   },
+   "rom_built_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1075.2796712239583,
+    "stoch_sd_max_x_px": 881.5477747165233,
+    "stoch_clears": 0
+   }
+  },
+  "rppo_ae_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_curl_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 7,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1261.3353271484375,
+    "stoch_sd_max_x_px": 929.0482554843369,
+    "stoch_clears": 1
+   },
+   "rom_built_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1208.3276448567708,
+    "stoch_sd_max_x_px": 766.7701042869392,
+    "stoch_clears": 1
+   }
+  },
+  "rppo_curl_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_drq_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_drq_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_hybrid_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_hybrid_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_icm_ae_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_icm_ae_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_icm_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_icm_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_impala_curl_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 1,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1477.9765462239584,
+    "stoch_sd_max_x_px": 911.9028199322236,
+    "stoch_clears": 1
+   },
+   "rom_built_state": {
+    "det_max_x_px": 1250.527099609375,
+    "det_termination": "death",
+    "det_steps": 89,
+    "stoch_mean_max_x_px": 1478.0429524739584,
+    "stoch_sd_max_x_px": 911.8770573790467,
+    "stoch_clears": 1
+   }
+  },
+  "rppo_impala_curl_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 15,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 4027.956787109375,
+    "det_termination": "clear",
+    "det_steps": 209,
+    "stoch_mean_max_x_px": 1826.9767333984375,
+    "stoch_sd_max_x_px": 1155.0715350654912,
+    "stoch_clears": 3
+   },
+   "rom_built_state": {
+    "det_max_x_px": 4027.956787109375,
+    "det_termination": "clear",
+    "det_steps": 209,
+    "stoch_mean_max_x_px": 1617.1685302734375,
+    "stoch_sd_max_x_px": 1006.8496695733277,
+    "stoch_clears": 1
+   }
+  },
+  "rppo_pure_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_pure_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_spr_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rppo_spr_final": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rtrf_impala_spr_seed0_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "rtrf_impala_spr_seed1_best": {
+   "obs": "pixels",
+   "episodes": 33,
+   "differing_episodes": 0,
+   "identical": true
+  },
+  "wm_cma": {
+   "obs": "pixels",
+   "episodes": 3,
+   "differing_episodes": 3,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 4032.0,
+    "det_termination": "clear",
+    "det_steps": 233,
+    "stoch_mean_max_x_px": null,
+    "stoch_sd_max_x_px": null,
+    "stoch_clears": null
+   },
+   "rom_built_state": {
+    "det_max_x_px": 4032.0,
+    "det_termination": "clear",
+    "det_steps": 221,
+    "stoch_mean_max_x_px": null,
+    "stoch_sd_max_x_px": null,
+    "stoch_clears": null
+   }
+  },
+  "wm_ga": {
+   "obs": "pixels",
+   "episodes": 3,
+   "differing_episodes": 3,
+   "identical": false,
+   "reference_state": {
+    "det_max_x_px": 4027.956787109375,
+    "det_termination": "clear",
+    "det_steps": 248,
+    "stoch_mean_max_x_px": null,
+    "stoch_sd_max_x_px": null,
+    "stoch_clears": null
+   },
+   "rom_built_state": {
+    "det_max_x_px": 2913.464599609375,
+    "det_termination": "death",
+    "det_steps": 200,
+    "stoch_mean_max_x_px": null,
+    "stoch_sd_max_x_px": null,
+    "stoch_clears": null
+   }
+  }
+ },
+ "rebench_identical": 30,
+ "rebench_total": 39,
+ "provenance": {
+  "schema": 1,
+  "recorded_at_utc": "2026-11-02T01:30:05+00:00",
+  "git": {
+   "commit": "542644af417ceec67a879d3ca879e3f23b5ad832",
+   "dirty": true
+  },
+  "files": {
+   "rom": {
+    "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+    "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+    "bytes": 33554432
+   },
+   "state": {
+    "path": null,
+    "sha1": null,
+    "bytes": null
+   }
+  },
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+   "numpy": "2.4.6",
+   "torch": "2.5.1+cu121",
+   "torchvision": null,
+   "py-desmume": "0.0.9",
+   "gymnasium": "0.29.1",
+   "stable-baselines3": "2.2.1",
+   "sb3-contrib": "2.2.1",
+   "opencv-python": "5.0.0.93",
+   "ndspy": "4.2.0",
+   "mlflow": "2.11.1",
+   "tensorboard": "2.21.0",
+   "sheeprl": null
+  },
+  "argv": [
+   "rom_equivalence_report.py"
+  ],
+  "built_dir": "evals/rebench_rom"
+ }
+}

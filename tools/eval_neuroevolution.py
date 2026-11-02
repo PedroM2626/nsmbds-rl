@@ -42,12 +42,13 @@ def main():
     parser.add_argument("--episodes", type=int, default=5)
     parser.add_argument("--max-steps", type=int, default=450)
     parser.add_argument("--out", default="evals/eval_genetic_w11.json")
+    parser.add_argument("--state", default=paths.STATE_REL)
     args = parser.parse_args()
 
     print(f"[eval-ga] Loading policy from {args.model}...")
     policy = CompactPolicyEvaluator(args.model)
 
-    env = MarioRamEnv(geo=True)
+    env = MarioRamEnv(state_path=args.state, geo=True)
     results = []
 
     print(f"[eval-ga] Running {args.episodes} evaluation episodes on World 1-1...")
@@ -101,7 +102,7 @@ def main():
         "mean_steps": float(np.mean(steps_list)),
         "clear_rate": float(clear_count / args.episodes),
         "episodes": results,
-        "provenance": collect(rom=paths.ROM_REL, state=paths.STATE_REL)
+        "provenance": collect(rom=paths.ROM_REL, state=args.state)
     }
 
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
