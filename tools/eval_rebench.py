@@ -165,6 +165,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--arm", choices=sorted(rc.ARMS) + ["wm_ga", "wm_cma"] + sorted(REFS))
     ap.add_argument("--which", default="best", choices=["best", "final"])
+    ap.add_argument("--seed", type=int, default=0, help="training seed of the --arm checkpoint")
     ap.add_argument("--model", help="external SB3 checkpoint (with --obs/--algo/--name)")
     ap.add_argument("--obs", choices=["pixels", "ram17", "ram23", "graph"])
     ap.add_argument("--algo", choices=["ppo", "rppo"])
@@ -182,8 +183,9 @@ def main():
         (obs_kind, model_path), algo, name = REFS[args.arm], "ref", args.arm
     elif args.arm:
         obs_kind, algo = rc.ARMS[args.arm]["obs"], rc.ARMS[args.arm]["algo"]
-        model_path = os.path.join(rc.MODEL_DIR, f"{args.arm}_{args.which}.zip")
-        name = f"{args.arm}_{args.which}"
+        tag = args.arm + (f"_s{args.seed}" if args.seed else "")
+        model_path = os.path.join(rc.MODEL_DIR, f"{tag}_{args.which}.zip")
+        name = f"{tag}_{args.which}"
     else:
         if not (args.model and args.obs and args.algo and args.name):
             ap.error("--model needs --obs, --algo and --name")

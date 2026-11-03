@@ -1,0 +1,53 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+Error executing job with overrides: ['env=marionds', 'model=size12M', 'logdir=../out/rebench/nedreamer/run', 'env.steps=100000', 'env.action_repeat=1', 'env.eval_episode_num=1', 'env.time_limit=108000', 'model.compile=False', 'batch_size=8', 'batch_length=32', 'seed=0']
+Traceback (most recent call last):
+  File "D:\mario-ds\nedreamer\train.py", line 51, in main
+    policy_trainer.begin(agent)
+  File "D:\mario-ds\nedreamer\trainer.py", line 544, in begin
+    trans_cpu, done_cpu = envs.step(act_cpu, done_cpu)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\parallel.py", line 41, in step
+    promise = [e.reset() if d else e.step(a) for e, a, d in zip(self.envs, tools.to_np(action), done)]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\parallel.py", line 41, in <listcomp>
+    promise = [e.reset() if d else e.step(a) for e, a, d in zip(self.envs, tools.to_np(action), done)]
+                                   ^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\parallel.py", line 138, in __call__
+    self.promise and self.promise()  # Raise previous exception if any.
+                     ^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\parallel.py", line 115, in promise
+    self.state, result = self.fn(self.state, *args, **kwargs)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\parallel.py", line 94, in _respond
+    result = getattr(state, name)(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\wrappers.py", line 125, in step
+    obs, rew, done, info = self.env.step(action)
+                           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\wrappers.py", line 17, in step
+    obs, reward, done, info = self.env.step(action)
+                              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\nedreamer\envs\wrappers.py", line 64, in step
+    return self.env.step(index)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\src\nedreamer_env_wrapper.py", line 34, in step
+    obs, reward, terminated, truncated, info = self.env.step(action)
+                                               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\tools\train_visual_simple.py", line 60, in step
+    obs, orig_r, done, trunc, info = self.env.step(action)
+                                     ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\.venv-nedreamer\Lib\site-packages\gymnasium\core.py", line 522, in step
+    observation, reward, terminated, truncated, info = self.env.step(action)
+                                                       ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\src\dual_obs_env.py", line 75, in step
+    obs_ram, r, done, trunc, info = super().step(action)
+                                    ^^^^^^^^^^^^^^^^^^^^
+  File "D:\mario-ds\src\ram_env.py", line 234, in step
+    self.emu.cycle()
+  File "D:\mario-ds\.venv-nedreamer\Lib\site-packages\desmume\emulator.py", line 1153, in cycle
+    self.lib.desmume_cycle(with_joystick)
+OSError: exception: access violation reading 0x0000037D04D3B7D0
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

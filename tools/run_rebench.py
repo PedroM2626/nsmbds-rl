@@ -29,16 +29,17 @@ SB3_ARMS = ["rtrf_impala_spr", "rppo_impala_curl", "rppo_hybrid", "rppo_curl", "
 WM_ARMS = ["wm_ga", "wm_cma"]
 
 
-def jobs_for(arm, timesteps, num_envs):
+def jobs_for(arm, timesteps, num_envs, seed=0):
     if arm.startswith("wm_"):
         train = [PY, "tools/train_rebench_worldmodels.py", "--variant", arm[3:],
                  "--timesteps", str(timesteps), "--workers", str(num_envs)]
         return [("train", train), ("eval_best", [PY, "tools/eval_rebench.py", "--arm", arm])]
+    s = ["--seed", str(seed)]
     train = [PY, "tools/train_rebench.py", "--arm", arm, "--timesteps", str(timesteps),
-             "--num-envs", str(num_envs)]
+             "--num-envs", str(num_envs)] + s
     return [("train", train),
-            ("eval_best", [PY, "tools/eval_rebench.py", "--arm", arm, "--which", "best"]),
-            ("eval_final", [PY, "tools/eval_rebench.py", "--arm", arm, "--which", "final"])]
+            ("eval_best", [PY, "tools/eval_rebench.py", "--arm", arm, "--which", "best"] + s),
+            ("eval_final", [PY, "tools/eval_rebench.py", "--arm", arm, "--which", "final"] + s)]
 
 
 def status(rec):
@@ -46,14 +47,17 @@ def status(rec):
         f.write(json.dumps(rec) + "\n")
 
 
-def run_arm(arm, timesteps, num_envs):
-    with open(os.path.join(LOGS, f"{arm}.log"), "a", buffering=1) as log:
-        for stage, cmd in jobs_for(arm, timesteps, num_envs):
+def run_arm(item, timesteps, num_envs):
+    arm, _, seed = item.partition("@")          # "rppo_curl@1" = seed 1 (4bb)
+    seed = int(seed or 0)
+    tag = arm + (f"_s{seed}" if seed else "")
+    with open(os.path.join(LOGS, f"{tag}.log"), "a", buffering=1) as log:
+        for stage, cmd in jobs_for(arm, timesteps, num_envs, seed):
             t0 = time.time()
-            status({"arm": arm, "stage": stage, "event": "start", "t": time.time()})
+            status({"arm": tag, "stage": stage, "event": "start", "t": time.time()})
             rc = subprocess.call(cmd, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
                                  env={**os.environ, "PYTHONIOENCODING": "utf-8"})
-            status({"arm": arm, "stage": stage, "event": "end", "exit": rc,
+            status({"arm": tag, "stage": stage, "event": "end", "exit": rc,
                     "min": (time.time() - t0) / 60.0, "t": time.time()})
             if rc != 0:
                 return
@@ -64,7 +68,8 @@ def main():
     ap.add_argument("--parallel", type=int, default=6)
     ap.add_argument("--timesteps", type=int, default=100_000)
     ap.add_argument("--num-envs", type=int, default=4)
-    ap.add_argument("--arms", default=",".join(SB3_ARMS + WM_ARMS))
+    ap.add_argument("--arms", default=",".join(SB3_ARMS + WM_ARMS),
+                    help="comma list; arm@seed for another training seed")
     args = ap.parse_args()
     os.makedirs(LOGS, exist_ok=True)
     arms = [a for a in args.arms.split(",") if a]

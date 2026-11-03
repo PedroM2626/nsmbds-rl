@@ -28,9 +28,17 @@ from ram_env import MarioRamEnv
 class DualObsEnv(MarioRamEnv):
     """MarioRamEnv (reward + ram obs + course geometry) + the pixel view."""
 
-    def __init__(self, *a, pixel_size=84, **k):
+    def __init__(self, *a, pixel_size=84, fresh_first_frame=True, **k):
         super().__init__(*a, geo=True, **k)
         self.pixel_size = pixel_size
+        # A savestate stores whatever framebuffer its writer last displayed, and
+        # reset() used to return it as the first pixel observation. The 1-1
+        # reference state's is a stale, miscoloured frame from DeSmuME 0.9.13's
+        # GUI (PROJECT_STATUS 4ba). With fresh_first_frame the first
+        # observation is rendered by the core: emulate one frame, grab it, and
+        # reload the state, so the game itself does not advance. False
+        # reproduces the 4az measurements, which saw the stored frame.
+        self.fresh_first_frame = fresh_first_frame
         dim = self.observation_space.shape[0]           # 23 with geo
         self.observation_space = spaces.Dict({
             "pixels": spaces.Box(low=0, high=255, shape=(pixel_size, pixel_size, 1),
@@ -56,6 +64,11 @@ class DualObsEnv(MarioRamEnv):
     # -- gym api ----------------------------------------------------------
     def reset(self, seed=None, options=None):
         obs_ram, info = super().reset(seed=seed, options=options)
+        if self.fresh_first_frame and self.has_emulator:
+            self.emu.cycle()
+            pixels = self._pixels()
+            self.emu.savestate.load_file(self.state_path)   # RAM back to the reset point
+            return {"pixels": pixels, "ram": obs_ram.astype(np.float32)}, info
         return self._wrap(obs_ram), info
 
     def step(self, action):

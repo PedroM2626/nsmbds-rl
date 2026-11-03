@@ -118,37 +118,37 @@
     "seed_block": 100
    },
    {
-    "max_x_px": 942.316162109375,
-    "final_x_px": 942.316162109375,
-    "steps": 130,
-    "return": 57.89476013183594,
+    "max_x_px": 300.99609375,
+    "final_x_px": 300.99609375,
+    "steps": 51,
+    "return": 17.812255859375,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 335.2421875,
-    "final_x_px": 335.2421875,
-    "steps": 39,
-    "return": 19.95263671875,
+    "max_x_px": 940.64208984375,
+    "final_x_px": 940.64208984375,
+    "steps": 133,
+    "return": 57.790130615234375,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 2026.781005859375,
-    "final_x_px": 2026.781005859375,
-    "steps": 238,
-    "return": 125.67381286621094,
+    "max_x_px": 941.36181640625,
+    "final_x_px": 941.36181640625,
+    "steps": 149,
+    "return": 57.835113525390625,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 1242.476318359375,
-    "final_x_px": 1242.476318359375,
-    "steps": 134,
-    "return": 76.65476989746094,
+    "max_x_px": 1090.054443359375,
+    "final_x_px": 1090.054443359375,
+    "steps": 138,
+    "return": 67.12840270996094,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
@@ -181,28 +181,37 @@
     "seed_block": 200
    },
    {
-    "max_x_px": 1111.345458984375,
-    "final_x_px": 1111.345458984375,
-    "steps": 153,
-    "return": 68.45909118652344,
+    "max_x_px": 1113.907470703125,
+    "final_x_px": 1113.907470703125,
+    "steps": 142,
+    "return": 68.61921691894531,
     "cleared": false,
     "termination": "death",
     "seed_block": 200
    },
    {
-    "max_x_px": 2025.769287109375,
-    "final_x_px": 2025.769287109375,
-    "steps": 245,
-    "return": 125.61058044433594,
+    "max_x_px": 943.394287109375,
+    "final_x_px": 943.394287109375,
+    "steps": 120,
+    "return": 57.96214294433594,
     "cleared": false,
     "termination": "death",
     "seed_block": 200
    },
    {
-    "max_x_px": 1501.825439453125,
-    "final_x_px": 1501.825439453125,
-    "steps": 188,
-    "return": 92.86408996582031,
+    "max_x_px": 600.999755859375,
+    "final_x_px": 459.073974609375,
+    "steps": 140,
+    "return": 36.56248474121094,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 1497.859130859375,
+    "final_x_px": 1497.859130859375,
+    "steps": 184,
+    "return": 92.61619567871094,
     "cleared": false,
     "termination": "death",
     "seed_block": 200
@@ -230,15 +239,6 @@
     "final_x_px": 1102.59521484375,
     "steps": 193,
     "return": 67.91220092773438,
-    "cleared": false,
-    "termination": "death",
-    "seed_block": 200
-   },
-   {
-    "max_x_px": 1481.13427734375,
-    "final_x_px": 1481.13427734375,
-    "steps": 155,
-    "return": 91.57089233398438,
     "cleared": false,
     "termination": "death",
     "seed_block": 200
@@ -298,63 +298,63 @@
     "seed_block": 300
    },
    {
-    "max_x_px": 298.59765625,
-    "final_x_px": 298.59765625,
-    "steps": 54,
-    "return": 17.662353515625,
+    "max_x_px": 1241.14111328125,
+    "final_x_px": 1224.0,
+    "steps": 197,
+    "return": 76.57131958007812,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    },
    {
-    "max_x_px": 1240.999755859375,
-    "final_x_px": 1240.753662109375,
-    "steps": 237,
-    "return": 76.56248474121094,
+    "max_x_px": 1121.15283203125,
+    "final_x_px": 1121.15283203125,
+    "steps": 173,
+    "return": 69.07205200195312,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    },
    {
-    "max_x_px": 940.06640625,
-    "final_x_px": 940.06640625,
-    "steps": 127,
-    "return": 57.754150390625,
+    "max_x_px": 934.179443359375,
+    "final_x_px": 934.179443359375,
+    "steps": 140,
+    "return": 57.38621520996094,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    },
    {
-    "max_x_px": 939.657470703125,
-    "final_x_px": 939.657470703125,
-    "steps": 109,
-    "return": 57.72859191894531,
+    "max_x_px": 939.823974609375,
+    "final_x_px": 939.823974609375,
+    "steps": 108,
+    "return": 57.73899841308594,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    }
   ],
   "n": 30,
-  "mean_max_x_px": 1002.6687255859375,
-  "sd_max_x_px": 561.9927897579786,
-  "ci95_halfwidth_px": 209.82799399205427,
-  "median_max_x_px": 1022.528076171875,
-  "max_max_x_px": 2026.781005859375,
+  "mean_max_x_px": 921.978759765625,
+  "sd_max_x_px": 466.8690538445323,
+  "ci95_halfwidth_px": 174.31219547737237,
+  "median_max_x_px": 941.911376953125,
+  "max_max_x_px": 1722.503662109375,
   "min_max_x_px": 281.070068359375,
   "clears": 0,
   "clear_rate": 0.0,
-  "mean_return": 61.666795349121095,
-  "mean_steps": 135.26666666666668,
+  "mean_return": 56.62367248535156,
+  "mean_steps": 130.8,
   "terminations": {
    "death": 30
   }
  },
- "wall_s": 421.66785740852356,
+ "wall_s": 414.3931345939636,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-02T01:16:23+00:00",
+  "recorded_at_utc": "2026-11-02T04:45:36+00:00",
   "git": {
-   "commit": "542644af417ceec67a879d3ca879e3f23b5ad832",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -365,8 +365,8 @@
    },
    "state": {
     "path": "scratch/rom_11.ds1",
-    "sha1": "88adcc239725edc78644a32df6ebf442843cd0eb",
-    "bytes": 2353607
+    "sha1": "a1d170ca5a654ef43dae90c6395741d44c4b31b1",
+    "bytes": 2353627
    }
   },
   "python": "3.11.9",
@@ -398,7 +398,7 @@
    "--state",
    "D:\\mario-ds\\scratch\\rom_11.ds1",
    "--out",
-   "D:\\mario-ds\\scratch\\verify_rom\\eval_ref_visual_simple.json"
+   "D:\\mario-ds\\scratch\\verify_rom2\\eval_ref_visual_simple.json"
   ],
   "seed": [
    100,

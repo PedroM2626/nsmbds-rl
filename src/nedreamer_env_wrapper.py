@@ -39,7 +39,8 @@ class MarioNDSNEDreamerWrapper(gym.Wrapper):
             import json
             import time
             with open(self._episode_log, "a") as f:
-                f.write(json.dumps({"t": time.time(), "steps": self._steps, "max_x_px": self._max_x,
+                f.write(json.dumps({"t": time.time(), "pid": os.getpid(), "steps": self._steps,
+                                    "max_x_px": self._max_x,
                                     "cleared": bool(info.get("level_cleared", False)),
                                     "died": bool(info.get("died", False))}) + "\n")
 

@@ -66,3 +66,5 @@ scratch/
 
 # v2 re-benchmark checkpoints (4az): local-only like the June visual set
 /models/rebench/
+/.venv-nedreamer/
+nedreamer/outputs/

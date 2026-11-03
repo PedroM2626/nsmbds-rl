@@ -42,9 +42,10 @@ def main():
     torch.set_num_threads(2)
 
     os.makedirs(rc.MODEL_DIR, exist_ok=True)
-    final_path = os.path.join(rc.MODEL_DIR, f"{args.arm}_final")
-    best_path = os.path.join(rc.MODEL_DIR, f"{args.arm}_best")
-    log_path = os.path.join(rc.EVAL_DIR, f"{args.arm}_training_log.json")
+    tag = args.arm + (f"_s{args.seed}" if args.seed else "")   # seed 0 keeps the 4az names
+    final_path = os.path.join(rc.MODEL_DIR, f"{tag}_final")
+    best_path = os.path.join(rc.MODEL_DIR, f"{tag}_best")
+    log_path = os.path.join(rc.EVAL_DIR, f"{tag}_training_log.json")
 
     # Emulators first (AGENTS.md: DeSmuME before any model construction).
     env = rc.make_vec_env(cfg["obs"], args.num_envs)

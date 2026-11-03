@@ -118,7 +118,28 @@ def build():
         lines.append(f"| {label} | {obs} | {which} | {tb} | {det} | {st} | {smax} | {sclr} |")
     table = "\n".join(lines)
 
-    from eval_provenance import collect
+    # Training-seed robustness (4bb): arms re-trained with seeds 1 and 2.
+    seeded = [a for a in rc.ARMS if any(f"{a}_s{k}_final" in evals for k in (1, 2))]
+    if seeded:
+        import numpy as np
+        sl = ["", "Training-seed robustness (`final` checkpoints, 30 sampled episodes per seed):", "",
+              "| Arm | Seeds | Stoch mean per seed (px) | Across seeds: mean ± sd (px) | "
+              "Stoch clears | Argmax end per seed |",
+              "| :--- | :---: | :--- | :--- | ---: | :--- |"]
+        for arm in seeded:
+            names = [f"{arm}_final"] + [f"{arm}_s{k}_final" for k in (1, 2)]
+            es = [evals[n] for n in names if n in evals and evals[n]["stoch"]]
+            means = [e["stoch"]["mean_max_x_px"] for e in es]
+            clears = sum(e["stoch"]["clears"] for e in es)
+            n = sum(e["stoch"]["n"] for e in es)
+            sd = float(np.std(means, ddof=1)) if len(means) > 1 else 0.0
+            dets = " / ".join(f"{e['det']['episode0']['max_x_px']:,.0f} {e['det']['episode0']['termination']}"
+                              for e in es)
+            sl.append(f"| {LABELS.get(arm, arm)} | {len(es)} | "
+                      f"{' / '.join(f'{m:,.1f}' for m in means)} | "
+                      f"{np.mean(means):,.1f} ± {sd:,.1f} | {clears}/{n} | {dets} |")
+        table += "\n" + "\n".join(sl)
+
     out = {"schema": 1, "protocol": next(iter(evals.values()))["protocol"] if evals else None,
            "flag_px": FLAG_PX, "evals": evals, "training": train}
     return table, out

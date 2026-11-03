@@ -94,3 +94,68 @@
 {"arm": "wm_ga", "stage": "eval_best", "event": "start", "t": 1793517329.9384034}
 {"arm": "wm_ga", "stage": "eval_best", "event": "end", "exit": 0, "min": 0.831469980875651, "t": 1793517379.8266022}
 {"event": "runner_end", "t": 1793517379.8266022}
+{"event": "runner_start", "arms": ["rtrf_impala_spr", "rtrf_impala_spr@1", "rppo_impala_curl@1", "rppo_impala_curl@2", "rppo_curl@1", "rppo_curl@2", "rppo_icm_ae@1", "rppo_icm_ae@2", "ppo_naturecnn@1", "ppo_naturecnn@2", "ppo_ram23@1", "ppo_ram23@2"], "timesteps": 100000, "num_envs": 4, "parallel": 5, "t": 1793589587.3370779}
+{"arm": "rtrf_impala_spr", "stage": "train", "event": "start", "t": 1793589587.3375814}
+{"arm": "rtrf_impala_spr_s1", "stage": "train", "event": "start", "t": 1793589607.3385391}
+{"arm": "rppo_impala_curl_s1", "stage": "train", "event": "start", "t": 1793589627.3393328}
+{"arm": "rppo_impala_curl_s2", "stage": "train", "event": "start", "t": 1793589647.3404007}
+{"arm": "rppo_curl_s1", "stage": "train", "event": "start", "t": 1793589667.3425004}
+{"arm": "rtrf_impala_spr", "stage": "train", "event": "end", "exit": 1, "min": 18.85865872303645, "t": 1793590718.8571048}
+{"arm": "rppo_curl_s2", "stage": "train", "event": "start", "t": 1793590718.8581052}
+{"arm": "rppo_impala_curl_s1", "stage": "train", "event": "end", "exit": 1, "min": 54.48784858783086, "t": 1793592896.610248}
+{"arm": "rppo_icm_ae_s1", "stage": "train", "event": "start", "t": 1793592896.6112475}
+{"arm": "rppo_curl_s1", "stage": "train", "event": "end", "exit": 0, "min": 70.09154775540034, "t": 1793593872.8353658}
+{"arm": "rppo_curl_s1", "stage": "eval_best", "event": "start", "t": 1793593872.836366}
+{"arm": "rppo_curl_s1", "stage": "eval_best", "event": "end", "exit": 0, "min": 6.624470150470733, "t": 1793594270.304575}
+{"arm": "rppo_curl_s1", "stage": "eval_final", "event": "start", "t": 1793594270.3060956}
+{"arm": "rppo_curl_s1", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.623391346136729, "t": 1793594607.7095764}
+{"arm": "rppo_icm_ae_s2", "stage": "train", "event": "start", "t": 1793594607.7100859}
+{"arm": "rppo_curl_s2", "stage": "train", "event": "end", "exit": 0, "min": 71.94474226633707, "t": 1793595035.5426412}
+{"arm": "rppo_curl_s2", "stage": "eval_best", "event": "start", "t": 1793595035.5436487}
+{"arm": "rppo_curl_s2", "stage": "eval_best", "event": "end", "exit": 0, "min": 4.922133839130401, "t": 1793595330.871679}
+{"arm": "rppo_curl_s2", "stage": "eval_final", "event": "start", "t": 1793595330.8721986}
+{"arm": "rppo_curl_s2", "stage": "eval_final", "event": "end", "exit": 0, "min": 3.9282276193300882, "t": 1793595566.5658557}
+{"arm": "ppo_naturecnn_s1", "stage": "train", "event": "start", "t": 1793595566.566856}
+{"arm": "rtrf_impala_spr_s1", "stage": "train", "event": "end", "exit": 1, "min": 100.06629045804341, "t": 1793595611.3159666}
+{"arm": "ppo_naturecnn_s2", "stage": "train", "event": "start", "t": 1793595611.3284833}
+{"arm": "rppo_icm_ae_s1", "stage": "train", "event": "end", "exit": 0, "min": 69.38338077465693, "t": 1793597059.614094}
+{"arm": "rppo_icm_ae_s1", "stage": "eval_best", "event": "start", "t": 1793597059.614094}
+{"arm": "rppo_icm_ae_s1", "stage": "eval_best", "event": "end", "exit": 0, "min": 5.246951389312744, "t": 1793597374.4311774}
+{"arm": "rppo_icm_ae_s1", "stage": "eval_final", "event": "start", "t": 1793597374.4321854}
+{"arm": "rppo_icm_ae_s1", "stage": "eval_final", "event": "end", "exit": 0, "min": 3.858625098069509, "t": 1793597605.9496913}
+{"arm": "ppo_ram23_s1", "stage": "train", "event": "start", "t": 1793597605.9562063}
+{"arm": "ppo_naturecnn_s1", "stage": "train", "event": "end", "exit": 0, "min": 46.4149745464325, "t": 1793598351.4653287}
+{"arm": "ppo_naturecnn_s1", "stage": "eval_best", "event": "start", "t": 1793598351.4653287}
+{"arm": "ppo_naturecnn_s2", "stage": "train", "event": "end", "exit": 0, "min": 46.65263348817825, "t": 1793598410.4864926}
+{"arm": "ppo_naturecnn_s2", "stage": "eval_best", "event": "start", "t": 1793598410.4874926}
+{"arm": "ppo_naturecnn_s2", "stage": "eval_best", "event": "end", "exit": 0, "min": 3.2496922413508096, "t": 1793598605.469027}
+{"arm": "ppo_naturecnn_s2", "stage": "eval_final", "event": "start", "t": 1793598605.4700267}
+{"arm": "ppo_naturecnn_s1", "stage": "eval_best", "event": "end", "exit": 0, "min": 4.585123010476431, "t": 1793598626.5727093}
+{"arm": "ppo_naturecnn_s1", "stage": "eval_final", "event": "start", "t": 1793598626.5737138}
+{"arm": "ppo_naturecnn_s2", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.61886104742686, "t": 1793598942.6016896}
+{"arm": "ppo_ram23_s2", "stage": "train", "event": "start", "t": 1793598942.6016896}
+{"arm": "ppo_naturecnn_s1", "stage": "eval_final", "event": "end", "exit": 0, "min": 5.342736991246541, "t": 1793598947.1379333}
+{"arm": "ppo_ram23_s1", "stage": "train", "event": "end", "exit": 0, "min": 36.48097679217656, "t": 1793599794.8148139}
+{"arm": "ppo_ram23_s1", "stage": "eval_best", "event": "start", "t": 1793599794.815812}
+{"arm": "ppo_ram23_s1", "stage": "eval_best", "event": "end", "exit": 0, "min": 3.157982118924459, "t": 1793599984.2947392}
+{"arm": "ppo_ram23_s1", "stage": "eval_final", "event": "start", "t": 1793599984.295739}
+{"arm": "ppo_ram23_s1", "stage": "eval_final", "event": "end", "exit": 0, "min": 3.1222230235735577, "t": 1793600171.6291203}
+{"arm": "ppo_ram23_s2", "stage": "train", "event": "end", "exit": 0, "min": 32.119783933957414, "t": 1793600869.7887256}
+{"arm": "ppo_ram23_s2", "stage": "eval_best", "event": "start", "t": 1793600869.7887256}
+{"arm": "ppo_ram23_s2", "stage": "eval_best", "event": "end", "exit": 0, "min": 2.5212679505348206, "t": 1793601021.0648026}
+{"arm": "ppo_ram23_s2", "stage": "eval_final", "event": "start", "t": 1793601021.0648026}
+{"arm": "ppo_ram23_s2", "stage": "eval_final", "event": "end", "exit": 0, "min": 2.303354517618815, "t": 1793601159.2660737}
+{"event": "runner_start", "arms": ["rtrf_impala_spr", "rtrf_impala_spr@1"], "timesteps": 100000, "num_envs": 4, "parallel": 2, "t": 1793662122.9345288}
+{"arm": "rtrf_impala_spr", "stage": "train", "event": "start", "t": 1793662122.9345288}
+{"arm": "rtrf_impala_spr_s1", "stage": "train", "event": "start", "t": 1793662142.9354973}
+{"arm": "rtrf_impala_spr", "stage": "train", "event": "end", "exit": 0, "min": 56.693581660588585, "t": 1793665524.5494285}
+{"arm": "rtrf_impala_spr", "stage": "eval_best", "event": "start", "t": 1793665524.5494285}
+{"arm": "rtrf_impala_spr_s1", "stage": "train", "event": "end", "exit": 0, "min": 56.38676223357518, "t": 1793665526.1412313}
+{"arm": "rtrf_impala_spr_s1", "stage": "eval_best", "event": "start", "t": 1793665526.1412313}
+{"arm": "rtrf_impala_spr_s1", "stage": "eval_best", "event": "end", "exit": 0, "min": 2.492762553691864, "t": 1793665675.7069845}
+{"arm": "rtrf_impala_spr_s1", "stage": "eval_final", "event": "start", "t": 1793665675.7069845}
+{"arm": "rtrf_impala_spr", "stage": "eval_best", "event": "end", "exit": 0, "min": 2.8089263081550597, "t": 1793665693.085007}
+{"arm": "rtrf_impala_spr", "stage": "eval_final", "event": "start", "t": 1793665693.085007}
+{"arm": "rtrf_impala_spr_s1", "stage": "eval_final", "event": "end", "exit": 0, "min": 2.8663913647333783, "t": 1793665847.6904664}
+{"arm": "rtrf_impala_spr", "stage": "eval_final", "event": "end", "exit": 0, "min": 2.594443452358246, "t": 1793665848.751614}
+{"event": "runner_end", "t": 1793665848.751614}

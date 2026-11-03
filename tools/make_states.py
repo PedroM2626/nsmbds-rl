@@ -41,15 +41,24 @@ CONTRACTS = {
     "7-1": ["evals/eval_special_71_full_clear.json"],
     "8-1": ["evals/eval_8_1_clear.json"],
 }
-# Measured, documented exceptions (PROJECT_STATUS 4ba): these references carry
-# emulator-internal state (GPU/3D and timing chunks inherited from a GUI-made
-# savestate) that no RAM write reproduces, so their replays differ. They are
-# reported, not hidden, and do not fail --verify.
+# Measured, documented exceptions (PROJECT_STATUS 4ba/4bb): these references carry
+# emulator-internal state, inherited from a GUI-made savestate, that no RAM write
+# reproduces. Their replays reach the same outcome but differ in detail; they
+# are reported, not hidden, and then checked against the ROM-built contracts.
 KNOWN_DIFF = {
     "evals/eval_1_2_clear.json": "same steps, goal and final X; total reward +3.0 (camera progress)",
     "evals/eval_special_71_full_clear.json": "same 809-step clear and reward; one enemy 1 px off from step 27",
-    "evals/eval_special_31_full_clear.json": "open-loop route dies at step 183 (published: clear at 557)",
-    "evals/eval_special_31_main_clear.json": "open-loop route dies at step 90 (published: clear at 497)",
+    "evals/eval_special_31_full_clear.json": "same 557-step clear and total reward 3744.15; per-step camera reward differs from step 71",
+    "evals/eval_special_31_main_clear.json": "same 497-step clear and total reward 3747.15; per-step camera reward differs from step 37",
+}
+# Where a reference cannot be rebuilt exactly, the same evaluation measured on
+# the ROM-built state is committed under evals/rom/ and must replay exactly
+# (two independent builds gave identical episodes, 4bb).
+ROM_CONTRACTS = {
+    "evals/eval_1_2_clear.json": "evals/rom/eval_1_2_clear.json",
+    "evals/eval_special_71_full_clear.json": "evals/rom/eval_special_71_full_clear.json",
+    "evals/eval_special_31_full_clear.json": "evals/rom/eval_special_31_full_clear.json",
+    "evals/eval_special_31_main_clear.json": "evals/rom/eval_special_31_main_clear.json",
 }
 VOLATILE = ("latency", "fps", "wall", "elapsed", "seconds", "time_s", "duration")
 
@@ -97,6 +106,13 @@ def replay(contract, state):
     os.remove(out)
     a, b = _strip(got["episodes"]), _strip(pub["episodes"])
     same = a == b
+    rom = ROM_CONTRACTS.get(contract)
+    if not same and rom and os.path.exists(os.path.join(ROOT, rom)):
+        exact = a == _strip(json.load(open(os.path.join(ROOT, rom), encoding="utf-8"))["episodes"])
+        print(f"  {'ok  ' if exact else 'FAIL'} {rom}: {len(a)} episodes "
+              f"{'identical (ROM-built contract)' if exact else 'differ from the ROM-built contract'}"
+              f"; reference run differs as documented: {KNOWN_DIFF.get(contract, '?')}")
+        return exact
     n_bad = sum(x != y for x, y in zip(a, b)) + abs(len(a) - len(b))
     tag = "ok  " if same else ("KNOWN" if contract in KNOWN_DIFF else "FAIL")
     note = "" if same else (f" -- known difference: {KNOWN_DIFF[contract]}" if contract in KNOWN_DIFF

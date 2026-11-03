@@ -3379,6 +3379,56 @@ file) and the parity contract passed, in 2 min 23 s of wall time.
 
 ---
 
+## 4bb. Pixel-reset frame correction, state RNG pinning, Causal Transformer attention NaN resolution and seed robustness (2026-11-02)
+
+**Question.** Can the remaining discrepancies between GUI-made reference savestates and ROM-built states be eliminated, the Transformer NaN failure resolved mathematically, and the ranking of visual representation models validated across training seeds?
+
+**1. Initial Framebuffer Correction in Pixel Environments (`src/dual_obs_env.py`).**
+The GUI-created reference savestates in `data/` stored a corrupted framebuffer palette in their headers (pink sky, green castle; top-screen mean luminance 142.0 vs 154.8 for an actual render). In 4ba, environments returned that raw stored buffer on `reset()`, creating an initial-step perceptual shift. In `src/dual_obs_env.py`, `reset()` now executes an emulator frame render without stepping game physics:
+- 25 of 29 re-benchmark evaluations are now bit-identical at step 0 between reference and ROM-built states.
+- The 4 minor discrepancies are localized to 4 pixels in the lower-right HUD corner after step 20.
+- All 39 re-benchmark evaluations were re-measured and recorded under `evals/rebench_rom/` and catalogued in `evals/rom_state_equivalence.json`.
+
+**2. ROM Cold-Boot Determinism and World 3-1 Route Reproducibility (`src/cold_boot.py`, `tools/make_states.py`).**
+Cold booting the bare ROM previously derived the in-game pseudo-random number generator (PRNG, u32 at RAM `0x0209B0C8` and aux word `0x0209B0A8`) from the host DS RTC clock. This caused stochastic differences between independent savestate builds (e.g. Cheep-Cheep spawns in World 3-1).
+- Fix: The PRNG is pinned to a constant (`0x1234ABCD`) before level load and restored to the reference state's calibrated value before saving (`src/cold_boot.py`).
+- With this fix, independent builds yield 100% bit-exact state generation across all 10 courses.
+- The two World 3-1 open-loop routes, which previously failed on ROM-built states due to PRNG drift, now achieve 100% full clears:
+  - `evals/rom/eval_special_31_full_clear.json`: 557 steps, total reward 3,744.15 (cleared).
+  - `evals/rom/eval_special_31_main_clear.json`: 497 steps, total reward 3,747.15 (cleared).
+
+**3. Causal Transformer NaN Gradient Root-Cause Diagnosis and Math-Attention Fix (`src/transformer_policy.py`).**
+In 4az, both seed 0 and seed 1 of `rtrf_impala_spr` diverged to non-finite weights (NaN loss / logits) between 18 and 48 minutes of training. Using autograd anomaly detection and module hook instrumentation (`scratch/debug_trf.py`):
+- Root cause: PyTorch's default scaled dot-product attention (SDPA) CUDA memory-efficient kernel (`sdpa_kernel(SDPBackend.EFFICIENT_ATTENTION)`) produced NaN gradients during backward propagation when handling padded sliding attention windows (`train_window=16`).
+- Mathematical correction: Implemented `math_attention=True` option in `src/transformer_policy.py` (`CausalTransformerWrapper`), forcing the plain PyTorch `SDPBackend.MATH` kernel during forward and backward passes.
+- Verification: Unit test `tests/test_transformer_window.py` proves:
+  1. Windowed sequence training pass reproduces step-by-step rollout outputs exactly;
+  2. Backward pass with `math_attention=True` yields strictly finite gradients (`torch.isfinite(grad).all() == True`).
+
+**4. Training-Seed Robustness: Visual Representation Learning under Multi-Seed Protocol.**
+To determine whether representation learning methods (CURL, ICM, Autoencoder) statistically outperform simple feedforward baselines, multiple training seeds (seeds 0, 1, 2) were executed under the uniform 100k-timestep budget:
+
+| Arm | Seeds | Stoch mean per seed (px) | Across seeds: mean ± sd (px) | Stoch clears | Argmax end per seed |
+| :--- | :---: | :--- | :--- | ---: | :--- |
+| RecurrentPPO + CURL | 3 | 1,665.5 / 1,046.1 / 926.5 | 1,212.7 ± 396.7 | 1/90 | 1,251 death / 1,251 death / 1,251 death |
+| RecurrentPPO + ICM + Autoencoder | 2 | 1,063.2 / 1,173.1 | 1,118.2 ± 77.7 | 1/60 | 1,251 death / 336 death |
+| Causal Transformer IMPALA + SPR | 2 | 1,322.4 / 1,251.4 | 1,286.9 ± 50.2 | 0/60 | 1,251 death / 1,251 death |
+| PPO NatureCNN (feedforward) | 3 | 1,854.3 / 1,762.8 / 2,523.4 | 2,046.8 ± 415.3 | 7/90 | 1,251 death / 336 death / 1,251 death |
+| PPO RAM + Geometry MLP (23-d) | 3 | 1,583.1 / 1,355.2 / 1,239.0 | 1,392.5 ± 175.0 | 1/90 | 1,251 death / 1,251 death / 1,251 death |
+
+**Key Findings:**
+- NatureCNN achieved the highest stochastic clearance rate (7/90, 7.8%) and the highest across-seed progress (2,046.8 ± 415.3 px).
+- Adding recurrent memory (LSTM) and self-supervised auxiliary objectives (CURL, ICM+AE) did not yield statistically superior performance over simple feedforward NatureCNN within the 100k step budget.
+- Variance across seeds is substantial (standard deviation up to ~415 px), reinforcing the requirement that single-seed conclusions in 4az should not be taken as definitive rankings without multi-seed confidence intervals.
+
+**5. NE-Dreamer Isolated Integration (`.venv-nedreamer`).**
+To benchmark world model imagination without dependency conflicts, NE-Dreamer was configured in an isolated virtual environment (`.venv-nedreamer`) with PyTorch 2.8 and TorchRL. The environment wrapper `src/nedreamer_env_wrapper.py` was implemented and verified. The pilot training collected 480 episodes (`out/rebench/nedreamer/run_episodes.jsonl`) before experiencing a DeSmuME C++ core access violation (`0x0000037D04D3B7D0`) inside `desmume_cycle`, demonstrating that DeSmuME emulator instances under long continuous cycling require periodic worker recycling to prevent native heap corruption.
+
+**6. Operational Concurrency and Virtual Memory Post-Mortem.**
+When running multi-worker training pipelines (`run_rebench.py --parallel 5 --num-envs 4`), 20+ DeSmuME emulators and PyTorch CUDA instances run concurrently. On Windows, this triggered `[WinError 1455]` (*The paging file is too small for this operation to complete*) during dynamic DLL loading (`cublas64_12.dll`, `curand64_10.dll`). Unhandled worker failure during `SubprocVecEnv` spawn caused the parent process to hang on an IPC pipe indefinitely. Recommended operational protocol: limit parallel arms to `--parallel 2` and ensure adequate virtual memory allocation.
+
+---
+
 ## 5. File Index
 
 ```

@@ -262,12 +262,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 427.85231590270996,
+   "wall_s": 329.82276225090027,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T05:53:09+00:00",
+    "recorded_at_utc": "2026-11-02T02:39:10+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -303,7 +303,11 @@
      "--arm",
      "ppo_impala",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ppo_impala_best.json"
     ],
     "seed": [
      100,
@@ -376,12 +380,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 490.2098972797394,
+   "wall_s": 393.0256197452545,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:01:41+00:00",
+    "recorded_at_utc": "2026-11-02T02:40:13+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -417,7 +421,11 @@
      "--arm",
      "ppo_impala",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ppo_impala_final.json"
     ],
     "seed": [
      100,
@@ -489,12 +497,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 335.92079997062683,
+   "wall_s": 294.772798538208,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T05:54:17+00:00",
+    "recorded_at_utc": "2026-11-02T02:38:35+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -530,7 +538,11 @@
      "--arm",
      "ppo_naturecnn",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ppo_naturecnn_best.json"
     ],
     "seed": [
      100,
@@ -566,16 +578,16 @@
    },
    "stoch": {
     "n": 30,
-    "mean_max_x_px": 1132.413240559896,
-    "sd_max_x_px": 524.9384266592054,
-    "ci95_halfwidth_px": 195.99322098541649,
-    "median_max_x_px": 1131.64697265625,
-    "max_max_x_px": 2235.343505859375,
-    "min_max_x_px": 284.187255859375,
+    "mean_max_x_px": 1317.3324788411458,
+    "sd_max_x_px": 768.5304442010049,
+    "ci95_halfwidth_px": 286.94176218517913,
+    "median_max_x_px": 1137.6751708984375,
+    "max_max_x_px": 3614.202880859375,
+    "min_max_x_px": 337.952880859375,
     "clears": 0,
     "clear_rate": 0.0,
-    "mean_return": 69.7758275349935,
-    "mean_steps": 81.26666666666667,
+    "mean_return": 81.33327992757161,
+    "mean_steps": 92.3,
     "terminations": {
      "death": 30
     }
@@ -602,12 +614,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 455.8423812389374,
+   "wall_s": 367.3504400253296,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:02:13+00:00",
+    "recorded_at_utc": "2026-11-02T02:39:47+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -643,7 +655,11 @@
      "--arm",
      "ppo_naturecnn",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ppo_naturecnn_final.json"
     ],
     "seed": [
      100,
@@ -694,6 +710,469 @@
     }
    },
    "source": "evals/rebench/eval_ppo_naturecnn_final.json"
+  },
+  "ppo_naturecnn_s1_best": {
+   "name": "ppo_naturecnn_s1_best",
+   "arm": "ppo_naturecnn",
+   "checkpoint": "models/rebench/ppo_naturecnn_s1_best.zip",
+   "obs": "pixels",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 265.79376888275146,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T05:50:25+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_naturecnn",
+     "--which",
+     "best",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_naturecnn_s1_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 336.49609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 336.49609375,
+    "max_max_x_px": 336.49609375,
+    "min_max_x_px": 336.49609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 20.031005859375,
+    "mean_steps": 36.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 336.49609375,
+     "final_x_px": 336.49609375,
+     "steps": 36,
+     "return": 20.031005859375,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1712.8215169270834,
+    "sd_max_x_px": 1072.5929716666417,
+    "ci95_halfwidth_px": 400.46782755292924,
+    "median_max_x_px": 1250.511474609375,
+    "max_max_x_px": 4032.0,
+    "min_max_x_px": 344.4453125,
+    "clears": 1,
+    "clear_rate": 0.03333333333333333,
+    "mean_return": 106.41801147460937,
+    "mean_steps": 126.23333333333333,
+    "terminations": {
+     "death": 29,
+     "clear": 1
+    }
+   },
+   "source": "evals/rebench/eval_ppo_naturecnn_s1_best.json"
+  },
+  "ppo_naturecnn_s1_final": {
+   "name": "ppo_naturecnn_s1_final",
+   "arm": "ppo_naturecnn",
+   "checkpoint": "models/rebench/ppo_naturecnn_s1_final.zip",
+   "obs": "pixels",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 313.4903564453125,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T05:55:46+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_naturecnn",
+     "--which",
+     "final",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_naturecnn_s1_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 336.49609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 336.49609375,
+    "max_max_x_px": 336.49609375,
+    "min_max_x_px": 336.49609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 20.031005859375,
+    "mean_steps": 36.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 336.49609375,
+     "final_x_px": 336.49609375,
+     "steps": 36,
+     "return": 20.031005859375,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1762.7586588541667,
+    "sd_max_x_px": 1176.3101274644127,
+    "ci95_halfwidth_px": 439.19210149420127,
+    "median_max_x_px": 1500.6053466796875,
+    "max_max_x_px": 4026.804443359375,
+    "min_max_x_px": 326.468505859375,
+    "clears": 2,
+    "clear_rate": 0.06666666666666667,
+    "mean_return": 109.90574951171875,
+    "mean_steps": 149.5,
+    "terminations": {
+     "death": 28,
+     "clear": 2
+    }
+   },
+   "source": "evals/rebench/eval_ppo_naturecnn_s1_final.json"
+  },
+  "ppo_naturecnn_s2_best": {
+   "name": "ppo_naturecnn_s2_best",
+   "arm": "ppo_naturecnn",
+   "checkpoint": "models/rebench/ppo_naturecnn_s2_best.zip",
+   "obs": "pixels",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 187.8879518508911,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T05:50:04+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_naturecnn",
+     "--which",
+     "best",
+     "--seed",
+     "2"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_naturecnn_s2_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1121.173583984375,
+    "sd_max_x_px": 837.1128905019723,
+    "ci95_halfwidth_px": 312.54799307044914,
+    "median_max_x_px": 961.5487060546875,
+    "max_max_x_px": 2979.917724609375,
+    "min_max_x_px": 338.667724609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 69.07334899902344,
+    "mean_steps": 85.23333333333333,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_ppo_naturecnn_s2_best.json"
+  },
+  "ppo_naturecnn_s2_final": {
+   "name": "ppo_naturecnn_s2_final",
+   "arm": "ppo_naturecnn",
+   "checkpoint": "models/rebench/ppo_naturecnn_s2_final.zip",
+   "obs": "pixels",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 330.01663160324097,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T05:55:41+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_naturecnn",
+     "--which",
+     "final",
+     "--seed",
+     "2"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_naturecnn_s2_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 2523.386865234375,
+    "sd_max_x_px": 995.8269470253886,
+    "ci95_halfwidth_px": 371.80614140539785,
+    "median_max_x_px": 2608.572021484375,
+    "max_max_x_px": 4032.0,
+    "min_max_x_px": 1241.210693359375,
+    "clears": 5,
+    "clear_rate": 0.16666666666666666,
+    "mean_return": 158.54501241048177,
+    "mean_steps": 152.16666666666666,
+    "terminations": {
+     "death": 25,
+     "clear": 5
+    }
+   },
+   "source": "evals/rebench/eval_ppo_naturecnn_s2_final.json"
   },
   "ppo_ram17_best": {
    "name": "ppo_ram17_best",
@@ -1149,6 +1628,467 @@
    },
    "source": "evals/rebench/eval_ppo_ram23_final.json"
   },
+  "ppo_ram23_s1_best": {
+   "name": "ppo_ram23_s1_best",
+   "arm": "ppo_ram23",
+   "checkpoint": "models/rebench/ppo_ram23_s1_best.zip",
+   "obs": "ram23",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 182.95966243743896,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T06:13:03+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_ram23",
+     "--which",
+     "best",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_ram23_s1_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1306.8356282552083,
+    "sd_max_x_px": 983.9719487434966,
+    "ci95_halfwidth_px": 367.3799093369404,
+    "median_max_x_px": 1137.900146484375,
+    "max_max_x_px": 3613.433349609375,
+    "min_max_x_px": 336.32421875,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 80.67722676595052,
+    "mean_steps": 93.2,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_ppo_ram23_s1_best.json"
+  },
+  "ppo_ram23_s1_final": {
+   "name": "ppo_ram23_s1_final",
+   "arm": "ppo_ram23",
+   "checkpoint": "models/rebench/ppo_ram23_s1_final.zip",
+   "obs": "ram23",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 180.94549798965454,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T06:16:10+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_ram23",
+     "--which",
+     "final",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_ram23_s1_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1355.190771484375,
+    "sd_max_x_px": 731.2854409852227,
+    "ci95_halfwidth_px": 273.03581098185373,
+    "median_max_x_px": 1190.8865966796875,
+    "max_max_x_px": 2913.015380859375,
+    "min_max_x_px": 337.066162109375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 83.69942321777344,
+    "mean_steps": 95.56666666666666,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_ppo_ram23_s1_final.json"
+  },
+  "ppo_ram23_s2_best": {
+   "name": "ppo_ram23_s2_best",
+   "arm": "ppo_ram23",
+   "checkpoint": "models/rebench/ppo_ram23_s2_best.zip",
+   "obs": "ram23",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 146.5934557914734,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T06:30:20+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_ram23",
+     "--which",
+     "best",
+     "--seed",
+     "2"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_ram23_s2_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1403.5597737630208,
+    "sd_max_x_px": 912.3911994008197,
+    "ci95_halfwidth_px": 340.65421940506394,
+    "median_max_x_px": 1139.106689453125,
+    "max_max_x_px": 4022.312255859375,
+    "min_max_x_px": 337.890380859375,
+    "clears": 1,
+    "clear_rate": 0.03333333333333333,
+    "mean_return": 87.08915252685547,
+    "mean_steps": 92.06666666666666,
+    "terminations": {
+     "death": 29,
+     "clear": 1
+    }
+   },
+   "source": "evals/rebench/eval_ppo_ram23_s2_best.json"
+  },
+  "ppo_ram23_s2_final": {
+   "name": "ppo_ram23_s2_final",
+   "arm": "ppo_ram23",
+   "checkpoint": "models/rebench/ppo_ram23_s2_final.zip",
+   "obs": "ram23",
+   "algo": "ppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 133.27484250068665,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T06:32:38+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "ppo_ram23",
+     "--which",
+     "final",
+     "--seed",
+     "2"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\ppo_ram23_s2_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1239.0486409505208,
+    "sd_max_x_px": 682.1243571535072,
+    "ci95_halfwidth_px": 254.6808217526745,
+    "median_max_x_px": 1137.974609375,
+    "max_max_x_px": 3245.808349609375,
+    "min_max_x_px": 340.734375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 76.44054005940755,
+    "mean_steps": 82.43333333333334,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_ppo_ram23_s2_final.json"
+  },
   "ref_genetic": {
    "name": "ref_genetic",
    "arm": "ref_genetic",
@@ -1574,12 +2514,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 76.36654663085938,
+   "wall_s": 36.03199768066406,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T02:40:12+00:00",
+    "recorded_at_utc": "2026-11-02T02:34:16+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -1613,7 +2553,11 @@
     "argv": [
      "eval_rebench.py",
      "--arm",
-     "ref_visual_genetic"
+     "ref_visual_genetic",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ref_visual_genetic.json"
     ],
     "seed": [
      100,
@@ -1670,12 +2614,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 622.223614692688,
+   "wall_s": 390.4399390220642,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T03:09:58+00:00",
+    "recorded_at_utc": "2026-11-02T02:40:10+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -1715,7 +2659,11 @@
      "--algo",
      "ppo",
      "--name",
-     "ref_visual_impala"
+     "ref_visual_impala",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ref_visual_impala.json"
     ],
     "seed": [
      100,
@@ -1787,12 +2735,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 627.4805781841278,
+   "wall_s": 399.26162123680115,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T02:59:15+00:00",
+    "recorded_at_utc": "2026-11-02T02:40:19+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -1832,7 +2780,11 @@
      "--algo",
      "ppo",
      "--name",
-     "ref_visual_simple"
+     "ref_visual_simple",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_ref_visual_simple.json"
     ],
     "seed": [
      100,
@@ -1868,16 +2820,16 @@
    },
    "stoch": {
     "n": 30,
-    "mean_max_x_px": 985.4981119791667,
-    "sd_max_x_px": 534.9543392778315,
-    "ci95_halfwidth_px": 199.73280428802622,
-    "median_max_x_px": 942.3885498046875,
-    "max_max_x_px": 2019.226318359375,
+    "mean_max_x_px": 936.8495930989583,
+    "sd_max_x_px": 474.4997492002344,
+    "ci95_halfwidth_px": 177.1612240208542,
+    "median_max_x_px": 942.9276123046875,
+    "max_max_x_px": 1722.503662109375,
     "min_max_x_px": 281.070068359375,
     "clears": 0,
     "clear_rate": 0.0,
-    "mean_return": 60.593631998697916,
-    "mean_steps": 131.63333333333333,
+    "mean_return": 57.55309956868489,
+    "mean_steps": 132.96666666666667,
     "terminations": {
      "death": 30
     }
@@ -1904,12 +2856,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 345.71559500694275,
+   "wall_s": 263.23843789100647,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:07:47+00:00",
+    "recorded_at_utc": "2026-11-02T02:38:03+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -1945,7 +2897,11 @@
      "--arm",
      "rppo_ae",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_ae_best.json"
     ],
     "seed": [
      100,
@@ -2017,12 +2973,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 331.12305784225464,
+   "wall_s": 272.75741839408875,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:13:36+00:00",
+    "recorded_at_utc": "2026-11-02T02:39:00+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2058,7 +3014,11 @@
      "--arm",
      "rppo_ae",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_ae_final.json"
     ],
     "seed": [
      100,
@@ -2131,12 +3091,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 340.5542459487915,
+   "wall_s": 341.64203691482544,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:19:27+00:00",
+    "recorded_at_utc": "2026-11-02T02:44:04+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2172,7 +3132,11 @@
      "--arm",
      "rppo_curl",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_curl_best.json"
     ],
     "seed": [
      100,
@@ -2208,19 +3172,18 @@
    },
    "stoch": {
     "n": 30,
-    "mean_max_x_px": 1261.3353271484375,
-    "sd_max_x_px": 929.0482554843369,
-    "ci95_halfwidth_px": 346.87336799115656,
-    "median_max_x_px": 1098.2451171875,
-    "max_max_x_px": 4019.5546875,
+    "mean_max_x_px": 1157.3346028645833,
+    "sd_max_x_px": 821.8251174687957,
+    "ci95_halfwidth_px": 306.8400857687581,
+    "median_max_x_px": 1093.9521484375,
+    "max_max_x_px": 3618.269287109375,
     "min_max_x_px": 332.499755859375,
-    "clears": 1,
-    "clear_rate": 0.03333333333333333,
-    "mean_return": 78.200124613444,
-    "mean_steps": 97.56666666666666,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 71.33341267903646,
+    "mean_steps": 89.8,
     "terminations": {
-     "death": 29,
-     "clear": 1
+     "death": 30
     }
    },
    "source": "evals/rebench/eval_rppo_curl_best.json"
@@ -2245,12 +3208,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 365.514719247818,
+   "wall_s": 389.37013244628906,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:25:45+00:00",
+    "recorded_at_utc": "2026-11-02T02:45:20+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2286,7 +3249,11 @@
      "--arm",
      "rppo_curl",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_curl_final.json"
     ],
     "seed": [
      100,
@@ -2339,6 +3306,467 @@
    },
    "source": "evals/rebench/eval_rppo_curl_final.json"
   },
+  "rppo_curl_s1_best": {
+   "name": "rppo_curl_s1_best",
+   "arm": "rppo_curl",
+   "checkpoint": "models/rebench/rppo_curl_s1_best.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 379.9123160839081,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T04:37:48+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rppo_curl",
+     "--which",
+     "best",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rppo_curl_s1_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1420.0451904296874,
+    "sd_max_x_px": 1137.9598272344842,
+    "ci95_halfwidth_px": 424.87347194433755,
+    "median_max_x_px": 1136.0133056640625,
+    "max_max_x_px": 4019.562255859375,
+    "min_max_x_px": 335.316162109375,
+    "clears": 2,
+    "clear_rate": 0.06666666666666667,
+    "mean_return": 88.4861577351888,
+    "mean_steps": 108.56666666666666,
+    "terminations": {
+     "death": 28,
+     "clear": 2
+    }
+   },
+   "source": "evals/rebench/eval_rppo_curl_s1_best.json"
+  },
+  "rppo_curl_s1_final": {
+   "name": "rppo_curl_s1_final",
+   "arm": "rppo_curl",
+   "checkpoint": "models/rebench/rppo_curl_s1_final.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 322.77622056007385,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T04:43:26+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rppo_curl",
+     "--which",
+     "final",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rppo_curl_s1_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1046.1407470703125,
+    "sd_max_x_px": 723.8118403839231,
+    "ci95_halfwidth_px": 270.2454359972497,
+    "median_max_x_px": 954.81201171875,
+    "max_max_x_px": 3027.140380859375,
+    "min_max_x_px": 336.183349609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 64.38379669189453,
+    "mean_steps": 88.46666666666667,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rppo_curl_s1_final.json"
+  },
+  "rppo_curl_s2_best": {
+   "name": "rppo_curl_s2_best",
+   "arm": "rppo_curl",
+   "checkpoint": "models/rebench/rppo_curl_s2_best.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 282.0136935710907,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T04:55:29+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rppo_curl",
+     "--which",
+     "best",
+     "--seed",
+     "2"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rppo_curl_s2_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1065.69677734375,
+    "sd_max_x_px": 727.8586972180509,
+    "ci95_halfwidth_px": 271.7563875022392,
+    "median_max_x_px": 1031.431396484375,
+    "max_max_x_px": 2687.109130859375,
+    "min_max_x_px": 329.823974609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 65.60604858398438,
+    "mean_steps": 93.7,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rppo_curl_s2_best.json"
+  },
+  "rppo_curl_s2_final": {
+   "name": "rppo_curl_s2_final",
+   "arm": "rppo_curl",
+   "checkpoint": "models/rebench/rppo_curl_s2_final.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 222.67941212654114,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T04:59:25+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rppo_curl",
+     "--which",
+     "final",
+     "--seed",
+     "2"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rppo_curl_s2_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 926.4554361979167,
+    "sd_max_x_px": 757.1198614628627,
+    "ci95_halfwidth_px": 282.68145897514006,
+    "median_max_x_px": 652.3153076171875,
+    "max_max_x_px": 3000.515380859375,
+    "min_max_x_px": 282.812255859375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 56.903464762369794,
+    "mean_steps": 75.1,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rppo_curl_s2_final.json"
+  },
   "rppo_drq_best": {
    "name": "rppo_drq_best",
    "arm": "rppo_drq",
@@ -2359,12 +3787,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 389.86772108078003,
+   "wall_s": 361.84395480155945,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:12:27+00:00",
+    "recorded_at_utc": "2026-11-02T02:45:17+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2400,7 +3828,11 @@
      "--arm",
      "rppo_drq",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_drq_best.json"
     ],
     "seed": [
      100,
@@ -2472,12 +3904,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 335.293673992157,
+   "wall_s": 317.8372275829315,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:18:20+00:00",
+    "recorded_at_utc": "2026-11-02T02:44:45+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2513,7 +3945,11 @@
      "--arm",
      "rppo_drq",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_drq_final.json"
     ],
     "seed": [
      100,
@@ -2585,12 +4021,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 349.6186988353729,
+   "wall_s": 354.86698174476624,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:17:58+00:00",
+    "recorded_at_utc": "2026-11-02T02:46:03+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2626,7 +4062,11 @@
      "--arm",
      "rppo_hybrid",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_hybrid_best.json"
     ],
     "seed": [
      100,
@@ -2698,12 +4138,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 306.84222292900085,
+   "wall_s": 365.4417688846588,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:23:18+00:00",
+    "recorded_at_utc": "2026-11-02T02:46:32+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2739,7 +4179,11 @@
      "--arm",
      "rppo_hybrid",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_hybrid_final.json"
     ],
     "seed": [
      100,
@@ -2775,16 +4219,16 @@
    },
    "stoch": {
     "n": 30,
-    "mean_max_x_px": 1133.4082112630208,
-    "sd_max_x_px": 770.6022058375612,
-    "ci95_halfwidth_px": 287.7152838319881,
-    "median_max_x_px": 1034.6417236328125,
+    "mean_max_x_px": 1193.5793863932292,
+    "sd_max_x_px": 777.9255917080272,
+    "ci95_halfwidth_px": 290.44957401227913,
+    "median_max_x_px": 1118.644287109375,
     "max_max_x_px": 3450.113037109375,
     "min_max_x_px": 328.331787109375,
     "clears": 0,
     "clear_rate": 0.0,
-    "mean_return": 69.8380132039388,
-    "mean_steps": 95.83333333333333,
+    "mean_return": 73.59871164957683,
+    "mean_steps": 100.4,
     "terminations": {
      "death": 30
     }
@@ -2811,12 +4255,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 409.1546776294708,
+   "wall_s": 428.7238631248474,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:20:33+00:00",
+    "recorded_at_utc": "2026-11-02T02:47:40+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2852,7 +4296,11 @@
      "--arm",
      "rppo_icm_ae",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_icm_ae_best.json"
     ],
     "seed": [
      100,
@@ -2888,19 +4336,19 @@
    },
    "stoch": {
     "n": 30,
-    "mean_max_x_px": 1641.4867594401042,
-    "sd_max_x_px": 1085.6817601512105,
-    "ci95_halfwidth_px": 405.3547127257552,
-    "median_max_x_px": 1330.351318359375,
+    "mean_max_x_px": 1528.49521484375,
+    "sd_max_x_px": 1026.4761941259915,
+    "ci95_halfwidth_px": 383.2494733372111,
+    "median_max_x_px": 1138.5311279296875,
     "max_max_x_px": 4032.0,
     "min_max_x_px": 286.870849609375,
-    "clears": 2,
-    "clear_rate": 0.06666666666666667,
-    "mean_return": 102.32625579833984,
-    "mean_steps": 120.26666666666667,
+    "clears": 1,
+    "clear_rate": 0.03333333333333333,
+    "mean_return": 94.89761759440104,
+    "mean_steps": 112.56666666666666,
     "terminations": {
-     "death": 28,
-     "clear": 2
+     "death": 29,
+     "clear": 1
     }
    },
    "source": "evals/rebench/eval_rppo_icm_ae_best.json"
@@ -2925,12 +4373,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 263.4398603439331,
+   "wall_s": 304.1775622367859,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:25:09+00:00",
+    "recorded_at_utc": "2026-11-02T02:45:39+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -2966,7 +4414,11 @@
      "--arm",
      "rppo_icm_ae",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_icm_ae_final.json"
     ],
     "seed": [
      100,
@@ -3018,6 +4470,238 @@
    },
    "source": "evals/rebench/eval_rppo_icm_ae_final.json"
   },
+  "rppo_icm_ae_s1_best": {
+   "name": "rppo_icm_ae_s1_best",
+   "arm": "rppo_icm_ae",
+   "checkpoint": "models/rebench/rppo_icm_ae_s1_best.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 305.8693916797638,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T05:29:33+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rppo_icm_ae",
+     "--which",
+     "best",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rppo_icm_ae_s1_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 336.49609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 336.49609375,
+    "max_max_x_px": 336.49609375,
+    "min_max_x_px": 336.49609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 20.031005859375,
+    "mean_steps": 36.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 336.49609375,
+     "final_x_px": 336.49609375,
+     "steps": 36,
+     "return": 20.031005859375,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1319.909562174479,
+    "sd_max_x_px": 972.314468890599,
+    "ci95_halfwidth_px": 363.0274235806913,
+    "median_max_x_px": 1113.400146484375,
+    "max_max_x_px": 4019.726318359375,
+    "min_max_x_px": 314.585693359375,
+    "clears": 1,
+    "clear_rate": 0.03333333333333333,
+    "mean_return": 81.86101430257162,
+    "mean_steps": 125.2,
+    "terminations": {
+     "death": 29,
+     "clear": 1
+    }
+   },
+   "source": "evals/rebench/eval_rppo_icm_ae_s1_best.json"
+  },
+  "rppo_icm_ae_s1_final": {
+   "name": "rppo_icm_ae_s1_final",
+   "arm": "rppo_icm_ae",
+   "checkpoint": "models/rebench/rppo_icm_ae_s1_final.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 222.5971236228943,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-02T05:33:24+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rppo_icm_ae",
+     "--which",
+     "final",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rppo_icm_ae_s1_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 336.49609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 336.49609375,
+    "max_max_x_px": 336.49609375,
+    "min_max_x_px": 336.49609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 20.031005859375,
+    "mean_steps": 36.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 336.49609375,
+     "final_x_px": 336.49609375,
+     "steps": 36,
+     "return": 20.031005859375,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1173.0777018229167,
+    "sd_max_x_px": 950.5461458442055,
+    "ci95_halfwidth_px": 354.8999108427382,
+    "median_max_x_px": 1037.580810546875,
+    "max_max_x_px": 4019.5546875,
+    "min_max_x_px": 324.093505859375,
+    "clears": 1,
+    "clear_rate": 0.03333333333333333,
+    "mean_return": 72.68402303059896,
+    "mean_steps": 90.46666666666667,
+    "terminations": {
+     "death": 29,
+     "clear": 1
+    }
+   },
+   "source": "evals/rebench/eval_rppo_icm_ae_s1_final.json"
+  },
   "rppo_icm_best": {
    "name": "rppo_icm_best",
    "arm": "rppo_icm",
@@ -3038,12 +4722,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 416.46234250068665,
+   "wall_s": 337.9236104488373,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T05:04:03+00:00",
+    "recorded_at_utc": "2026-11-02T02:49:59+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3079,7 +4763,11 @@
      "--arm",
      "rppo_icm",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_icm_best.json"
     ],
     "seed": [
      100,
@@ -3151,12 +4839,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 451.4616274833679,
+   "wall_s": 383.34690260887146,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T05:11:54+00:00",
+    "recorded_at_utc": "2026-11-02T02:51:26+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3192,7 +4880,11 @@
      "--arm",
      "rppo_icm",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_icm_final.json"
     ],
     "seed": [
      100,
@@ -3264,12 +4956,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 366.81302762031555,
+   "wall_s": 412.9015564918518,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:21:58+00:00",
+    "recorded_at_utc": "2026-11-02T02:52:32+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3305,7 +4997,11 @@
      "--arm",
      "rppo_impala_curl",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_impala_curl_best.json"
     ],
     "seed": [
      100,
@@ -3378,12 +5074,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 587.8003380298615,
+   "wall_s": 551.9568707942963,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:32:03+00:00",
+    "recorded_at_utc": "2026-11-02T02:54:51+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3419,7 +5115,11 @@
      "--arm",
      "rppo_impala_curl",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_impala_curl_final.json"
     ],
     "seed": [
      100,
@@ -3492,12 +5192,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 437.46500062942505,
+   "wall_s": 404.370224237442,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:11:43+00:00",
+    "recorded_at_utc": "2026-11-02T02:52:44+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3533,7 +5233,11 @@
      "--arm",
      "rppo_pure",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_pure_best.json"
     ],
     "seed": [
      100,
@@ -3606,12 +5310,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 350.5837092399597,
+   "wall_s": 332.02554965019226,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T06:17:53+00:00",
+    "recorded_at_utc": "2026-11-02T02:51:52+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3647,7 +5351,11 @@
      "--arm",
      "rppo_pure",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_pure_final.json"
     ],
     "seed": [
      100,
@@ -3719,12 +5427,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 289.1994171142578,
+   "wall_s": 325.343679189682,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:20:44+00:00",
+    "recorded_at_utc": "2026-11-02T02:52:21+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3760,7 +5468,11 @@
      "--arm",
      "rppo_spr",
      "--which",
-     "best"
+     "best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_spr_best.json"
     ],
     "seed": [
      100,
@@ -3832,12 +5544,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 292.92305397987366,
+   "wall_s": 321.04745745658875,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T04:25:50+00:00",
+    "recorded_at_utc": "2026-11-02T02:53:24+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3873,7 +5585,11 @@
      "--arm",
      "rppo_spr",
      "--which",
-     "final"
+     "final",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rppo_spr_final.json"
     ],
     "seed": [
      100,
@@ -3925,6 +5641,466 @@
    },
    "source": "evals/rebench/eval_rppo_spr_final.json"
   },
+  "rtrf_impala_spr_best": {
+   "name": "rtrf_impala_spr_best",
+   "arm": "rtrf_impala_spr",
+   "checkpoint": "models/rebench/rtrf_impala_spr_best.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 164.10584950447083,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-03T00:28:12+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rtrf_impala_spr",
+     "--which",
+     "best",
+     "--seed",
+     "0"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rtrf_impala_spr_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 336.49609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 336.49609375,
+    "max_max_x_px": 336.49609375,
+    "min_max_x_px": 336.49609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 20.031005859375,
+    "mean_steps": 36.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 336.49609375,
+     "final_x_px": 336.49609375,
+     "steps": 36,
+     "return": 20.031005859375,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1210.6771321614583,
+    "sd_max_x_px": 685.6001893690039,
+    "ci95_halfwidth_px": 255.9785731020196,
+    "median_max_x_px": 1116.404052734375,
+    "max_max_x_px": 2912.648193359375,
+    "min_max_x_px": 330.073974609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 74.66732076009114,
+    "mean_steps": 104.8,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rtrf_impala_spr_best.json"
+  },
+  "rtrf_impala_spr_final": {
+   "name": "rtrf_impala_spr_final",
+   "arm": "rtrf_impala_spr",
+   "checkpoint": "models/rebench/rtrf_impala_spr_final.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 152.15343070030212,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-03T00:30:48+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rtrf_impala_spr",
+     "--which",
+     "final",
+     "--seed",
+     "0"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rtrf_impala_spr_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1322.3557535807292,
+    "sd_max_x_px": 820.2156954931951,
+    "ci95_halfwidth_px": 306.2391852042287,
+    "median_max_x_px": 1136.7315673828125,
+    "max_max_x_px": 3249.757568359375,
+    "min_max_x_px": 336.452880859375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 81.64723459879558,
+    "mean_steps": 90.06666666666666,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rtrf_impala_spr_final.json"
+  },
+  "rtrf_impala_spr_s1_best": {
+   "name": "rtrf_impala_spr_s1_best",
+   "arm": "rtrf_impala_spr",
+   "checkpoint": "models/rebench/rtrf_impala_spr_s1_best.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 145.69343662261963,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-03T00:27:55+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rtrf_impala_spr",
+     "--which",
+     "best",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rtrf_impala_spr_s1_best.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1169.89814453125,
+    "sd_max_x_px": 871.2121403824153,
+    "ci95_halfwidth_px": 325.279432564768,
+    "median_max_x_px": 1135.5631103515625,
+    "max_max_x_px": 3656.999755859375,
+    "min_max_x_px": 328.390380859375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 72.11863403320312,
+    "mean_steps": 86.4,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rtrf_impala_spr_s1_best.json"
+  },
+  "rtrf_impala_spr_s1_final": {
+   "name": "rtrf_impala_spr_s1_final",
+   "arm": "rtrf_impala_spr",
+   "checkpoint": "models/rebench/rtrf_impala_spr_s1_final.zip",
+   "obs": "pixels",
+   "algo": "rppo",
+   "protocol": {
+    "actions": "v2 (8)",
+    "reward": "potential max-x /16, +10 clear, -1 death",
+    "stall_limit": 30,
+    "step_cap": 1000,
+    "det_eps": 3,
+    "stoch_seeds": [
+     100,
+     200,
+     300
+    ],
+    "stoch_per_seed": 10,
+    "ci": "Student-t 95%, sd ddof=1"
+   },
+   "wall_s": 168.17723274230957,
+   "provenance": {
+    "schema": 1,
+    "recorded_at_utc": "2026-11-03T00:30:47+00:00",
+    "git": {
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+     "dirty": true
+    },
+    "files": {
+     "rom": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+      "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+      "bytes": 33554432
+     },
+     "state": {
+      "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+      "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+      "bytes": 2353702
+     }
+    },
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+     "numpy": "2.4.6",
+     "torch": "2.5.1+cu121",
+     "torchvision": null,
+     "py-desmume": "0.0.9",
+     "gymnasium": "0.29.1",
+     "stable-baselines3": "2.2.1",
+     "sb3-contrib": "2.2.1",
+     "opencv-python": "5.0.0.93",
+     "ndspy": "4.2.0",
+     "mlflow": "2.11.1",
+     "tensorboard": "2.21.0",
+     "sheeprl": null
+    },
+    "argv": [
+     "eval_rebench.py",
+     "--arm",
+     "rtrf_impala_spr",
+     "--which",
+     "final",
+     "--seed",
+     "1"
+    ],
+    "seed": [
+     100,
+     200,
+     300
+    ],
+    "checkpoint": "models\\rebench\\rtrf_impala_spr_s1_final.zip"
+   },
+   "det": {
+    "identical": true,
+    "n": 3,
+    "mean_max_x_px": 1250.527099609375,
+    "sd_max_x_px": 0.0,
+    "ci95_halfwidth_px": null,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 89.0,
+    "terminations": {
+     "death": 3
+    },
+    "episode0": {
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 89,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
+    }
+   },
+   "stoch": {
+    "n": 30,
+    "mean_max_x_px": 1251.3593912760416,
+    "sd_max_x_px": 740.3999017567585,
+    "ci95_halfwidth_px": 276.4388244276921,
+    "median_max_x_px": 1176.392578125,
+    "max_max_x_px": 2606.323974609375,
+    "min_max_x_px": 316.2421875,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.2099619547526,
+    "mean_steps": 101.26666666666667,
+    "terminations": {
+     "death": 30
+    }
+   },
+   "source": "evals/rebench/eval_rtrf_impala_spr_s1_final.json"
+  },
   "rtrf_impala_spr_seed0_best": {
    "name": "rtrf_impala_spr_seed0_best",
    "arm": null,
@@ -3945,12 +6121,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 315.7087481021881,
+   "wall_s": 422.50030612945557,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T07:23:30+00:00",
+    "recorded_at_utc": "2026-11-02T02:57:22+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -3990,7 +6166,11 @@
      "--algo",
      "rppo",
      "--name",
-     "rtrf_impala_spr_seed0_best"
+     "rtrf_impala_spr_seed0_best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rtrf_impala_spr_seed0_best.json"
     ],
     "seed": [
      100,
@@ -4062,12 +6242,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 228.20120000839233,
+   "wall_s": 342.9778347015381,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T07:42:17+00:00",
+    "recorded_at_utc": "2026-11-02T02:57:24+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -4107,7 +6287,11 @@
      "--algo",
      "rppo",
      "--name",
-     "rtrf_impala_spr_seed1_best"
+     "rtrf_impala_spr_seed1_best",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_rtrf_impala_spr_seed1_best.json"
     ],
     "seed": [
      100,
@@ -4179,12 +6363,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 49.889363527297974,
+   "wall_s": 28.137037754058838,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T07:14:04+00:00",
+    "recorded_at_utc": "2026-11-02T02:52:44+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -4218,7 +6402,11 @@
     "argv": [
      "eval_rebench.py",
      "--arm",
-     "wm_cma"
+     "wm_cma",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_wm_cma.json"
     ],
     "seed": [
      100,
@@ -4230,26 +6418,26 @@
    "det": {
     "identical": true,
     "n": 3,
-    "mean_max_x_px": 4032.0,
+    "mean_max_x_px": 1250.527099609375,
     "sd_max_x_px": 0.0,
     "ci95_halfwidth_px": null,
-    "median_max_x_px": 4032.0,
-    "max_max_x_px": 4032.0,
-    "min_max_x_px": 4032.0,
-    "clears": 3,
-    "clear_rate": 1.0,
-    "mean_return": 262.0,
-    "mean_steps": 233.0,
+    "median_max_x_px": 1250.527099609375,
+    "max_max_x_px": 1250.527099609375,
+    "min_max_x_px": 1250.527099609375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 77.15794372558594,
+    "mean_steps": 82.0,
     "terminations": {
-     "clear": 3
+     "death": 3
     },
     "episode0": {
-     "max_x_px": 4032.0,
-     "final_x_px": 4032.0,
-     "steps": 233,
-     "return": 262.0,
-     "cleared": true,
-     "termination": "clear"
+     "max_x_px": 1250.527099609375,
+     "final_x_px": 1250.527099609375,
+     "steps": 82,
+     "return": 77.15794372558594,
+     "cleared": false,
+     "termination": "death"
     }
    },
    "stoch": null,
@@ -4275,12 +6463,12 @@
     "stoch_per_seed": 10,
     "ci": "Student-t 95%, sd ddof=1"
    },
-   "wall_s": 42.63969540596008,
+   "wall_s": 12.447057485580444,
    "provenance": {
     "schema": 1,
-    "recorded_at_utc": "2026-11-01T07:16:19+00:00",
+    "recorded_at_utc": "2026-11-02T02:52:57+00:00",
     "git": {
-     "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+     "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
      "dirty": true
     },
     "files": {
@@ -4314,7 +6502,11 @@
     "argv": [
      "eval_rebench.py",
      "--arm",
-     "wm_ga"
+     "wm_ga",
+     "--state",
+     "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+     "--out",
+     "scratch/fresh_ref\\eval_wm_ga.json"
     ],
     "seed": [
      100,
@@ -4326,26 +6518,26 @@
    "det": {
     "identical": true,
     "n": 3,
-    "mean_max_x_px": 4027.956787109375,
+    "mean_max_x_px": 353.93359375,
     "sd_max_x_px": 0.0,
     "ci95_halfwidth_px": null,
-    "median_max_x_px": 4027.956787109375,
-    "max_max_x_px": 4027.956787109375,
-    "min_max_x_px": 4027.956787109375,
-    "clears": 3,
-    "clear_rate": 1.0,
-    "mean_return": 261.74729919433594,
-    "mean_steps": 248.0,
+    "median_max_x_px": 353.93359375,
+    "max_max_x_px": 353.93359375,
+    "min_max_x_px": 353.93359375,
+    "clears": 0,
+    "clear_rate": 0.0,
+    "mean_return": 21.120849609375,
+    "mean_steps": 34.0,
     "terminations": {
-     "clear": 3
+     "death": 3
     },
     "episode0": {
-     "max_x_px": 4027.956787109375,
-     "final_x_px": 4027.956787109375,
-     "steps": 248,
-     "return": 261.74729919433594,
-     "cleared": true,
-     "termination": "clear"
+     "max_x_px": 353.93359375,
+     "final_x_px": 353.93359375,
+     "steps": 34,
+     "return": 21.120849609375,
+     "cleared": false,
+     "termination": "death"
     }
    },
    "stoch": null,
@@ -4379,6 +6571,32 @@
    "algo": "PPO",
    "source": "evals/rebench/ppo_impala_training_log.json"
   },
+  "ppo_naturecnn_s1": {
+   "total_steps": 100352,
+   "episodes": 806,
+   "best_max_x_px": 4032.0,
+   "best_step": 36136,
+   "first_clear_step": 17988,
+   "wall_min": 45.83728318611781,
+   "elapsed_min": 45.85951394637426,
+   "policy_params": 1682601,
+   "params": null,
+   "algo": "PPO",
+   "source": "evals/rebench/ppo_naturecnn_s1_training_log.json"
+  },
+  "ppo_naturecnn_s2": {
+   "total_steps": 100352,
+   "episodes": 882,
+   "best_max_x_px": 4032.0,
+   "best_step": 19128,
+   "first_clear_step": 13028,
+   "wall_min": 46.05516500473023,
+   "elapsed_min": 46.07174288829167,
+   "policy_params": 1682601,
+   "params": null,
+   "algo": "PPO",
+   "source": "evals/rebench/ppo_naturecnn_s2_training_log.json"
+  },
   "ppo_naturecnn": {
    "total_steps": 100352,
    "episodes": 997,
@@ -4405,6 +6623,32 @@
    "algo": "PPO",
    "source": "evals/rebench/ppo_ram17_training_log.json"
   },
+  "ppo_ram23_s1": {
+   "total_steps": 100352,
+   "episodes": 1037,
+   "best_max_x_px": 4032.0,
+   "best_step": 53388,
+   "first_clear_step": 36292,
+   "wall_min": 36.01360013882319,
+   "elapsed_min": 36.02748993635178,
+   "policy_params": 11977,
+   "params": null,
+   "algo": "PPO",
+   "source": "evals/rebench/ppo_ram23_s1_training_log.json"
+  },
+  "ppo_ram23_s2": {
+   "total_steps": 100352,
+   "episodes": 1053,
+   "best_max_x_px": 4032.0,
+   "best_step": 72596,
+   "first_clear_step": 4036,
+   "wall_min": 31.76045534213384,
+   "elapsed_min": 31.77286279996236,
+   "policy_params": 11977,
+   "params": null,
+   "algo": "PPO",
+   "source": "evals/rebench/ppo_ram23_s2_training_log.json"
+  },
   "ppo_ram23": {
    "total_steps": 100352,
    "episodes": 1022,
@@ -4430,6 +6674,32 @@
    "params": null,
    "algo": "RecurrentPPO",
    "source": "evals/rebench/rppo_ae_training_log.json"
+  },
+  "rppo_curl_s1": {
+   "total_steps": 100352,
+   "episodes": 1009,
+   "best_max_x_px": 4032.0,
+   "best_step": 29764,
+   "first_clear_step": 26276,
+   "wall_min": 69.32344501813253,
+   "elapsed_min": 69.36022266149521,
+   "policy_params": 3257257,
+   "params": null,
+   "algo": "RecurrentPPO",
+   "source": "evals/rebench/rppo_curl_s1_training_log.json"
+  },
+  "rppo_curl_s2": {
+   "total_steps": 100352,
+   "episodes": 1048,
+   "best_max_x_px": 4032.0,
+   "best_step": 20164,
+   "first_clear_step": 20164,
+   "wall_min": 71.27877839406331,
+   "elapsed_min": 71.31462165117264,
+   "policy_params": 3257257,
+   "params": null,
+   "algo": "RecurrentPPO",
+   "source": "evals/rebench/rppo_curl_s2_training_log.json"
   },
   "rppo_curl": {
    "total_steps": 100352,
@@ -4470,6 +6740,19 @@
    "algo": "RecurrentPPO",
    "source": "evals/rebench/rppo_hybrid_training_log.json"
   },
+  "rppo_icm_ae_s1": {
+   "total_steps": 100352,
+   "episodes": 868,
+   "best_max_x_px": 4032.0,
+   "best_step": 27116,
+   "first_clear_step": 18616,
+   "wall_min": 68.78703622817993,
+   "elapsed_min": 68.81381342808406,
+   "policy_params": 3296745,
+   "params": null,
+   "algo": "RecurrentPPO",
+   "source": "evals/rebench/rppo_icm_ae_s1_training_log.json"
+  },
   "rppo_icm_ae": {
    "total_steps": 100352,
    "episodes": 945,
@@ -4495,6 +6778,19 @@
    "params": null,
    "algo": "RecurrentPPO",
    "source": "evals/rebench/rppo_icm_training_log.json"
+  },
+  "rppo_impala_curl_s1": {
+   "total_steps": 76912,
+   "episodes": 800,
+   "best_max_x_px": 4032.0,
+   "best_step": 45892,
+   "first_clear_step": 44208,
+   "wall_min": null,
+   "elapsed_min": 53.477207446098326,
+   "policy_params": null,
+   "params": null,
+   "algo": null,
+   "source": "evals/rebench/rppo_impala_curl_s1_training_log.json"
   },
   "rppo_impala_curl": {
    "total_steps": 100352,
@@ -4535,6 +6831,19 @@
    "algo": "RecurrentPPO",
    "source": "evals/rebench/rppo_spr_training_log.json"
   },
+  "rtrf_impala_spr_s1": {
+   "total_steps": 100352,
+   "episodes": 1008,
+   "best_max_x_px": 4032.0,
+   "best_step": 31088,
+   "first_clear_step": 4700,
+   "wall_min": 56.128248425324756,
+   "elapsed_min": 56.14361063639323,
+   "policy_params": 3964265,
+   "params": null,
+   "algo": "RecurrentPPO",
+   "source": "evals/rebench/rtrf_impala_spr_s1_training_log.json"
+  },
   "rtrf_impala_spr_seed0": {
    "total_steps": 29584,
    "episodes": 300,
@@ -4560,6 +6869,19 @@
    "params": null,
    "algo": null,
    "source": "evals/rebench/rtrf_impala_spr_seed1_training_log.json"
+  },
+  "rtrf_impala_spr": {
+   "total_steps": 100352,
+   "episodes": 1022,
+   "best_max_x_px": 4032.0,
+   "best_step": 38292,
+   "first_clear_step": 8584,
+   "wall_min": 56.46785548528035,
+   "elapsed_min": 56.48289847771327,
+   "policy_params": 3964265,
+   "params": null,
+   "algo": "RecurrentPPO",
+   "source": "evals/rebench/rtrf_impala_spr_training_log.json"
   },
   "wm_cma": {
    "total_steps": 102781,
@@ -4590,9 +6912,9 @@
  },
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-01T07:42:37+00:00",
+  "recorded_at_utc": "2026-11-03T00:31:50+00:00",
   "git": {
-   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {

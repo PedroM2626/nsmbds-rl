@@ -584,25 +584,27 @@ not re-trained.
 | RecurrentPPO CnnLstm (= June "PPO Pure" / "Recurrent PPO") | pixels | final | 4,032.0 | 1,250.5 / death | 1,210.2 ± 764.8 [±286] | 2,913.7 | 0/30 |
 | RecurrentPPO + frozen Autoencoder | pixels | best | 4,032.0 | 1,250.5 / death | 1,068.9 ± 790.6 [±295] | 2,895.3 | 0/30 |
 | RecurrentPPO + frozen Autoencoder | pixels | final | 4,032.0 | 1,250.5 / death | 1,096.8 ± 949.1 [±354] | 4,016.4 | 1/30 |
-| RecurrentPPO + CURL | pixels | best | 4,032.0 | 1,250.5 / death | 1,261.3 ± 929.0 [±347] | 4,019.6 | 1/30 |
+| RecurrentPPO + CURL | pixels | best | 4,032.0 | 1,250.5 / death | 1,157.3 ± 821.8 [±307] | 3,618.3 | 0/30 |
 | RecurrentPPO + CURL | pixels | final | 4,032.0 | 1,250.5 / death | 1,665.5 ± 794.5 [±297] | 4,032.0 | 1/30 |
 | RecurrentPPO + Hybrid AE+CURL | pixels | best | 4,032.0 | 336.5 / death | 1,234.0 ± 968.4 [±362] | 3,458.5 | 0/30 |
-| RecurrentPPO + Hybrid AE+CURL | pixels | final | 4,032.0 | 336.5 / death | 1,133.4 ± 770.6 [±288] | 3,450.1 | 0/30 |
+| RecurrentPPO + Hybrid AE+CURL | pixels | final | 4,032.0 | 336.5 / death | 1,193.6 ± 777.9 [±290] | 3,450.1 | 0/30 |
 | RecurrentPPO + SPR | pixels | best | 4,032.0 | 1,250.5 / death | 1,058.3 ± 595.4 [±222] | 2,684.7 | 0/30 |
 | RecurrentPPO + SPR | pixels | final | 4,032.0 | 1,250.5 / death | 1,091.6 ± 746.4 [±279] | 2,892.8 | 0/30 |
 | RecurrentPPO + DrQ random shifts | pixels | best | 4,032.0 | 1,250.5 / death | 991.6 ± 572.0 [±214] | 2,556.1 | 0/30 |
 | RecurrentPPO + DrQ random shifts | pixels | final | 4,032.0 | 1,250.5 / death | 1,126.3 ± 606.0 [±226] | 2,681.0 | 0/30 |
 | RecurrentPPO + ICM | pixels | best | 4,032.0 | 1,250.5 / death | 1,234.7 ± 870.8 [±325] | 3,608.6 | 0/30 |
 | RecurrentPPO + ICM | pixels | final | 4,032.0 | 1,250.5 / death | 1,501.2 ± 890.0 [±332] | 3,614.2 | 0/30 |
-| RecurrentPPO + ICM + Autoencoder | pixels | best | 4,028.7 | 1,250.5 / death | 1,641.5 ± 1,085.7 [±405] | 4,032.0 | 2/30 |
+| RecurrentPPO + ICM + Autoencoder | pixels | best | 4,028.7 | 1,250.5 / death | 1,528.5 ± 1,026.5 [±383] | 4,032.0 | 1/30 |
 | RecurrentPPO + ICM + Autoencoder | pixels | final | 4,028.7 | 1,250.5 / death | 1,063.2 ± 952.2 [±356] | 3,614.9 | 0/30 |
 | RecurrentPPO IMPALA + CURL | pixels | best | 4,032.0 | 1,250.5 / death | 1,478.0 ± 911.9 [±340] | 4,030.6 | 1/30 |
 | RecurrentPPO IMPALA + CURL | pixels | final | 4,032.0 | 4,028.0 / clear | 1,827.0 ± 1,155.1 [±431] | 4,024.5 | 3/30 |
+| Causal Transformer IMPALA + SPR | pixels | best | 4,032.0 | 336.5 / death | 1,210.7 ± 685.6 [±256] | 2,912.6 | 0/30 |
+| Causal Transformer IMPALA + SPR | pixels | final | 4,032.0 | 1,250.5 / death | 1,322.4 ± 820.2 [±306] | 3,249.8 | 0/30 |
 | Causal Transformer IMPALA + SPR | pixels | best (seed 0) | 4,025.7 | 336.5 / death | 1,017.6 ± 574.9 [±215] | 2,579.6 | 0/30 |
 | Causal Transformer IMPALA + SPR | pixels | best (seed 1) | 4,024.6 | 1,250.5 / death | 1,057.9 ± 659.8 [±246] | 2,681.1 | 0/30 |
 | PPO ImpalaCNN (feedforward) | pixels | best | 4,032.0 | 1,250.5 / death | 1,248.7 ± 901.0 [±336] | 4,025.7 | 1/30 |
 | PPO ImpalaCNN (feedforward) | pixels | final | 4,032.0 | 1,250.5 / death | 1,519.7 ± 1,057.1 [±395] | 3,640.5 | 0/30 |
-| PPO NatureCNN (feedforward) | pixels | best | 4,032.0 | 1,250.5 / death | 1,132.4 ± 524.9 [±196] | 2,235.3 | 0/30 |
+| PPO NatureCNN (feedforward) | pixels | best | 4,032.0 | 1,250.5 / death | 1,317.3 ± 768.5 [±287] | 3,614.2 | 0/30 |
 | PPO NatureCNN (feedforward) | pixels | final | 4,032.0 | 1,250.5 / death | 1,854.3 ± 924.3 [±345] | 3,642.9 | 0/30 |
 | PPO RAM-only MLP (17-d) | RAM 17 | best | 4,032.0 | 1,250.5 / death | 1,165.5 ± 747.4 [±279] | 3,618.2 | 0/30 |
 | PPO RAM-only MLP (17-d) | RAM 17 | final | 4,032.0 | 336.5 / death | 1,238.8 ± 821.0 [±307] | 3,239.6 | 0/30 |
@@ -610,15 +612,25 @@ not re-trained.
 | PPO RAM + Geometry MLP (23-d) | RAM 23 | final | 4,032.0 | 1,250.5 / death | 1,583.1 ± 892.8 [±333] | 4,019.0 | 1/30 |
 | PPO GNN MeanMPNN (entity graph) | graph | best | 4,032.0 | 336.5 / death | 1,272.0 ± 775.9 [±290] | 3,232.0 | 0/30 |
 | PPO GNN MeanMPNN (entity graph) | graph | final | 4,032.0 | 1,250.5 / death | 1,278.0 ± 810.9 [±303] | 3,248.4 | 0/30 |
-| World Models V+M+C, GA | pixels | best | 4,028.0 | 4,028.0 / clear | n/a (argmax) | — | — |
-| World Models V+M+C, sep-CMA-ES | pixels | best | 4,032.0 | 4,032.0 / clear | n/a (argmax) | — | — |
+| World Models V+M+C, GA | pixels | best | 4,028.0 | 353.9 / death | n/a (argmax) | — | — |
+| World Models V+M+C, sep-CMA-ES | pixels | best | 4,032.0 | 1,250.5 / death | n/a (argmax) | — | — |
 | Neuroevolution MLP (4ao, ref.) | RAM 23 | ref | — | 4,020.0 / clear | n/a (argmax) | — | — |
 | IQN (4ap, ref.) | RAM 23 | ref | — | 2,913.0 / death | n/a (argmax) | — | — |
 | Rainbow DQN (4aq, ref.) | RAM 23 | ref | — | 2,996.8 / death | n/a (argmax) | — | — |
 | PPO RAM MLP (4ar, ref.) | RAM 23 | ref | — | 336.5 / death | 936.1 ± 605.6 [±226] | 2,681.6 | 0/30 |
-| PPO NatureCNN (4as, ref.) | pixels | ref | — | 88.0 / stall | 985.5 ± 535.0 [±200] | 2,019.2 | 0/30 |
+| PPO NatureCNN (4as, ref.) | pixels | ref | — | 88.0 / stall | 936.8 ± 474.5 [±177] | 1,722.5 | 0/30 |
 | PPO IMPALA (4at, ref.) | pixels | ref | — | 1,250.5 / death | 1,154.0 ± 852.2 [±318] | 3,607.9 | 0/30 |
 | Visual GA CNN (4at, ref.) | pixels | ref | — | 2,566.5 / death | n/a (argmax) | — | — |
+
+Training-seed robustness (`final` checkpoints, 30 sampled episodes per seed):
+
+| Arm | Seeds | Stoch mean per seed (px) | Across seeds: mean ± sd (px) | Stoch clears | Argmax end per seed |
+| :--- | :---: | :--- | :--- | ---: | :--- |
+| RecurrentPPO + CURL | 3 | 1,665.5 / 1,046.1 / 926.5 | 1,212.7 ± 396.7 | 1/90 | 1,251 death / 1,251 death / 1,251 death |
+| RecurrentPPO + ICM + Autoencoder | 2 | 1,063.2 / 1,173.1 | 1,118.2 ± 77.7 | 1/60 | 1,251 death / 336 death |
+| Causal Transformer IMPALA + SPR | 2 | 1,322.4 / 1,251.4 | 1,286.9 ± 50.2 | 0/60 | 1,251 death / 1,251 death |
+| PPO NatureCNN (feedforward) | 3 | 1,854.3 / 1,762.8 / 2,523.4 | 2,046.8 ± 415.3 | 7/90 | 1,251 death / 336 death / 1,251 death |
+| PPO RAM + Geometry MLP (23-d) | 3 | 1,583.1 / 1,355.2 / 1,239.0 | 1,392.5 ± 175.0 | 1/90 | 1,251 death / 1,251 death / 1,251 death |
 <!-- rebench-table:end -->
 
 `Train best x` is the highest X any training episode reached. "n/a (argmax)"

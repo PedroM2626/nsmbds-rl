@@ -118,37 +118,37 @@
     "seed_block": 100
    },
    {
-    "max_x_px": 942.316162109375,
-    "final_x_px": 942.316162109375,
-    "steps": 130,
-    "return": 57.89476013183594,
+    "max_x_px": 300.99609375,
+    "final_x_px": 300.99609375,
+    "steps": 51,
+    "return": 17.812255859375,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 335.2421875,
-    "final_x_px": 335.2421875,
-    "steps": 39,
-    "return": 19.95263671875,
+    "max_x_px": 940.64208984375,
+    "final_x_px": 940.64208984375,
+    "steps": 133,
+    "return": 57.790130615234375,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 1499.48046875,
-    "final_x_px": 1499.48046875,
-    "steps": 224,
-    "return": 92.717529296875,
+    "max_x_px": 941.36181640625,
+    "final_x_px": 941.36181640625,
+    "steps": 149,
+    "return": 57.835113525390625,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 2019.226318359375,
-    "final_x_px": 2019.226318359375,
-    "steps": 194,
-    "return": 125.20164489746094,
+    "max_x_px": 1090.054443359375,
+    "final_x_px": 1090.054443359375,
+    "steps": 138,
+    "return": 67.12840270996094,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
@@ -298,63 +298,63 @@
     "seed_block": 300
    },
    {
-    "max_x_px": 1800.999755859375,
-    "final_x_px": 1709.031005859375,
-    "steps": 224,
-    "return": 111.56248474121094,
+    "max_x_px": 1241.14111328125,
+    "final_x_px": 1224.0,
+    "steps": 197,
+    "return": 76.57131958007812,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    },
    {
-    "max_x_px": 940.7138671875,
-    "final_x_px": 940.7138671875,
-    "steps": 108,
-    "return": 57.79461669921875,
+    "max_x_px": 1121.15283203125,
+    "final_x_px": 1121.15283203125,
+    "steps": 173,
+    "return": 69.07205200195312,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    },
    {
-    "max_x_px": 937.296142578125,
-    "final_x_px": 937.296142578125,
-    "steps": 86,
-    "return": 57.58100891113281,
+    "max_x_px": 934.179443359375,
+    "final_x_px": 934.179443359375,
+    "steps": 140,
+    "return": 57.38621520996094,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    },
    {
-    "max_x_px": 939.657470703125,
-    "final_x_px": 939.657470703125,
-    "steps": 109,
-    "return": 57.72859191894531,
+    "max_x_px": 1385.948974609375,
+    "final_x_px": 1246.421630859375,
+    "steps": 173,
+    "return": 85.62181091308594,
     "cleared": false,
     "termination": "death",
     "seed_block": 300
    }
   ],
   "n": 30,
-  "mean_max_x_px": 985.4981119791667,
-  "sd_max_x_px": 534.9543392778315,
-  "ci95_halfwidth_px": 199.73280428802622,
-  "median_max_x_px": 942.3885498046875,
-  "max_max_x_px": 2019.226318359375,
+  "mean_max_x_px": 936.8495930989583,
+  "sd_max_x_px": 474.4997492002344,
+  "ci95_halfwidth_px": 177.1612240208542,
+  "median_max_x_px": 942.9276123046875,
+  "max_max_x_px": 1722.503662109375,
   "min_max_x_px": 281.070068359375,
   "clears": 0,
   "clear_rate": 0.0,
-  "mean_return": 60.593631998697916,
-  "mean_steps": 131.63333333333333,
+  "mean_return": 57.55309956868489,
+  "mean_steps": 132.96666666666667,
   "terminations": {
    "death": 30
   }
  },
- "wall_s": 627.4805781841278,
+ "wall_s": 399.26162123680115,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-01T02:59:15+00:00",
+  "recorded_at_utc": "2026-11-02T02:40:19+00:00",
   "git": {
-   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -394,7 +394,11 @@
    "--algo",
    "ppo",
    "--name",
-   "ref_visual_simple"
+   "ref_visual_simple",
+   "--state",
+   "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+   "--out",
+   "scratch/fresh_ref\\eval_ref_visual_simple.json"
   ],
   "seed": [
    100,

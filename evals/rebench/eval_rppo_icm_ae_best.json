@@ -226,19 +226,19 @@
     "seed_block": 200
    },
    {
-    "max_x_px": 4032.0,
-    "final_x_px": 4032.0,
-    "steps": 290,
-    "return": 262.0,
-    "cleared": true,
-    "termination": "clear",
+    "max_x_px": 330.226318359375,
+    "final_x_px": 330.226318359375,
+    "steps": 39,
+    "return": 19.639144897460938,
+    "cleared": false,
+    "termination": "death",
     "seed_block": 200
    },
    {
-    "max_x_px": 2689.964599609375,
-    "final_x_px": 2689.964599609375,
-    "steps": 193,
-    "return": 167.12278747558594,
+    "max_x_px": 3001.991943359375,
+    "final_x_px": 3001.991943359375,
+    "steps": 213,
+    "return": 186.62449645996094,
     "cleared": false,
     "termination": "death",
     "seed_block": 200
@@ -335,27 +335,27 @@
    }
   ],
   "n": 30,
-  "mean_max_x_px": 1641.4867594401042,
-  "sd_max_x_px": 1085.6817601512105,
-  "ci95_halfwidth_px": 405.3547127257552,
-  "median_max_x_px": 1330.351318359375,
+  "mean_max_x_px": 1528.49521484375,
+  "sd_max_x_px": 1026.4761941259915,
+  "ci95_halfwidth_px": 383.2494733372111,
+  "median_max_x_px": 1138.5311279296875,
   "max_max_x_px": 4032.0,
   "min_max_x_px": 286.870849609375,
-  "clears": 2,
-  "clear_rate": 0.06666666666666667,
-  "mean_return": 102.32625579833984,
-  "mean_steps": 120.26666666666667,
+  "clears": 1,
+  "clear_rate": 0.03333333333333333,
+  "mean_return": 94.89761759440104,
+  "mean_steps": 112.56666666666666,
   "terminations": {
-   "death": 28,
-   "clear": 2
+   "death": 29,
+   "clear": 1
   }
  },
- "wall_s": 409.1546776294708,
+ "wall_s": 428.7238631248474,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-01T04:20:33+00:00",
+  "recorded_at_utc": "2026-11-02T02:47:40+00:00",
   "git": {
-   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -391,7 +391,11 @@
    "--arm",
    "rppo_icm_ae",
    "--which",
-   "best"
+   "best",
+   "--state",
+   "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+   "--out",
+   "scratch/fresh_ref\\eval_rppo_icm_ae_best.json"
   ],
   "seed": [
    100,

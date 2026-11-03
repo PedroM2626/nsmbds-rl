@@ -63,6 +63,27 @@ def _counter(value):
     return [("poke", a, 4, value) for a in FRAME_COUNTER]
 
 
+# The game's random-number state (u32) and the word beside it. A cold boot seeds
+# it from the host clock (the DS RTC), so two builds differed and enemy
+# randomness (3-1's fish) diverged. It is pinned to a constant before the
+# course loads, so level generation is identical on every build, and set to the
+# reference state's value before saving, so play continues the reference's
+# random sequence (4bb).
+RNG, RNG_AUX = 0x0209B0C8, 0x0209B0A8
+RNG_PIN = ("poke", RNG, 4, 0x1234ABCD)
+RNG_REF = {   # reference state values (tools/calibrate_state.py, 4bb)
+    "1-1": (2855543668, 154), "1-2": (547950298, 244), "2-1": (3480597183, 245),
+    "3-1": (2588095333, 186), "3-1_main": (863453123, 174), "4-1": (1605521488, 16),
+    "5-1": (3621695768, 54), "6-1": (3434784383, 14), "7-1": (3166499653, 160),
+    "8-1": (3776202323, 205),
+}
+
+
+def _rng(course):
+    rng, aux = RNG_REF[course]
+    return [("poke", RNG, 4, rng), ("poke", RNG_AUX, 4, aux)]
+
+
 AREA_ID, AREA_ID2 = 0x020980D4, 0x0209B59E          # enter_course.py
 STAGE_ID, STAGE_GROUP, STAGE_AREA = 0x02098054, 0x02098058, 0x0209808C
 
@@ -77,6 +98,7 @@ COURSES = {
     "1-1": {
         "out": paths.STATE_REL,
         "script": _TO_WORLD1_MAP + [
+            RNG_PIN,
             ("key", "A"),         # enter 1-1
             # 342 frames after entry the stage timer equals the reference
             # state's to the last bit (obs[6] identical, 4ba); with the frame
@@ -84,6 +106,7 @@ COURSES = {
             # arms' sampled episodes reproduce exactly (4ba).
             ("wait", 342),
             *_counter(11856),
+            *_rng("1-1"),
             ("save",),
         ],
     },
@@ -92,15 +115,16 @@ COURSES = {
 LIVES = 0x0209DC00
 
 
-def _entered(area_index, stage_id, group, stage_area, frame, counter, extra=(), progress=()):
+def _entered(course, area_index, stage_id, group, stage_area, frame, counter, extra=(), progress=()):
     """Map A-press with the course-id writes held (tools/enter_course.py), saved
     `frame` cycles later. `counter`, `extra` (held through the transition) and
     `progress` (written once before saving) are the reference state's values,
     read by tools/calibrate_state.py (4ba)."""
     writes = course_writes(area_index, stage_id, group, stage_area) + list(extra)
-    return _TO_WORLD1_MAP + [("key", "A"), ("hold", frame, writes), *_counter(counter),
+    return _TO_WORLD1_MAP + [RNG_PIN, ("key", "A"), ("hold", frame, writes), *_counter(counter),
                              *[("poke", *w) for w in extra],
-                             *[("poke", addr, 4, v) for addr, v in progress], ("save",)]
+                             *[("poke", addr, 4, v) for addr, v in progress], *_rng(course),
+                             ("save",)]
 
 
 # Player progress the reference states carried (coins, score and their copies,
@@ -137,7 +161,7 @@ _ENTERED = {
             287, 3523, ((LIVES, 1, 99),), _COMPLETED_SAVE),
 }
 for _c, (_out, _area, _sg, _frame, _ctr, _extra, _prog) in _ENTERED.items():
-    COURSES[_c] = {"out": _out, "script": _entered(_area, *_sg, _frame, _ctr, _extra, _prog)}
+    COURSES[_c] = {"out": _out, "script": _entered(_c, _area, *_sg, _frame, _ctr, _extra, _prog)}
 
 
 def state_course(state_path):

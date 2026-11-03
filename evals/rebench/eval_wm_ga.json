@@ -21,53 +21,53 @@
  "det": {
   "episodes": [
    {
-    "max_x_px": 4027.956787109375,
-    "final_x_px": 4027.956787109375,
-    "steps": 248,
-    "return": 261.74729919433594,
-    "cleared": true,
-    "termination": "clear"
+    "max_x_px": 353.93359375,
+    "final_x_px": 353.93359375,
+    "steps": 34,
+    "return": 21.120849609375,
+    "cleared": false,
+    "termination": "death"
    },
    {
-    "max_x_px": 4027.956787109375,
-    "final_x_px": 4027.956787109375,
-    "steps": 248,
-    "return": 261.74729919433594,
-    "cleared": true,
-    "termination": "clear"
+    "max_x_px": 353.93359375,
+    "final_x_px": 353.93359375,
+    "steps": 34,
+    "return": 21.120849609375,
+    "cleared": false,
+    "termination": "death"
    },
    {
-    "max_x_px": 4027.956787109375,
-    "final_x_px": 4027.956787109375,
-    "steps": 248,
-    "return": 261.74729919433594,
-    "cleared": true,
-    "termination": "clear"
+    "max_x_px": 353.93359375,
+    "final_x_px": 353.93359375,
+    "steps": 34,
+    "return": 21.120849609375,
+    "cleared": false,
+    "termination": "death"
    }
   ],
   "identical": true,
   "n": 3,
-  "mean_max_x_px": 4027.956787109375,
+  "mean_max_x_px": 353.93359375,
   "sd_max_x_px": 0.0,
   "ci95_halfwidth_px": null,
-  "median_max_x_px": 4027.956787109375,
-  "max_max_x_px": 4027.956787109375,
-  "min_max_x_px": 4027.956787109375,
-  "clears": 3,
-  "clear_rate": 1.0,
-  "mean_return": 261.74729919433594,
-  "mean_steps": 248.0,
+  "median_max_x_px": 353.93359375,
+  "max_max_x_px": 353.93359375,
+  "min_max_x_px": 353.93359375,
+  "clears": 0,
+  "clear_rate": 0.0,
+  "mean_return": 21.120849609375,
+  "mean_steps": 34.0,
   "terminations": {
-   "clear": 3
+   "death": 3
   }
  },
  "stoch": null,
- "wall_s": 42.63969540596008,
+ "wall_s": 12.447057485580444,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-01T07:16:19+00:00",
+  "recorded_at_utc": "2026-11-02T02:52:57+00:00",
   "git": {
-   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -101,7 +101,11 @@
   "argv": [
    "eval_rebench.py",
    "--arm",
-   "wm_ga"
+   "wm_ga",
+   "--state",
+   "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+   "--out",
+   "scratch/fresh_ref\\eval_wm_ga.json"
   ],
   "seed": [
    100,

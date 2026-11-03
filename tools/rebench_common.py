@@ -228,7 +228,12 @@ def policy_spec(arm):
         kw.update(enable_critic_lstm=True, lstm_hidden_size=256)
         if cfg.get("policy") == "transformer":
             from transformer_policy import RecurrentTransformerActorCriticPolicy
-            kw.update(context_len=16, nhead=8)
+            # math_attention: the CUDA memory-efficient attention backward
+            # produced the NaN that ended the 4az runs; train_window/dropout 0:
+            # the PPO update re-computes exactly the acting policy's
+            # log-probs (PROJECT_STATUS 4bb).
+            kw.update(context_len=16, nhead=8, train_window=True, dropout=0.0,
+                      math_attention=True)
             return RecurrentTransformerActorCriticPolicy, kw
         return "CnnLstmPolicy", kw
     if cfg["obs"] == "pixels":

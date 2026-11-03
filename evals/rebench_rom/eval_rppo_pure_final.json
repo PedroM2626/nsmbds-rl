@@ -349,12 +349,12 @@
    "death": 30
   }
  },
- "wall_s": 294.50368332862854,
+ "wall_s": 293.01664566993713,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-02T01:24:43+00:00",
+  "recorded_at_utc": "2026-11-02T05:12:48+00:00",
   "git": {
-   "commit": "542644af417ceec67a879d3ca879e3f23b5ad832",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -365,8 +365,8 @@
    },
    "state": {
     "path": "scratch/rom_11.ds1",
-    "sha1": "88adcc239725edc78644a32df6ebf442843cd0eb",
-    "bytes": 2353607
+    "sha1": "a1d170ca5a654ef43dae90c6395741d44c4b31b1",
+    "bytes": 2353627
    }
   },
   "python": "3.11.9",
@@ -394,7 +394,7 @@
    "--state",
    "D:\\mario-ds\\scratch\\rom_11.ds1",
    "--out",
-   "D:\\mario-ds\\scratch\\verify_rom\\eval_rppo_pure_final.json"
+   "D:\\mario-ds\\scratch\\verify_rom2\\eval_rppo_pure_final.json"
   ],
   "seed": [
    100,

@@ -127,30 +127,30 @@
     "seed_block": 100
    },
    {
-    "max_x_px": 939.47802734375,
-    "final_x_px": 939.47802734375,
-    "steps": 76,
-    "return": 57.717376708984375,
+    "max_x_px": 1131.67138671875,
+    "final_x_px": 1131.67138671875,
+    "steps": 79,
+    "return": 69.72946166992188,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 1137.47265625,
-    "final_x_px": 1137.47265625,
-    "steps": 65,
-    "return": 70.092041015625,
+    "max_x_px": 2241.652099609375,
+    "final_x_px": 2241.652099609375,
+    "steps": 157,
+    "return": 139.10325622558594,
     "cleared": false,
     "termination": "death",
     "seed_block": 100
    },
    {
-    "max_x_px": 4019.5546875,
-    "final_x_px": 4019.5546875,
-    "steps": 300,
-    "return": 261.22216796875,
-    "cleared": true,
-    "termination": "clear",
+    "max_x_px": 349.347412109375,
+    "final_x_px": 349.347412109375,
+    "steps": 31,
+    "return": 20.834213256835938,
+    "cleared": false,
+    "termination": "death",
     "seed_block": 100
    },
    {
@@ -235,10 +235,10 @@
     "seed_block": 200
    },
    {
-    "max_x_px": 1100.148193359375,
-    "final_x_px": 1100.148193359375,
-    "steps": 90,
-    "return": 67.75926208496094,
+    "max_x_px": 353.9609375,
+    "final_x_px": 353.9609375,
+    "steps": 31,
+    "return": 21.12255859375,
     "cleared": false,
     "termination": "death",
     "seed_block": 200
@@ -335,27 +335,26 @@
    }
   ],
   "n": 30,
-  "mean_max_x_px": 1261.3353271484375,
-  "sd_max_x_px": 929.0482554843369,
-  "ci95_halfwidth_px": 346.87336799115656,
-  "median_max_x_px": 1098.2451171875,
-  "max_max_x_px": 4019.5546875,
+  "mean_max_x_px": 1157.3346028645833,
+  "sd_max_x_px": 821.8251174687957,
+  "ci95_halfwidth_px": 306.8400857687581,
+  "median_max_x_px": 1093.9521484375,
+  "max_max_x_px": 3618.269287109375,
   "min_max_x_px": 332.499755859375,
-  "clears": 1,
-  "clear_rate": 0.03333333333333333,
-  "mean_return": 78.200124613444,
-  "mean_steps": 97.56666666666666,
+  "clears": 0,
+  "clear_rate": 0.0,
+  "mean_return": 71.33341267903646,
+  "mean_steps": 89.8,
   "terminations": {
-   "death": 29,
-   "clear": 1
+   "death": 30
   }
  },
- "wall_s": 340.5542459487915,
+ "wall_s": 341.64203691482544,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-01T04:19:27+00:00",
+  "recorded_at_utc": "2026-11-02T02:44:04+00:00",
   "git": {
-   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -391,7 +390,11 @@
    "--arm",
    "rppo_curl",
    "--which",
-   "best"
+   "best",
+   "--state",
+   "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+   "--out",
+   "scratch/fresh_ref\\eval_rppo_curl_best.json"
   ],
   "seed": [
    100,

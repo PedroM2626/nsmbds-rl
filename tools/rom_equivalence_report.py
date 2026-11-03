@@ -21,7 +21,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(ROOT, "src"))
 
 KEYS = ("max_x_px", "final_x_px", "steps", "termination", "return")
-# `tools/make_states.py --verify`, 2026-11-01: published evaluation replayed
+# `tools/make_states.py --verify`, 2026-11-02 (RNG pinned, 4bb): published evaluation replayed
 # (all episodes) on each ROM-built course state.
 COURSES = {
     "1-1": ("exact", "pinn_realtime_eval.json parity + eval_genetic_w11.json, 5/5 episodes identical"),
@@ -32,8 +32,8 @@ COURSES = {
     "8-1": ("exact", "eval_8_1_clear.json, 5/5 identical"),
     "1-2": ("outcome", "eval_1_2_clear.json: same 326 steps, goal, final X 4038.77; total reward 4029.47 vs 4026.47"),
     "7-1": ("outcome", "eval_special_71_full_clear.json: same 809-step clear, reward 2259.55; enemy 221 1 px off from step 27"),
-    "3-1": ("differs", "eval_special_31_full_clear.json: route dies at step 183 (731.4 px) vs clear at 557"),
-    "3-1_main": ("differs", "eval_special_31_main_clear.json: route dies at step 90 vs clear at 497"),
+    "3-1": ("outcome", "eval_special_31_full_clear.json: same 557-step clear, total reward 3744.15; per-step reward differs from step 71"),
+    "3-1_main": ("outcome", "eval_special_31_main_clear.json: same 497-step clear, total reward 3747.15; per-step reward differs from step 37"),
 }
 
 

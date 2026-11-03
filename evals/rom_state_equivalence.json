@@ -34,12 +34,12 @@
    "detail": "eval_special_71_full_clear.json: same 809-step clear, reward 2259.55; enemy 221 1 px off from step 27"
   },
   "3-1": {
-   "status": "differs",
-   "detail": "eval_special_31_full_clear.json: route dies at step 183 (731.4 px) vs clear at 557"
+   "status": "outcome",
+   "detail": "eval_special_31_full_clear.json: same 557-step clear, total reward 3744.15; per-step reward differs from step 71"
   },
   "3-1_main": {
-   "status": "differs",
-   "detail": "eval_special_31_main_clear.json: route dies at step 90 vs clear at 497"
+   "status": "outcome",
+   "detail": "eval_special_31_main_clear.json: same 497-step clear, total reward 3747.15; per-step reward differs from step 37"
   }
  },
  "rebench_1_1": {
@@ -70,23 +70,23 @@
   "ppo_naturecnn_best": {
    "obs": "pixels",
    "episodes": 33,
-   "differing_episodes": 21,
+   "differing_episodes": 4,
    "identical": false,
    "reference_state": {
     "det_max_x_px": 1250.527099609375,
     "det_termination": "death",
     "det_steps": 89,
-    "stoch_mean_max_x_px": 1132.413240559896,
-    "stoch_sd_max_x_px": 524.9384266592054,
+    "stoch_mean_max_x_px": 1317.3324788411458,
+    "stoch_sd_max_x_px": 768.5304442010049,
     "stoch_clears": 0
    },
    "rom_built_state": {
     "det_max_x_px": 1250.527099609375,
     "det_termination": "death",
     "det_steps": 89,
-    "stoch_mean_max_x_px": 1533.4311442057292,
-    "stoch_sd_max_x_px": 995.8925281793195,
-    "stoch_clears": 1
+    "stoch_mean_max_x_px": 1325.2995361328126,
+    "stoch_sd_max_x_px": 774.1446967114672,
+    "stoch_clears": 0
    }
   },
   "ppo_naturecnn_final": {
@@ -106,9 +106,9 @@
     "det_max_x_px": 1250.527099609375,
     "det_termination": "death",
     "det_steps": 89,
-    "stoch_mean_max_x_px": 1989.3392903645833,
-    "stoch_sd_max_x_px": 1003.5254653942835,
-    "stoch_clears": 1
+    "stoch_mean_max_x_px": 1913.0519205729167,
+    "stoch_sd_max_x_px": 928.1537311237852,
+    "stoch_clears": 0
    }
   },
   "ppo_ram17_best": {
@@ -174,46 +174,30 @@
   "ref_visual_simple": {
    "obs": "pixels",
    "episodes": 33,
-   "differing_episodes": 12,
+   "differing_episodes": 1,
    "identical": false,
    "reference_state": {
     "det_max_x_px": 88.0,
     "det_termination": "stall",
     "det_steps": 31,
-    "stoch_mean_max_x_px": 985.4981119791667,
-    "stoch_sd_max_x_px": 534.9543392778315,
+    "stoch_mean_max_x_px": 936.8495930989583,
+    "stoch_sd_max_x_px": 474.4997492002344,
     "stoch_clears": 0
    },
    "rom_built_state": {
     "det_max_x_px": 88.0,
     "det_termination": "stall",
     "det_steps": 31,
-    "stoch_mean_max_x_px": 1002.6687255859375,
-    "stoch_sd_max_x_px": 561.9927897579786,
+    "stoch_mean_max_x_px": 921.978759765625,
+    "stoch_sd_max_x_px": 466.8690538445323,
     "stoch_clears": 0
    }
   },
   "rppo_ae_best": {
    "obs": "pixels",
    "episodes": 33,
-   "differing_episodes": 11,
-   "identical": false,
-   "reference_state": {
-    "det_max_x_px": 1250.527099609375,
-    "det_termination": "death",
-    "det_steps": 89,
-    "stoch_mean_max_x_px": 1068.8627848307292,
-    "stoch_sd_max_x_px": 790.5664703601941,
-    "stoch_clears": 0
-   },
-   "rom_built_state": {
-    "det_max_x_px": 1250.527099609375,
-    "det_termination": "death",
-    "det_steps": 89,
-    "stoch_mean_max_x_px": 1075.2796712239583,
-    "stoch_sd_max_x_px": 881.5477747165233,
-    "stoch_clears": 0
-   }
+   "differing_episodes": 0,
+   "identical": true
   },
   "rppo_ae_final": {
    "obs": "pixels",
@@ -224,24 +208,8 @@
   "rppo_curl_best": {
    "obs": "pixels",
    "episodes": 33,
-   "differing_episodes": 7,
-   "identical": false,
-   "reference_state": {
-    "det_max_x_px": 1250.527099609375,
-    "det_termination": "death",
-    "det_steps": 89,
-    "stoch_mean_max_x_px": 1261.3353271484375,
-    "stoch_sd_max_x_px": 929.0482554843369,
-    "stoch_clears": 1
-   },
-   "rom_built_state": {
-    "det_max_x_px": 1250.527099609375,
-    "det_termination": "death",
-    "det_steps": 89,
-    "stoch_mean_max_x_px": 1208.3276448567708,
-    "stoch_sd_max_x_px": 766.7701042869392,
-    "stoch_clears": 1
-   }
+   "differing_episodes": 0,
+   "identical": true
   },
   "rppo_curl_final": {
    "obs": "pixels",
@@ -322,7 +290,7 @@
   "rppo_impala_curl_final": {
    "obs": "pixels",
    "episodes": 33,
-   "differing_episodes": 15,
+   "differing_episodes": 17,
    "identical": false,
    "reference_state": {
     "det_max_x_px": 4027.956787109375,
@@ -336,9 +304,9 @@
     "det_max_x_px": 4027.956787109375,
     "det_termination": "clear",
     "det_steps": 209,
-    "stoch_mean_max_x_px": 1617.1685302734375,
-    "stoch_sd_max_x_px": 1006.8496695733277,
-    "stoch_clears": 1
+    "stoch_mean_max_x_px": 1558.4228190104166,
+    "stoch_sd_max_x_px": 874.1702288227232,
+    "stoch_clears": 0
    }
   },
   "rppo_pure_best": {
@@ -380,55 +348,23 @@
   "wm_cma": {
    "obs": "pixels",
    "episodes": 3,
-   "differing_episodes": 3,
-   "identical": false,
-   "reference_state": {
-    "det_max_x_px": 4032.0,
-    "det_termination": "clear",
-    "det_steps": 233,
-    "stoch_mean_max_x_px": null,
-    "stoch_sd_max_x_px": null,
-    "stoch_clears": null
-   },
-   "rom_built_state": {
-    "det_max_x_px": 4032.0,
-    "det_termination": "clear",
-    "det_steps": 221,
-    "stoch_mean_max_x_px": null,
-    "stoch_sd_max_x_px": null,
-    "stoch_clears": null
-   }
+   "differing_episodes": 0,
+   "identical": true
   },
   "wm_ga": {
    "obs": "pixels",
    "episodes": 3,
-   "differing_episodes": 3,
-   "identical": false,
-   "reference_state": {
-    "det_max_x_px": 4027.956787109375,
-    "det_termination": "clear",
-    "det_steps": 248,
-    "stoch_mean_max_x_px": null,
-    "stoch_sd_max_x_px": null,
-    "stoch_clears": null
-   },
-   "rom_built_state": {
-    "det_max_x_px": 2913.464599609375,
-    "det_termination": "death",
-    "det_steps": 200,
-    "stoch_mean_max_x_px": null,
-    "stoch_sd_max_x_px": null,
-    "stoch_clears": null
-   }
+   "differing_episodes": 0,
+   "identical": true
   }
  },
- "rebench_identical": 30,
+ "rebench_identical": 34,
  "rebench_total": 39,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-02T01:30:05+00:00",
+  "recorded_at_utc": "2026-11-02T05:22:49+00:00",
   "git": {
-   "commit": "542644af417ceec67a879d3ca879e3f23b5ad832",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {

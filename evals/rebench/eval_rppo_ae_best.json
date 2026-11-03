@@ -349,12 +349,12 @@
    "death": 30
   }
  },
- "wall_s": 345.71559500694275,
+ "wall_s": 263.23843789100647,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-01T06:07:47+00:00",
+  "recorded_at_utc": "2026-11-02T02:38:03+00:00",
   "git": {
-   "commit": "2f225e0ae15e63f1732a5a4ceae7ae3ea5a4e03f",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -390,7 +390,11 @@
    "--arm",
    "rppo_ae",
    "--which",
-   "best"
+   "best",
+   "--state",
+   "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+   "--out",
+   "scratch/fresh_ref\\eval_rppo_ae_best.json"
   ],
   "seed": [
    100,

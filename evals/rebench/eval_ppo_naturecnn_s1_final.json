@@ -1,0 +1,405 @@
+{
+ "name": "ppo_naturecnn_s1_final",
+ "arm": "ppo_naturecnn",
+ "checkpoint": "models/rebench/ppo_naturecnn_s1_final.zip",
+ "obs": "pixels",
+ "algo": "ppo",
+ "protocol": {
+  "actions": "v2 (8)",
+  "reward": "potential max-x /16, +10 clear, -1 death",
+  "stall_limit": 30,
+  "step_cap": 1000,
+  "det_eps": 3,
+  "stoch_seeds": [
+   100,
+   200,
+   300
+  ],
+  "stoch_per_seed": 10,
+  "ci": "Student-t 95%, sd ddof=1"
+ },
+ "det": {
+  "episodes": [
+   {
+    "max_x_px": 336.49609375,
+    "final_x_px": 336.49609375,
+    "steps": 36,
+    "return": 20.031005859375,
+    "cleared": false,
+    "termination": "death"
+   },
+   {
+    "max_x_px": 336.49609375,
+    "final_x_px": 336.49609375,
+    "steps": 36,
+    "return": 20.031005859375,
+    "cleared": false,
+    "termination": "death"
+   },
+   {
+    "max_x_px": 336.49609375,
+    "final_x_px": 336.49609375,
+    "steps": 36,
+    "return": 20.031005859375,
+    "cleared": false,
+    "termination": "death"
+   }
+  ],
+  "identical": true,
+  "n": 3,
+  "mean_max_x_px": 336.49609375,
+  "sd_max_x_px": 0.0,
+  "ci95_halfwidth_px": null,
+  "median_max_x_px": 336.49609375,
+  "max_max_x_px": 336.49609375,
+  "min_max_x_px": 336.49609375,
+  "clears": 0,
+  "clear_rate": 0.0,
+  "mean_return": 20.031005859375,
+  "mean_steps": 36.0,
+  "terminations": {
+   "death": 3
+  }
+ },
+ "stoch": {
+  "episodes": [
+   {
+    "max_x_px": 336.87109375,
+    "final_x_px": 336.87109375,
+    "steps": 36,
+    "return": 20.054443359375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 2680.859375,
+    "final_x_px": 2673.7109375,
+    "steps": 219,
+    "return": 166.5537109375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 1242.851318359375,
+    "final_x_px": 1242.851318359375,
+    "steps": 112,
+    "return": 76.67820739746094,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 2686.132568359375,
+    "final_x_px": 2686.132568359375,
+    "steps": 234,
+    "return": 166.88328552246094,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 1496.96875,
+    "final_x_px": 1496.96875,
+    "steps": 120,
+    "return": 92.560546875,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 4019.581787109375,
+    "final_x_px": 4019.581787109375,
+    "steps": 329,
+    "return": 261.22386169433594,
+    "cleared": true,
+    "termination": "clear",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 4026.804443359375,
+    "final_x_px": 4026.804443359375,
+    "steps": 310,
+    "return": 261.67527770996094,
+    "cleared": true,
+    "termination": "clear",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 2045.751708984375,
+    "final_x_px": 2045.751708984375,
+    "steps": 150,
+    "return": 126.85948181152344,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 336.49609375,
+    "final_x_px": 336.49609375,
+    "steps": 36,
+    "return": 20.031005859375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 1730.175537109375,
+    "final_x_px": 1730.175537109375,
+    "steps": 145,
+    "return": 107.13597106933594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 100
+   },
+   {
+    "max_x_px": 2894.714599609375,
+    "final_x_px": 2894.714599609375,
+    "steps": 244,
+    "return": 179.91966247558594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 3613.495849609375,
+    "final_x_px": 3613.495849609375,
+    "steps": 286,
+    "return": 224.84349060058594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 337.12109375,
+    "final_x_px": 337.12109375,
+    "steps": 36,
+    "return": 20.070068359375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 337.87109375,
+    "final_x_px": 337.87109375,
+    "steps": 36,
+    "return": 20.116943359375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 1499.0,
+    "final_x_px": 1499.0,
+    "steps": 132,
+    "return": 92.6875,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 3492.066162109375,
+    "final_x_px": 3492.066162109375,
+    "steps": 303,
+    "return": 217.25413513183594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 336.859375,
+    "final_x_px": 336.859375,
+    "steps": 36,
+    "return": 20.0537109375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 1733.51953125,
+    "final_x_px": 1733.51953125,
+    "steps": 159,
+    "return": 107.344970703125,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 2137.312255859375,
+    "final_x_px": 2137.312255859375,
+    "steps": 178,
+    "return": 132.58201599121094,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 1502.210693359375,
+    "final_x_px": 1502.210693359375,
+    "steps": 117,
+    "return": 92.88816833496094,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 200
+   },
+   {
+    "max_x_px": 1246.027099609375,
+    "final_x_px": 1246.027099609375,
+    "steps": 112,
+    "return": 76.87669372558594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 1496.8125,
+    "final_x_px": 1496.8125,
+    "steps": 131,
+    "return": 92.55078125,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 1496.7890625,
+    "final_x_px": 1496.7890625,
+    "steps": 127,
+    "return": 92.54931640625,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 326.468505859375,
+    "final_x_px": 326.468505859375,
+    "steps": 39,
+    "return": 19.404281616210938,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 3240.054443359375,
+    "final_x_px": 3240.054443359375,
+    "steps": 269,
+    "return": 201.50340270996094,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 2690.175537109375,
+    "final_x_px": 2690.175537109375,
+    "steps": 233,
+    "return": 167.13597106933594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 337.734375,
+    "final_x_px": 337.734375,
+    "steps": 36,
+    "return": 20.1083984375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 336.359375,
+    "final_x_px": 336.359375,
+    "steps": 36,
+    "return": 20.0224609375,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 1730.175537109375,
+    "final_x_px": 1730.175537109375,
+    "steps": 152,
+    "return": 107.13597106933594,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   },
+   {
+    "max_x_px": 1495.5,
+    "final_x_px": 1495.5,
+    "steps": 132,
+    "return": 92.46875,
+    "cleared": false,
+    "termination": "death",
+    "seed_block": 300
+   }
+  ],
+  "n": 30,
+  "mean_max_x_px": 1762.7586588541667,
+  "sd_max_x_px": 1176.3101274644127,
+  "ci95_halfwidth_px": 439.19210149420127,
+  "median_max_x_px": 1500.6053466796875,
+  "max_max_x_px": 4026.804443359375,
+  "min_max_x_px": 326.468505859375,
+  "clears": 2,
+  "clear_rate": 0.06666666666666667,
+  "mean_return": 109.90574951171875,
+  "mean_steps": 149.5,
+  "terminations": {
+   "death": 28,
+   "clear": 2
+  }
+ },
+ "wall_s": 313.4903564453125,
+ "provenance": {
+  "schema": 1,
+  "recorded_at_utc": "2026-11-02T05:55:46+00:00",
+  "git": {
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
+   "dirty": true
+  },
+  "files": {
+   "rom": {
+    "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).nds",
+    "sha1": "b0f7886720e842ed922569e1bb5c39c0fa090331",
+    "bytes": 33554432
+   },
+   "state": {
+    "path": "data/0479 - New Super Mario Bros. (Europe) (En,Fr,De,Es,It).ds1",
+    "sha1": "16b5e0124e51e146284fc04940072adf3fdb9c0d",
+    "bytes": 2353702
+   }
+  },
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "packages": {
+   "numpy": "2.4.6",
+   "torch": "2.5.1+cu121",
+   "torchvision": null,
+   "py-desmume": "0.0.9",
+   "gymnasium": "0.29.1",
+   "stable-baselines3": "2.2.1",
+   "sb3-contrib": "2.2.1",
+   "opencv-python": "5.0.0.93",
+   "ndspy": "4.2.0",
+   "mlflow": "2.11.1",
+   "tensorboard": "2.21.0",
+   "sheeprl": null
+  },
+  "argv": [
+   "eval_rebench.py",
+   "--arm",
+   "ppo_naturecnn",
+   "--which",
+   "final",
+   "--seed",
+   "1"
+  ],
+  "seed": [
+   100,
+   200,
+   300
+  ],
+  "checkpoint": "models\\rebench\\ppo_naturecnn_s1_final.zip"
+ }
+}

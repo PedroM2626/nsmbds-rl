@@ -235,12 +235,12 @@
     "seed_block": 200
    },
    {
-    "max_x_px": 4017.945068359375,
-    "final_x_px": 4017.945068359375,
-    "steps": 252,
-    "return": 261.12156677246094,
-    "cleared": true,
-    "termination": "clear",
+    "max_x_px": 1729.323974609375,
+    "final_x_px": 1729.323974609375,
+    "steps": 124,
+    "return": 107.08274841308594,
+    "cleared": false,
+    "termination": "death",
     "seed_block": 200
    },
    {
@@ -335,27 +335,26 @@
    }
   ],
   "n": 30,
-  "mean_max_x_px": 1989.3392903645833,
-  "sd_max_x_px": 1003.5254653942835,
-  "ci95_halfwidth_px": 374.6804926346225,
+  "mean_max_x_px": 1913.0519205729167,
+  "sd_max_x_px": 928.1537311237852,
+  "ci95_halfwidth_px": 346.5393846099241,
   "median_max_x_px": 1385.624755859375,
-  "max_max_x_px": 4017.945068359375,
+  "max_max_x_px": 3642.882568359375,
   "min_max_x_px": 357.95703125,
-  "clears": 1,
-  "clear_rate": 0.03333333333333333,
-  "mean_return": 123.70037231445312,
-  "mean_steps": 124.9,
+  "clears": 0,
+  "clear_rate": 0.0,
+  "mean_return": 118.5657450358073,
+  "mean_steps": 120.63333333333334,
   "terminations": {
-   "death": 29,
-   "clear": 1
+   "death": 30
   }
  },
- "wall_s": 391.8795142173767,
+ "wall_s": 417.1478946208954,
  "provenance": {
   "schema": 1,
-  "recorded_at_utc": "2026-11-02T01:09:01+00:00",
+  "recorded_at_utc": "2026-11-02T04:28:35+00:00",
   "git": {
-   "commit": "542644af417ceec67a879d3ca879e3f23b5ad832",
+   "commit": "cc1b2ae0a5f13a6b4f91e26fe6f453215837deca",
    "dirty": true
   },
   "files": {
@@ -366,8 +365,8 @@
    },
    "state": {
     "path": "scratch/rom_11.ds1",
-    "sha1": "88adcc239725edc78644a32df6ebf442843cd0eb",
-    "bytes": 2353607
+    "sha1": "a1d170ca5a654ef43dae90c6395741d44c4b31b1",
+    "bytes": 2353627
    }
   },
   "python": "3.11.9",
@@ -395,7 +394,7 @@
    "--state",
    "D:\\mario-ds\\scratch\\rom_11.ds1",
    "--out",
-   "D:\\mario-ds\\scratch\\verify_rom\\eval_ppo_naturecnn_final.json"
+   "D:\\mario-ds\\scratch\\verify_rom2\\eval_ppo_naturecnn_final.json"
   ],
   "seed": [
    100,

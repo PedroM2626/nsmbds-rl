@@ -13,8 +13,24 @@ class CausalTransformerWrapper(nn.Module):
     A drop-in causal transformer wrapper that replicates the interface of nn.LSTM
     to process sequences for Stable Baselines 3 Recurrent PPO.
     """
-    def __init__(self, input_size: int, hidden_size: int, context_len: int = 16, nhead: int = 8, num_layers: int = 1):
+    def __init__(self, input_size: int, hidden_size: int, context_len: int = 16, nhead: int = 8, num_layers: int = 1,
+                 train_window: bool = False, dropout: float = 0.1, math_attention: bool = False):
         super().__init__()
+        # train_window: make the multi-step (PPO update) pass compute exactly what
+        # the one-step rollout pass computed -- each position attends to the 16
+        # inputs ending at itself, the stored history prepended. The legacy pass
+        # attended over the whole padded sequence (and dropout was active only in
+        # training), so PPO's re-computed log-probabilities were not those of the
+        # acting policy. Exact only for one layer (PROJECT_STATUS 4bb).
+        if train_window and num_layers != 1:
+            raise ValueError("train_window equivalence holds for a single attention layer")
+        self.train_window = train_window
+        # math_attention: run attention on PyTorch's plain "math" SDPA backend.
+        # The CUDA memory-efficient kernel's backward returned NaN gradients for
+        # these masked windows (autograd anomaly mode:
+        # ScaledDotProductEfficientAttentionBackward0) with finite inputs and
+        # weights -- the cause of every rtrf_impala_spr divergence (4bb).
+        self.math_attention = math_attention
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.context_len = context_len
@@ -28,13 +44,20 @@ class CausalTransformerWrapper(nn.Module):
             d_model=hidden_size,
             nhead=nhead,
             dim_feedforward=hidden_size * 4,
-            dropout=0.1,
+            dropout=dropout,
             activation='relu',
             batch_first=False
         )
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         
     def forward(self, x: torch.Tensor, states: tuple):
+        if self.math_attention:
+            from torch.nn.attention import SDPBackend, sdpa_kernel
+            with sdpa_kernel(SDPBackend.MATH):
+                return self._forward(x, states)
+        return self._forward(x, states)
+
+    def _forward(self, x: torch.Tensor, states: tuple):
         # x shape: (seq_len, batch_size, input_size)
         # states: (h, c) where h is shape (context_len, batch_size, hidden_size)
         h, c = states
@@ -43,6 +66,15 @@ class CausalTransformerWrapper(nn.Module):
         # Project inputs
         x_proj = self.input_proj(x) # (seq_len, batch_size, hidden_size)
         
+        if seq_len > 1 and self.train_window:
+            full = torch.cat([h, x_proj], dim=0)                     # (ctx + L, B, H)
+            n = full.shape[0]
+            idx = torch.arange(n, device=x.device)
+            lag = idx[:, None] - idx[None, :]
+            mask = torch.zeros(n, n, device=x.device)
+            mask[(lag < 0) | (lag >= self.context_len)] = float("-inf")
+            out = self.transformer(full, mask=mask)[self.context_len:]
+            return out, (full[-self.context_len:], c)
         if seq_len > 1:
             # Training pass (processes full rollout sequence of length e.g. 256)
             # Create a causal sequence mask to prevent step t from attending to future steps
@@ -103,6 +135,9 @@ class RecurrentTransformerActorCriticPolicy(RecurrentActorCriticPolicy):
         lstm_kwargs: Optional[Dict[str, Any]] = None,
         context_len: int = 16,
         nhead: int = 8,
+        train_window: bool = False,
+        dropout: float = 0.1,
+        math_attention: bool = False,
     ):
         # Initialize standard recurrent policy first
         super().__init__(
@@ -140,7 +175,10 @@ class RecurrentTransformerActorCriticPolicy(RecurrentActorCriticPolicy):
             hidden_size=lstm_hidden_size,
             context_len=context_len,
             nhead=nhead,
-            num_layers=n_lstm_layers
+            num_layers=n_lstm_layers,
+            train_window=train_window,
+            dropout=dropout,
+            math_attention=math_attention,
         ).to(self.device)
         
         if self.enable_critic_lstm:
@@ -149,7 +187,10 @@ class RecurrentTransformerActorCriticPolicy(RecurrentActorCriticPolicy):
                 hidden_size=lstm_hidden_size,
                 context_len=context_len,
                 nhead=nhead,
-                num_layers=n_lstm_layers
+                num_layers=n_lstm_layers,
+                train_window=train_window,
+                dropout=dropout,
+                math_attention=math_attention,
             ).to(self.device)
             
         # Re-initialize the optimizer with the new parameters
