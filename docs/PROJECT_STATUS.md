@@ -3429,10 +3429,77 @@ When running multi-worker training pipelines (`run_rebench.py --parallel 5 --num
 
 ---
 
+## 4bc. Deterministic Action Collapse, Physics Diagnostics, and the Rising-Edge Action Wrapper (2026-11-03)
+
+**Question.** Why do PPO policies that achieve stochastic clears (up to 7/90 clears, peak 4,032 px) collapse deterministically to identical failure points (1,250.5 px and 336.5 px), and can an Action Wrapper enforcing rising-edge semantics resolve the greedy evaluation barrier?
+
+**1. The Deterministic Collapse Phenomenon.**
+Across the 28 visual and RAM PPO checkpoints evaluated in 4az–4bb:
+- 21 checkpoints collapse deterministically to $1,250.5\text{ px}$ (step 89, death);
+- 5 checkpoints collapse deterministically to $336.5\text{ px}$ (step 36, death);
+- Only 1 gradient-trained policy cleared deterministically (`rppo_impala_curl_final`, 4,028.0 px, 209 steps).
+Yet under stochastic evaluation ($a \sim \pi(a|s)$), the same policies explore past these boundaries, reaching average distances over $2,000\text{ px}$ and touching the flagpole.
+
+**2. Empirical Kinematics and the "Bunny-Hop" Trap.**
+Step-by-step instrumented telemetry (`scratch/trace_naturecnn.py`, `scratch/trace_pit_flight.py`) on `ppo_naturecnn_s2_best` revealed the underlying mechanics:
+1. **Policy Logit Saturation:** In discrete action table V2, Action 4 (`RIGHT + DASH + JUMP`) yields the highest expected transition return during exploration. The softmax policy head converges to $P(\text{Action 4}) \approx 0.54$, with other actions sharing the remaining 46% ($P(\text{Act 2}) \approx 0.16$, $P(\text{Act 1}) \approx 0.05$, $P(\text{Act 3}) \approx 0.04$). Under greedy argmax evaluation ($a = \arg\max \pi(a|s)$), Action 4 is selected on **100% of steps**.
+2. **Auto-Pulse vs. Hardware Rising Edge:**
+   - On native Nintendo DS hardware, holding `KEY_A` across ground contact does not trigger a subsequent jump (the game engine requires a $0 \to 1$ transition on `KEY_A`). In `src/env.py` (`MarioNdsEnv`), this caused Mario to remain permanently grounded after the opening jump.
+   - In `src/ram_env.py` (`MarioRamEnv` and `DualObsEnv`), an internal 1-cycle release was applied on ground touchdown (`if is_jump and was_jump and grounded:`).
+3. **The Pit 2 Wavelength Collision:**
+   Because `DualObsEnv` auto-pulsed `KEY_A` on every touchdown, constant Action 4 resulted in continuous, maximum-arc bunny-hopping. The horizontal displacement of a full running jump is discrete ($\approx 185\text{ px}$). The sequence of touchdown coordinates was:
+   - Touchdown 1: $161.6\text{ px}$ (step 6) $\to$ immediate jump;
+   - Touchdown 2: $295.0\text{ px}$ (step 12) $\to$ immediate jump;
+   - Touchdown 3: $535.0\text{ px}$ (step 22) $\to$ immediate jump;
+   - Touchdown 4: $609.2\text{ px}$ (step 29) $\to$ immediate jump;
+   - Touchdown 5: $1,017.0\text{ px}$ (step 54) $\to$ immediate jump;
+   - Touchdown 6: $1,056.0\text{ px}$ (step 60) $\to$ immediate jump.
+   Tile 66 ($x = 1,056\text{ px}$) to Tile 75 ($x = 1,200\text{ px}$) is solid ground. However, taking off immediately at $x = 1,056\text{ px}$ propelled Mario along a parabolic arc whose descent landed square in **Pit 2** (Tiles 76–77, $x = 1,216$ to $1,248\text{ px}$). Mario touched down inside the pit cavity at $x = 1,250.5\text{ px}$, $y = -568.8\text{ px}$ (below the $-480\text{ px}$ floor baseline), terminating in death at step 88.
+
+**3. The Stochastic and Recurrent Contrasts.**
+1. **Stochastic Sampling Mechanism (`scratch/find_stochastic_clear.py`):**
+   Tracing successful stochastic runs (e.g. seed 106, reaching $2,551.9\text{ px}$) showed that the 46% non-Action-4 probability introduced ground dashes. At steps 89 and 91, the agent sampled Action 3 (`RIGHT + DASH`), running along the platform between $x = 1,056$ and $1,180\text{ px}$. It then sampled Action 4 at $x = 1,181.8\text{ px}$, clearing Pit 2 easily and landing at $x = 1,249.0\text{ px}$.
+2. **Recurrent Phase Modulation (`scratch/trace_rppo_impala.py`):**
+   Tracing `rppo_impala_curl_final` (4,028.0 px clear in 209 steps) revealed that out of 209 steps, it chose Action 4 for 206 steps and Action 5 (`LEFT`) for exactly 3 steps (steps 52, 59, and 60). Those 3 taps of `LEFT` braked horizontal speed to $x = 1,042.9\text{ px}$, shifting the takeoff point of the subsequent jump to $x = 1,177.6\text{ px}$ and clearing Pit 2 deterministically.
+
+**4. Implementation of the Rising-Edge Action Wrapper (`src/action_wrapper.py`).**
+To systematically control jump re-arming, `RisingEdgeActionWrapper` was implemented with three configurable operating modes:
+- `macro_edge`: Requires an explicit transition from a non-jump action ($a_{t-1} \notin \mathcal{A}_{\text{jump}}$) to trigger a jump; repeated jump requests while grounded map to ground counterparts (Action 4 $\to$ 3, Action 2 $\to$ 1).
+- `stride_cooldown`: Enforces a minimum ground-contact stride of $k$ macro-steps upon landing before a new jump can fire.
+- `hardware_pulse`: Macro-level alternating step pulse.
+
+Unit tests in `tests/test_action_wrapper.py` verify edge detection, airborne pass-through, and cooldown expiration (77/77 tests passing).
+
+**5. Empirical Benchmark Across Checkpoints (`tools/eval_wrapper_experiment.py`).**
+Evaluated under single-emulator-per-process isolation:
+
+| Model | Wrapper Mode | Cooldown ($k$) | Max X (px) | Steps | Termination | Cleared |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **PPO NatureCNN** (`s2_best`) | baseline | 0 | 1,250.5 | 89 | death (Pit 2) | False |
+| | `macro_edge` | 0 | 358.0 | 29 | death (Goomba 1) | False |
+| | `stride_cooldown` | 1 | 1,250.5 | 89 | death (Pit 2) | False |
+| | `stride_cooldown` | 2–5 | 1,121.2 | 78 | death (Pit 1) | False |
+| **PPO Impala** (`best`) | baseline | 0 | 1,250.5 | 89 | death (Pit 2) | False |
+| | `macro_edge` | 0 | 358.0 | 29 | death (Goomba 1) | False |
+| | `stride_cooldown` | 1 | 1,250.5 | 89 | death (Pit 2) | False |
+| | `stride_cooldown` | 2–5 | 1,121.2 | 78 | death (Pit 1) | False |
+| **RPPO Impala CURL** (`final`) | baseline | 0 | **4,028.0** | 209 | **clear (Flagpole)** | **True** |
+| | `macro_edge` | 0 | 358.0 | 29 | death (Goomba 1) | False |
+| | `stride_cooldown` | 1 | **4,028.0** | 209 | **clear (Flagpole)** | **True** |
+| | `stride_cooldown` | 2–5 | 1,250.5 | 115 | death (Pit 2) | False |
+
+**Scientific Takeaways:**
+1. A post-hoc action wrapper on a greedy feedforward policy cannot replace state-conditioned jump timing: enforcing a static cooldown ($k \ge 2$) delays jump initiation indiscriminately, causing the agent to walk off the edge into Pit 1 ($x = 1,040\text{ px}$).
+2. Pure `macro_edge` fails deterministically at Goomba 1 ($358\text{ px}$) because a greedy policy that never emits a non-jump action never re-arms its jump edge.
+3. This establishes a theoretical insight for platformer RL: **feedforward policies trained with entropy regularization rely on action entropy as an implicit phase modulator**. When entropy is zeroed during deterministic evaluation, the policy collapses into rigid periodic trajectories. Resolving deterministic clear performance in feedforward agents requires training under explicit stride conditioning or temporal action persistence.
+
+---
+
 ## 5. File Index
 
 ```
 src/
+  action_wrapper.py      RisingEdgeActionWrapper: macro-edge, stride cooldown, and hardware pulse (4bc)
   rainbow_dqn.py         Rainbow DQN: Double-Q, PER, Dueling, N-step, C51, NoisyNet (4aq)
   iqn.py                 Implicit Quantile Networks (IQN) agent & replay buffer (4ap)
   env.py                 Visual (CNN) environment — pixel-based obs, optical flow reward
@@ -3630,6 +3697,7 @@ out/water_probe/
                                   state (4t)
 
 tools/
+  eval_wrapper_experiment.py Evaluate checkpoints with RisingEdgeActionWrapper (4bc)
   train_rainbow.py       Rainbow DQN trainer on live DeSmuME with simple reward (4aq)
   eval_rainbow.py        Rainbow DQN deterministic evaluator with provenance (4aq)
   train_ppo_simple.py    PPO trainer with simple potential maximum reward (4aq)
